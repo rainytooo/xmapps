@@ -1,2 +1,20 @@
 Use this README file to introduce your application and point to useful places in the API for learning more.
 Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+  
+部署需要修改的配置
+1 config/database.yml
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: xmapps_production
+  pool: 5
+  username: root
+  password: 1q2w3e4r
+  host: localhost
+
+2 config/application.rb
+config.dz_auth_key = 'f00c28N7uXnFtcbB'
+config.dz_cookie_pre = '2vNK_'
+config.dz_cookie_path = '/'
+config.dz_cookie_domain = ''
