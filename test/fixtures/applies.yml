@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  email: MyString
+  mobile: MyString
+  school: MyString
+  age: 1
+  city: MyString
+  campaign_req: 1
+  campaign: 
+
+two:
+  name: MyString
+  email: MyString
+  mobile: MyString
+  school: MyString
+  age: 1
+  city: MyString
+  campaign_req: 1
+  campaign: 

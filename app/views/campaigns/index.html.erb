@@ -1,0 +1,28 @@
+	<div id="wrap_xiaoma_form" class="container">
+		<div class="content_container">
+			<div class="page_path">
+			<a href="#" title="">首页</a> &gt;&gt; <a href="#" title="">讲座活动</a>
+			</div><!-- .page_path -->
+			<div class="page_title"><h1>讲座活动信息列表</h1></div>
+			<div class="list_container">
+				
+				
+				<div class="list_left">
+					<% @campaigns.each do |campaign| %>
+					<div class="list_line">
+						<h3><%= link_to campaign.name, campaign %></h3>
+						<div><label>时间:</label><%= campaign.start_date %> <label>地点:</label> <%= campaign.addr %></div>
+					</div>
+					<% end %>
+				
+				</div><!-- .list_left -->
+				
+				<div class="list_right">
+					<h3>简要的一些提示和说明</h3>
+					<p>请您留下您的个人真实信息,</p>
+					<p>不公布活动地点，预约确认后在通过短信或站内信发给他，避免非目标客户临时到场过于混乱。</p>
+				</div><!-- .list_right -->
+			</div><!-- .list_container -->
+		</div><!-- #content_container -->
+		<div class="clear"></div>
+	</div><!-- #wrap_xiaoma_form .container-->

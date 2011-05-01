@@ -1,0 +1,48 @@
+
+html {
+    overflow-y: scroll;
+}
+
+.fl {
+	float:left;
+}
+.fr {
+	float:right;
+}
+
+a {
+    color: #1E5494;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #1E5494;
+    text-decoration: underline;
+}
+
+h1, h2, h3 {
+    font-weight: bold;
+}
+
+
+h3 {
+    font-size: 14px;
+}
+h2 {
+    font-size: 18px;
+}
+
+li {
+	float:left;
+	list-style-type:none;
+}
+ol, ul {
+    list-style: none outside none;
+}
+.clear {
+	clear:both;
+}
+
+.red {
+	color:red;
+}
