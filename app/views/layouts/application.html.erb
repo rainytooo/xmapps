@@ -17,8 +17,14 @@
 				<a href="http://www.xiaoma.com">首页</a>
 			</div>
 			<div class="fr">
+				<% if session[:login_user] %>
+				欢迎您&nbsp|&nbsp<%= session[:login_user].username %>&nbsp|&nbsp
+				<a href="http://www.xiaoma.com">退出</a>&nbsp|&nbsp
+				<% else %>
 				<a href="http://www.xiaoma.com">登录</a>&nbsp|&nbsp
 				<a href="http://www.xiaoma.com">注册</a>&nbsp|&nbsp
+				<% end %>
+				
 				<a href="http://www.xiaoma.com">帮助</a>&nbsp|&nbsp
 				<a href="http://www.xiaoma.com">设为首页</a>&nbsp|&nbsp
 				<a href="http://www.xiaoma.com">收藏</a>

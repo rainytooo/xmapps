@@ -11,6 +11,22 @@ body {
     /*text-align: center;*/
 }
 
+.error {
+	margin-left: 100px;
+	height:40px;
+	padding-top: 18px;
+	font-size:14px;
+	color: 	red;
+}
+.message {
+	margin-left: 100px;
+	height:40px;
+	padding-top: 18px;
+	font-size:14px;
+	color: #1E5494;
+	
+}
+
 .logo {
 	margin-top: 15px;
 	float:left;

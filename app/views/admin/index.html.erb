@@ -1,8 +1,50 @@
-<%= flash[:error] %>
-<%= form_tag({},:method => "post") do %>
-  <%= label_tag(:username, "用户名:") %>
-  <%= text_field_tag(:username) %><br/>
-  <%= label_tag(:password, "密码:") %>
-  <%= password_field_tag(:password) %><br/>
-  <%= submit_tag("login") %>
-<% end %>
+	<div id="wrap_xiaoma_form" class="container">
+		<div class="content_container">
+			<div class="page_path">
+			<a href="#" title="">首页</a> &gt;&gt; 登录
+			</div><!-- .page_path -->
+			<div class="page_title"><h1>登录小马过河</h1></div>
+			<div class="form_container">
+				<% if flash[:message] %>
+				<div class="message"><%= flash[:message] %></div><!-- .message -->
+				<% end %>
+				<% if flash[:error] %>
+				<div class="error"><%= flash[:error] %></div><!-- .error -->
+				<% end %>
+				<div class="form_left">
+				<%= form_tag({},:method => "post") do %>
+				
+					<div class="yuyue_form">
+						<%= label_tag(:username, "用户名:") %>
+						<%= text_field_tag(:username) %>					
+					</div><div class="clear"></div>
+					<div class="form_tips">请填您在小马注册的用户名或者密码</div>
+					<div class="yuyue_form">
+						<%= label_tag(:password, "密码:") %>
+						<%= password_field_tag(:password) %>	
+					</div><div class="clear"></div>
+					<div class="form_tips">请填您的密码</div>
+					
+					<div id="form_submit">
+						<input id="campaign_submit" name="commit" type="submit" value="登录">				
+					</div>
+					<div class="clear"></div>
+					
+				
+				<% end %>
+				</div><!-- .form_left -->
+				
+				<div class="form_right">
+					<div class="form_right">
+					<h3>没有账户</h3>
+					<p>来这里<a href="http://bbs.test.916xue.com/member.php?mod=asdfasdf">注册</a></p>
+					
+					<h3>忘记密码</h3>
+					<p><a href="http://bbs.test.916xue.com/member.php?mod=logging&action=login&viewlostpw">找回密码</a></p>
+					
+				</div>
+				</div><!-- .form_right -->
+			</div><!-- .form_container -->
+		</div><!-- #content_container -->
+		<div class="clear"></div>
+	</div><!-- #wrap_xiaoma_form .container-->

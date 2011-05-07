@@ -1,8 +1,15 @@
 Xmapps::Application.routes.draw do
+  # site index page
+  get "home/index"
+  root :to => "home#index"
+  
   get "admin/login"
   
   match "login" => "admin#index", :via => [:get]
   match 'login' => 'admin#login', :via => [:post]
+  
+  # uc api
+  match "api/uc.php" => "admin#ucapi", :via => [:get]
   
   get "dztest/index"
   resources :campaigns do
