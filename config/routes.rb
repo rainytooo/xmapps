@@ -1,4 +1,7 @@
 Xmapps::Application.routes.draw do
+  # download application
+  get "download/index"
+
   # site index page
   get "home/index"
   root :to => "home#index"

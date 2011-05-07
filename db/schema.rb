@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110427103608) do
+ActiveRecord::Schema.define(:version => 20110507153228) do
 
   create_table "applies", :force => true do |t|
     t.string   "name"
@@ -31,6 +31,62 @@ ActiveRecord::Schema.define(:version => 20110427103608) do
     t.text     "desc_content"
     t.string   "addr"
     t.datetime "start_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "dl_attachments", :force => true do |t|
+    t.integer  "dl_thread_id"
+    t.string   "filename",     :limit => 64
+    t.integer  "filesize",                   :default => 0
+    t.string   "filepath"
+    t.integer  "is_image",     :limit => 2,  :default => 0
+    t.integer  "donwloads",                  :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "dl_attachments", ["dl_thread_id"], :name => "fk_dlattachments_dlthread"
+
+  create_table "dl_images", :force => true do |t|
+    t.string   "filename",   :limit => 36
+    t.integer  "filesize"
+    t.string   "filepath"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "dl_threads", :force => true do |t|
+    t.integer  "dl_image_id"
+    t.integer  "dl_type_id"
+    t.integer  "user_id"
+    t.string   "name",        :limit => 128
+    t.string   "email",       :limit => 32
+    t.integer  "createtime"
+    t.integer  "ispass",      :limit => 2,   :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "dl_threads", ["dl_image_id"], :name => "fk_dlthreads_dlimage"
+  add_index "dl_threads", ["dl_type_id"], :name => "fk_dlthreads_dltype"
+  add_index "dl_threads", ["user_id"], :name => "fk_dlthreads_user"
+
+  create_table "dl_types", :force => true do |t|
+    t.integer  "dl_type_id"
+    t.string   "typename",   :limit => 64
+    t.integer  "type_lv",    :limit => 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "dl_types", ["dl_type_id"], :name => "fk_dltypes_parentdltypes"
+
+  create_table "users", :force => true do |t|
+    t.string   "username"
+    t.string   "email"
+    t.string   "passwd"
+    t.integer  "regdate"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
