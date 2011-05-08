@@ -1,8 +1,8 @@
 		<div class="content_container">
 			<div class="page_path">
-			<a href="#" title="">首页</a> &gt;&gt; 登录
+			<a href="#" title="">后台管理</a> &gt;&gt; 新建下载分类
 			</div><!-- .page_path -->
-			<div class="page_title"><h1>登录小马过河</h1></div>
+			<div class="page_title"><h1>新建下载分类</h1></div>
 			<div class="form_container">
 				<% if flash[:message] %>
 				<div class="message"><%= flash[:message] %></div><!-- .message -->
@@ -11,21 +11,21 @@
 				<div class="error"><%= flash[:error] %></div><!-- .error -->
 				<% end %>
 				<div class="form_left">
-				<%= form_tag({},:method => "post") do %>
+				<%= form_for([:downloads, :admin,  @dl_type]) do |f| %>
 				
 					<div class="yuyue_form">
-						<%= label_tag(:username, "用户名:") %>
-						<%= text_field_tag(:username) %>					
+						<%= label_tag(:typename, "类型名称:") %>
+						<%= f.text_field :typename %>				
 					</div><div class="clear"></div>
-					<div class="form_tips">请填您在小马注册的用户名或者密码</div>
+					<div class="form_tips">清填写类型名称</div>
 					<div class="yuyue_form">
-						<%= label_tag(:password, "密码:") %>
-						<%= password_field_tag(:password) %>	
+						<%= label_tag(:dl_type_id, "父级id:") %>
+						<%= f.text_field :dl_type_id %>			
 					</div><div class="clear"></div>
-					<div class="form_tips">请填您的密码</div>
+					<div class="form_tips">请填写父级的id</div>
 					
 					<div id="form_submit">
-						<input id="campaign_submit" name="commit" type="submit" value="登录">				
+						<input id="campaign_submit" name="commit" type="submit" value="提交">				
 					</div>
 					<div class="clear"></div>
 					
@@ -35,14 +35,11 @@
 				
 				<div class="form_right">
 					<div class="form_right">
-					<h3>没有账户</h3>
-					<p>来这里<a href="http://bbs.test.916xue.com/member.php?mod=asdfasdf">注册</a></p>
 					
-					<h3>忘记密码</h3>
-					<p><a href="http://bbs.test.916xue.com/member.php?mod=logging&action=login&viewlostpw">找回密码</a></p>
 					
 				</div>
 				</div><!-- .form_right -->
 			</div><!-- .form_container -->
 		</div><!-- #content_container -->
 		<div class="clear"></div>
+

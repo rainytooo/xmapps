@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(:version => 20110507153228) do
   create_table "dl_types", :force => true do |t|
     t.integer  "dl_type_id"
     t.string   "typename",   :limit => 64
-    t.integer  "type_lv",    :limit => 2
+    t.integer  "type_lv",    :limit => 2,  :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

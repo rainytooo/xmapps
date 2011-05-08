@@ -1,0 +1,35 @@
+<h1>分类列表</h1>
+
+<table>
+  <tr>
+	<td>id</td>
+	<td>name</td>
+    <td>层次</td>
+	<td>父级分类id</td>
+	<td>浏览</td>
+    <td>编辑</td>
+    <td>删除</td>
+	<td>增加子类</td>
+  </tr>
+
+<% @dl_types.each do |dl_type| %>
+  
+  <tr>
+	<td><%= dl_type.id %></td>
+	<td><%= dl_type.typename %></td>
+    <td><%= dl_type.type_lv %></td>
+    <td><%= dl_type.dl_type_id %></td>
+	<td><%= link_to 'Show', downloads_admin_dl_type_path(dl_type) %></td>
+    <td><%= link_to 'Edit', edit_downloads_admin_dl_type_path(dl_type) %></td>
+	<td><%= link_to 'Destroy', downloads_admin_dl_type_path(dl_type), :onclick => "if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'delete'); f.appendChild(m);f.submit(); };return false;"%></td>
+	<td><%= link_to '添加子类', addsub_downloads_admin_dl_type_path(:id => dl_type.id), :method => :get %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%=h will_paginate @dl_types, :previous_label => '上一页',  :next_label => '下一页'%>  <br/>
+共<%= @dl_types.total_entries %> 条记录  <%= @dl_types.total_pages %>页   当前<%= @dl_types.current_page %><br/>
+<%= page_entries_info @dl_types, :entry_name => '分类', :plural_name => '分类' %><br/>
+
+<%= link_to '新建分类', new_downloads_admin_dl_type_path %>

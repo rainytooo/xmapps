@@ -3,7 +3,7 @@ class CreateDlTypes < ActiveRecord::Migration
     create_table :dl_types do |t|
 	  t.references :dl_type
       t.string :typename, :limit  => 64
-      t.integer :type_lv, :limit  => 2
+      t.integer :type_lv, :limit  => 2, :default => 0
 
       t.timestamps
     end

@@ -1,0 +1,2 @@
+module DlImagesHelper
+end

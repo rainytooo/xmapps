@@ -1,6 +1,15 @@
 Xmapps::Application.routes.draw do
+  resources :dl_images
   # download application
   get "download/index"
+  
+  namespace "downloads" do
+	namespace "admin" do
+		resources :dl_types do
+			get 'addsub', :on => :member
+		end
+	end
+  end
 
   # site index page
   get "home/index"
