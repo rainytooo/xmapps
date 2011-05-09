@@ -6,6 +6,12 @@ class AdminController < ApplicationController
 	
   end
   
+  def logout
+	reset_session
+	cookies.delete(Rails.configuration.dz_cookie_name)
+	redirect_to root_url
+  end
+  
   def login
     if request.post?
 		# 这里做登录的验证

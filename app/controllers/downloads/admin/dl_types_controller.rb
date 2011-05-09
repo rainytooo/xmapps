@@ -1,9 +1,10 @@
 class Downloads::Admin::DlTypesController < ApplicationController
+  before_filter :require_login , :require_admin
   # GET /dl_types
   # GET /dl_types.xml
   def index
-	@dl_types = DlType.paginate(:page=>params[:page]||1,:per_page=>2)
-
+	@dl_types = DlType.paginate(:page=>params[:page]||1,:per_page=>20)
+	logger.info @dl_types.length
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @dl_types }
@@ -14,7 +15,7 @@ class Downloads::Admin::DlTypesController < ApplicationController
   # GET /dl_types/1.xml
   def show
     @dl_type = DlType.find(params[:id])
-
+	logger.info @dl_types.id
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @dl_type }
@@ -94,5 +95,34 @@ class Downloads::Admin::DlTypesController < ApplicationController
       format.html { redirect_to(downloads_admin_dl_types_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  # 下面是过滤器的定义部分
+  private
+ 
+  def require_login
+    unless logged_in?
+      flash[:error] = "必须登录才能继续刚才的操作"
+      redirect_to login_url # halts request cycle
+    end
+  end
+ 
+  def logged_in?
+    !!session[:login_user]
+  end
+  
+  def require_admin
+	 unless logged_admin?
+       flash[:error] = "你必须具有管理员权限"
+       redirect_to login_url # halts request cycle
+	 end
+  end
+  
+  def logged_admin?
+	if session[:login_user].id == 1
+	  return true
+	else
+	  return false
+	end
   end
 end

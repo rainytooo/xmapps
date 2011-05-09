@@ -19,6 +19,7 @@ Xmapps::Application.routes.draw do
   
   match "login" => "admin#index", :via => [:get]
   match 'login' => 'admin#login', :via => [:post]
+  match "logout" => "admin#logout", :via => [:get]
   
   # uc api
   match "api/uc.php" => "admin#ucapi", :via => [:get]

@@ -18,9 +18,9 @@
 			<div class="fr">
 				<% if session[:login_user] %>
 				欢迎您&nbsp|&nbsp<%= session[:login_user].username %>&nbsp|&nbsp
-				<a href="http://www.xiaoma.com">退出</a>&nbsp|&nbsp
+				<%= link_to '退出', logout_url %>&nbsp|&nbsp
 				<% else %>
-				<a href="http://www.xiaoma.com">登录</a>&nbsp|&nbsp
+				<%= link_to '登录', login_url %>&nbsp|&nbsp
 				<a href="http://www.xiaoma.com">注册</a>&nbsp|&nbsp
 				<% end %>
 				
