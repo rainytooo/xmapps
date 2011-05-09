@@ -7,6 +7,7 @@ class AdminController < ApplicationController
   end
   
   def logout
+	logger.info "someone logout"
 	reset_session
 	cookies.delete(Rails.configuration.dz_cookie_name)
 	redirect_to root_url

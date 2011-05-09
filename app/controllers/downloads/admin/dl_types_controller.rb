@@ -15,7 +15,6 @@ class Downloads::Admin::DlTypesController < ApplicationController
   # GET /dl_types/1.xml
   def show
     @dl_type = DlType.find(params[:id])
-	logger.info @dl_types.id
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @dl_type }
@@ -88,6 +87,7 @@ class Downloads::Admin::DlTypesController < ApplicationController
   # DELETE /dl_types/1
   # DELETE /dl_types/1.xml
   def destroy
+	logger.info "destory method"
     @dl_type = DlType.find(params[:id])
     @dl_type.destroy
 
@@ -101,6 +101,7 @@ class Downloads::Admin::DlTypesController < ApplicationController
   private
  
   def require_login
+	logger.info "check login"
     unless logged_in?
       flash[:error] = "必须登录才能继续刚才的操作"
       redirect_to login_url # halts request cycle
@@ -112,10 +113,11 @@ class Downloads::Admin::DlTypesController < ApplicationController
   end
   
   def require_admin
-	 unless logged_admin?
-       flash[:error] = "你必须具有管理员权限"
-       redirect_to login_url # halts request cycle
-	 end
+	logger.info "check admin"
+	unless logged_admin?
+      flash[:error] = "你必须具有管理员权限"
+      redirect_to login_url # halts request cycle
+	end
   end
   
   def logged_admin?

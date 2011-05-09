@@ -1,5 +1,4 @@
 <h1>分类列表</h1>
-
 <table>
   <tr>
 	<td>id</td>
@@ -21,7 +20,7 @@
     <td><%= dl_type.dl_type_id %></td>
 	<td><%= link_to 'Show', downloads_admin_dl_type_path(dl_type) %></td>
     <td><%= link_to 'Edit', edit_downloads_admin_dl_type_path(dl_type) %></td>
-	<td><%= link_to 'Destroy', downloads_admin_dl_type_path(dl_type), :onclick => "if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'delete'); f.appendChild(m);f.submit(); };return false;"%></td>
+	<td><%= link_to 'Destroy', downloads_admin_dl_type_path(dl_type), :onclick => "if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var at = document.createElement('input'); at.setAttribute('type', 'hidden'); at.setAttribute('name', 'authenticity_token'); at.setAttribute('value', '#{form_authenticity_token}'); f.appendChild(at);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'delete'); f.appendChild(m);f.submit(); };return false;"%></td>
 	<td><%= link_to '添加子类', addsub_downloads_admin_dl_type_path(:id => dl_type.id), :method => :get %></td>
   </tr>
 <% end %>
