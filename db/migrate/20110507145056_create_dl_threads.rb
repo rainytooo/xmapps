@@ -5,7 +5,7 @@ class CreateDlThreads < ActiveRecord::Migration
 	  t.references :dl_type
 	  t.references :user
       t.string :name ,:limit  => 128
-      t.string :email ,:limit  => 32
+      t.text :content 
       t.integer :createtime ,:limit  => 10
       t.integer :ispass ,:limit  => 2, :default => 0
 

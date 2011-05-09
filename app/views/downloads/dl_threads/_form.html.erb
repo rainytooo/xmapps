@@ -1,0 +1,82 @@
+<%= stylesheet_link_tag('jquery.fileupload-ui') %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+<%= javascript_include_tag 'jquery.fileupload', 'jquery.fileupload-ui' %>
+
+<script type="text/javascript" charset="utf-8"> 
+   $(function () {
+  $('.upload').fileUploadUI({
+        uploadTable: $('.upload_files'),
+        downloadTable: $('.download_files'),
+        buildUploadRow: function (files, index) {
+            var file = files[index];
+            return $('<tr><td>' + file.name + '<\/td>' +
+                    '<td class="file_upload_progress"><div><\/div><\/td>' +
+                    '<td class="file_upload_cancel">' +
+                    '<button class="ui-state-default ui-corner-all" title="Cancel">' +
+                    '<span class="ui-icon ui-icon-cancel">Cancel<\/span>' +
+                    '<\/button><\/td><\/tr>');
+        },
+        buildDownloadRow: function (file) {
+            return $('<tr><td><img alt="Photo" width="40" height="40" src="' + file.pic_path + '">' + file.name + '<\/td><\/tr>');
+        },
+    });
+});
+</script>
+
+		<div class="content_container">
+			<div class="page_path">
+			<a href="#" title="">资料下载</a> &gt;&gt; 上传资料
+			</div><!-- .page_path -->
+			<div class="page_title"><h1>新建资料下载</h1></div>
+			<div class="form_container">
+				<% if flash[:message] %>
+				<div class="message"><%= flash[:message] %></div><!-- .message -->
+				<% end %>
+				<% if flash[:error] %>
+				<div class="error"><%= flash[:error] %></div><!-- .error -->
+				<% end %>
+				<div class="form_left">
+				<%= form_for([:downloads, @dl_thread]) do |f| %>
+				
+					<div class="yuyue_form">
+						<%= label_tag(:name, "下载资源的标题:") %>
+						<%= f.text_field :name %>				
+					</div><div class="clear"></div>
+					<div class="form_tips">清填写下载资源的标题</div>
+					<div class="yuyue_form">
+						<%= label_tag(:dl_type_id, "下载资源的类型:") %>
+						<%= select_tag(:dl_type_id,  options_for_select(DlType.where("id != 1").collect{ |p| [p.typename, p.id] })) %>						
+					</div><div class="clear"></div>
+					<div class="form_tips">清选择下载资源的类型</div>
+					<div class="yuyue_form">
+						<%= label_tag(:dl_type_id, "父级id:") %>
+						<%= f.text_field :dl_type_id %>			
+					</div><div class="clear"></div>
+					<div class="form_tips">请填写父级的id</div>
+					
+					
+					<div id="form_submit">
+						<input id="campaign_submit" name="commit" type="submit" value="提交">				
+					</div>
+					<div class="clear"></div>
+					
+				
+				<% end %>
+				</div><!-- .form_left -->
+				
+				<div class="form_right">
+					<div class="files"> 
+						<%= form_for( [:downloads, @dl_image], :html => { :class => "upload", :multipart => true } ) do |f| %>
+						  <%= f.file_field :picture %>
+						  <div>Upload files</div>
+						<% end %>
+						
+						<table class="upload_files"></table>
+						<table class="download_files"></table>
+					</div>
+				</div><!-- .form_right -->
+			</div><!-- .form_container -->
+		</div><!-- #content_container -->
+		<div class="clear"></div>
+

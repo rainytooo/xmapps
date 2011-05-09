@@ -1,0 +1,21 @@
+<h1>Listing dl_threads</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @dl_threads.each do |dl_thread| %>
+  <tr>
+    <td><%= link_to 'Show', downloads_dl_thread %></td>
+    <td><%= link_to 'Edit', edit_downloads_dl_thread_path(dl_thread) %></td>
+    <td><%= link_to 'Destroy', downloads_dl_thread, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Dl thread', new_downloads_dl_thread_path %>

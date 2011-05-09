@@ -4,6 +4,7 @@ Xmapps::Application.routes.draw do
   get "download/index"
   
   namespace "downloads" do
+	resources :dl_threads, :dl_images
 	namespace "admin" do
 		resources :dl_types do
 			get 'addsub', :on => :member

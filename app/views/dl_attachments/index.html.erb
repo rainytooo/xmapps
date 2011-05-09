@@ -1,0 +1,21 @@
+<h1>Listing dl_attachments</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @dl_attachments.each do |dl_attachment| %>
+  <tr>
+    <td><%= link_to 'Show', dl_attachment %></td>
+    <td><%= link_to 'Edit', edit_dl_attachment_path(dl_attachment) %></td>
+    <td><%= link_to 'Destroy', dl_attachment, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Dl attachment', new_dl_attachment_path %>

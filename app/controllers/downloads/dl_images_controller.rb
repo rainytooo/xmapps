@@ -1,4 +1,4 @@
-class DlImagesController < ApplicationController
+class Downloads::DlImagesController < ApplicationController
   # GET /dl_images
   # GET /dl_images.xml
   def index
@@ -40,17 +40,29 @@ class DlImagesController < ApplicationController
   # POST /dl_images
   # POST /dl_images.xml
   def create
-    @dl_image = DlImage.new(params[:dl_image])
-
+    #@dl_image = DlImage.new(params[:dl_image])
+	logger.info "888888888888888888888888888888888888888888888888888"
+	upload_params = params[:dl_image]
+	picture = upload_params[:picture]
+	name =  picture.original_filename
+	directory = "public/data"
+	path = File.join(directory, name)
+	File.open(path, "wb") { |f| f.write(picture.read) }
+	
+	
+=begin
     respond_to do |format|
       if @dl_image.save
-        format.html { redirect_to(@dl_image, :notice => 'Dl image was successfully created.') }
+		#render :json => { :pic_path => @dl_image.picture.url.to_s , :name => @upload.picture.instance.attributes["picture_file_name"] }, :content_type => 'text/html'
+        #format.html { redirect_to(@dl_image, :notice => 'Dl image was successfully created.') }
         format.xml  { render :xml => @dl_image, :status => :created, :location => @dl_image }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @dl_image.errors, :status => :unprocessable_entity }
       end
+
     end
+=end
   end
 
   # PUT /dl_images/1
