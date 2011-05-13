@@ -18,3 +18,11 @@ config.dz_auth_key = 'f00c28N7uXnFtcbB'
 config.dz_cookie_pre = '2vNK_'
 config.dz_cookie_path = '/'
 config.dz_cookie_domain = ''
+
+需要安装的包
+rmagick
+
+系统需要安装的
+imagemagcik
+
+

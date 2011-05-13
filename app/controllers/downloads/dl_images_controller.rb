@@ -1,3 +1,5 @@
+require 'ftools'
+
 class Downloads::DlImagesController < ApplicationController
   # GET /dl_images
   # GET /dl_images.xml
@@ -40,15 +42,37 @@ class Downloads::DlImagesController < ApplicationController
   # POST /dl_images
   # POST /dl_images.xml
   def create
-    #@dl_image = DlImage.new(params[:dl_image])
-	logger.info "888888888888888888888888888888888888888888888888888"
+	# 将上传的参数转化为ActionDispatch::Http::UploadedFile对象
 	upload_params = params[:dl_image]
 	picture = upload_params[:picture]
+	
+	# 定义原始路径  这个路径是要替换成配置文件里的
+	directory = "d:/dev/servers/xampp/htdocs/xmappimages"
+	# 图片服务器根地址
+	img_server_url = "http://localhost/xmappimages/"
+	# 初始化日期路径
+	t = Time.now
+	#年月日
+	year_s = t.strftime("%Y").to_s
+	month_s = t.strftime("%m").to_s
+	day_s = t.strftime("%d").to_s
+	# 除去配置文件的路径
+	file_folder = File.join(year_s, month_s, day_s)
+	# 除去文件名的全路径
+	base_dir = File.join(directory, file_folder)
+	if not File.exist?(base_dir)
+	  File.makedirs(base_dir)
+	end
+	# 重写文件名 ,这里需要从配置文件里读取根路径,然后根据日期创建目录(如果已经存在就不创建), 用uuid重命名
 	name =  picture.original_filename
-	directory = "public/data"
-	path = File.join(directory, name)
+	# 文件名后缀
+	ext = File.extname(name)
+	new_name = UUIDTools::UUID.timestamp_create.to_s.gsub('-','') + ext
+	path = File.join(base_dir, new_name)
 	File.open(path, "wb") { |f| f.write(picture.read) }
 	
+	
+	render :json => { :pic_path => img_server_url + File.join(file_folder, new_name).to_s , :name => new_name }.to_json, :content_type => 'text/xml'
 	
 =begin
     respond_to do |format|

@@ -4,6 +4,7 @@ Xmapps::Application.configure do
   # In the development environment your application's code is reloaded on
   # every request.  This slows down response time but is perfect for development
   # since you don't have to restart the webserver when you make code changes.
+  config.serve_static_assets = true
   config.cache_classes = false
 
   # Log error messages when you accidentally call methods on nil.
@@ -22,5 +23,7 @@ Xmapps::Application.configure do
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
+  DOWNLOAD_THREAD_PHOTO_ROOT_PATH = "d:/dev/servers/xampp/htdocs/xmappimages"
+  DOWNLOAD_THREAD_PHOTO_ROOT_URL = "http://localhost/xmappimages"
 end
 

@@ -44,8 +44,11 @@ class Downloads::DlThreadsController < ApplicationController
 
     respond_to do |format|
       if @dl_thread.save
-        format.html { redirect_to(@dl_thread, :notice => 'Dl thread was successfully created.') }
-        format.xml  { render :xml => @dl_thread, :status => :created, :location => @dl_thread }
+		if params[:dl_thread][:photo].blank?
+		  format.html { redirect_to([:downloads, @dl_thread], :notice => 'Dl thread was successfully created.') }
+		else
+		  format.html { render :action => "crop" }
+		end
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @dl_thread.errors, :status => :unprocessable_entity }
@@ -57,10 +60,10 @@ class Downloads::DlThreadsController < ApplicationController
   # PUT /dl_threads/1.xml
   def update
     @dl_thread = DlThread.find(params[:id])
-
+	@dl_thread.update_attributes(params[:dl_thread])
     respond_to do |format|
       if @dl_thread.update_attributes(params[:dl_thread])
-        format.html { redirect_to(@dl_thread, :notice => 'Dl thread was successfully updated.') }
+		format.html { redirect_to([:downloads, @dl_thread], :notice => 'Dl thread was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

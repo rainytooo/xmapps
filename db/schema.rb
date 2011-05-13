@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110507153228) do
+ActiveRecord::Schema.define(:version => 20110511072355) do
 
   create_table "applies", :force => true do |t|
     t.string   "name"
@@ -60,12 +60,15 @@ ActiveRecord::Schema.define(:version => 20110507153228) do
     t.integer  "dl_image_id"
     t.integer  "dl_type_id"
     t.integer  "user_id"
-    t.string   "name",        :limit => 128
-    t.string   "email",       :limit => 32
+    t.string   "name",               :limit => 128
+    t.string   "email",              :limit => 32
     t.integer  "createtime"
-    t.integer  "ispass",      :limit => 2,   :default => 0
+    t.integer  "ispass",             :limit => 2,   :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
   end
 
   add_index "dl_threads", ["dl_image_id"], :name => "fk_dlthreads_dlimage"

@@ -27,6 +27,11 @@ body {
 	
 }
 
+.blank {
+	height:40px;
+	clear: both;
+}
+
 .logo {
 	margin-top: 15px;
 	float:left;
@@ -352,6 +357,10 @@ body {
 #wrap_xiaoma_form form input {
 	width:180px;
 }
+
+#wrap_xiaoma_form form select {
+	width:184px;
+}
 .yuyue_form {
 	margin-bottom: 9px;
 }
@@ -374,5 +383,16 @@ body {
 }
 
 
+.info_left {
+	width: 320px
+}
 
+.info_right {
+	width: 600px
+}
 
+#info_pic {
+	width:200px;
+	height:208px;
+	background: url("../images/logo-3.gif") no-repeat scroll 0 0 transparent;
+}

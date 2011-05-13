@@ -7,6 +7,9 @@ gem "will_paginate", "~> 3.0.pre2"
 
 gem 'mysql'
 
+#gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git',
+#                 :branch => 'rails3'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
