@@ -16,11 +16,14 @@ Xmapps::Application.routes.draw do
   get "home/index"
   root :to => "home#index"
   
-  get "admin/login"
+  match "login" => "logins#index", :via => [:get]
+  match 'login' => 'logins#create', :via => [:post]
+  match "logout" => "logins#logout", :via => [:get]
+  #get "admin/login"
   
-  match "login" => "admin#index", :via => [:get]
-  match 'login' => 'admin#login', :via => [:post]
-  match "logout" => "admin#logout", :via => [:get]
+  #match "login" => "admin#index", :via => [:get]
+  #match 'login' => 'admin#login', :via => [:post]
+  #match "logout" => "admin#logout", :via => [:get]
   
   # uc api
   match "api/uc.php" => "admin#ucapi", :via => [:get]

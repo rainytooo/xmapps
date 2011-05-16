@@ -25,17 +25,11 @@ module Xmapps
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     config.time_zone = 'UTC'
-	# discuz 的auth key的配置
-	config.dz_auth_key = 'f00c28N7uXnFtcbB'
-	# discuz的cookie的名字
-	config.dz_cookie_pre = '2vNK_'
-	config.dz_cookie_path = '/'
-	config.dz_cookie_domain = ''
-	config.dz_cookie_name = config.dz_cookie_pre + Digest::MD5.hexdigest(config.dz_cookie_path + "|" + config.dz_cookie_domain)[0,4] + "_auth"
+	
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+    config.i18n.default_locale = :cn
 
     # JavaScript files you want as :defaults (application.js is always included).
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)

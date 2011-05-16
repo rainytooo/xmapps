@@ -4,7 +4,6 @@ class Downloads::Admin::DlTypesController < ApplicationController
   # GET /dl_types.xml
   def index
 	@dl_types = DlType.paginate(:page=>params[:page]||1,:per_page=>20)
-	logger.info @dl_types.length
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @dl_types }
@@ -51,9 +50,7 @@ class Downloads::Admin::DlTypesController < ApplicationController
   # POST /dl_types.xml
   def create
     @dl_type = DlType.new(params[:dl_type])
-	#logger.info @dl_type.dl_type_id
 	if @dl_type.dl_type
-		logger.info @dl_type.dl_type.id
 		@dl_type.type_lv = @dl_type.dl_type.type_lv + 1
 	end
 	
@@ -87,7 +84,6 @@ class Downloads::Admin::DlTypesController < ApplicationController
   # DELETE /dl_types/1
   # DELETE /dl_types/1.xml
   def destroy
-	logger.info "destory method"
     @dl_type = DlType.find(params[:id])
     @dl_type.destroy
 
@@ -97,34 +93,5 @@ class Downloads::Admin::DlTypesController < ApplicationController
     end
   end
   
-  # 下面是过滤器的定义部分
-  private
- 
-  def require_login
-	logger.info "check login"
-    unless logged_in?
-      flash[:error] = "必须登录才能继续刚才的操作"
-      redirect_to login_url # halts request cycle
-    end
-  end
- 
-  def logged_in?
-    !!session[:login_user]
-  end
-  
-  def require_admin
-	logger.info "check admin"
-	unless logged_admin?
-      flash[:error] = "你必须具有管理员权限"
-      redirect_to login_url # halts request cycle
-	end
-  end
-  
-  def logged_admin?
-	if session[:login_user].id == 1
-	  return true
-	else
-	  return false
-	end
-  end
+
 end

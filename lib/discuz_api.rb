@@ -17,13 +17,13 @@ module DiscuzApi
   end
   # 编码出discuz的auth_code 存放到cookie里
   def encode_cookie(auth_key, user_agent, user)
-	logger.info user.id
+	#logger.info user.id
 	to_hash = user.password+"\t"+user.id.to_s
-	logger.info to_hash
+	#logger.info to_hash
 	auth_key_new = Digest::MD5.hexdigest(auth_key + user_agent)
-	logger.info auth_key_new
+	#logger.info auth_key_new
 	hash_code = authcode(to_hash, false, auth_key_new)
-	logger.info hash_code
+	#logger.info hash_code
 	#URI.escape(hash_code)
 	return hash_code
   end

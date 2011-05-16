@@ -23,7 +23,15 @@ Xmapps::Application.configure do
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
+  # 以下部分是项目用到的常量
   DOWNLOAD_THREAD_PHOTO_ROOT_PATH = "d:/dev/servers/xampp/htdocs/xmappimages"
   DOWNLOAD_THREAD_PHOTO_ROOT_URL = "http://localhost/xmappimages"
+  # discuz 的auth key的配置
+  DZ_AUTH_KEY = 'f00c28N7uXnFtcbB'
+  # discuz的cookie的名字
+  DZ_COOKIE_PRE = '2vNK_'
+  DZ_COOKIE_PATH = '/'
+  DZ_COOKIE_DOMAIN = ''
+  DZ_COOKIE_NAME = DZ_COOKIE_PRE + Digest::MD5.hexdigest(DZ_COOKIE_PATH + "|" + DZ_COOKIE_DOMAIN)[0,4] + "_auth"
 end
 

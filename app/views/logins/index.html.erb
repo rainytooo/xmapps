@@ -1,28 +1,28 @@
-<%= javascript_include_tag 'jquery.min', 'rails.validations', 'jquery.validate.min' %>
+<%= javascript_include_tag 'jquery.min', 'rails.validations'%>
 		<div class="content_container">
 			<div class="page_path">
 			<a href="#" title="">首页</a> &gt;&gt; 登录
 			</div><!-- .page_path -->
 			<div class="page_title"><h1>登录小马过河</h1></div>
 			<div class="form_container">
-				<% if flash[:message] %>
-				<div class="message"><%= flash[:message] %></div><!-- .message -->
-				<% end %>
-				<% if flash[:error] %>
-				<div class="error"><%= flash[:error] %></div><!-- .error -->
-				<% end %>
-				<div class="form_left">
-				<%= form_tag({},:method => "post", :validations => Login) do %>
 				
-					<div class="yuyue_form">
-						<%= label_tag(:username, "用户名:") %>
-						<%= text_field_tag(:username) %>					
-					</div><div class="clear"></div>
+				<div class="form_left">
+				<%= form_for(@login, :url => login_path, :method => "post", :validate => true) do |f|%>
+					<% if flash[:message] %>
+					<div class="submit_message"><%= flash[:message] %></div><!-- .message -->
+					<% end %>
+					<% if flash[:error] %>
+					<div class="submit_error"><%= flash[:error] %></div><!-- .error -->
+					<% end %>
+					<div class="global_form">
+						<%= f.label :username, "用户名:" %><div class="clear"></div>						
+						<%= f.text_field :username %>						
+					</div>
 					<div class="form_tips">请填您在小马注册的用户名或者密码</div>
-					<div class="yuyue_form">
-						<%= label_tag(:password, "密码:") %>
-						<%= password_field_tag(:password) %>	
-					</div><div class="clear"></div>
+					<div class="global_form">
+						<%= f.label :password, "密码:" %><div class="clear"></div>	
+						<%= f.password_field :password %>	
+					</div>
 					<div class="form_tips">请填您的密码</div>
 					
 					<div id="form_submit">
@@ -47,3 +47,4 @@
 			</div><!-- .form_container -->
 		</div><!-- #content_container -->
 		<div class="clear"></div>
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110511072355) do
+ActiveRecord::Schema.define(:version => 20110514151401) do
 
   create_table "applies", :force => true do |t|
     t.string   "name"
@@ -84,6 +84,11 @@ ActiveRecord::Schema.define(:version => 20110511072355) do
   end
 
   add_index "dl_types", ["dl_type_id"], :name => "fk_dltypes_parentdltypes"
+
+  create_table "logins", :force => true do |t|
+    t.string "username", :limit => 32
+    t.string "password", :limit => 32
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username"

@@ -11,22 +11,6 @@ body {
     /*text-align: center;*/
 }
 
-.error {
-	margin-left: 100px;
-	height:40px;
-	padding-top: 18px;
-	font-size:14px;
-	color: 	red;
-}
-.message {
-	margin-left: 100px;
-	height:40px;
-	padding-top: 18px;
-	font-size:14px;
-	color: #1E5494;
-	
-}
-
 .blank {
 	height:40px;
 	clear: both;
@@ -361,14 +345,18 @@ body {
 #wrap_xiaoma_form form select {
 	width:184px;
 }
-.yuyue_form {
+.global_form {
 	margin-bottom: 9px;
+}
+
+.global_form .input_title {
+	clear: both;
 }
 
 .form_tips {
 	color: 	#808080;
-	margin-left: 120px;
 	margin-bottom: 9px;
+	clear: both;
 }
 
 #wrap_xiaoma_form form #form_submit input {
@@ -395,4 +383,27 @@ body {
 	width:200px;
 	height:208px;
 	background: url("../images/logo-3.gif") no-repeat scroll 0 0 transparent;
+}
+
+/*表单验证*/
+
+.submit_message {
+	background: none repeat scroll 0 0 #EEEEEE;
+    border: 1px solid #CCCCCC;
+    padding: 6px 9px;
+	margin: 0 0 21px;
+}
+
+.submit_error {
+	color: red;
+	background: none repeat scroll 0 0 #EEEEEE;
+    border: 1px solid #CCCCCC;
+    padding: 6px 9px;
+	margin: 0 0 21px;
+}
+
+.field_with_errors .message {
+	color: red;
+	padding-left: 5px;
+	font-size: 12px;
 }
