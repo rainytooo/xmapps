@@ -1,4 +1,7 @@
 <% content_for :head do %>
+<title>小马过河-编辑资料上传的缩略图</title>
+<meta name="description" content="编辑资料上传的缩略图" /> 
+<meta name="keywords" content="小马过河 英语 学习资料 上传" /> 
 <%= stylesheet_link_tag('jquery.Jcrop.css') %>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <%= javascript_include_tag 'jquery.Jcrop.min.js' %>
@@ -30,16 +33,30 @@ function update_crop(coords) {
 <% end %>
 		<div class="content_container">
 			<div class="page_path">
-			<a href="#" title="">首页</a> &gt;&gt; <%= link_to '资源下载', downloads_dl_threads_path %> &gt;&gt; <%= @dl_thread.name %>
+			<%= link_to "首页", root_path %> &gt;&gt; <%= link_to '资源下载', dl_index_path %> &gt;&gt; <%= @dl_thread.name %>
 			</div><!-- .page_path -->
 			<div class="page_title"><h1><%= @dl_thread.name %></h1></div>
 			
 			<div class="form_info_container">
-				<div class="form_info_desc">请编辑<%= @dl_thread.name %>的缩略图</div><!-- .form_desc -->
+				<div class="form_desc"><span class="form_desc_tip">操作流程:&nbsp;</span>1.填写基本信息 -> <span class="current">2.编辑缩略图</span> -> 3.添加附件</div><!-- .form_desc -->
 				<div class="form_info_left">
+				<% if @dl_thread.errors.any? %>
+					<div id="error_explanation">
+					  <h2><%= pluralize(@dl_thread.errors.count, "个错误") %> 阻止了此次资源上传:</h2>
+					  <ul>
+					  <% @dl_thread.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					  <% end %>
+					  </ul>
+					  <div class="clear"></div>
+					</div>
+				    <% end %>
+				<div class="clear"></div>	
+				
 					<p><label>资源名称:</label><%= @dl_thread.name %></p>
 									
 					<% form_for( [:downloads, @dl_thread] ) do |f| %>
+					  <%= hidden_field_tag(:crop, "1") %>
 					  <div class="yuyue_form">
 						<%= label_tag(:crop_origin, "原图:") %>
 						<%= image_tag @dl_thread.photo.url(:medium), :id => 'cropbox' %>			

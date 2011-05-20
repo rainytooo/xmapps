@@ -1,1 +1,93 @@
-<%= render 'form' %>
+<% content_for :head do %>
+<title>小马过河-上传资料</title>
+<meta name="description" content="上传资料" /> 
+<meta name="keywords" content="小马过河 英语 学习资料 上传" /> 
+<%= javascript_include_tag 'jquery.min', 'rails.validations', 'editor/kindeditor-min' %>
+<script language="Javascript">
+	KE.show({
+		id : 'dl_thread_content',
+		resizeMode : 1,
+		allowPreviewEmoticons : false,
+		allowUpload : false,
+		items : [
+		'textcolor','removeformat']
+	});
+</script>
+
+<% end %>
+		<div class="content_container">
+			<div class="page_path">
+			<%= link_to "首页", root_path %> &gt;&gt; <%= link_to '资源下载', dl_index_path %> &gt;&gt; 上传资料
+			</div><!-- .page_path -->
+			<div class="page_title"><h1>上传新的下载资料</h1></div>
+			<div class="form_container">
+				<div class="form_desc"><span class="form_desc_tip">操作流程:&nbsp;</span><span class="current">1.填写基本信息</span> -> 2.编辑缩略图 -> 3.添加附件</div><!-- .form_desc -->
+				<div class="form_left">
+				<% if @dl_thread.errors.any? %>
+					<div id="error_explanation">
+					  <h2><%= pluralize(@dl_thread.errors.count, "个错误") %> 阻止了此次资源上传:</h2>
+					  <ul>
+					  <% @dl_thread.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					  <% end %>
+					  </ul>
+					  <div class="clear"></div>
+					</div>
+				  <% end %>
+				  <div class="clear"></div>		
+				<%= form_for([:downloads, @dl_thread], :validate => true, :html => { :multipart => true } ) do |f| %>
+					<% if flash[:message] %>
+					<div class="submit_message"><%= flash[:message] %></div><!-- .message -->
+					<% end %>
+					<% if flash[:error] %>
+					<div class="submit_error"><%= flash[:error] %></div><!-- .error -->
+					<% end %>
+					<div class="global_form">
+						<%= f.label :name, "下载资源的标题:" %><div class="clear"></div>						
+						<%= f.text_field :name %>						
+					</div>
+					<div class="form_tips">清填写下载资源的标题</div>
+					<div class="global_form">
+						<%= f.label :dl_type_id, "下载资源的类型:" %><div class="clear"></div>						
+						<%= select_tag(:dl_type_id,  options_for_select(DlType.where("id != 1").collect{ |p| [p.typename, p.id] })) %>						
+					</div>
+					<div class="form_tips">清选择下载资源的类型</div>
+					<div class="global_form">
+						<%= label_tag(:tag_names, "下载资源的标签:") %><div class="clear"></div>						
+						<%= text_field_tag( :tag_names) %>						
+					</div>
+					<div class="form_tips">清填写下载资源的标签,用半角的逗号隔开</div>
+					<div class="global_form">
+						<%= f.label :photo, "预览图:" %><div class="clear"></div>						
+						<%= f.file_field  :photo %>							
+					</div>
+					<div class="form_tips">选择您要上传的预览图或者封面,文件格式为jpeg,gif或者png,大小不要超过1M</div>
+					<div class="global_form">
+						<%= f.label :content_desc, "简介:" %><div class="clear"></div>						
+						<%= f.text_area :content_desc , :size => "75x10"%>							
+					</div>
+					<div class="form_tips">请填写这个资源的简单介绍,不得少于30个字</div>
+					<div class="global_form">
+						<%= f.label :content, "内容:" %><div class="clear"></div>						
+						<%= f.text_area :content , :size => "75x20"%>							
+					</div>
+					<div class="form_tips">请填写这个资源的完整内容介绍,不得少于100个字</div>
+					<div id="form_submit">
+						<input id="campaign_submit" name="commit" type="submit" value="提交">				
+					</div>
+					<div class="clear"></div>
+					
+				
+				<% end %>
+				</div><!-- .form_left -->
+				
+				<div class="form_right">
+					<h5>上传资料有什么好处</h5>
+					<p>在小马过河分享你的学习资料,可以
+
+					</p>
+				</div><!-- .form_right -->
+			</div><!-- .form_container -->
+		</div><!-- #content_container -->
+		<div class="clear"></div>
+

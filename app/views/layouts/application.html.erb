@@ -21,7 +21,7 @@
 				<%= link_to '退出', logout_url %>&nbsp|&nbsp
 				<% else %>
 				<%= link_to '登录', login_url %>&nbsp|&nbsp
-				<a href="http://www.xiaoma.com">注册</a>&nbsp|&nbsp
+				<a href="http://bbs.xiaoma.com/member.php?mod=asdfasdf">注册</a>&nbsp|&nbsp
 				<% end %>
 				
 				<a href="http://www.xiaoma.com">帮助</a>&nbsp|&nbsp
@@ -80,7 +80,7 @@
 			<li><a href="http://www.xiaoma.com/category/giveaways/">出国留学</a></li>
 			<li><a href="http://www.xiaoma.com/category/top/">大闷锅</a></li>
 			<li class="fr" id="submitLink"><a href="http://www.xiaoma.com/submit/" class="modal cboxElement">问答</a></li>
-			<li class="fr"><a href="http://www.xiaoma.com/contact/" class="modal cboxElement">背单词</a></li>
+			<li class="fr" id="submitLink"><%= link_to "资料下载", dl_index_path, :class => 'modal cboxElement' %></li>
 			<li class="fr" id="submitLink"><a href="http://www.xiaoma.com/submit/" class="modal cboxElement">空间</a></li>
 			<li class="fr" id="submitLink"><a href="http://www.xiaoma.com/submit/" class="modal cboxElement">论坛</a></li>
 		</ul>

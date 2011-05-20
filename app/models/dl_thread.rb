@@ -1,20 +1,31 @@
 class DlThread < ActiveRecord::Base
   	belongs_to :user,:class_name => "User"
 	belongs_to :dl_type,:class_name => "DlType"
-	#belongs_to :dl_image,:class_name => "DlImage"
+	
+	#è¡¨å•çš„å®¢æˆ·ç«¯éªŒè¯
+	validates_presence_of :name
+	validates_length_of :name, :minimum => 5
+	validates_length_of :name, :maximum => 128
+	validates_presence_of :photo
+	validates_presence_of :content_desc
+	validates_length_of :content_desc, :minimum => 50
+	validates_length_of :content_desc, :maximum => 255
+	#validates_presence_of :content
+	
+	
 	has_attached_file :photo, 
 		:styles => { :medium => "300x300>", :thumb => "100x100>" },
 		:processors => [:cropper],
 		:url => "#{DOWNLOAD_THREAD_PHOTO_ROOT_URL}/:attachment/:year/:month/:day/:id/:style/:filename",
 		:path => "#{DOWNLOAD_THREAD_PHOTO_ROOT_PATH}/:attachment/:year/:month/:day/:id/:style/:filename",
 		:use_timestamp         => true
-	# ÒÔÏÂ3¸öÑéÖ¤¶¼¿ÉÒÔÌí¼ÓmessageÊôĞÔÀ´·µ»Ø´íÎó	
-	# ±ØÌî	
+	# ä»¥ä¸‹3ä¸ªéªŒè¯éƒ½å¯ä»¥æ·»åŠ messageå±æ€§æ¥è¿”å›é”™è¯¯	
+	# å¿…å¡«	
 	#validates_attachment_presence :photo
-	# ÎÄ¼şÀàĞÍÑéÖ¤
-	validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
-	# Ğ¡ÓÚ1M
-	validates_attachment_size :photo, :less_than => 1.megabyte
+	# æ–‡ä»¶ç±»å‹éªŒè¯
+	validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif'], :message => "æ–‡ä»¶ç±»å‹ä¸ç¬¦åˆè¦æ±‚,åªèƒ½ä¸Šä¼ jpeg,gif,pngæ ¼å¼çš„å›¾ç‰‡"
+	# å°äº1M
+	validates_attachment_size :photo, :less_than => 1.megabyte, :message => "æ–‡ä»¶å¤§å°è¶…å‡ºé™åˆ¶"
 	before_create :randomize_file_name
 	
 	attr_accessor :crop_x, :crop_y, :crop_w, :crop_h

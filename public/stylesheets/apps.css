@@ -2,6 +2,9 @@
 	font-size: 12px;
 }
 
+.clearfix {
+    display: block;
+}
 
 body {
 	/*background: none repeat scroll 0 0 #EFEFEF;*/
@@ -14,6 +17,10 @@ body {
 .blank {
 	height:40px;
 	clear: both;
+}
+
+.tag_title {
+	color:red;
 }
 
 .logo {
@@ -178,6 +185,11 @@ body {
 	font-weight: bold;
 	line-height: 20px;
 }
+
+.page_title span{
+	color: #004276;
+	font-size: 18px;
+}
 /*页脚*/
 .footer {
 	background: none repeat scroll 0 0 #d5d4da;
@@ -315,6 +327,18 @@ body {
 	color: 	#808080;
 }
 
+.form_desc .current {
+	font-size:14px;
+	color: 	#000000;
+	font-weight: bold;
+}
+
+.form_desc .form_desc_tip {
+	font-size:12px;
+	color: 	#000000;
+}
+
+
 .form_left {
 	padding:15px;
 	float:left;
@@ -370,6 +394,17 @@ body {
 	cursor: pointer;
 }
 
+#wrap_xiaoma_form form #form_submit input.download  {
+	background: url("../images/download.png") no-repeat scroll 0 0 transparent;
+	height:66px;
+	border:0;
+	width: 200px ; 
+	color:#FFFFFF;
+	font-size:14px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
 
 .info_left {
 	width: 320px
@@ -406,4 +441,298 @@ body {
 	color: red;
 	padding-left: 5px;
 	font-size: 12px;
+}
+
+
+
+
+#error_explanation {
+	width: 400px;
+	border: 2px solid #red;
+	padding: 7px;
+	padding-bottom: 12px;
+	margin-bottom: 20px;
+	background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+	text-align: left;
+	font-weight: bold;
+	padding: 5px 5px 5px 15px;
+	font-size: 12px;
+	margin: -7px;
+	background-color: #c00;
+	color: #fff;
+}
+
+#error_explanation p {
+	color: #333;
+	margin-bottom: 0;
+	padding: 5px;
+}
+
+#error_explanation ul li {
+	clear: both;
+	font-size: 12px;
+	list-style: square;
+}
+.uploaded_files {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	background: none repeat scroll 0 0 #FFFBBC;
+    border: 1px solid #E6DB55;
+    padding: 6px 9px;
+}
+.uploaded_files ul {
+	padding-left: 0px;
+	clear: both;
+}
+
+.uploaded_files ul li{
+	clear: both;
+}
+
+.upload_file_name {
+	color: #004276;
+}
+
+.warning {
+	color:red;
+}
+
+.left_bottom_link {
+	margin-top: 60px;
+	height:20px;
+}
+
+.content h5 {	
+	margin-top: 10px;
+	margin-bottom: 0px;
+}
+.content .title {
+	font-size: 16px;
+	color: #004276;
+}
+
+.rich_list ul {
+	padding-left:0px;
+}
+.rich_list .content h5 .dl_type {
+	color: red;
+}
+.rich_list .content .description, .rich_list .content img {
+	float: left;
+	margin-right: 20px;
+}
+.rich_list .content .description {
+	width: 680px;
+}
+
+.rich_list .upload_info {
+	width: 680px;
+	background: none repeat scroll 0 0 #EEEEEE;
+    padding: 6px 9px;
+	margin: 10px 0 21px 0;
+}
+
+.index_rich_list ul li {
+	margin-left:-40px;
+}
+.dl_type {
+	color: red;
+}
+.index_rich_list .content h5 .dl_type {
+	color: red;
+}
+.index_rich_list .content .description, .index_rich_list .content img {
+	float: left;
+	margin-right: 20px;
+}
+.index_rich_list .content .description {
+	width: 500px;
+}
+
+.index_rich_list .upload_info {
+	width: 500px;
+	background: none repeat scroll 0 0 #EEEEEE;
+    padding: 6px 9px;
+	margin: 10px 0 21px 0;
+}
+
+.upload_info span {
+    background-repeat: no-repeat;
+    margin: 0 6px;
+    padding-left: 20px;
+}
+
+.upload_info .comment {
+	background-image: url("../images/icon_comment.gif");
+}
+
+.upload_info .view {
+    background-image: url("../images/icon_arrow.gif");
+	color: gray;
+}
+
+.upload_info .date {
+    color: #A12A2A;
+    padding-left: 0;
+}
+
+.upload_info .edit {
+    float:right;
+}
+
+.paginate .paginate_info {
+	float:left;
+}
+
+
+.paginate .pagination li {
+	width:20px;
+	border: 1px solid #CCCCCC;
+	background: none repeat scroll 0 0 #EEEEEE;
+	margin-left:5px;
+	margin-right:5px;
+	padding:2px;
+	text-align:center;
+}
+
+.paginate .pagination .previous_page {
+	width:45px;
+}
+
+.paginate .pagination .next_page {
+	width:45px;
+}
+
+.list_leftside {
+	float:left;
+	width: 590px;
+	padding-right: 20px;
+	border-right: 1px solid #DEDEDE;
+}
+
+.list_rightside {
+	float: right;
+	width: 260px;
+}
+
+.list_rightside ul.content {
+    border-bottom: 1px dashed #DDDDDD;
+    padding: 10px 0;
+	margin:0px auto;
+	overflow:hidden;
+}
+
+.list_rightside ul.content li{
+    float: left;
+    overflow: hidden;
+    width: 120px;
+	padding: 3px, 3px, 3px, 3px;
+}
+
+.list_rightside h2.subject {
+    background: none repeat scroll 0 0 #F0F0F0;
+    /*border-left: 2px solid #CA0002;*/
+    color: #555555;
+    font-size: 16px;
+    line-height: 30px;
+    margin-bottom: 5px;
+    padding: 0 10px;
+}
+
+.list_rightside ul.rank_list{
+	padding: 0;
+    overflow:hidden;
+}
+.list_rightside .rank_list li{
+    border-bottom: 1px dashed #DDDDDD;
+    line-height: 14px;
+    margin-bottom: 7px;
+    padding: 0 0 7px;
+	float: none;
+}
+
+
+.list_rightside ul.img_rank_list{
+	padding: 0;
+    overflow:hidden;
+}
+.list_rightside .img_rank_list li{
+	width:66px;
+    border-bottom: 1px dashed #DDDDDD;
+    line-height: 14px;
+    margin-bottom: 7px;
+    padding: 0 0 7px;
+	float: left;
+    overflow: hidden;
+	text-align: center;
+}
+
+.list_leftside .page_sample_info {
+	margin-top:10px;
+}
+
+.page_user_info {
+	width:66px;
+	float:left;
+}
+
+.page_user_info a{
+	display: block;
+}
+
+.list_leftside .upload_info {
+	float:left;
+	width: 500px;
+	background: none repeat scroll 0 0 #EEEEEE;
+    padding: 6px 9px;
+	margin: 10px 0 21px 0;
+}
+
+.list_bottom_partition {
+	padding-bottom: 10px;
+	border-bottom: 1px dashed #DDDDDD;
+}
+
+.downloads_content_desc p img {
+	float:left;
+	margin-right: 20px;
+}
+
+.downloads_content h5 {
+	font-size:24px;
+}
+
+.downloads_content h5 span{
+	font-size:14px;
+	color: #004276;
+}
+
+.downloads_list ul {
+	padding: 0;
+}
+.downloads_list ul li {
+	width:600px;
+	clear: both;
+	margin: 5px 10px 5px 0 ;
+	padding: 5px 0 5px 0 ;
+	background: none repeat scroll 0 0 #EEEEEE;
+	
+}
+.downloads_list ul li .downloads_count {
+	margin-right: 10px;
+	float: right;
+}
+
+.upload_img {
+    background: url("../images/upload.png") no-repeat scroll 0 0 transparent;
+	height:66px;
+	border:0;
+	width: 200px ; 
+	color:#FFFFFF;
+	font-size:14px;
+	font-weight: bold;
+	cursor: pointer;
 }

@@ -3,8 +3,10 @@ class CreateDlAttachments < ActiveRecord::Migration
     create_table :dl_attachments do |t|
 	  t.references :dl_thread
       t.string :filename, :limit  => 64
+	  t.string :originname, :limit  => 128
       t.integer :filesize ,:limit  => 10, :default => 0
       t.string :filepath ,:limit  => 255
+	  t.string :content_type ,:limit  => 32
 	  t.integer :is_image, :limit  => 2, :default => 0
 	  t.integer :donwloads, :limit  => 10, :default => 0
       t.timestamps

@@ -1,0 +1,49 @@
+<% content_for :head do %>
+<title>小马过河-管理-我的上传</title>
+<meta name="description" content="管理我上传的资料" /> 
+<meta name="keywords" content="小马过河 英语 学习资料 上传 管理" /> 
+<% end %>
+
+		<div class="content_container">
+			<div class="page_path">
+				<%= link_to "首页", root_path %> &gt;&gt; 管理 &gt;&gt; 我的上传
+			</div><!-- .page_path -->
+			<div class="page_title"><h1>管理我上传的学习资料</h1></div>
+			<div class="rich_list">
+				<h1>我上传的资料列表</h1>
+				<div>
+					<ul>
+					   <% @dl_threads.each do |dl_thread| %>
+						<li>
+							<div class="content">
+								<h5><a href="#">[<%= dl_thread.dl_type.typename%>]</a>&nbsp;<%= dl_thread.name%></h5>
+								
+								<div class="description">
+								<p><img src="<%= dl_thread.photo.url(:thumb)%>"></img>
+								<%= h(dl_thread.content_desc).truncate(240)%>
+								</p>
+								</div>
+								<div class="clear"></div>
+								<div class="upload_info">
+									<a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', dl_thread.user.dz_common_id.to_s) %>"><%= dl_thread.user.username%></a> 
+									<!-- <span class="comment">评论(18)</span> -->
+									<span class="view">有<%= dl_thread.views %>人浏览</span>
+									<span class="date"><%= dl_thread.created_at.strftime('%Y-%m-%d %H:%M') %></span> 
+									<span class="edit">
+									<%= link_to '编辑', edit_downloads_dl_thread_path(dl_thread)%>
+									| <%= link_to '附件', downloads_dl_thread_dl_attachments_path(dl_thread)%>
+									| <%= link_to '缩略图', recrop_downloads_dl_thread_path(:id => dl_thread.id)%>									
+									</span>
+								</div>
+							</div>
+						</li>
+						<% end %>					
+					</ul>
+				</div>
+				<div class="clear"></div>
+				<div class="paginate">
+					<%=h will_paginate @dl_threads, :previous_label => '上一页',  :next_label => '下一页'%>
+				</div>
+			</div><!-- .rich_list -->
+		</div><!-- #content_container -->
+		<div class="clear"></div>

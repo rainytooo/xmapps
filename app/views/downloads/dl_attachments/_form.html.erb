@@ -1,0 +1,56 @@
+<% content_for :head do %>
+<title>小马过河-上传资料</title>
+<meta name="description" content="上传资料" /> 
+<meta name="keywords" content="小马过河 英语 学习资料 上传" /> 
+<%= stylesheet_link_tag('jquery.fileupload-ui') %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+<%= javascript_include_tag 'jquery.fileupload', 'jquery.fileupload-ui' %>
+
+<script type="text/javascript" charset="utf-8"> 
+   $(function () {
+  $('.upload').fileUploadUI({
+        uploadTable: $('.upload_files'),
+        downloadTable: $('.download_files'),
+        buildUploadRow: function (files, index) {
+            var file = files[index];
+            return $('<tr><td>' + file.name + '<\/td>' +
+                    '<td class="file_upload_progress"><div><\/div><\/td>' +
+                    '<td class="file_upload_cancel">' +
+                    '<button class="ui-state-default ui-corner-all" title="Cancel">' +
+                    '<span class="ui-icon ui-icon-cancel">Cancel<\/span>' +
+                    '<\/button><\/td><\/tr>');
+        },
+        buildDownloadRow: function (file) {
+            return $('<tr><td><img alt="Photo" width="200"  src="' + file.pic_path + '">' + file.name + '<\/td><\/tr>');
+        },
+    });
+});
+</script>
+<% end %>
+		<div class="content_container">
+			<div class="page_path">
+			<%= link_to "首页", root_path %> &gt;&gt; <%= link_to '资源下载', downloads_dl_threads_path %> &gt;&gt; 上传资料
+			</div><!-- .page_path -->
+			<div class="page_title"><h1>为<span><%= @dl_thread.name %></span>添加附件</h1></div>
+			<div class="form_container">
+				<div class="form_desc"><span class="form_desc_tip">操作流程:&nbsp;</span>1.填写基本信息 -> 2.编辑缩略图 -> <span class="current">3.添加附件</span> -> 4.完成资源上传</div><!-- .form_desc -->
+				<div class="form_left">
+				<div class="files"> 
+					<%= form_for( [:downloads, @dl_thread, @dl_attachment], :html => { :class => "upload", :multipart => true } ) do |f| %>
+					  <%= f.file_field :attachment %>
+					  <div>上传预览图片或封面</div>
+					<% end %>
+					
+					<table class="upload_files"></table>
+					<table class="download_files"></table>
+				</div>	
+				
+				</div><!-- .form_left -->
+				
+				<div class="form_right">
+					
+				</div><!-- .form_right -->
+			</div><!-- .form_container -->
+		</div><!-- #content_container -->
+		<div class="clear"></div>

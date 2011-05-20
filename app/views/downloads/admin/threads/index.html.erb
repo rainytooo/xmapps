@@ -1,0 +1,54 @@
+<% content_for :head do %>
+<title>小马过河-管理-我的上传</title>
+<meta name="description" content="管理我上传的资料" /> 
+<meta name="keywords" content="小马过河 英语 学习资料 上传 管理" /> 
+<% end %>
+
+		<div class="content_container">
+			<div class="page_path">
+				<%= link_to "首页", root_path %> &gt;&gt; 后台 &gt;&gt; 上传管理
+			</div><!-- .page_path -->
+			<div class="page_title"><h1>管理用户上传的学习资料</h1></div>
+			<div class="rich_list">
+				<h1>所有上传的资料列表</h1>
+				<div>
+					<ul>
+					   <% @dl_threads.each do |dl_thread| %>
+						<li>
+							<div class="content">
+								<h5><a href="#">[<%= dl_thread.dl_type.typename%>]</a>&nbsp;<%= dl_thread.name%></h5>
+								
+								<div class="description">
+								<p><img src="<%= dl_thread.photo.url(:thumb)%>"></img>
+								<%= h(dl_thread.content_desc).truncate(240)%>
+								</p>
+								</div>
+								<div class="clear"></div>
+								<div class="upload_info">
+									<a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', dl_thread.user.dz_common_id.to_s) %>"><%= dl_thread.user.username%></a> 
+									<!-- <span class="comment">评论(18)</span> -->
+									<span class="view">有<%= dl_thread.views %>人浏览</span>
+									<span class="date"><%= dl_thread.created_at.strftime('%Y-%m-%d') %></span> 
+									<span class="edit">
+									<%= link_to '编辑', edit_downloads_dl_thread_path(dl_thread)%>
+									| <%= link_to '附件', downloads_dl_thread_dl_attachments_path(dl_thread)%>
+									| <%= link_to '缩略图', recrop_downloads_dl_thread_path(:id => dl_thread.id)%>
+									<% if dl_thread.ispass == 0 %>
+									| <%= link_to '审核通过', downloads_admin_thread_path(dl_thread), :onclick => "if (confirm('确定通过审核?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var at = document.createElement('input'); at.setAttribute('type', 'hidden'); at.setAttribute('name', 'authenticity_token'); at.setAttribute('value', '#{form_authenticity_token}'); f.appendChild(at);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'put'); f.appendChild(m);var fl = document.createElement('input'); fl.setAttribute('type', 'hidden'); fl.setAttribute('name', 'ispass'); fl.setAttribute('value','1'); f.appendChild(fl);f.submit(); };return false;"%>
+									<% else %>
+									| <%= link_to '取消通过', downloads_admin_thread_path(dl_thread), :onclick => "if (confirm('确定取消审核?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var at = document.createElement('input'); at.setAttribute('type', 'hidden'); at.setAttribute('name', 'authenticity_token'); at.setAttribute('value', '#{form_authenticity_token}'); f.appendChild(at);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'put'); f.appendChild(m);var fl = document.createElement('input'); fl.setAttribute('type', 'hidden'); fl.setAttribute('name', 'ispass'); fl.setAttribute('value','0'); f.appendChild(fl);f.submit(); };return false;"%>
+									<% end %>
+									</span>
+								</div>
+							</div>
+						</li>
+						<% end %>					
+					</ul>
+				</div>
+				<div class="clear"></div>
+				<div class="paginate">
+					<%=h will_paginate @dl_threads, :previous_label => '上一页',  :next_label => '下一页'%>
+				</div>
+			</div><!-- .rich_list -->
+		</div><!-- #content_container -->
+		<div class="clear"></div>

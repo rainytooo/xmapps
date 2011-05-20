@@ -1,0 +1,74 @@
+<% content_for :head do %>
+<title>小马过河-浏览所有资源下载</title>
+<meta name="description" content="浏览所有资源下载" /> 
+<meta name="keywords" content="小马过河 英语 学习资料 下载" /> 
+<% end %>
+
+		<div class="content_container">
+			<div class="page_path">
+				<%= link_to "首页", root_path %> &gt;&gt; 标签  &gt;&gt; <%= @tag.name%>
+			</div><!-- .page_path -->
+			<div class="page_title"><h1>所有英语学习资料下载列表</h1></div>
+			<div class="list_leftside">
+				<div class="index_rich_list">
+						<ul>
+						   <% @dl_threads.each do |dl_thread| %>
+							<li>
+								<div class="content">
+									<h5>
+										<%= link_to "[#{dl_thread.dl_type.typename}]", dl_category_url(dl_thread.dl_type_id), :class => "dl_type" %>
+										&nbsp;
+										<%= link_to dl_thread.name,  dl_path(dl_thread), :class => "title" %>
+									</h5>
+									
+									<div class="description">
+									<p><img src="<%= dl_thread.photo.url(:thumb)%>"></img>
+									<%= h(dl_thread.content_desc.truncate(160))%>
+									</p>
+									</div>
+									<div class="clear"></div>
+									<div class="upload_info">
+										<a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', dl_thread.user.dz_common_id.to_s) %>"><%= dl_thread.user.username%></a> 
+										<!-- <span class="comment">评论(18)</span> -->
+										<span class="view">有<%= dl_thread.views %>人浏览</span>
+										<span class="date"><%= dl_thread.created_at.strftime('%Y-%m-%d') %></span> 
+										
+									</div>
+								</div>
+							</li>
+							<% end %>					
+						</ul>
+					<div class="clear"></div>
+					<div class="paginate">
+						<%=h will_paginate @dl_threads, :previous_label => '上一页',  :next_label => '下一页'%>
+					</div>
+				</div><!-- .index_rich_list -->
+			</div><!-- .list_leftside -->
+			<div class="list_rightside">
+				<h2 class="subject">下载热门分类标签</h2>
+				<ul class="content clearfix">
+					<li>[类型]</li>
+					<li><%= link_to "托福", dl_category_url(3) %></li>
+					<li><%= link_to "雅思", dl_category_url(4) %></li>
+					<li><%= link_to "SAT", dl_category_url(5) %></li>
+					<li><%= link_to "有声读物", dl_category_url(9) %></li>
+					<li><%= link_to "托福口语", dl_category_url(10) %></li>
+					<li><%= link_to "托福写作", dl_category_url(11) %></li>
+					<li><%= link_to "托福综合", dl_category_url(12) %></li>
+					<li><%= link_to "托福听力", dl_category_url(6) %></li>
+					<li><%= link_to "托福阅读", dl_category_url(7) %></li>
+					<!--
+					<li class="split">[标签]</li>
+					<li><%= link_to "托福", dl_category_url(3) %></li>
+					<li><%= link_to "雅思", dl_category_url(4) %></li>
+					<li><%= link_to "SAT", dl_category_url(5) %></li>
+					<li><%= link_to "有声读物", dl_category_url(9) %></li>
+					<li><%= link_to "托福", dl_category_url(3) %></li>
+					<li><%= link_to "雅思", dl_category_url(4) %></li>-->
+				</ul>
+				
+				
+			</div>
+			<div class="clear"></div>
+		</div><!-- #content_container -->
+		<div class="clear"></div>

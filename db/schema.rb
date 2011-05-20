@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110514151401) do
+ActiveRecord::Schema.define(:version => 20110519123513) do
 
   create_table "applies", :force => true do |t|
     t.string   "name"
@@ -38,32 +38,27 @@ ActiveRecord::Schema.define(:version => 20110514151401) do
   create_table "dl_attachments", :force => true do |t|
     t.integer  "dl_thread_id"
     t.string   "filename",     :limit => 64
-    t.integer  "filesize",                   :default => 0
+    t.string   "originname",   :limit => 128
+    t.integer  "filesize",                    :default => 0
     t.string   "filepath"
-    t.integer  "is_image",     :limit => 2,  :default => 0
-    t.integer  "donwloads",                  :default => 0
+    t.string   "content_type", :limit => 32
+    t.integer  "is_image",     :limit => 2,   :default => 0
+    t.integer  "donwloads",                   :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "dl_attachments", ["dl_thread_id"], :name => "fk_dlattachments_dlthread"
 
-  create_table "dl_images", :force => true do |t|
-    t.string   "filename",   :limit => 36
-    t.integer  "filesize"
-    t.string   "filepath"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "dl_threads", :force => true do |t|
-    t.integer  "dl_image_id"
     t.integer  "dl_type_id"
     t.integer  "user_id"
     t.string   "name",               :limit => 128
-    t.string   "email",              :limit => 32
+    t.string   "content_desc"
+    t.text     "content"
     t.integer  "createtime"
     t.integer  "ispass",             :limit => 2,   :default => 0
+    t.integer  "views",                             :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_file_name"
@@ -71,7 +66,6 @@ ActiveRecord::Schema.define(:version => 20110514151401) do
     t.integer  "photo_file_size"
   end
 
-  add_index "dl_threads", ["dl_image_id"], :name => "fk_dlthreads_dlimage"
   add_index "dl_threads", ["dl_type_id"], :name => "fk_dlthreads_dltype"
   add_index "dl_threads", ["user_id"], :name => "fk_dlthreads_user"
 
@@ -90,10 +84,44 @@ ActiveRecord::Schema.define(:version => 20110514151401) do
     t.string "password", :limit => 32
   end
 
+  create_table "simple_captcha_data", :force => true do |t|
+    t.string   "key",        :limit => 40
+    t.string   "value",      :limit => 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "simple_captcha_data", ["key"], :name => "idx_key"
+
+  create_table "tag_relationships", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "object_id"
+    t.string   "taxonomy",   :limit => 32
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", :force => true do |t|
+    t.string   "name",       :limit => 32
+    t.string   "slug",       :limit => 64
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_counts", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "uploads",    :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_counts", ["user_id"], :name => "fk_user_counts_user"
+
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "email"
     t.string   "passwd"
+    t.integer  "dz_common_id"
     t.integer  "regdate"
     t.datetime "created_at"
     t.datetime "updated_at"

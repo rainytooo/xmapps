@@ -1,0 +1,56 @@
+<% content_for :head do %>
+<title>小马过河-下载文件-<%= @dl_attachment.originname%></title>
+<meta name="description" content="下载<%= @dl_attachment.originname%>" /> 
+<meta name="keywords" content="小马过河 英语 学习资料 下载" /> 
+<% end %>
+
+		<div class="content_container">
+			<div class="page_path">
+				<%= link_to "首页", root_path %> &gt;&gt; <%= link_to "资源下载", dl_index_path %> &gt;&gt; 下载文件
+			</div><!-- .page_path -->
+			<div class="page_title">
+				<h1>
+					下载 <%= @dl_attachment.originname%>
+				</h1>
+			</div>
+			<div class="form_container">
+				
+				<div class="form_left">
+				<%= form_tag(downloads_attachments_path, :method => "post", :validate => true) do%>
+					<% if flash[:message] %>
+					<div class="submit_message"><%= flash[:message] %></div><!-- .message -->
+					<% end %>
+					<% if flash[:error] %>
+					<div class="submit_error"><%= flash[:error] %></div><!-- .error -->
+					<% end %>
+					<%= hidden_field_tag(:attachment_id, @dl_attachment.id) %>
+					<div class="global_form">			
+						<%= show_simple_captcha(:label => "请输入验证码") %>					
+					</div>
+					<div class="form_tips">本次下载将要扣除5个金币,关于金币的获取和使用的更多帮助请访问</div>
+					
+					
+					<div id="form_submit">
+						<input id="campaign_submit" class="download" name="commit" type="submit" value="">				
+					</div>
+					<div class="clear"></div>	
+				
+				<% end %>
+				</div><!-- .form_left -->
+				
+				<div class="form_right">
+					<div class="user_upload">
+						<p>
+							<input type="button" class="upload_img"  onclick="location.href='<%= new_downloads_dl_thread_path %>'">
+						</p>
+					</div>
+					<h5>我当前的金币为:<%= @extcredits.extcredits6%></h5>
+					<h5>如何获取积分和金币</h5>
+					<p>
+						由于下载人数众多,服务器压力过大,我们将下载改为需要扣除金币的方式,金币是小马过河的唯一虚拟货币,获取金币的方式有很多,在论坛的帮助里有详细介绍,具体请<a href="http://bbs.xiaoma.com/thread-155879-1-1.html">点击查看</a>
+					</p>
+				</div>
+				</div><!-- .form_right -->
+			</div><!-- .form_container -->
+		</div><!-- #content_container -->
+		<div class="clear"></div>

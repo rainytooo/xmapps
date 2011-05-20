@@ -1,7 +1,7 @@
 <%= javascript_include_tag 'jquery.min', 'rails.validations'%>
 		<div class="content_container">
 			<div class="page_path">
-			<a href="#" title="">首页</a> &gt;&gt; 登录
+			<%= link_to "首页", root_path %> &gt;&gt; 登录
 			</div><!-- .page_path -->
 			<div class="page_title"><h1>登录小马过河</h1></div>
 			<div class="form_container">
@@ -15,10 +15,10 @@
 					<div class="submit_error"><%= flash[:error] %></div><!-- .error -->
 					<% end %>
 					<div class="global_form">
-						<%= f.label :username, "用户名:" %><div class="clear"></div>						
+						<%= f.label :username, "用户名或邮箱:" %><div class="clear"></div>						
 						<%= f.text_field :username %>						
 					</div>
-					<div class="form_tips">请填您在小马注册的用户名或者密码</div>
+					<div class="form_tips">请填您在小马注册的用户名或者邮箱</div>
 					<div class="global_form">
 						<%= f.label :password, "密码:" %><div class="clear"></div>	
 						<%= f.password_field :password %>	
@@ -37,10 +37,10 @@
 				<div class="form_right">
 					<div class="form_right">
 					<h3>没有账户</h3>
-					<p>来这里<a href="http://bbs.test.916xue.com/member.php?mod=asdfasdf">注册</a></p>
+					<p>来这里<a href="http://bbs.xiaoma.com/member.php?mod=asdfasdf">注册</a></p>
 					
 					<h3>忘记密码</h3>
-					<p><a href="http://bbs.test.916xue.com/member.php?mod=logging&action=login&viewlostpw">找回密码</a></p>
+					<p><a href="http://bbs.xiaoma.com/member.php?mod=logging&action=login&viewlostpw">找回密码</a></p>
 					
 				</div>
 				</div><!-- .form_right -->

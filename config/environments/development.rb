@@ -33,5 +33,25 @@ Xmapps::Application.configure do
   DZ_COOKIE_PATH = '/'
   DZ_COOKIE_DOMAIN = ''
   DZ_COOKIE_NAME = DZ_COOKIE_PRE + Digest::MD5.hexdigest(DZ_COOKIE_PATH + "|" + DZ_COOKIE_DOMAIN)[0,4] + "_auth"
+  # discuz 表前缀
+  DZ_TABLE_PRE = "pre_"
+  # 加积分
+  DZ_CREDITS_ADD_COUNT = 50
+  # 加金币
+  DZ_EXTCREDITS_ADD_COUNT = 100
+  # 扣积分
+  DZ_CREDITS_REDUCE_COUNT = -50
+  # 扣金币
+  DZ_EXTCREDITS_REDUCE_COUNT = -100
+  # 文件上传相关
+  FILE_UPLOAD_DIRECTORY = "d:/dev/servers/xampp/htdocs/xmappimages"
+  # 图片服务器根地址
+  IMG_SERVER_URL = "http://localhost/xmappimages/"
+  # 一次最大上传附件总数 
+  MAX_ATTACHMENT_FILES = 10
+  # uc space 基础路径
+  USER_SPACE_URL_BASE = "http://space.xiaoma.com/space-uid-{dz_uid}.html"
+  # 头像路径 默认small
+  USER_DISCUZ_SMALL_AVATAR_BASE = "http://bbs.xiaoma.com/uc_server/avatar.php?uid={dz_uid}&size=small"
 end
 

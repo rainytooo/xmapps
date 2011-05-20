@@ -51,7 +51,8 @@ class LoginsController < ApplicationController
 			auth_code = encode_cookie(DZ_AUTH_KEY, request.user_agent, @dzuser)
 			cookies.permanent[DZ_COOKIE_NAME] = auth_code
 		    # 存session
-			session[:login_user] = @dzuser		
+			session[:login_user] = @dzuser	
+			session[:login_user_dz] = @dzuser				
 			sync_local_user(@dzuser)
 		    # 返回首页
 			flash[:message] = "登录成功"

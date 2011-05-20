@@ -25,3 +25,18 @@ cn:
       less_than_or_equal_to: "必须小于等于 %{count}"
       odd: "必须为奇数"
       even: "必须为偶数"
+
+  # date:
+    # formats:
+      # Use the strftime parameters for formats.
+      # When no format has been given, it uses default.
+      # You can provide other formats here if you like!
+      # default: "%Y-%m-%d"
+      # short: "%b%d日"
+      # long: "%Y年%b%d日"
+  # time:
+    # formats:
+      # default: "%Y年%b%d日 %A %H:%M:%S"
+      # time: "%H:%M"
+      # short: "%b%d日 %H:%M"
+      # long: "%Y年%b%d日 %H:%M"
