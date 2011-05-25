@@ -1,18 +1,20 @@
 <% content_for :head do %>
-<title>小马过河-浏览<%= @dl_thread.name %></title>
+<title>小马过河-浏览资源下载<%= @dl_thread.name if not @dl_thread.empty? %></title>
 <meta name="description" content="浏览<%= @dl_thread.name %>" /> 
 <meta name="keywords" content="小马过河 英语 学习资料 下载" /> 
 <% end %>
 
-		<div class="container">
+		<div class="container <%= "empty_list" if @dl_thread.empty? %>">
 			<div class="page_path">
-				<a href="/">首页</a> &gt;&gt; <%= link_to "资源下载", dl_index_path %> &gt;&gt; <%= @dl_thread.name %>
+				<a href="/">首页</a> &gt;&gt; <%= link_to "资源下载", dl_index_path %> &gt;&gt; <%= @dl_thread.name if not @dl_thread.empty? %>
 			</div><!-- .page_path -->
 			<div class="page_title">
+				<% if not @dl_thread.empty? %>
 				<h1>
 					<%= link_to "[#{@dl_thread.dl_type.typename}]", dl_category_url(@dl_thread.dl_type_id), :class => "dl_type" %>&nbsp;
 					<%= @dl_thread.name %>
 				</h1>
+				<% end %>
 			</div>
 			<div class="list_leftside">
 					<% if flash[:message] %>
@@ -21,6 +23,7 @@
 					<% if flash[:error] %>
 					<div class="submit_error"><%= flash[:error] %></div><!-- .error -->
 					<% end %>
+				<% if not @dl_thread.empty? %>
 				<div class="page_sample_info">
 					<div class="page_user_info">
 						<a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', @dl_thread.user.dz_common_id.to_s) %>">
@@ -67,6 +70,7 @@
 					<% end %>
 					</ul>
 				</div>
+				<% end %>
 			</div><!-- .list_leftside -->
 			
 			<div class="list_rightside">

@@ -21,7 +21,7 @@
 				return;
 			}
 			filesCounter = filesCounter + 1;
-			if (files[index].size > 5000000) {
+			if (files[index].size > 50000000) {
 				handler.uploadRow.find('.file_upload_progress').html('<span class="warning">文件大小超出限制!<\/span>');
 				setTimeout(function () {
 					handler.removeNode(handler.uploadRow);

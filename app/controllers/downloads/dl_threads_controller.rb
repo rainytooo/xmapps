@@ -29,10 +29,15 @@ class Downloads::DlThreadsController < ApplicationController
   # GET /dl_threads/1
   # GET /dl_threads/1.xml
   def show
-    @dl_thread = DlThread.find(params[:id])
-	@dl_attachments = DlAttachment.where("dl_thread_id  = ?", @dl_thread.id)
-	@tags = Tag.joins('LEFT OUTER JOIN tag_relationships ON tag_relationships.tag_id = tags.id ').where('tag_relationships.object_id = ?', @dl_thread.id)
-	ActiveRecord::Base.connection.update("update dl_threads set views = views+1 where id = " + @dl_thread.id.to_s)
+	@dl_thread = DlThread.where("id = ? and ispass = 1 ", params[:id])
+	if @dl_thread.empty?
+		 flash[:message] = "对不起,此资源不存在或者已被删除"
+	else
+		@dl_attachments = DlAttachment.where("dl_thread_id  = ?", @dl_thread.id)
+		@tags = Tag.joins('LEFT OUTER JOIN tag_relationships ON tag_relationships.tag_id = tags.id ').where('tag_relationships.object_id = ?', @dl_thread.id)
+		ActiveRecord::Base.connection.update("update dl_threads set views = views+1 where id = " + @dl_thread.id.to_s)
+	end
+	
 	# if not @dl_thread
 		# raise ActiveRecord::NotFound
 		# render :status => 404

@@ -819,3 +819,7 @@ span.score {
 	color: green;
 	font-size: 16px;
 }
+
+.empty_list {
+	height: 400px;
+}
