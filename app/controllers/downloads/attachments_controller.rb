@@ -5,6 +5,10 @@ class Downloads::AttachmentsController < ApplicationController
   # 显示验证码
   def show
 	@dl_attachment = DlAttachment.find(params[:id])
+	dl_thread = DlThread.find_by_id(@dl_attachment.dl_thread_id )
+	if 	dl_thread.ispass == 0
+		render '/404.html'
+	end
 	# 我当前的积分和金币
 	# 拿出用户金币
 	dz_user =session[:login_user]
