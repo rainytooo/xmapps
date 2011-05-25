@@ -29,14 +29,23 @@ class Downloads::DlThreadsController < ApplicationController
   # GET /dl_threads/1
   # GET /dl_threads/1.xml
   def show
-	@dl_thread = DlThread.where("id = ? and ispass = 1 ", params[:id])
-	if @dl_thread.empty?
-		 flash[:message] = "对不起,此资源不存在或者已被删除"
+	@dl_thread = DlThread.find(params[:id])
+	if not @dl_thread
+		flash[:message] = "对不起,此资源不存在或者已被删除"
 	else
-		@dl_attachments = DlAttachment.where("dl_thread_id  = ?", @dl_thread.id)
-		@tags = Tag.joins('LEFT OUTER JOIN tag_relationships ON tag_relationships.tag_id = tags.id ').where('tag_relationships.object_id = ?', @dl_thread.id)
-		ActiveRecord::Base.connection.update("update dl_threads set views = views+1 where id = " + @dl_thread.id.to_s)
+		if @dl_thread.ispass == 0
+			@dl_thread = nil
+			flash[:message] = "对不起,此资源不存在或者已被删除"
+		else
+			#flash[:message] = "对不起,此资源不存在或者已被删除"
+			@dl_attachments = DlAttachment.where("dl_thread_id  = ?", @dl_thread.id)
+			@tags = Tag.joins('LEFT OUTER JOIN tag_relationships ON tag_relationships.tag_id = tags.id ').where('tag_relationships.object_id = ?', @dl_thread.id)
+			ActiveRecord::Base.connection.update("update dl_threads set views = views+1 where id = " + @dl_thread.id.to_s)
+		end
+	
+		
 	end
+	 
 	
 	# if not @dl_thread
 		# raise ActiveRecord::NotFound

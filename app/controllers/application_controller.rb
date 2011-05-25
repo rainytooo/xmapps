@@ -1,6 +1,7 @@
 require 'discuz_api'
 include DiscuzApi
 class ApplicationController < ActionController::Base
+  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   # 验证码
   include SimpleCaptcha::ControllerHelpers
   protect_from_forgery
@@ -9,6 +10,9 @@ class ApplicationController < ActionController::Base
   
   # 下面是过滤器的定义部分
   private
+  def record_not_found
+    render :text => "404 Not Found", :status => 404
+  end
   # 给discuz 用户发提醒
   def send_dz_notify(dz_user_id, authorid, author, message, from_idtype)
 	sql = """
