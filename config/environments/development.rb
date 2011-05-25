@@ -24,6 +24,7 @@ Xmapps::Application.configure do
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
+  config.active_record.default_timezone = 'Beijing'
   
   COOKIE_DOMAIN_NAME = "localhost"
   # Ö÷ÓòÃû
