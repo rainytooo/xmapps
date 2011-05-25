@@ -63,6 +63,10 @@ class ApplicationController < ActionController::Base
 		  # 存session
 		  session[:login_user] = dzuser	
 		  sync_local_user(dzuser)
+		  # 拿出用户
+		  local_user = User.find_by_username(dzuser.username)
+		  # 把本地用具的id存session里
+		  session[:login_user_id] = local_user.id
 		end
 	  end	
 	else 

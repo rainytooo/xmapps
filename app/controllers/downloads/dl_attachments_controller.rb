@@ -3,6 +3,7 @@ require 'rubygems'
 require 'uuidtools'
 
 class Downloads::DlAttachmentsController < ApplicationController
+  before_filter :require_login 
   # GET /dl_attachments
   # GET /dl_attachments.xml
   def index

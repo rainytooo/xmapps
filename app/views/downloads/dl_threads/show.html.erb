@@ -4,9 +4,9 @@
 <meta name="keywords" content="小马过河 英语 学习资料 下载" /> 
 <% end %>
 
-		<div class="content_container">
+		<div class="container">
 			<div class="page_path">
-				<%= link_to "首页", root_path %> &gt;&gt; <%= link_to "资源下载", dl_index_path %> &gt;&gt; <%= @dl_thread.name %>
+				<a href="/">首页</a> &gt;&gt; <%= link_to "资源下载", dl_index_path %> &gt;&gt; <%= @dl_thread.name %>
 			</div><!-- .page_path -->
 			<div class="page_title">
 				<h1>
@@ -61,7 +61,7 @@
 					<ul>
 					<% @dl_attachments.each do |dl_attachments| %>
 						<li class="">
-							<a href="http://localhost:3000/downloads/attachments/<%= dl_attachments.id %>"><%= dl_attachments.originname%></a>
+							<a href="<%= DOWNLOAD_SERVER_URL %>/downloads/attachments/<%= dl_attachments.id %>"><%= dl_attachments.originname%></a>
 							<span class="downloads_count">下载次数:<%= dl_attachments.donwloads %></span>
 						</li>
 					<% end %>
@@ -70,12 +70,27 @@
 			</div><!-- .list_leftside -->
 			
 			<div class="list_rightside">
+<!-- JiaThis Button BEGIN -->
+<div id="ckepop">
+	<a href="http://www.jiathis.com/share/?uid=1502974" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">分享到：</a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_kaixin001"></a>
+	<a class="jiathis_button_renren"></a>
+</div>
+<script type="text/javascript" src="http://v1.jiathis.com/code/jia.js?uid=1502974" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 				<div class="user_upload">
 					<p>
-						<input type="button" class="upload_img"  onclick="location.href='<%= new_downloads_dl_thread_path %>'">
+						<input type="button" class="upload_img"  onclick="location.href='<%= XMAPP_MAIN_DOMAIN_URL %>/downloads/dl_threads/new'">
 					</p>
 				</div>
-				
+				<div>
+					<p>
+						<h5><a href="<%= XMAPP_MAIN_DOMAIN_URL %>/manage/uploads">管理我的上传</a></h5>
+					</p>
+				</div>
+			
 			</div>
 			<div class="clear"></div>
 		</div><!-- #content_container -->

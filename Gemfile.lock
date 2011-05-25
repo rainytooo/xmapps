@@ -82,6 +82,7 @@ DEPENDENCIES
   client_side_validations
   mysql
   rails (= 3.0.6)
+  rake (= 0.8.7)
   simple_captcha!
   uuidtools
   will_paginate (~> 3.0.pre2)

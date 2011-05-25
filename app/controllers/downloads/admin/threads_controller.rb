@@ -3,7 +3,7 @@ class Downloads::Admin::ThreadsController < ApplicationController
   # GET /dl_threads
   # GET /dl_threads.xml
   def index
-    #  查询分页,我的上传
+    #  查询分页,管理所有上传
 	@dl_threads = DlThread.order('created_at DESC').paginate(:page=>params[:page]||1,:per_page=>10)
 	
 	logger.info @dl_threads.size
@@ -23,8 +23,9 @@ class Downloads::Admin::ThreadsController < ApplicationController
 	  logger.info 
 	  # 查出发表用户的 discuz 中的user对象
 	  # 审核人的discuz uid
-	  pass_user = Dzuser.find_by_uid(session[:login_user].id)
-	  dz_user = Dzuser.find_by_uid(@dl_thread.user_id)
+	  pass_user = session[:login_user]
+          upload_user = User.find_by_id(@dl_thread.user_id)
+	  dz_user = Dzuser.find_by_username(upload_user.username)
 	  # 发送提醒
 	  send_dz_notify @dl_thread.user_id, pass_user.uid, '', message, 'uploads'
 	  # 发送全站动态

@@ -1,6 +1,6 @@
 require 'uri'
 class Downloads::DlThreadsController < ApplicationController
-  before_filter :require_login 
+  before_filter :require_login , :except => [:index, :show, :category]
   # GET /dl_threads
   # GET /dl_threads.xml
   def index
@@ -17,6 +17,9 @@ class Downloads::DlThreadsController < ApplicationController
 	@dl_category = DlType.find_by_id(params[:id])
 	# 拿出所有审核过的下载
 	@dl_threads = DlThread.where("ispass = 1 and dl_type_id = :dl_type_id ", {:dl_type_id => params[:id]}).order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>10)
+	if @dl_threads.empty?
+		flash[:message] = "对不起,没有此分类的相关下载"
+	end
 	# 拿出最多上传的用户
 	#@rank_users = User.find_by_sql('select * from users LEFT OUTER JOIN user_counts ON user_counts.user_id = users.id order by user_counts.uploads desc limit 0, 10')
 	# 拿出最热下载
@@ -61,7 +64,7 @@ class Downloads::DlThreadsController < ApplicationController
   # POST /dl_threads.xml
   def create
     @dl_thread = DlThread.new(params[:dl_thread])
-	@dl_thread.user_id = session[:login_user].id
+	@dl_thread.user_id = session[:login_user_id].to_i
 	@dl_thread.dl_type_id = params[:dl_type_id]
     respond_to do |format|
       if @dl_thread.save
@@ -90,7 +93,7 @@ class Downloads::DlThreadsController < ApplicationController
 		redirect_to new_downloads_dl_thread_dl_attachment_path(@dl_thread, @dl_attachment) 
 	  elsif params[:recrop] == "1"
 		# 这是重新便激动 直接跳转到编辑界面
-		@dl_threads = DlThread.where("user_id = ?", session[:login_user].id).paginate(:page=>params[:page]||1,:per_page=>10)
+		@dl_threads = DlThread.where("user_id = ?", session[:login_user_id]).paginate(:page=>params[:page]||1,:per_page=>10)
 		redirect_to manage_uploads_path
 	  else
 		# 如果只是编辑,编辑完了去我的首页

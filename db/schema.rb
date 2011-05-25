@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110519123513) do
+ActiveRecord::Schema.define(:version => 20110524031348) do
 
   create_table "applies", :force => true do |t|
     t.string   "name"
@@ -24,6 +24,51 @@ ActiveRecord::Schema.define(:version => 20110519123513) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "ask_answers", :force => true do |t|
+    t.integer  "ask_id"
+    t.integer  "user_id"
+    t.string   "username",   :limit => 32
+    t.integer  "badrate"
+    t.integer  "goodrate"
+    t.text     "content"
+    t.integer  "ifcheck",    :limit => 1,  :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ask_answers", ["ask_id"], :name => "fk_answers_ask"
+  add_index "ask_answers", ["user_id"], :name => "fk_answers_user"
+
+  create_table "ask_types", :force => true do |t|
+    t.string   "name",       :limit => 32
+    t.integer  "pid",                      :default => 0
+    t.integer  "disorder",                 :default => 0
+    t.integer  "asksnum",                  :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "asks", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "ask_type_id"
+    t.string   "typename",            :limit => 128
+    t.string   "title",               :limit => 128
+    t.integer  "expiredtime"
+    t.integer  "solvetime"
+    t.integer  "bestanswer"
+    t.integer  "bestanswer_uid"
+    t.string   "bestanswer_username", :limit => 32
+    t.integer  "status",              :limit => 1,   :default => 0
+    t.integer  "views",                              :default => 0
+    t.integer  "replies",                            :default => 0
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "asks", ["ask_type_id"], :name => "fk_asks_type"
+  add_index "asks", ["user_id"], :name => "fk_asks_user"
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -79,6 +124,11 @@ ActiveRecord::Schema.define(:version => 20110519123513) do
 
   add_index "dl_types", ["dl_type_id"], :name => "fk_dltypes_parentdltypes"
 
+  create_table "dz_common_member_counts", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "logins", :force => true do |t|
     t.string "username", :limit => 32
     t.string "password", :limit => 32
@@ -104,6 +154,7 @@ ActiveRecord::Schema.define(:version => 20110519123513) do
   create_table "tags", :force => true do |t|
     t.string   "name",       :limit => 32
     t.string   "slug",       :limit => 64
+    t.integer  "count",                    :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

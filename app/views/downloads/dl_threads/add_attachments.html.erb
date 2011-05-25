@@ -8,9 +8,9 @@
 <%= javascript_include_tag 'jquery.fileupload', 'jquery.fileupload-ui' %>
 
 <% end %>
-		<div class="content_container">
+		<div class="container">
 			<div class="page_path">
-			<%= link_to "首页", root_path %> &gt;&gt; <%= link_to '资源下载', dl_index_path %> &gt;&gt; <%= @dl_thread.name %>
+			<a href="/">首页</a> &gt;&gt; <%= link_to '资源下载', dl_index_path %> &gt;&gt; <%= @dl_thread.name %>
 			</div><!-- .page_path -->
 			<div class="page_title"><h1><%= @dl_thread.name %></h1></div>
 			

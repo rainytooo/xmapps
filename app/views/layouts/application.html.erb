@@ -18,15 +18,13 @@
 			<div class="fr">
 				<% if session[:login_user] %>
 				欢迎您&nbsp|&nbsp<%= session[:login_user].username %>&nbsp|&nbsp
-				<%= link_to '退出', logout_url %>&nbsp|&nbsp
+				<a href="<%= XMAPP_MAIN_DOMAIN_URL %>/logout">退出</a>&nbsp|&nbsp
 				<% else %>
-				<%= link_to '登录', login_url %>&nbsp|&nbsp
+				<a href="<%= XMAPP_MAIN_DOMAIN_URL %>/login">登录</a>&nbsp|&nbsp
 				<a href="http://bbs.xiaoma.com/member.php?mod=asdfasdf">注册</a>&nbsp|&nbsp
 				<% end %>
 				
 				<a href="http://www.xiaoma.com">帮助</a>&nbsp|&nbsp
-				<a href="http://www.xiaoma.com">设为首页</a>&nbsp|&nbsp
-				<a href="http://www.xiaoma.com">收藏</a>
 			</div>
 		</div><!-- #top_bar -->	
 		<div class="header">
@@ -80,67 +78,26 @@
 			<li><a href="http://www.xiaoma.com/category/giveaways/">出国留学</a></li>
 			<li><a href="http://www.xiaoma.com/category/top/">大闷锅</a></li>
 			<li class="fr" id="submitLink"><a href="http://www.xiaoma.com/submit/" class="modal cboxElement">问答</a></li>
-			<li class="fr" id="submitLink"><%= link_to "资料下载", dl_index_path, :class => 'modal cboxElement' %></li>
+			<li class="fr" id="submitLink"><a class="modal cboxElement" href="<%= XMAPP_MAIN_DOMAIN_URL %>/dl">资料下载</a></li>
 			<li class="fr" id="submitLink"><a href="http://www.xiaoma.com/submit/" class="modal cboxElement">空间</a></li>
 			<li class="fr" id="submitLink"><a href="http://www.xiaoma.com/submit/" class="modal cboxElement">论坛</a></li>
 		</ul>
 	</div><!-- #top-header -->
 	
 	<div class="clear"></div>
-	<div id="wrap_xiaoma_form" class="container">
+
 	<%= yield %>
-	</div><!-- #wrap_xiaoma_form .container-->
+
 	<div class="clear"></div>
 	
 	<div class="footer">
 		<div class="container">
-			<div class="friends-title">
-				<a href="http://www.xiaoma.com">友情链接</a>
-			</div>
-			<div class="friends-link">
-				<ul>	
-					<li class="friends_first"><a href="http://www.xiaoma.com">小马过河论坛</a></li>
-					<li><a href="http://www.xiaoma.com">雅思</a></li>
-					<li><a href="http://www.xiaoma.com">英语四六级考试</a></li>
-					<li><a href="http://www.xiaoma.com">托福</a></li>
-					<li><a href="http://www.xiaoma.com">托福</a></li>
-					<li><a href="http://www.xiaoma.com">小马过河论坛</a></li>
-					<li><a href="http://www.xiaoma.com">英语四六级考试</a></li>
-					<li><a href="http://www.xiaoma.com">托福</a></li>
-					<li><a href="http://www.xiaoma.com">托福</a></li>
-					<li><a href="http://www.xiaoma.com">小马过河论坛</a></li>
-					<li><a href="http://www.xiaoma.com">英语四六级考试</a></li>
-					<li><a href="http://www.xiaoma.com">托福</a></li>
-					<li><a href="http://www.xiaoma.com">托福</a></li>
-					<li><a href="http://www.xiaoma.com">小马过河论坛</a></li>
-					<li><a href="http://www.xiaoma.com">托福</a></li>
-					<li><a href="http://www.xiaoma.com">托福</a></li>
-					<li><a href="http://www.xiaoma.com">小马过河论坛</a></li>
-					<li><a href="http://www.xiaoma.com">英语四六级考试</a></li>
-					<li><a href="http://www.xiaoma.com">托福</a></li>
-					<li><a href="http://www.xiaoma.com">托福</a></li>
-					<li><a href="http://www.xiaoma.com">小马过河论坛</a></li>
-					<li><a href="http://www.xiaoma.com">英语四六级考试</a></li>
-					<li><a href="http://www.xiaoma.com">托福</a></li>
-					<li><a href="http://www.xiaoma.com">托福</a></li>
-					<li><a href="http://www.xiaoma.com">小马过河论坛</a></li>
-					<li><a href="http://www.xiaoma.com">托福</a></li>
-					<li><a href="http://www.xiaoma.com">托福</a></li>
-					<li><a href="http://www.xiaoma.com">小马过河论坛</a></li>
-					<li><a href="http://www.xiaoma.com">英语四六级考试</a></li>
-					<li><a href="http://www.xiaoma.com">托福</a></li>
-					<li><a href="http://www.xiaoma.com">托福</a></li>
-					<li><a href="http://www.xiaoma.com">小马过河论坛</a></li>
-					<li><a href="http://www.xiaoma.com">英语四六级考试</a></li>
-					<li><a href="http://www.xiaoma.com">托福</a></li>
-					<li><a href="http://www.xiaoma.com">托福</a></li>
-					<li><a href="http://www.xiaoma.com">小马过河论坛</a></li>
-				</ul>
-			</div><!-- .friends-link-->
+			<%= yield :friend_link %>
 			<div class="clear"></div>
 			<div class="copyright-link">
 				<ul>	
 					<li><a href="http://www.xiaoma.com">联系我们</a></li>
+					<li><a href="http://space.xiaoma.com/home-space-uid-1-do-blog-view-me-from-space.html">官方日志</a></li>
 					<li><a href="http://www.xiaoma.com">关于我们</a></li>
 					<li><a href="http://www.xiaoma.com">帮助中心</a></li>
 					<li><a href="http://www.xiaoma.com">网站地图</a></li>
@@ -150,16 +107,36 @@
 			</div><!-- .copyright-link -->
 			<div class="clear"></div>
 			<p>
-				小马过河(北京)国际教育咨询有限公司
+				小马过河
 			</p>
 			<p>
-				经营许可证编号：京ICP备05067667 | 京ICP证060601号 | 京公安备1101084985
+				注:本网站不支持IE6,请使用IE7以上版本,推荐使用firefox3以上版本或者google chrome浏览本站,效果极佳
 			</p>
 			<p>
-				版权所有 ? 2005-2010 小马XXXXX All Rights Reserved
+				经营许可证编号：京ICP备09050588号 
+			</p>
+			<p>
+				版权所有 &reg; 2005-2011 www.xiaoma.com 小马过河 All Rights Reserved 本站保留所有权利，未经许可，不得转载
 			</p>
 		</div><!-- .container-->
 		<div class="clear"></div>
 	</div><!-- .footer -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18258123-1']);
+  _gaq.push(['_setDomainName', '.xiaoma.com']);
+  _gaq.push(['_setAllowHash', false]);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_addOrganic', 'soso', 'w']);
+  _gaq.push(['_addOrganic', 'yodao', 'q']);
+  _gaq.push(['_addOrganic', 'sogou', 'query']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
 </body>
+
 </html>

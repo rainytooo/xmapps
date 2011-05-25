@@ -13,7 +13,8 @@ Xmapps::Application.configure do
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
   config.action_view.debug_rjs             = true
-  config.action_controller.perform_caching = false
+  # 缓存设置
+  config.action_controller.perform_caching = true
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
@@ -23,6 +24,12 @@ Xmapps::Application.configure do
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
+  
+  COOKIE_DOMAIN_NAME = "localhost"
+  # 主域名
+  XMAPP_MAIN_DOMAIN_URL = "http://localhost:3000"
+  # 下载服务器的url
+  DOWNLOAD_SERVER_URL = "http://localhost:3001"
   # 以下部分是项目用到的常量
   DOWNLOAD_THREAD_PHOTO_ROOT_PATH = "d:/dev/servers/xampp/htdocs/xmappimages"
   DOWNLOAD_THREAD_PHOTO_ROOT_URL = "http://localhost/xmappimages"
@@ -45,6 +52,8 @@ Xmapps::Application.configure do
   DZ_EXTCREDITS_REDUCE_COUNT = -100
   # 文件上传相关
   FILE_UPLOAD_DIRECTORY = "d:/dev/servers/xampp/htdocs/xmappimages"
+  # 下载服务器上的文件根路径
+  FILE_DOWNLOAD_DIRECTORY = "d:/dev/servers/xampp/htdocs/xmappimages"
   # 图片服务器根地址
   IMG_SERVER_URL = "http://localhost/xmappimages/"
   # 一次最大上传附件总数 
@@ -53,5 +62,6 @@ Xmapps::Application.configure do
   USER_SPACE_URL_BASE = "http://space.xiaoma.com/space-uid-{dz_uid}.html"
   # 头像路径 默认small
   USER_DISCUZ_SMALL_AVATAR_BASE = "http://bbs.xiaoma.com/uc_server/avatar.php?uid={dz_uid}&size=small"
+  
 end
 

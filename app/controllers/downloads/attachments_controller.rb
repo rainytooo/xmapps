@@ -7,7 +7,7 @@ class Downloads::AttachmentsController < ApplicationController
 	@dl_attachment = DlAttachment.find(params[:id])
 	# 我当前的积分和金币
 	# 拿出用户金币
-	dz_user = Dzuser.find_by_username(session[:login_user].username)
+	dz_user =session[:login_user]
 	@extcredits = DzCommonMemberCount.find_by_uid(dz_user.uid)
   end
   # 下载的方法

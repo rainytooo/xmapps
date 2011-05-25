@@ -52,7 +52,7 @@ body {
 	background: none repeat scroll 0 0 #a83336;
 	border-bottom:5px solid #4d4d4d;
 	height:185px;
-	margin-bottom: 20px;
+	margin-bottom: 5px;
 
 }
 .header {
@@ -102,9 +102,11 @@ body {
 	text-shadow: 2px 2px 1px #000000;
 }
 
+/*
 .current a:link, .current a:visited, #mainMenu .new:link, #mainMenu .new:visited {
     color: #FFFFFF !important;
 }
+*/
 
 /* all layout*/
 #layout {
@@ -233,7 +235,7 @@ body {
 .copyright-link {
 	margin: 0 auto;
 	height:40px;
-	width:482px;
+	width:522px;
 }
 
 
@@ -352,21 +354,18 @@ body {
 	width: 319px;
 }
 
-#wrap_xiaoma_form {
-	height: auto;
-	margin-bottom:20px;
-}
-#wrap_xiaoma_form form label {
+
+form label {
 	display:inline-block;
 	width:120px;
 	font-weight: bold;
 }
 
-#wrap_xiaoma_form form input {
+form input {
 	width:180px;
 }
 
-#wrap_xiaoma_form form select {
+form select {
 	width:184px;
 }
 .global_form {
@@ -383,7 +382,7 @@ body {
 	clear: both;
 }
 
-#wrap_xiaoma_form form #form_submit input {
+form #form_submit input {
 	background: url("../images/form_btn2.gif") no-repeat scroll 0 0 transparent;
 	height:32px;
 	border:0;
@@ -394,7 +393,7 @@ body {
 	cursor: pointer;
 }
 
-#wrap_xiaoma_form form #form_submit input.download  {
+form #form_submit input.download  {
 	background: url("../images/download.png") no-repeat scroll 0 0 transparent;
 	height:66px;
 	border:0;
@@ -426,7 +425,7 @@ body {
 	background: none repeat scroll 0 0 #EEEEEE;
     border: 1px solid #CCCCCC;
     padding: 6px 9px;
-	margin: 0 0 21px;
+	margin: 10px 0 21px;
 }
 
 .submit_error {
@@ -434,7 +433,7 @@ body {
 	background: none repeat scroll 0 0 #EEEEEE;
     border: 1px solid #CCCCCC;
     padding: 6px 9px;
-	margin: 0 0 21px;
+	margin: 10px 0 21px;
 }
 
 .field_with_errors .message {
@@ -615,7 +614,7 @@ body {
 
 .list_rightside {
 	float: right;
-	width: 260px;
+	width: 320px;
 }
 
 .list_rightside ul.content {
@@ -632,7 +631,7 @@ body {
 	padding: 3px, 3px, 3px, 3px;
 }
 
-.list_rightside h2.subject {
+h2.subject {
     background: none repeat scroll 0 0 #F0F0F0;
     /*border-left: 2px solid #CA0002;*/
     color: #555555;
@@ -735,4 +734,88 @@ body {
 	font-size:14px;
 	font-weight: bold;
 	cursor: pointer;
+}
+
+#ckepop {
+	margin: 10px 0 40px;
+}
+
+
+.container .main_left {
+	width: 666px;
+	margin:0 10px 10px 0px;
+	padding:2px;
+}
+
+
+.container .main_right {
+	width: 276px;
+	margin:0;
+	padding:2px;
+}
+
+/*问答的左边表格*/
+table.grid tbody td {
+    border-top: 1px dashed #DDDDDD;
+    padding: 5px 3px;
+}
+
+td {
+    font-size: 1em;
+}
+
+tr.mouse_over {
+    background-color: #F2F8EF;
+}
+td.date {
+    color: green;
+}
+
+td.open, h3.open {
+    background-image: url("../images/ask.gif");
+}
+
+td.close, h3.close {
+    background-image: url("../images/greenright.gif");
+}
+
+td.open, td.close {
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding-left: 25px !important;
+}
+
+.container h3 span.ask_title {
+	font-size: 14px;
+	line-height: 30px;
+	padding: 5px;
+	background: none repeat scroll 0 0 #F0F0F0;
+}
+
+.container h3 a{
+	font-size: 13px;
+    padding: 5px;
+    text-decoration: underline;
+}
+
+span.score {
+    background-image: url("../images/score.gif");
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding-left: 15px;
+}
+/*问答右侧*/
+.ask_tags h4 {
+	padding-left:5px;
+}
+.ask_tags h4 a{
+	font-size: 1.15em;
+    line-height: 1.3em;
+    margin: 0 0 0.25em;
+    padding: 0;
+}
+
+.my_ask h2 a{
+	color: green;
+	font-size: 16px;
 }

@@ -4,9 +4,9 @@
 <meta name="keywords" content="小马过河 英语 学习资料 下载" /> 
 <% end %>
 
-		<div class="content_container">
+		<div class="container">
 			<div class="page_path">
-				<%= link_to "首页", root_path %> &gt;&gt; <%= link_to "资源下载", dl_index_path %> &gt;&gt; 下载文件
+				<a href="<%= XMAPP_MAIN_DOMAIN_URL %>">首页</a> &gt;&gt; <a href="<%= XMAPP_MAIN_DOMAIN_URL %>/dl">资源下载</a> &gt;&gt; 下载文件
 			</div><!-- .page_path -->
 			<div class="page_title">
 				<h1>
@@ -41,7 +41,12 @@
 				<div class="form_right">
 					<div class="user_upload">
 						<p>
-							<input type="button" class="upload_img"  onclick="location.href='<%= new_downloads_dl_thread_path %>'">
+							<input type="button" class="upload_img"  onclick="location.href='<%= XMAPP_MAIN_DOMAIN_URL %>/downloads/dl_threads/new'">
+						</p>
+					</div>
+					<div>
+						<p>
+							<h5><a href="<%= XMAPP_MAIN_DOMAIN_URL %>/manage/uploads">管理我的上传</a></h5>
 						</p>
 					</div>
 					<h5>我当前的金币为:<%= @extcredits.extcredits6%></h5>

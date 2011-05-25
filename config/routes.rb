@@ -1,4 +1,7 @@
 Xmapps::Application.routes.draw do
+  # ÎÊ´ğ
+  #resources :asks
+
   # download application
   # Ê×Ò³
   match "dl" => "downloads/dl_threads#index", :via => [:get], :as => "dl_index"
