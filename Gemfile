@@ -10,10 +10,7 @@ gem 'mysql'
 gem 'client_side_validations'
 
 gem 'uuidtools'
-
-
-# memcached client
-#gem 'dalli'
+gem 'dalli'
 
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 

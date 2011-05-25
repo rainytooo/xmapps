@@ -8,6 +8,7 @@ class Downloads::AttachmentsController < ApplicationController
 	dl_thread = DlThread.find_by_id(@dl_attachment.dl_thread_id )
 	if 	dl_thread.ispass == 0
 		render '/404.html'
+		return
 	end
 	# 我当前的积分和金币
 	# 拿出用户金币
