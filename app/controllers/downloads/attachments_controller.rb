@@ -18,7 +18,7 @@ class Downloads::AttachmentsController < ApplicationController
 		# 获取文件路径
 		file_full_path = FILE_UPLOAD_DIRECTORY + "/"+ @dl_attachment.filepath + "/" + @dl_attachment.filename
 		# 拿出用户金币
-		dz_user = Dzuser.find_by_username(session[:login_user].username)
+		dz_user = session[:login_user]
 		extcredits6 = DzCommonMemberCount.find_by_uid(dz_user.uid)
 		if (extcredits6.extcredits6.to_i - 5) < 0
 			flash[:error] = "对不起!您的金币数量不足以下载此资源,下载此资源至少需要5个金币,您只有" + extcredits6.extcredits6.to_s
