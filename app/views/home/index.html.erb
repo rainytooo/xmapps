@@ -4,8 +4,9 @@
 <meta name="keywords" content="雅思,托福,留学,出国,GRE,SAT,GMAT,SSAT,AP,美国名校">
 <%= stylesheet_link_tag "global" %>
 <%= stylesheet_link_tag "index" %>
+<%= stylesheet_link_tag "jqModal" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-<%= javascript_include_tag 'slides.min.jquery' %>
+<%= javascript_include_tag 'slides.min.jquery', 'jqModal' %>
 	<script>
 		$(function(){
 			$('#slides').slides({
@@ -39,10 +40,30 @@
 			});
 		});
 	</script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+	  $('#dialog').jqm();
+	  //$('#dialog').jqmShow(); 
+	});
+	</script> 
 <% end %>
 
 
 		<div class="container">
+		<div class="jqmWindow" id="dialog">
+
+			<a href="#" class="jqmClose">关闭对话框</a>
+			<hr>
+			<h3>重要通知</h3>
+			由于下载服务器压力过大,下载人数太多,造成大家下载速度慢,经常断开连接等等现象,对整个网站重新设计,为了给广大用户提供一个更好的学习环境
+			<a href="http://www.xiaoma.com/dl">新版小马过河下载</a>已经上线了,老版下载将于9月份关闭,并且即日起不在提供任何下载服务
+
+			<br /><br />
+		
+			<h5>点击访问<a href="http://www.xiaoma.com/dl">新版下载</a>&nbsp;&nbsp; 新访问的用户请仔细阅读<a href="http://bbs.xiaoma.com/thread-155879-1-1.html">小马过河论坛使用规则</a></h5>
+			<br /><br />
+			感谢长期以来大家对小马过河的一贯支持,我们会不断完善我们的服务,给大家提供一个良好的学习环境
+		</div>
 			<div id="index_slide">
 				
 				<div id="slides">
