@@ -1,10 +1,14 @@
 class HomeController < ApplicationController
   def index
+	require 'iconv'
+	origin_filename = '鎸夋椂鎵撶畻'
+	request.env['HTTP_USER_AGENT'].match('MSIE')  ? Iconv.conv("utf8", "gb2312", origin_filename) : origin_filename
+	logger.info origin_filename
   end
-  # 页面无法找到
+  # 椤甸潰鏃犳硶鎵惧埌
   def notfound
   end
-  # 内部错误
+  # 鍐呴儴閿欒
   def errorpage
   end
 end

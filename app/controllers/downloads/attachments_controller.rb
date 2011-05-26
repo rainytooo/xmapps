@@ -33,8 +33,8 @@ class Downloads::AttachmentsController < ApplicationController
 			# 识别浏览器 来修改文件名
 			require 'iconv'
 			origin_filename = @dl_attachment.originname
-			request.env['HTTP_USER_AGENT'].match('MSIE')  ? Iconv.conv('gb2312','utf8', origin_filename)
-			send_file(file_full_path, :filename => @dl_attachment.originname)
+			request.env['HTTP_USER_AGENT'].match('MSIE')  ? Iconv.conv('gb2312','utf8', origin_filename) : origin_filename
+			send_file(file_full_path, :filename => origin_filename)
 						#:type: => @dl_attachment.content_type  )
 			# 更新下载次数
 			ActiveRecord::Base.connection.update("update dl_attachments set donwloads = donwloads+1 where id = " + params[:attachment_id])
