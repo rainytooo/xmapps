@@ -19,6 +19,9 @@ body {
 	clear: both;
 }
 
+.hideoverflow {
+	overflow: hidden;
+}
 .tag_title {
 	color:red;
 }

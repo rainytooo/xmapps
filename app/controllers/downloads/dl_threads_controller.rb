@@ -100,9 +100,6 @@ class Downloads::DlThreadsController < ApplicationController
   def update
     @dl_thread = DlThread.find(params[:id])
 	@dl_thread.update_attributes(params[:dl_thread])
-	logger.info 'aaaaaaaaaaaaaaaaaaaaaaaaa'
-	logger.info params[:dl_thread]
-	logger.info 'aaaaaaaaaaaaaaaaaaaaaaaaa'
     if @dl_thread.update_attributes(params[:dl_thread])
 	  if params[:crop] == "1"
 		# 如果是切图,转到第三步 上传文件
