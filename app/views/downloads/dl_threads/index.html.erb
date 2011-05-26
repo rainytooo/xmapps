@@ -101,7 +101,7 @@
 						<a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', rank_user.dz_common_id.to_s) %>">
 							<img src="<%= USER_DISCUZ_SMALL_AVATAR_BASE.gsub('{dz_uid}', rank_user.dz_common_id.to_s) %>">
 						</a>
-						<p><span class="hideoverflow"><%= rank_user.username %><span></p>
+						<p><span class="hideoverflow headname"><%= rank_user.username %><span></p>
 						<p><%= rank_user.uploads %></p>
 					</li>
 					<% end %>

@@ -19,6 +19,10 @@ body {
 	clear: both;
 }
 
+.headname {
+	height: 17px;
+	width:65px;
+}
 .hideoverflow {
 	overflow: hidden;
 }
