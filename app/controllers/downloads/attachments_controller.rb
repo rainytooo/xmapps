@@ -1,4 +1,5 @@
-
+require 'iconv'
+require 'uri'
 #require "prawn"
 class Downloads::AttachmentsController < ApplicationController
   before_filter :require_login 
@@ -30,12 +31,14 @@ class Downloads::AttachmentsController < ApplicationController
 			redirect_to downloads_attachment_path(params[:attachment_id])
 		else 
 			# 输出流
-			# 识别浏览器 来修改文件名
-			require 'iconv'
+			# 识别浏览器 来修改文件名 针对IE对文件名编码
 			origin_filename = @dl_attachment.originname
-			request.env['HTTP_USER_AGENT'].match('MSIE')  ? Iconv.conv('gb2312','utf8', origin_filename) : origin_filename
+			user_agent = request.env['HTTP_USER_AGENT'].downcase
+			if user_agent.include? "msie"
+			  origin_filename = URI.escape origin_filename
+			end
+			#new_filename = request.env['HTTP_USER_AGENT'].match('MSIE')  ? Iconv.conv('gb2312','utf-8', origin_filename) : origin_filename
 			send_file(file_full_path, :filename => origin_filename)
-						#:type: => @dl_attachment.content_type  )
 			# 更新下载次数
 			ActiveRecord::Base.connection.update("update dl_attachments set donwloads = donwloads+1 where id = " + params[:attachment_id])
 			extcredits6.update_attribute(:extcredits6, extcredits6.extcredits6.to_i - 5)

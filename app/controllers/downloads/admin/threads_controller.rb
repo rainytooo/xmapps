@@ -24,7 +24,7 @@ class Downloads::Admin::ThreadsController < ApplicationController
 	  # 查出发表用户的 discuz 中的user对象
 	  # 审核人的discuz uid
 	  pass_user = session[:login_user]
-          upload_user = User.find_by_id(@dl_thread.user_id)
+      upload_user = User.find_by_id(@dl_thread.user_id)
 	  dz_user = Dzuser.find_by_username(upload_user.username)
 	  # 发送提醒
 	  send_dz_notify @dl_thread.user_id, pass_user.uid, '', message, 'uploads'
@@ -39,7 +39,8 @@ class Downloads::Admin::ThreadsController < ApplicationController
 	  add_discuz_extcredits dz_user.uid, DZ_EXTCREDITS_ADD_COUNT
 	else
 	  @dl_thread.update_attribute(:ispass, 0)
-	  dz_user = Dzuser.find_by_uid(@dl_thread.user_id)
+	  upload_user = User.find_by_id(@dl_thread.user_id)
+	  dz_user = Dzuser.find_by_username(upload_user.username)
 	  add_discuz_credits dz_user.uid, DZ_CREDITS_REDUCE_COUNT
 	  add_discuz_extcredits dz_user.uid, DZ_EXTCREDITS_REDUCE_COUNT
 	end
