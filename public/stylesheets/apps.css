@@ -20,6 +20,7 @@ body {
 }
 
 .headname {
+	display: block;
 	height: 17px;
 	width:65px;
 }

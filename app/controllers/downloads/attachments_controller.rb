@@ -30,6 +30,10 @@ class Downloads::AttachmentsController < ApplicationController
 			redirect_to downloads_attachment_path(params[:attachment_id])
 		else 
 			# 输出流
+			# 识别浏览器 来修改文件名
+			require 'iconv'
+			origin_filename = @dl_attachment.originname
+			request.env['HTTP_USER_AGENT'].match('MSIE')  ? Iconv.conv('gb2312','utf8', origin_filename)
 			send_file(file_full_path, :filename => @dl_attachment.originname)
 						#:type: => @dl_attachment.content_type  )
 			# 更新下载次数
