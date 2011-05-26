@@ -2,7 +2,7 @@ require 'iconv'
 require 'uri'
 #require "prawn"
 class Downloads::AttachmentsController < ApplicationController
-  before_filter :require_login 
+  before_filter :require_login_to_main_server 
   # 显示验证码
   def show
 	@dl_attachment = DlAttachment.find(params[:id])
@@ -47,5 +47,18 @@ class Downloads::AttachmentsController < ApplicationController
 		flash[:error] = "验证码不正确,请重新输入"
 		redirect_to downloads_attachment_path(params[:attachment_id])
 	end			
+  end
+  
+  private
+  
+  def require_login_to_main_server
+    unless logged_in?
+      flash[:error] = "必须登录才能继续刚才的操作,请登录"
+      redirect_to XMAPP_MAIN_DOMAIN_URL + "/login" # halts request cycle
+    end
+  end
+ 
+  def logged_in?
+    !!session[:login_user]
   end
 end
