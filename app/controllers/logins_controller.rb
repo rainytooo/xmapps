@@ -27,7 +27,6 @@ class LoginsController < ApplicationController
     @login = Login.new(params[:login])
 	if request.post?
 		# 这里做登录的验证
-		logger.info @login.username
 		@dzuser = Dzuser.find_by_username(@login.username)
 		@dzucuser = Dzucuser.find_by_username(@login.username)
 		if not @dzuser

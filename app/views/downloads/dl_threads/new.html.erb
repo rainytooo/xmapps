@@ -49,7 +49,7 @@
 					<div class="form_tips">清填写下载资源的标题</div>
 					<div class="global_form">
 						<%= f.label :dl_type_id, "下载资源的类型:" %><div class="clear"></div>						
-						<%= select_tag(:dl_type_id,  options_for_select(DlType.where("id != 1").collect{ |p| [p.typename, p.id] })) %>						
+						<%= select_tag(:dl_type_id,  options_for_select(DlType.where("id != 1").collect{ |p| [p.typename, p.id] }) ) %>						
 					</div>
 					<div class="form_tips">清选择下载资源的类型</div>
 					<div class="global_form">
