@@ -7,7 +7,7 @@ class Downloads::DlThreadsController < ApplicationController
 	# 拿出所有审核过的下载
 	@dl_threads = DlThread.where("ispass = ?", 1).order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>10)
 	# 拿出最多上传的用户
-	@rank_users = User.find_by_sql('select * from users LEFT OUTER JOIN user_counts ON user_counts.user_id = users.id order by user_counts.uploads desc limit 0, 12')
+	@rank_users = User.find_by_sql('select * from users LEFT OUTER JOIN user_counts ON user_counts.user_id = users.id where user_counts.uploads != 0 order by user_counts.uploads desc limit 0, 12')
 	# 拿出最热下载
 	@hot_dl_threads = DlThread.where("ispass = ?", 1).order("views DESC").limit(10).offset(0)
   end
