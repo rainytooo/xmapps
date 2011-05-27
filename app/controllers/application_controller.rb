@@ -60,8 +60,12 @@ class ApplicationController < ActionController::Base
 	  if cookies[DZ_COOKIE_NAME]
 		# 解码cookie
 		passwd_uid = decode_cookie(DZ_AUTH_KEY, request.user_agent, cookies, DZ_COOKIE_NAME)
-		logger.info 'check_cookie logger ------------------------------'
-		logger.info passwd_uid
+		# 如果解不出来 就把这个cookie删除了
+		if passwd_uid == nil
+			reset_session
+			cookies.delete(DZ_COOKIE_NAME, :domain => COOKIE_DOMAIN_NAME)
+			return
+		end 
 		dzuser = Dzuser.find_by_uid(passwd_uid[1])
 		dzucuser = Dzucuser.find_by_uid(passwd_uid[1])
 		# 如果id和密码匹配
