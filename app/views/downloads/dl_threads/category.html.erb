@@ -1,7 +1,7 @@
 <% content_for :head do %>
 <title>小马过河-浏览所有<%= @dl_category.typename %>资源下载</title>
-<meta name="description" content="浏览所有<%= @dl_category.typename %>资源下载" /> 
-<meta name="keywords" content="小马过河 英语 学习资料 下载 <%= @dl_category.typename %>" /> 
+<meta name="description" content="浏览所有<%= @dl_category.typename %>资源下载 <%= @dl_category.description %>" /> 
+<meta name="keywords" content="小马过河 资料 下载 <%= @dl_category.typename %> <%= @dl_category.keywords %>" /> 
 <% end %>
 
 		<div class="container">

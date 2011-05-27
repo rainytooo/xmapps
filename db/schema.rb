@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110524031348) do
+ActiveRecord::Schema.define(:version => 20110527080931) do
 
   create_table "applies", :force => true do |t|
     t.string   "name"
@@ -116,10 +116,12 @@ ActiveRecord::Schema.define(:version => 20110524031348) do
 
   create_table "dl_types", :force => true do |t|
     t.integer  "dl_type_id"
-    t.string   "typename",   :limit => 64
-    t.integer  "type_lv",    :limit => 2,  :default => 0
+    t.string   "typename",    :limit => 64
+    t.integer  "type_lv",     :limit => 2,   :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "keywords",    :limit => 64
+    t.string   "description", :limit => 256
   end
 
   add_index "dl_types", ["dl_type_id"], :name => "fk_dltypes_parentdltypes"

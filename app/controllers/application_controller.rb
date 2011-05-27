@@ -60,6 +60,8 @@ class ApplicationController < ActionController::Base
 	  if cookies[DZ_COOKIE_NAME]
 		# 解码cookie
 		passwd_uid = decode_cookie(DZ_AUTH_KEY, request.user_agent, cookies, DZ_COOKIE_NAME)
+		logger.info 'check_cookie logger ------------------------------'
+		logger.info passwd_uid
 		dzuser = Dzuser.find_by_uid(passwd_uid[1])
 		dzucuser = Dzucuser.find_by_uid(passwd_uid[1])
 		# 如果id和密码匹配

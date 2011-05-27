@@ -72,7 +72,7 @@ class Downloads::Admin::DlTypesController < ApplicationController
 
     respond_to do |format|
       if @dl_type.update_attributes(params[:dl_type])
-        format.html { redirect_to(@dl_type, :notice => 'Dl type was successfully updated.') }
+        format.html { redirect_to(downloads_admin_dl_type_path(@dl_type), :notice => 'Dl type was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
