@@ -66,7 +66,7 @@
 					<ul>
 					<% @dl_attachments.each do |dl_attachments| %>
 						<li class="">
-							<a href="<%= DOWNLOAD_SERVER_URL %>/downloads/attachments/<%= dl_attachments.id %>"><%= dl_attachments.originname%></a>
+							<a href="<%= DOWNLOAD_SERVER_URL %>/dl/attachment/<%= dl_attachments.id %>"><%= dl_attachments.originname%></a>
 							<span class="downloads_count">下载次数:<%= dl_attachments.donwloads %></span>
 						</li>
 					<% end %>

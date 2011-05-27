@@ -9,6 +9,7 @@ Xmapps::Application.routes.draw do
   match "dl/:id", :to => "downloads/dl_threads#show", :via => [:get], :as => "dl"
   # 浏览分类资源
   match "dl/category/:id", :to => "downloads/dl_threads#category", :via => [:get], :as => "dl_category"
+  match "dl/attachment/:id", :to => "downloads/attachments#show", :via => [:get], :as => "dl_attachment"
   # 标签
   resources :tags
   # 前台显示和后台的管理
@@ -36,6 +37,7 @@ Xmapps::Application.routes.draw do
   # site index page
   get "home/index"
   root :to => "home#index"
+  match "index" => "home#index"
   
   match "login" => "logins#index", :via => [:get]
   match 'login' => 'logins#create', :via => [:post]
