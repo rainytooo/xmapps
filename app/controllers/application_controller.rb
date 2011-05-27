@@ -124,11 +124,21 @@ class ApplicationController < ActionController::Base
     unless logged_in?
       flash[:error] = "必须登录才能继续刚才的操作,请登录"
       redirect_to login_url # halts request cycle
+	  return
     end
+	unless require_checkedemail?
+      flash[:error] = "您的邮箱还没有验证 请登录您的邮箱" + session[:login_user].email + "进行验证"
+      redirect_to login_url # halts request cycle
+	end
   end
  
   def logged_in?
     !!session[:login_user]
+  end
+  
+  # 验证会员是否验证了邮箱
+  def require_checkedemail?
+	session[:login_user].emailstatus == 1
   end
   
   def require_admin

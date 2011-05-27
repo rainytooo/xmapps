@@ -1,6 +1,6 @@
 # Be sure to restart your server when you modify this file.
 
-Xmapps::Application.config.session_store :cookie_store, :key => '_xmapps_session', :domain => :all
+Xmapps::Application.config.session_store :cookie_store, :key => '_xmapps_session_2', :domain => :all
 #require 'action_dispatch/middleware/session/dalli_store'
 #Xmapps::Application.config.session_store :dalli_store, :memcache_server => ['host1', 'host2'], :namespace => 'sessions', :key => '_foundation_session', :expire_after => 1.day
 
