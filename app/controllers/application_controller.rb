@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
 		# 解码cookie
 		passwd_uid = decode_cookie(DZ_AUTH_KEY, request.user_agent, cookies, DZ_COOKIE_NAME)
 		# 如果解不出来 就把这个cookie删除了
-		if passwd_uid == nil
+		if passwd_uid.empty?
 			reset_session
 			cookies.delete(DZ_COOKIE_NAME, :domain => COOKIE_DOMAIN_NAME)
 			return
