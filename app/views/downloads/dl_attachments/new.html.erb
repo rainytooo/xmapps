@@ -21,7 +21,7 @@
 				return;
 			}
 			filesCounter = filesCounter + 1;
-			if (files[index].size > 50000000) {
+			if (files[index].size > 20000000) {
 				handler.uploadRow.find('.file_upload_progress').html('<span class="warning">文件大小超出限制!<\/span>');
 				setTimeout(function () {
 					handler.removeNode(handler.uploadRow);
@@ -96,12 +96,12 @@
 					
 					</p>
 					<h3>注意</h3>
-					<p>请不要上传大于<span class="warning">5M</span>的文件,
+					<p>请不要上传大于<span class="warning">20M</span>的文件,
 					并且只允许上传 <span class="warning">zip,rar,tgz,tar</span>.gz格式的文件,这样可以节省大量的带宽,使你上传和下载要快许多,
 					所以请用相关的工具,如winrar或者winzip等工具来给你的文件或文件夹进行压缩,打包之后再上传.
 					</p>
 					<h3>我的文件大于5M我该怎么上传</h3>
-					<p>请不要上传大于<span class="warning">5M</span>的文件,
+					<p>请不要上传大于<span class="warning">20M</span>的文件,
 					并且只允许上传 <span class="warning">zip,rar,tgz,tar</span>.gz格式的文件,这样可以节省大量的带宽,使你上传和下载要快许多,
 					所以请用相关的工具,如winrar或者winzip等工具来给你的文件或文件夹进行压缩,打包之后再上传.
 					</p>

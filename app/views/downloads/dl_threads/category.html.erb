@@ -22,7 +22,7 @@
 							<li>
 								<div class="content">
 									<h5>
-										<%= link_to "[#{@dl_category.typename}]", dl_category_url(dl_thread.dl_type_id), :class => "dl_type" %>
+										<%= link_to "[#{dl_thread.dl_type.typename}]", dl_category_url(dl_thread.dl_type.id), :class => "dl_type" %>
 										&nbsp;
 										<%= link_to dl_thread.name,  dl_path(dl_thread), :class => "title" %>
 									</h5>
