@@ -16,7 +16,7 @@ class Downloads::DlThreadsController < ApplicationController
   def category
 	@dl_category = DlType.find_by_id(params[:id])
 	# 拿出所有审核过的下载
-	@dl_threads = DlThread.where("ispass = 1 and dl_type_id = :dl_type_id ", {:dl_type_id => params[:id]}).order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>10)
+	@dl_threads = DlThread.where("ispass = 1 and dl_type_id in (select id from dl_threads where dl_type_id = :dl_type_id ) ", {:dl_type_id => params[:id]}).order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>10)
 	if @dl_threads.empty?
 		flash[:message] = "对不起,没有此分类的相关下载"
 	end
