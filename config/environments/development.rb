@@ -63,6 +63,6 @@ Xmapps::Application.configure do
   USER_SPACE_URL_BASE = "http://space.xiaoma.com/space-uid-{dz_uid}.html"
   # Í·ÏñÂ·¾¶ Ä¬ÈÏsmall
   USER_DISCUZ_SMALL_AVATAR_BASE = "http://bbs.xiaoma.com/uc_server/avatar.php?uid={dz_uid}&size=small"
-  ROBOTS_TXT = File.read(Rails.root + "config/robots.txt")
+  #ROBOTS_TXT = File.read(Rails.root + "config/robots.txt")
 end
 
