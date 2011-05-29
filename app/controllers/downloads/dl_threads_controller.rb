@@ -68,14 +68,14 @@ class Downloads::DlThreadsController < ApplicationController
 
   # GET /dl_threads/1/edit
   def edit
+	@dl_thread = DlThread.find(params[:id])
 	if  @dl_thread.user_id == session[:login_user_id]  or logged_admin?
-		@dl_thread = DlThread.find(params[:id])
 		@tags = Tag.joins('LEFT OUTER JOIN tag_relationships ON tag_relationships.tag_id = tags.id ').where('tag_relationships.object_id = ?', @dl_thread.id)
 		@tag_names = Array.new
 		@tags.each { |tag| @tag_names.push tag.name  }
 	else
 		flash.now[:error] = "对不起,您无权进行此操作"
-		render 'errors_messages.html'
+		render '/errors_messages.html'
 	end
     
   end

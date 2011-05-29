@@ -836,3 +836,29 @@ span.score {
 .empty_list {
 	height: 400px;
 }
+
+
+.common_error {
+    color: red;
+    margin-top: 100px;
+    margin-left: 170px;
+    width: 600px;
+	height: 70px;
+
+	background: none repeat scroll 0 0 #EEEEEE;
+    border: 1px solid #CCCCCC;
+    padding: 6px 9px;
+
+}
+.common_message {
+
+    margin-top: 100px;
+    margin-left: 170px;
+    width: 600px;
+	height: 70px;
+
+	background: none repeat scroll 0 0 #EEEEEE;
+    border: 1px solid #CCCCCC;
+    padding: 6px 9px;
+
+}
