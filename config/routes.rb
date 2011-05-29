@@ -38,6 +38,7 @@ Xmapps::Application.routes.draw do
   get "home/index"
   root :to => "home#index"
   match "index" => "home#index"
+  match "robots" => "home#robots"
   
   match "login" => "logins#index", :via => [:get]
   match 'login' => 'logins#create', :via => [:post]

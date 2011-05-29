@@ -1,0 +1,577 @@
+<% content_for :head do %>
+<title>小马过河-托福考试,雅思考试,GRE,最专业的出国留学备考社区</title>
+<meta name="description" content="小马过河是一个专业的出国留学备考社区,包含丰富的学习资源,资料下载,涉及内容包括托福,sat,gre,雅思,以及出国一些专业知识,并为大家提供一个学习和交流的平台">
+<meta name="keywords" content="雅思考试,托福考试,出国,留学,GRE,SAT,GMAT,SSAT,AP,美国名校">
+<%= stylesheet_link_tag "global" %>
+<%= stylesheet_link_tag "index" %>
+<%= stylesheet_link_tag "jqModal" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<%= javascript_include_tag 'slides.min.jquery', 'jqModal' %>
+	<script>
+		$(function(){
+			$('#slides').slides({
+				preload: true,
+				preloadImage: '../images/jqslide/loading.gif',
+				play: 5000,
+				pause: 2500,
+				hoverPause: true,
+				generatePagination: false,
+				animationStart: function(current){
+					$('.caption').animate({
+						bottom:-35
+					},100);
+					if (window.console && console.log) {
+						// example return of current slide number
+					};
+				},
+				animationComplete: function(current){
+					$('.caption').animate({
+						bottom:0
+					},200);
+					if (window.console && console.log) {
+						// example return of current slide number
+					};
+				},
+				slidesLoaded: function() {
+					$('.caption').animate({
+						bottom:0
+					},200);
+				}
+			});
+		});
+	</script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+	  $('#dialog').jqm();
+	  //$('#dialog').jqmShow(); 
+	});
+	</script> 
+<% end %>
+
+
+		<div class="container">
+		<div class="jqmWindow" id="dialog">
+
+			<a href="#" class="jqmClose">关闭对话框</a>
+			<hr>
+			<h3>重要通知</h3>
+			由于下载服务器压力过大,下载人数太多,造成大家下载速度慢,经常断开连接等等现象,对整个网站重新设计,为了给广大用户提供一个更好的学习环境
+			<a href="http://www.xiaoma.com/dl">新版小马过河下载</a>已经上线了,老版下载将于9月份关闭,并且即日起不在提供任何下载服务
+
+			<br /><br />
+		
+			<h5>点击访问<a href="http://www.xiaoma.com/dl">新版下载</a>&nbsp;&nbsp; 新访问的用户请仔细阅读<a href="http://bbs.xiaoma.com/thread-155879-1-1.html">小马过河论坛使用规则</a></h5>
+			<br /><br />
+			感谢长期以来大家对小马过河的一贯支持,我们会不断完善我们的服务,给大家提供一个良好的学习环境
+		</div>
+			<div id="index_slide">
+				
+				<div id="slides">
+					<div class="slides_container">
+						<div class="slide">
+							<a href="http://www.flickr.com/photos/jliba/4665625073/" title="145.365 - Happy Bokeh Thursday! | Flickr - Photo Sharing!" target="_blank"><img src="images/jqslide/slide-1.jpg" width="500" height="270" alt="Slide 1"></a>
+							<div class="caption" style="bottom:0">
+								<p>新托福听力TPO全套下载</p>
+							</div>
+						</div>
+						<div class="slide">
+							<a href="http://www.flickr.com/photos/stephangeyer/3020487807/" title="Taxi | Flickr - Photo Sharing!" target="_blank"><img src="images/jqslide/slide-2.jpg" width="500" height="270" alt="Slide 2"></a>
+							<div class="caption">
+								<p>从威廉王子和凯特的结婚誓词</p>
+							</div>
+						</div>
+						<div class="slide">
+							<a href="http://www.flickr.com/photos/childofwar/2984345060/" title="Happy Bokeh raining Day | Flickr - Photo Sharing!" target="_blank"><img src="images/jqslide/slide-3.jpg" width="500" height="270" alt="Slide 3"></a>
+							<div class="caption">
+								<p>特色学校TOP5——留学美国</p>
+							</div>
+						</div>
+						<div class="slide">
+							<a href="http://www.flickr.com/photos/stephangeyer/3020487807/" title="Taxi | Flickr - Photo Sharing!" target="_blank"><img src="images/jqslide/slide-2.jpg" width="500" height="270" alt="Slide 2"></a>
+							<div class="caption">
+								<p>2011年托福考试预测机</p>
+							</div>
+						</div>
+						<div class="slide">
+							<a href="http://www.flickr.com/photos/childofwar/2984345060/" title="Happy Bokeh raining Day | Flickr - Photo Sharing!" target="_blank"><img src="images/jqslide/slide-3.jpg" width="500" height="270" alt="Slide 3"></a>
+							<div class="caption">
+								<p>美国总统奥巴马的演讲</p>
+							</div>
+						</div>
+					</div><!-- .slides_container -->
+					<ul class="pagination">
+						<li><a href="#">新托福听力TPO全套下载</a></li>
+						<li><a href="#">从威廉王子和凯特的结婚誓词,从威廉王子和凯特的结婚誓词</a></li>
+						<li><a href="#">特色学校TOP5——留学美国</a></li>
+						<li><a href="#">2011年托福考试预测机</a></li>
+						<li><a href="#">美国总统奥巴马的演讲</a></li>
+					</ul><!-- .pagination -->
+					
+				</div><!-- #slide -->
+				
+			</div><!-- #index_slide -->
+			
+			
+			<div id="index_news" >
+				<h3 class="subject">热门专题 小马特色</h3>
+				<ul>
+					<li>
+						<p>
+							<img src="http://media.newjobs.com/mm/redux/cmscontent/monster-resume-writing_sm.jpg">
+							<a href="#">匹配题除了配标题外，还有匹配句子开头或结尾形式,配标题外，还有匹</a>
+						</p>
+						
+					</li>
+					<li>
+						<p>
+							<img src="http://media.newjobs.com/mm/redux/cmscontent/US/get-new-jobs-emailed-to-you_sm.jpg">
+							<a href="#">匹配题除了配标题外，还有匹配句子开头或结尾形式</a>
+						</p>
+						
+					</li>
+					<li>
+						<p>
+							<img src="http://media.newjobs.com/mm/redux/cmscontent/BAM_sm.jpg">
+							<a href="#">匹配题除了配标题外，还有匹配句子开头或结尾形式</a>
+						</p>
+						
+					</li>
+					<li>
+						<p>
+							<img src="http://media.newjobs.com/mm/redux/cmscontent/US/post-a-resume-get-found_lg.jpg">
+							<a href="#">匹配题除了配标题外，还有匹配句子开头或结尾形式</a>
+						</p>
+						
+					</li>
+				</ul>
+			</div><!-- #index_news -->
+			<div class="clear"></div>	
+			
+		</div><!-- #container -->
+		
+		<div class="container">
+			<div id="index_bjtj" class="bg_right_split">
+				<h3 class="subject">编辑推荐 近期热点</h3>
+				<ul>
+					<li>
+						<div>
+							<img src="http://img3.douban.com/spic/s1401378.jpg">
+							
+						</div>
+						<h6><a href="#">匹在流行界首屈一指</a></h6>				
+						<div class="tjdata">
+							<span class="views">浏览:288</span><span class="date">2011-05-23</span>  
+						</div>
+					</li>
+					<li>
+						<div>
+							<img src="http://img3.douban.com/spic/s3724167.jpg">
+							
+						</div>
+						<h6><a href="#">匹在流行界首屈一指要跟我说Lady Gaga的境界在流行界首屈一指</a></h6>				
+						<div class="tjdata">
+							<span class="views">浏览:288</span><span class="date">2011-05-23</span>  
+						</div>
+					</li>
+					<li>
+						<div>
+							<img src="http://img3.douban.com/spic/s6358306.jpg">
+							
+						</div>
+						<h6><a href="#">要跟我说Lady Gaga的境界在流行界首屈一指</a></h6>				
+						<div class="tjdata">
+							<span class="views">浏览:288</span><span class="date">2011-05-23</span>  
+						</div>
+					</li>
+					<li>
+						<div>
+							<img src="http://img3.douban.com/spic/s3572868.jpg">
+							
+						</div>
+						<h6><a href="#">匹在流行界首屈一指</a></h6>				
+						<div class="tjdata">
+							<span class="views">浏览:288</span><span class="date">2011-05-23</span>  
+						</div>
+					</li>
+					<li>
+						<div>
+							<img src="http://img3.douban.com/spic/s4681458.jpg">
+							
+						</div>
+						<h6><a href="#">匹在流行界首屈一指</a></h6>				
+						<div class="tjdata">
+							<span class="views">浏览:288</span><span class="date">2011-05-23</span>  
+						</div>
+					</li>
+					<li>
+						<div>
+							<img src="http://img3.douban.com/spic/s3323536.jpg">
+							
+						</div>
+						<h6><a href="#">匹在流行界首屈一指</a></h6>				
+						<div class="tjdata">
+							<span class="views">浏览:288</span><span class="date">2011-05-23</span>  
+						</div>
+					</li>
+					<li>
+						<div>
+							<img src="http://img3.douban.com/spic/s4721496.jpg">
+							
+						</div>
+						<h6><a href="#">匹在流行界首屈一指</a></h6>				
+						<div class="tjdata">
+							<span class="views">浏览:288</span><span class="date">2011-05-23</span>  
+						</div>
+					</li>
+					<li>
+						<div>
+							<img src="http://img3.douban.com/spic/s2807621.jpg">
+							
+						</div>
+						<h6><a href="#">匹在流行界首屈一指</a></h6>				
+						<div class="tjdata">
+							<span class="views">浏览:288</span><span class="date">2011-05-23</span>  
+						</div>
+					</li>
+				<ul>
+				<div class="clear"></div>	
+			</div>
+			
+			<div id="index_cate_list" class="bg_right_split">
+				<div class="index_cate_container common">
+					<h3>托福</h3>
+					<ul>
+						<li>
+						<a class="fl" href="#">托福听力五大法宝</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">托福听力五大法宝</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">经验分享：取得新托福高分的十大关键</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">新版《新托福考试官方指南》发布 新增</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">托福听力五大法宝</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">经验分享：取得新托福高分的十大关键</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">新版《新托福考试官方指南》发布 新增</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<div class="clear"></div>	
+					</ul>
+					<div class="clear"></div>	
+				</div>
+				<div class="index_cate_container common">
+					<h3>雅思</h3>
+					<ul>
+						<li>
+						<a class="fl" href="#">托福听力五大法宝</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">托福听力五大法宝</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">经验分享：取得新托福高分的十大关键</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">新版《新托福考试官方指南》发布 新增</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">托福听力五大法宝</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">经验分享：取得新托福高分的十大关键</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">新版《新托福考试官方指南》发布 新增</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<div class="clear"></div>	
+					</ul>
+					<div class="clear"></div>	
+				</div>
+				<div class="index_cate_container common">
+					<h3>GRE GMAT</h3>
+					<ul>
+						<li>
+						<a class="fl" href="#">托福听力五大法宝</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">托福听力五大法宝</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">经验分享：取得新托福高分的十大关键</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">新版《新托福考试官方指南》发布 新增</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">托福听力五大法宝</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">经验分享：取得新托福高分的十大关键</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">新版《新托福考试官方指南》发布 新增</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<div class="clear"></div>	
+					</ul>
+					<div class="clear"></div>	
+				</div>
+				
+				<div class="index_cate_container last">
+					<h3>SAT SSAT ACT AP</h3>
+					<ul>
+						<li>
+						<a class="fl" href="#">托福听力五大法宝</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">托福听力五大法宝</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">经验分享：取得新托福高分的十大关键</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">新版《新托福考试官方指南》发布 新增</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">托福听力五大法宝</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">经验分享：取得新托福高分的十大关键</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">新版《新托福考试官方指南》发布 新增</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<li>
+						<a class="fl" href="#">托福听力五大法宝</a>
+						<span class="fr date">2011-05-23</span>
+						</li>
+						<div class="clear"></div>	
+					</ul>
+					<div class="clear"></div>	
+				</div>
+			</div>
+			
+			<div id="useful_info">
+				<div class="useful_info_con common first">
+					<h3>出国留学考试指南 实用信息</h3>
+					<ul>
+						<li>
+							[<a target="_blank" href="http://www.taisha.org/test/toefl/e_book/swf.html">托福</a>]
+							<a href="http://www.taisha.org/test/toefl/zhuanti/08baokao/index.html">报名流程 </a>
+							<a href="http://www.taisha.org/test/toefl/shouce/200708/20070821101144.html">考生手册</a>
+							<a href="http://www.taisha.org/test/toefl/shouce/200701/20070125140847.html">证件要求</a>
+							<a href="http://www.taisha.org/test/toefl/shouce/200708/20070821133626.html">费用</a>
+							<a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">寄送</a>
+						</li>
+						<li>
+							[<a target="_blank" href="http://www.taisha.org/test/ielts/e_book/">雅思</a>] 
+							<a target="_blank" href="http://www.taisha.org/test/ielts/shouce/200707/20070725143708.html">证件要求</a> 
+							<a target="_blank" href="http://www.taisha.org/test/ielts/shouce/200709/20070905122724.html">费用</a> 
+							<a target="_blank" href="http://www.taisha.org/test/ielts/shouce/200709/20070905131900.html">所需表格</a> 
+							<a target="_blank" href="http://www.taisha.org/test/ielts/shouce/200709/20070910160243.html">考点环境</a> 
+							<a target="_blank" href="http://www.taisha.org/test/ielts/taishayas/200711/20071128163552.html">复议</a>
+						</li>
+						<li>
+							[<a target="_blank" href="http://www.taisha.org/test/gre/e_book/">GRE</a>]
+							<a href="http://www.taisha.org/test/gre/shouce/200709/20070919115544.html">表格下载</a> 
+							<a href="http://www.taisha.org/test/gre/shouce/200709/20070919140528.html">寄送</a> 
+							<a href="http://www.taisha.org/test/gre/taisha/200711/20071129104721.html">复议</a> 
+							<a href="http://www.taisha.org/test/gre/shouce/200709/20070919142128.html">查分</a> 
+							<a href="http://www.taisha.org/test/gre/shouce/200704/20070405151246.html">报名</a> 
+							<a href="http://www.taisha.org/test/gre/shouce/200708/20070831145223.html">费用</a>
+						</li>
+						<li>
+							[<a target="_blank" href="http://www.taisha.org/test/gre/e_book/">GMAT</a>]
+							<a href="http://www.taisha.org/test/gre/shouce/200709/20070919115544.html">表格下载</a> 
+							<a href="http://www.taisha.org/test/gre/shouce/200709/20070919140528.html">寄送</a> 
+							<a href="http://www.taisha.org/test/gre/taisha/200711/20071129104721.html">复议</a> 
+							<a href="http://www.taisha.org/test/gre/shouce/200709/20070919142128.html">查分</a> 
+							<a href="http://www.taisha.org/test/gre/shouce/200704/20070405151246.html">报名</a> 
+							<a href="http://www.taisha.org/test/gre/shouce/200708/20070831145223.html">费用</a>
+						</li>
+						<li>
+							[<a target="_blank" href="http://www.taisha.org/test/gre/e_book/">SAT</a>]
+							<a href="http://www.taisha.org/test/gre/shouce/200709/20070919115544.html">表格下载</a> 
+							<a href="http://www.taisha.org/test/gre/shouce/200709/20070919140528.html">寄送</a> 
+							<a href="http://www.taisha.org/test/gre/taisha/200711/20071129104721.html">复议</a> 
+							<a href="http://www.taisha.org/test/gre/shouce/200709/20070919142128.html">查分</a> 
+							<a href="http://www.taisha.org/test/gre/shouce/200704/20070405151246.html">报名</a> 
+							<a href="http://www.taisha.org/test/gre/shouce/200708/20070831145223.html">费用</a>
+						</li>
+					</ul>
+				</div>
+				<div class="useful_info_con common highlist">
+					<h3 class="tag_title">热门标签</h3>
+					<ul class="taglist">
+						<li><a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">托福</a></li>
+						<li><a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">托福</a></li>
+						<li><a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">托福</a></li>
+						<li><a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">乔治亚州</a></li>
+						<li><a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">托福</a></li>
+						<li><a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">托福</a></li>
+						<li><a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">托福</a></li>
+						<li><a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">哈佛</a></li>
+						<li><a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">托福</a></li>
+						<li><a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">剑桥英语</a></li>
+						<li><a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">托福</a></li>
+						<li><a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">托福</a></li>
+						<li><a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">托福</a></li>
+						<li><a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">乔治亚州啊</a></li>
+						<li><a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">托福</a></li>
+						<li><a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">托福</a></li>
+						<li><a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">剑桥英语</a></li>
+						<li><a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">托福</a></li>
+						<li><a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">美国</a></li>
+						<li><a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">托福</a></li>
+						<li><a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">托福</a></li>
+					</ul>
+				</div>
+				<div class="useful_info_con common highlist">
+					<h3>出国留学考试资讯 新闻动态</h3>
+					<ul>
+						<li>
+							-<a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">2011澳大利亚留学8大名校预科课程全解</a>
+						</li>
+						<li>
+							-<a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">澳大利亚留学毕业后 可申请485类签证</a>
+						</li>
+						<li>
+							-<a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">中国留学生新西兰的奢侈生活</a>
+						</li>
+						<li>
+							-<a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">剑桥英语考试获批用于澳洲留学证明语言能力ksljdaskldjasldjasjd</a>
+						</li>
+						<li>
+							-<a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">免费体验全真GRE模考 从容完胜6G</a>
+						</li>
+						<li>
+							-<a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">华人在英国，申请入籍or永居？</a>
+						</li>
+						<li>
+							-<a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">华人在英国，申请入籍or永居？</a>
+						</li>
+					</ul>
+				</div>
+				
+				<div class="useful_info_con last">
+					<h3 class="tag_title">学习方法 经验交流</h3>
+					<ul>
+						<li>
+							-<a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">2011澳大利亚留学8大名校预科课程全解</a>
+						</li>
+						<li>
+							-<a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">澳大利亚留学毕业后 可申请485类签证</a>
+						</li>
+						<li>
+							-<a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">中国留学生新西兰的奢侈生活</a>
+						</li>
+						<li>
+							-<a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">剑桥英语考试获批用于澳洲留学证明语言能力</a>
+						</li>
+						<li>
+							-<a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">免费体验全真GRE模考 从容完胜6G</a>
+						</li>
+						<li>
+							-<a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">华人在英国，申请入籍or永居？</a>
+						</li>
+						<li>
+							-<a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">2010中国海归亿万富豪调查 哈佛</a>
+						</li>
+						<li>
+							-<a target="_blank" href="http://www.taisha.org/test/toefl/shouce/200708/20070821140435.html">美国“大U”展播：乔治亚州、纽约州</a>
+						</li>
+					</ul>
+				</div>
+				<div class="clear"></div>	
+			</div>
+			
+			
+			
+			
+			
+			<div class="clear"></div>		
+		</div><!-- #container -->
+		
+
+		
+		
+		
+<% content_for :friend_link do %>
+			<div class="friends-title">
+				<a href="http://www.xiaoma.com">友情链接</a>
+			</div>
+			<div class="friends-link">
+				<ul>	
+					<li class="friends_first"><a href="http://www.xiaoma.com">小马过河论坛</a></li>
+					<li><a href="http://www.xiaoma.com">雅思</a></li>
+					<li><a href="http://www.xiaoma.com">英语四六级考试</a></li>
+					<li><a href="http://www.xiaoma.com">托福</a></li>
+					<li><a href="http://www.xiaoma.com">托福</a></li>
+					<li><a href="http://www.xiaoma.com">小马过河论坛</a></li>
+					<li><a href="http://www.xiaoma.com">英语四六级考试</a></li>
+					<li><a href="http://www.xiaoma.com">托福</a></li>
+					<li><a href="http://www.xiaoma.com">托福</a></li>
+					<li><a href="http://www.xiaoma.com">小马过河论坛</a></li>
+					<li><a href="http://www.xiaoma.com">英语四六级考试</a></li>
+					<li><a href="http://www.xiaoma.com">托福</a></li>
+					<li><a href="http://www.xiaoma.com">托福</a></li>
+					<li><a href="http://www.xiaoma.com">小马过河论坛</a></li>
+					<li><a href="http://www.xiaoma.com">托福</a></li>
+					<li><a href="http://www.xiaoma.com">托福</a></li>
+					<li><a href="http://www.xiaoma.com">小马过河论坛</a></li>
+					<li><a href="http://www.xiaoma.com">英语四六级考试</a></li>
+					<li><a href="http://www.xiaoma.com">托福</a></li>
+					<li><a href="http://www.xiaoma.com">托福</a></li>
+					<li><a href="http://www.xiaoma.com">小马过河论坛</a></li>
+					<li><a href="http://www.xiaoma.com">英语四六级考试</a></li>
+					<li><a href="http://www.xiaoma.com">托福</a></li>
+					<li><a href="http://www.xiaoma.com">托福</a></li>
+					<li><a href="http://www.xiaoma.com">小马过河论坛</a></li>
+					<li><a href="http://www.xiaoma.com">托福</a></li>
+					<li><a href="http://www.xiaoma.com">托福</a></li>
+					<li><a href="http://www.xiaoma.com">小马过河论坛</a></li>
+					<li><a href="http://www.xiaoma.com">英语四六级考试</a></li>
+					<li><a href="http://www.xiaoma.com">托福</a></li>
+					<li><a href="http://www.xiaoma.com">托福</a></li>
+					<li><a href="http://www.xiaoma.com">小马过河论坛</a></li>
+					<li><a href="http://www.xiaoma.com">英语四六级考试</a></li>
+					<li><a href="http://www.xiaoma.com">托福</a></li>
+					<li><a href="http://www.xiaoma.com">托福</a></li>
+					<li><a href="http://www.xiaoma.com">小马过河论坛</a></li>
+				</ul>
+			</div><!-- .friends-link-->
+<% end %>
