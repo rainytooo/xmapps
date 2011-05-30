@@ -39,6 +39,7 @@ class LoginsController < ApplicationController
 			#logger.info 'username or email is not exist'
 			flash[:error] = "用户名或者邮箱不存在"
 			redirect_to :action => :index
+			return 
 		  end
 		end
 		# 判断密码是否正确

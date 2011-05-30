@@ -41,7 +41,17 @@ class Downloads::AttachmentsController < ApplicationController
 			send_file(file_full_path, :filename => origin_filename)
 			# 更新下载次数
 			ActiveRecord::Base.connection.update("update dl_attachments set donwloads = donwloads+1 where id = " + params[:attachment_id])
-			extcredits6.update_attribute(:extcredits6, extcredits6.extcredits6.to_i - 5)
+			# 扣金币
+			# 先查有没有扣过分
+			dl_record = DlRecord.where("user_id = :user_id and 	thread_id = :thread_id", {:user_id => session[:login_user_id], :thread_id => @dl_attachment.dl_thread_id })
+			if dl_record.empty?
+				extcredits6.update_attribute(:extcredits6, extcredits6.extcredits6.to_i - 5)
+				dl_record = DlRecord.new
+				dl_record.user_id = session[:login_user_id]
+				dl_record.thread_id = @dl_attachment.dl_thread_id
+				dl_record.extcredits = 5
+				dl_record.save
+			end
 		end
 	else
 		flash[:error] = "验证码不正确,请重新输入"

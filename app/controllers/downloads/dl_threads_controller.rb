@@ -1,6 +1,6 @@
 require 'uri'
 class Downloads::DlThreadsController < ApplicationController
-  before_filter :require_login , :except => [:index, :show, :category]
+  before_filter :require_login , :except => [:index, :show, :category, :search]
   # GET /dl_threads
   # GET /dl_threads.xml
   def index
@@ -29,7 +29,7 @@ class Downloads::DlThreadsController < ApplicationController
   # GET /dl_threads/1
   # GET /dl_threads/1.xml
   def show
-	@dl_thread = DlThread.find(params[:id])
+	@dl_thread = DlThread.find_by_id(params[:id])
 	if not @dl_thread
 		flash[:message] = "对不起,此资源不存在或者已被删除"
 	else
@@ -150,9 +150,9 @@ class Downloads::DlThreadsController < ApplicationController
 	# 标签处理
 	if tags
 		# 全角替换
-		tags.lstrip!
+		tags.strip
 		tags.gsub!(/([#{@@fchars}])/){|c|@@fhash[c]}
-		tags.squeeze!("\s")
+		tags.squeeze("\s")
 		tags.gsub!("\s",",")
 		# 生成数组
 		tags_array = tags.split(/,/)

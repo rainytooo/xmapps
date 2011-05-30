@@ -1,7 +1,7 @@
 <% content_for :head do %>
-<title>小马过河-浏览所有出国留学考试资料 托福,雅思,GRE</title>
-<meta name="description" content="这里有大量包括 托福,雅思,GRE,GMAT,SAT,ACT,SSAT,AP 等等考试资料学习资源 " /> 
+<title>小马过河-资料下载,浏览所有出国留学考试资料 托福,雅思,GRE的下载资料</title>
 <meta name="keywords" content="出国留学考试资料下载,托福,雅思,GRE,GMAT,SAT,ACT,SSAT,AP" /> 
+<meta name="description" content="这里有大量包括 托福,雅思,GRE,GMAT,SAT,ACT,SSAT,AP 等等考试资料学习资源 " /> 
 <% end %>
 
 		<div class="container">
@@ -64,6 +64,13 @@
 					<p>
 						<h5><a href="<%= XMAPP_MAIN_DOMAIN_URL %>/manage/uploads">管理我的上传</a></h5>
 					</p>
+				</div>
+				<div class="right_search">
+					<form method="get" action="/search" accept-charset="UTF-8">
+						<input type="hidden" value="dl" name="type">
+						<input id="query" type="text" name="query">
+						<input id="search_submit" class="btn_srh" type="submit" value="搜索">
+					</form>
 				</div>
 				<h2 class="subject">下载热门分类标签</h2>
 				<ul class="content clearfix">

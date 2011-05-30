@@ -862,3 +862,25 @@ span.score {
     padding: 6px 9px;
 
 }
+
+input#query{
+	height: 20px;
+}
+
+#search_submit {
+	width:50px;
+	height:26px;
+	line-height: 26px;
+	background-position: -60px -100px;
+}
+
+.btn_srh {
+	background: url("../images/ui_ns_sbg4.png") no-repeat scroll 0 -100px transparent;
+    border: medium none;
+    cursor: pointer;
+    font-size: 13px;
+    height: 29px;
+    letter-spacing: 3px;
+    padding: 1px 0 3px 3px;
+    text-align: center;
+}

@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /downloads/admin/
-Disallow: /manage/uploads/
-

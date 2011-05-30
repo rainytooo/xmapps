@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110527080931) do
+ActiveRecord::Schema.define(:version => 20110530081143) do
 
   create_table "applies", :force => true do |t|
     t.string   "name"
@@ -95,6 +95,16 @@ ActiveRecord::Schema.define(:version => 20110527080931) do
 
   add_index "dl_attachments", ["dl_thread_id"], :name => "fk_dlattachments_dlthread"
 
+  create_table "dl_records", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "thread_id"
+    t.integer  "extcredits"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "dl_records", ["user_id"], :name => "fk_dl_records_user"
+
   create_table "dl_threads", :force => true do |t|
     t.integer  "dl_type_id"
     t.integer  "user_id"
@@ -135,6 +145,16 @@ ActiveRecord::Schema.define(:version => 20110527080931) do
     t.string "username", :limit => 32
     t.string "password", :limit => 32
   end
+
+  create_table "search_keywords", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "keywords",   :limit => 128
+    t.string   "appname",    :limit => 32
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "search_keywords", ["user_id"], :name => "fk_search_keywords_user"
 
   create_table "simple_captcha_data", :force => true do |t|
     t.string   "key",        :limit => 40

@@ -10,6 +10,7 @@ Xmapps::Application.routes.draw do
   # 浏览分类资源
   match "dl/category/:id", :to => "downloads/dl_threads#category", :via => [:get], :as => "dl_category"
   match "dl/attachment/:id", :to => "downloads/attachments#show", :via => [:get], :as => "dl_attachment"
+  match "search", :to => "search#search", :via => [:get]
   # 标签
   resources :tags
   # 前台显示和后台的管理
@@ -20,6 +21,7 @@ Xmapps::Application.routes.draw do
 			# post :on_offer
 		# end
 		get 'recrop', :on => :member
+		get 'search', :on => :member
 		get 'category', :on => :member
 		resources :dl_attachments
 	end
