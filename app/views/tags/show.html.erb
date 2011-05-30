@@ -1,7 +1,7 @@
 <% content_for :head do %>
-<title>小马过河-浏览所有资源下载</title>
-<meta name="description" content="浏览所有资源下载" /> 
-<meta name="keywords" content="小马过河 英语 学习资料 下载" /> 
+<title>小马过河-浏览所有<%= @tag_name%>资源下载</title>
+<meta name="description" content="浏览所有<%= @tag_name%>资源下载" /> 
+<meta name="keywords" content="小马过河 <%= @tag_name%>下载 <%= @tag_name%>学习资料" /> 
 <% end %>
 
 		<div class="container">
@@ -91,8 +91,7 @@
 					<li><%= link_to "雅思阅读", dl_category_url(37) %></li>
 					<li><%= link_to "雅思口语", dl_category_url(38) %></li>
 					<li><%= link_to "SAT2", dl_category_url(18) %></li>
-					<li><%= link_to "SAT2", dl_category_url(18) %></li>
-					<li><%= link_to "GAE", dl_category_url(19) %></li>
+					<li><%= link_to "GRE", dl_category_url(19) %></li>
 					<li><%= link_to "GMAT", dl_category_url(27) %></li>
 					
 					

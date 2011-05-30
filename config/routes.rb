@@ -21,7 +21,6 @@ Xmapps::Application.routes.draw do
 			# post :on_offer
 		# end
 		get 'recrop', :on => :member
-		get 'search', :on => :member
 		get 'category', :on => :member
 		resources :dl_attachments
 	end

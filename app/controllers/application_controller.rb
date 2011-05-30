@@ -127,7 +127,7 @@ class ApplicationController < ActionController::Base
 	  return
     end
 	unless require_checkedemail?
-      flash[:error] = "您的邮箱还没有验证 请登录您的邮箱" + session[:login_user].email + "进行验证"
+      flash[:error] = "您的邮箱还没有验证 请登录您的邮箱" + session[:login_user].email + "进行验证,如果您已验证过了,请退出重新登录"
       redirect_to login_url # halts request cycle
 	end
   end
