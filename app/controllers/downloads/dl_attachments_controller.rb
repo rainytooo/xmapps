@@ -2,6 +2,7 @@ require 'ftools'
 require 'rubygems'
 require 'uuidtools'
 
+include ActionView::Helpers::NumberHelper
 class Downloads::DlAttachmentsController < ApplicationController
   before_filter :require_login 
   # GET /dl_attachments
@@ -9,9 +10,9 @@ class Downloads::DlAttachmentsController < ApplicationController
   def index
     @dl_attachment = DlAttachment.new
 	@dl_thread = DlThread.find(params[:dl_thread_id])
-	# ×î¶àÉÏ´«ÎÄ¼þÊý
+	# æœ€å¤šä¸Šä¼ æ–‡ä»¶æ•°
 	@max_files = MAX_ATTACHMENT_FILES
-	# ²é³öËùÓÐÎÄ¼þ
+	# æŸ¥å‡ºæ‰€æœ‰æ–‡ä»¶
 	@dl_attachments = DlAttachment.where("dl_thread_id = ?", @dl_thread.id)
   end
 
@@ -31,7 +32,7 @@ class Downloads::DlAttachmentsController < ApplicationController
   def new
     @dl_attachment = DlAttachment.new
 	@dl_thread = DlThread.find(params[:dl_thread_id])
-	# ×î¶àÉÏ´«ÎÄ¼þÊý
+	# æœ€å¤šä¸Šä¼ æ–‡ä»¶æ•°
 	@max_files = MAX_ATTACHMENT_FILES
     respond_to do |format|
       format.html # new.html.erb
@@ -47,32 +48,32 @@ class Downloads::DlAttachmentsController < ApplicationController
   # POST /dl_attachments
   # POST /dl_attachments.xml
   def create
-    # ½«ÉÏ´«µÄ²ÎÊý×ª»¯ÎªActionDispatch::Http::UploadedFile¶ÔÏó
+    # å°†ä¸Šä¼ çš„å‚æ•°è½¬åŒ–ä¸ºActionDispatch::Http::UploadedFileå¯¹è±¡
 	upload_params = params[:dl_attachment]
 	picture = upload_params[:attachment]
 	
-	# ³õÊ¼»¯ÈÕÆÚÂ·¾¶
+	# åˆå§‹åŒ–æ—¥æœŸè·¯å¾„
 	t = Time.now
-	#ÄêÔÂÈÕ
+	#å¹´æœˆæ—¥
 	year_s = t.strftime("%Y").to_s
 	month_s = t.strftime("%m").to_s
 	day_s = t.strftime("%d").to_s
-	# ³ýÈ¥ÅäÖÃÎÄ¼þµÄÂ·¾¶
+	# é™¤åŽ»é…ç½®æ–‡ä»¶çš„è·¯å¾„
 	file_folder = File.join(year_s, month_s, day_s)
-	# ³ýÈ¥ÎÄ¼þÃûµÄÈ«Â·¾¶
+	# é™¤åŽ»æ–‡ä»¶åçš„å…¨è·¯å¾„
 	base_dir = File.join(FILE_UPLOAD_DIRECTORY, file_folder)
 	if not File.exist?(base_dir)
 	  File.makedirs(base_dir)
 	end
-	# ÖØÐ´ÎÄ¼þÃû ,ÕâÀïÐèÒª´ÓÅäÖÃÎÄ¼þÀï¶ÁÈ¡¸ùÂ·¾¶,È»ºó¸ù¾ÝÈÕÆÚ´´½¨Ä¿Â¼(Èç¹ûÒÑ¾­´æÔÚ¾Í²»´´½¨), ÓÃuuidÖØÃüÃû
+	# é‡å†™æ–‡ä»¶å ,è¿™é‡Œéœ€è¦ä»Žé…ç½®æ–‡ä»¶é‡Œè¯»å–æ ¹è·¯å¾„,ç„¶åŽæ ¹æ®æ—¥æœŸåˆ›å»ºç›®å½•(å¦‚æžœå·²ç»å­˜åœ¨å°±ä¸åˆ›å»º), ç”¨uuidé‡å‘½å
 	name =  picture.original_filename
-	# ÎÄ¼þÃûºó×º
+	# æ–‡ä»¶ååŽç¼€
 	ext = File.extname(name)
 	new_name = UUIDTools::UUID.timestamp_create.to_s.gsub('-','') + ext
 	path = File.join(base_dir, new_name)
 	File.open(path, "wb") { |f| f.write(picture.read) }
 	
-	# ÏÂÃæÊÇÎÄ¼þ±£´æµÄ²¿·Ö
+	# ä¸‹é¢æ˜¯æ–‡ä»¶ä¿å­˜çš„éƒ¨åˆ†
 	@dl_thread = DlThread.find(params[:dl_thread_id])
 	attachment = DlAttachment.new
 	attachment.dl_thread_id = @dl_thread.id
@@ -81,10 +82,11 @@ class Downloads::DlAttachmentsController < ApplicationController
 	attachment.filesize = picture.size
 	attachment.filepath = file_folder
 	attachment.content_type = picture.content_type
+	file_size = number_to_human_size(picture.size, :locale => :en)
 	if attachment.new_record?
 	  attachment.save
 	end
-	render :json => { :pic_path => IMG_SERVER_URL + File.join(file_folder, new_name).to_s , :size => picture.size, :name => name , :type => picture.content_type }.to_json, :content_type => 'text/html'
+	render :json => { :pic_path => IMG_SERVER_URL + File.join(file_folder, new_name).to_s , :size => file_size, :name => name , :type => picture.content_type }.to_json, :content_type => 'text/html'
   end
 
   # PUT /dl_attachments/1
@@ -106,12 +108,14 @@ class Downloads::DlAttachmentsController < ApplicationController
   # DELETE /dl_attachments/1
   # DELETE /dl_attachments/1.xml
   def destroy
+	
     @dl_attachment = DlAttachment.find(params[:id])
-    @dl_attachment.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(dl_attachments_url) }
-      format.xml  { head :ok }
-    end
+	@dl_thread = DlThread.find_by_id(@dl_attachment.dl_thread_id)
+	if @dl_thread.user_id == session[:login_user_id]
+		@dl_attachment.destroy
+	else
+		flash[:error] = "å¯¹ä¸èµ·!æ‚¨æ— æƒè¿›è¡Œæ­¤æ“ä½œ"
+	end
+	redirect_to downloads_dl_thread_dl_attachments_path(@dl_thread)
   end
 end

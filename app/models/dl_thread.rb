@@ -8,7 +8,7 @@ class DlThread < ActiveRecord::Base
 	validates_length_of :name, :maximum => 128
 	validates_presence_of :photo
 	validates_presence_of :content_desc
-	validates_length_of :content_desc, :minimum => 50
+	validates_length_of :content_desc, :minimum => 20
 	validates_length_of :content_desc, :maximum => 255
 	#validates_presence_of :content
 	

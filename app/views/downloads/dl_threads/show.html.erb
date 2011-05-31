@@ -67,6 +67,7 @@
 					<% @dl_attachments.each do |dl_attachments| %>
 						<li class="">
 							<a href="<%= DOWNLOAD_SERVER_URL %>/dl/attachment/<%= dl_attachments.id %>"><%= dl_attachments.originname%></a>
+							<span class="file_size"><%= number_to_human_size dl_attachments.filesize, :locale => :en %></span>
 							<span class="downloads_count">下载次数:<%= dl_attachments.donwloads %></span>
 						</li>
 					<% end %>

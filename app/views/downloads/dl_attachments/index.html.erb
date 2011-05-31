@@ -50,7 +50,8 @@
                     '<\/button><\/td><\/tr>');
         },
         buildDownloadRow: function (file) {
-			return $('<li>成功上传文件:  <span class="upload_file_name">' + file.name + '</span><\/li>');
+			var inner_html = '<li>成功上传文件:  <span class="upload_file_name">' + file.name + '</span> <span>'+file.size+'</span></li>'
+			return $(inner_html);
         },
     });
 	
@@ -65,6 +66,12 @@
 			<div class="form_container">
 				<div class="form_desc"><span class="form_desc_tip">操作流程:&nbsp;</span>1.填写基本信息 -> 2.编辑缩略图 -> <span class="current">3.添加附件</span></div><!-- .form_desc -->
 				<div class="form_left">
+					<% if flash[:message] %>
+					<div class="submit_message"><%= flash[:message] %></div><!-- .message -->
+					<% end %>
+					<% if flash[:error] %>
+					<div class="submit_error"><%= flash[:error] %></div><!-- .error -->
+					<% end %>
 				<div class="files"> 
 					<%= form_for( [:downloads, @dl_thread, @dl_attachment], :html => { :class => "upload", :multipart => true } ) do |f| %>
 					  <%= f.file_field :attachment %>
@@ -81,7 +88,10 @@
 						<div class="download_files">
 						<% @dl_attachments.each do |old_attchm|%>
 							<li>
-								<b>已存在的文件</b>:   <span class="upload_file_name"><%= old_attchm.originname %></span>
+								<b>已存在的文件</b>:   <span class="upload_file_name"><%= old_attchm.originname %></span>&nbsp;<span><%= number_to_human_size(old_attchm.filesize, :locale => :en)%></span>
+								<span class="fr">
+								<a href="/downloads/dl_threads/<%= @dl_thread.id %>/dl_attachments/<%= old_attchm.id %>" onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var at = document.createElement('input'); at.setAttribute('type', 'hidden'); at.setAttribute('name', 'authenticity_token'); at.setAttribute('value', '#{form_authenticity_token}'); f.appendChild(at);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'delete'); f.appendChild(m);f.submit(); };return false;">删除</a>
+								</span>
 							</li>
 						<% end %>
 						</div>

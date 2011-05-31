@@ -39,8 +39,8 @@
 							<% end %>					
 						</ul>
 					<div class="clear"></div>
-					<div class="paginate">
-						<%=h will_paginate @dl_threads, :previous_label => '上一页',  :next_label => '下一页'%>
+					<div class="pagination">
+						<%=h will_paginate @dl_threads, :inner_window => 1,:outer_window => 0, :previous_label => '上一页',  :next_label => '下一页'%>
 					</div>
 				</div><!-- .index_rich_list -->
 			</div><!-- .list_leftside -->

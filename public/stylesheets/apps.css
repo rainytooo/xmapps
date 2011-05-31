@@ -508,6 +508,13 @@ form #form_submit input.download  {
 	color: #004276;
 }
 
+.uploaded_files .download_files li {
+	width: 455px;
+}
+.uploaded_files .download_files span.fr a{
+	color: red;
+}
+
 .warning {
 	color:red;
 }
@@ -594,7 +601,38 @@ form #form_submit input.download  {
 .upload_info .edit {
     float:right;
 }
+/*分页样式*/
+.pagination {  
+  padding: 3px;  
+  margin: 3px;  
+}  
+.pagination a {  
+  padding: 2px 5px 2px 5px;  
+  margin: 2px;  
+  border: 1px solid #aaaadd;  
+  text-decoration: none;  
+  color: #000099;  
+}  
+.pagination a:hover, .pagination a:active {  
+  border: 1px solid #000099;  
+  color: #000;  
+}  
+.pagination span.current {  
+  padding: 2px 5px 2px 5px;  
+  margin: 2px;  
+  border: 1px solid #000099;  
+  font-weight: bold;  
+  background-color: #000099;  
+  color: #FFF;  
+}  
+.pagination span.disabled {  
+  padding: 2px 5px 2px 5px;  
+  margin: 2px;  
+  border: 1px solid #eee;  
+  color: #ddd;  
+}  
 
+/*
 .paginate .paginate_info {
 	float:left;
 }
@@ -617,6 +655,8 @@ form #form_submit input.download  {
 .paginate .pagination .next_page {
 	width:45px;
 }
+
+*/
 
 .list_leftside {
 	float:left;

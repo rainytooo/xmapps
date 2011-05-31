@@ -65,6 +65,7 @@ class Downloads::DlThreadsController < ApplicationController
       format.xml  { render :xml => @dl_thread }
     end
   end
+  
 
   # GET /dl_threads/1/edit
   def edit
@@ -139,6 +140,11 @@ class Downloads::DlThreadsController < ApplicationController
   # 重新编辑缩略图
   def recrop
     @dl_thread = DlThread.find(params[:id])
+  end
+  
+  # 重新上传图片
+  def reuploadimg
+	@dl_thread = DlThread.find(params[:id])
   end
   
   private

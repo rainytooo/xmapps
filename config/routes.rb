@@ -22,6 +22,7 @@ Xmapps::Application.routes.draw do
 		# end
 		get 'recrop', :on => :member
 		get 'category', :on => :member
+		get 'reuploadimg', :on => :member
 		resources :dl_attachments
 	end
 	resources :attachments do
