@@ -606,18 +606,18 @@ form #form_submit input.download  {
   padding: 3px;  
   margin: 3px;  
 }  
-.pagination a {  
+.will_pagination a {  
   padding: 2px 5px 2px 5px;  
   margin: 2px;  
   border: 1px solid #aaaadd;  
   text-decoration: none;  
   color: #000099;  
 }  
-.pagination a:hover, .pagination a:active {  
+.will_pagination a:hover, .pagination a:active {  
   border: 1px solid #000099;  
   color: #000;  
 }  
-.pagination span.current {  
+.will_pagination span.current {  
   padding: 2px 5px 2px 5px;  
   margin: 2px;  
   border: 1px solid #000099;  
@@ -625,7 +625,7 @@ form #form_submit input.download  {
   background-color: #000099;  
   color: #FFF;  
 }  
-.pagination span.disabled {  
+.will_pagination span.disabled {  
   padding: 2px 5px 2px 5px;  
   margin: 2px;  
   border: 1px solid #eee;  
