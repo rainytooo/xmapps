@@ -43,6 +43,10 @@ class Downloads::DlAttachmentsController < ApplicationController
   def new
     @dl_attachment = DlAttachment.new
 	  @dl_thread = DlThread.find(params[:dl_thread_id])
+    if @dl_thread.user_id != session[:login_user_id]
+      flash.now[:error] = "对不起,您无权进行此操作"
+		  render '/errors_messages.html'
+    end
 	  # 最多上传文件数
 	  @max_files = MAX_ATTACHMENT_FILES
     render :layout => false;

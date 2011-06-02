@@ -15,9 +15,13 @@ class LoginsController < ApplicationController
   end
 
   def logout
-	reset_session
-	cookies.delete(DZ_COOKIE_NAME, :domain => COOKIE_DOMAIN_NAME)
-	redirect_to root_url
+	  reset_session
+    if "development" == Rails.env
+      cookies.delete(DZ_COOKIE_NAME)
+    elsif "production" == Rails.env
+      cookies.delete(DZ_COOKIE_NAME, :domain => COOKIE_DOMAIN_NAME)
+    end
+	  redirect_to root_url
   end
 
 
@@ -51,10 +55,20 @@ class LoginsController < ApplicationController
         auth_code = encode_cookie(DZ_AUTH_KEY, request.user_agent, @dzuser)
         logger.debug auth_code
         #cookies.permanent[DZ_COOKIE_NAME] = auth_code
-        cookies[DZ_COOKIE_NAME] = {
-          :value => auth_code,
-          :expires => 1.year.from_now
-        }
+         logger.debug Rails.env
+        if "development" == Rails.env
+          cookies[DZ_COOKIE_NAME] = {
+            :value => auth_code,
+            :expires => 1.year.from_now
+            #:domain => COOKIE_DOMAIN_NAME
+           }
+        elsif "production" == Rails.env
+          cookies[DZ_COOKIE_NAME] = {
+            :value => auth_code,
+            :expires => 1.year.from_now,
+            :domain => COOKIE_DOMAIN_NAME
+           }
+        end
         # 存session
         session[:login_user] = @dzuser
         logger.debug session[:login_user].uid
