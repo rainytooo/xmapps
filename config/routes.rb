@@ -7,6 +7,9 @@ Xmapps::Application.routes.draw do
   match "dl" => "downloads/dl_threads#index", :via => [:get], :as => "dl_index"
   # 浏览每个资源
   match "dl/:id", :to => "downloads/dl_threads#show", :via => [:get], :as => "dl"
+  #快速上传入口
+  match "dl/threads/new", :to => "downloads/dl_threads#simplenew", :via => [:get]
+  match "dl/threads", :to => "downloads/dl_threads#simplecreate", :via => [:post]
   # 浏览分类资源
   match "dl/category/:id", :to => "downloads/dl_threads#category", :via => [:get], :as => "dl_category"
   match "dl/attachment/:id", :to => "downloads/attachments#show", :via => [:get], :as => "dl_attachment"

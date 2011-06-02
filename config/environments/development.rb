@@ -25,16 +25,16 @@ Xmapps::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
   config.active_record.default_timezone = :local
-  
-  #config.cache_store = :dalli_store, '192.168.1.161:11211',    { :namespace => 'xmapps', :expires_in => 1.day, :compress => true }
-  
+
+  config.cache_store = :dalli_store, 'localhost:11211',    { :namespace => 'xmapps', :expires_in => 1.day, :compress => true }
+
   COOKIE_DOMAIN_NAME = "localhost"
   # 主域名
   XMAPP_MAIN_DOMAIN_URL = "http://localhost:3000"
   # 下载服务器的url
   DOWNLOAD_SERVER_URL = "http://localhost:3001"
   # 以下部分是项目用到的常量
-  DOWNLOAD_THREAD_PHOTO_ROOT_PATH = "d:/dev/servers/xampp/htdocs/xmappimages"
+  DOWNLOAD_THREAD_PHOTO_ROOT_PATH = "/var/www/html/xmappimages"
   DOWNLOAD_THREAD_PHOTO_ROOT_URL = "http://localhost/xmappimages"
   # discuz 的auth key的配置
   DZ_AUTH_KEY = 'f00c28N7uXnFtcbB'
@@ -54,12 +54,12 @@ Xmapps::Application.configure do
   # 扣金币
   DZ_EXTCREDITS_REDUCE_COUNT = -100
   # 文件上传相关
-  FILE_UPLOAD_DIRECTORY = "d:/dev/servers/xampp/htdocs/xmappimages"
+  FILE_UPLOAD_DIRECTORY = "/var/www/html/xmappimages"
   # 下载服务器上的文件根路径
-  FILE_DOWNLOAD_DIRECTORY = "d:/dev/servers/xampp/htdocs/xmappimages"
+  FILE_DOWNLOAD_DIRECTORY = "/var/www/html/xmappimages"
   # 图片服务器根地址
   IMG_SERVER_URL = "http://localhost/xmappimages/"
-  # 一次最大上传附件总数 
+  # 一次最大上传附件总数
   MAX_ATTACHMENT_FILES = 10
   # uc space 基础路径
   USER_SPACE_URL_BASE = "http://space.xiaoma.com/space-uid-{dz_uid}.html"

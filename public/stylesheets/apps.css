@@ -73,7 +73,7 @@ h1 span.title_keywords {
     /*background: none repeat scroll 0 0 #315CA1;*/
     /*border-bottom: 1px solid #254F99;*/
     height: 84px;
-	margin-bottom: 20px;	
+	margin-bottom: 20px;
 }
 
 #mainMenu {
@@ -165,7 +165,7 @@ h1 span.title_keywords {
 .nav_list dt {
 	float: left;
     height: 55px;
-	padding-top: 8px; 
+	padding-top: 8px;
 }
 .nav_list dt a {
 	font-size: 14px;
@@ -175,7 +175,7 @@ h1 span.title_keywords {
 
 
 .nav_list dd {
-	padding-top: 10px; 
+	padding-top: 10px;
 	margin-left: 30px;
 }
 
@@ -229,7 +229,7 @@ h1 span.title_keywords {
 
 .friends-link {
 	width:820px;
-	
+
 	float:left;
 }
 
@@ -399,7 +399,7 @@ form #form_submit input {
 	background: url("../images/form_btn2.gif") no-repeat scroll 0 0 transparent;
 	height:32px;
 	border:0;
-	width: 130px ; 
+	width: 130px ;
 	color:#FFFFFF;
 	font-size:14px;
 	font-weight: bold;
@@ -410,7 +410,7 @@ form #form_submit input.download  {
 	background: url("../images/download.png") no-repeat scroll 0 0 transparent;
 	height:66px;
 	border:0;
-	width: 200px ; 
+	width: 200px ;
 	color:#FFFFFF;
 	font-size:14px;
 	font-weight: bold;
@@ -524,7 +524,7 @@ form #form_submit input.download  {
 	height:20px;
 }
 
-.content h5 {	
+.content h5 {
 	margin-top: 10px;
 	margin-bottom: 0px;
 }
@@ -602,35 +602,35 @@ form #form_submit input.download  {
     float:right;
 }
 /*分页样式*/
-.pagination {  
-  padding: 3px;  
-  margin: 3px;  
-}  
-.will_pagination a {  
-  padding: 2px 5px 2px 5px;  
-  margin: 2px;  
-  border: 1px solid #aaaadd;  
-  text-decoration: none;  
-  color: #000099;  
-}  
-.will_pagination a:hover, .pagination a:active {  
-  border: 1px solid #000099;  
-  color: #000;  
-}  
-.will_pagination span.current {  
-  padding: 2px 5px 2px 5px;  
-  margin: 2px;  
-  border: 1px solid #000099;  
-  font-weight: bold;  
-  background-color: #000099;  
-  color: #FFF;  
-}  
-.will_pagination span.disabled {  
-  padding: 2px 5px 2px 5px;  
-  margin: 2px;  
-  border: 1px solid #eee;  
-  color: #ddd;  
-}  
+.pagination {
+  padding: 3px;
+  margin: 3px;
+}
+.will_pagination a {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #aaaadd;
+  text-decoration: none;
+  color: #000099;
+}
+.will_pagination a:hover, .pagination a:active {
+  border: 1px solid #000099;
+  color: #000;
+}
+.will_pagination span.current {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #000099;
+  font-weight: bold;
+  background-color: #000099;
+  color: #FFF;
+}
+.will_pagination span.disabled {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #eee;
+  color: #ddd;
+}
 
 /*
 .paginate .paginate_info {
@@ -771,7 +771,7 @@ h2.subject {
 	margin: 5px 10px 5px 0 ;
 	padding: 5px 0 5px 0 ;
 	background: none repeat scroll 0 0 #EEEEEE;
-	
+
 }
 .downloads_list ul li .downloads_count {
 	margin-right: 10px;
@@ -782,7 +782,7 @@ h2.subject {
     background: url("../images/upload.png") no-repeat scroll 0 0 transparent;
 	height:66px;
 	border:0;
-	width: 200px ; 
+	width: 200px ;
 	color:#FFFFFF;
 	font-size:14px;
 	font-weight: bold;
@@ -924,3 +924,10 @@ input#query{
     padding: 1px 0 3px 3px;
     text-align: center;
 }
+
+form .global_form label.error {
+    width: 250px;
+    color: red;
+
+}
+
