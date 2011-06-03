@@ -1,4 +1,5 @@
 class AsksController < ApplicationController
+  before_filter :require_login , :except => [:index, :show]
   # GET /asks
   # GET /asks.xml
   def index
@@ -25,11 +26,6 @@ class AsksController < ApplicationController
   # GET /asks/new.xml
   def new
     @ask = Ask.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @ask }
-    end
   end
 
   # GET /asks/1/edit
@@ -41,15 +37,11 @@ class AsksController < ApplicationController
   # POST /asks.xml
   def create
     @ask = Ask.new(params[:ask])
-
-    respond_to do |format|
-      if @ask.save
-        format.html { redirect_to(@ask, :notice => 'Ask was successfully created.') }
-        format.xml  { render :xml => @ask, :status => :created, :location => @ask }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @ask.errors, :status => :unprocessable_entity }
-      end
+    if @ask.save
+      redirect_to(@ask, :notice => 'Ask was successfully created.')
+    else
+      flash.now[:error] = "您提交的问题出现了错误"
+      render :action => "new"
     end
   end
 
@@ -81,3 +73,4 @@ class AsksController < ApplicationController
     end
   end
 end
+

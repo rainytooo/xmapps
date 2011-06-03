@@ -930,4 +930,9 @@ form .global_form label.error {
     color: red;
 
 }
+form .global_form label.message {
+    width: 250px;
+    color: red;
+
+}
 

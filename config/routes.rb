@@ -38,13 +38,13 @@ Xmapps::Application.routes.draw do
 		resources :threads
 	end
   end
-  
+
   # site index page
   get "home/index"
   root :to => "home#index"
   match "index" => "home#index"
   #match "robots" => "home#robots"
-  
+
   match "login" => "logins#index", :via => [:get]
   match 'login' => 'logins#create', :via => [:post]
   match "logout" => "logins#logout", :via => [:get]
@@ -53,13 +53,14 @@ Xmapps::Application.routes.draw do
   namespace "manage" do
 	resources :uploads
   end
-  
+
   # uc api
   match "api/uc.php" => "admin#ucapi", :via => [:get]
-  
+
   get "dztest/index"
   resources :campaigns do
     resources :applies
   end
-  
+
 end
+

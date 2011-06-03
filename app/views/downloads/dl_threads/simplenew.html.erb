@@ -20,7 +20,7 @@
            },
           content_desc: {
              required: true,
-             minlength: 30,
+             minlength: 20,
              maxlength: 128
            },
           photo: {
@@ -88,7 +88,7 @@
 						<%= label_tag :content_desc, "简介:" %><div class="clear"></div>
 						<textarea id="content_desc" rows="4" name="content_desc"  cols="60"></textarea>
 					</div>
-					<div class="form_tips">请填写这个资源的简单介绍,不得少于30个字</div>
+					<div class="form_tips">请填写这个资源的简单介绍,请输入大于20,小于128个字</div>
 
 					<iframe scrolling="no" frameborder="0" resizable="no" allowtransparency="true" cellspacing="0" border="0" style="border:0px;height:300px;width:100%;" src="/downloads/dl_threads/<%= @dl_thread.id.to_s %>/dl_attachments/new">
 					</iframe>
