@@ -3,8 +3,33 @@
 <meta name="keywords" content="小马过河 问答频道" />
 <meta name="description" content="问答频道" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-<%= javascript_include_tag 'rails.validations', 'editor/kindeditor-min' %>
-<script language="Javascript">
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/localization/messages_cn.js"></script>
+<%= javascript_include_tag 'editor/kindeditor-min'%>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+	  $("#new_ask").validate(
+      {
+        rules: {
+          "ask[title]": {
+             required: true,
+             minlength: 5,
+             maxlength: 128
+           }
+         },
+        messages: {
+           "ask[title]": {
+             required: "请填写您问题的标题,最少5个字",
+             minlength: "您问题的标题少于5个字"
+            }
+         }
+      }
+    );
+
+
+
+	});
 	KE.show({
 		id : 'ask_content',
 		resizeMode : 1,
@@ -13,18 +38,20 @@
 		items : [
 		'textcolor','removeformat']
 	});
+
+
 </script>
 <% end %>
 
 <div class="container">
 			<div class="page_path">
-			<a href="/">首页</a> &gt;&gt; <a href="/asks/new">我要提问</a>
+			<a href="/">首页</a> &gt;&gt; <a href="/asks">问答频道</a> &gt;&gt; 我要提问
 			</div><!-- .page_path -->
 			<div class="page_title"><h1>我要提问</h1></div>
 			<div class="form_container">
 				<div class="form_left">
 				  <div class="clear"></div>
-				  <%= form_for(@ask, :validate => true ) do |f| %>
+				  <%= form_for(@ask ) do |f| %>
 					  <% if flash[:message] %>
 					  <div class="submit_message"><%= flash[:message] %></div><!-- .message -->
 					  <% end %>
@@ -43,7 +70,7 @@
 					  <div class="form_tips">清选择您要提问的分类</div>
 					  <div class="global_form">
 						  <%= f.label :content, "问题的详细介绍:" %><div class="clear"></div>
-						  <%= f.text_area :content , :size => "65x15"%>
+						  <%= f.text_area :content , :size => "65x15", :class => "tinymce" %>
 					  </div>
 					  <div class="form_tips">请填写这个问题的详细介绍</div>
 					  <div id="form_submit">

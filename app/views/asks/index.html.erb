@@ -5,393 +5,96 @@
 <%= stylesheet_link_tag "global" %>
 <%= stylesheet_link_tag "index" %>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-
 <% end %>
 
 		<div class="container">
 			<div class="main_left fl">
 				<div>
-					<h3><span class="ask_title">热门问题</span></h3> 
+					<h3><span class="ask_title">热门问题</span></h3>
 					<table class="grid">
 						<thead>
 							<tr>
-							<td>问题</td>
-							<td width="80">类型</td>
-							<td width="80">提问时间</td>
-							<td width="35">回答</td>
-							<td width="35">悬赏</td>
+							  <td>问题</td>
+							  <td width="80">类型</td>
+							  <td width="80">提问时间</td>
+							  <td width="35">回答</td>
+							  <td width="35">悬赏</td>
 							</tr>
 						</thead>
 						<tbody>
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="open"><a title="最近有些迷茫，请各位有远见的指点下小弟" href="/problems/64797">最近有些迷茫，请各位有远见的指点下小弟</a></td>
-							<td class="tag"><a href="/problems/tags/Java">[Java综合]</a></td>
-							
-							  <td class="date">2011-05-09</td>
-							  <td>45</td>      
-							  <td><span class="score">30</span></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="open"><a title="个人主页加载数据的问题" href="/problems/65124">个人主页加载数据的问题</a></td>
-							<td class="tag"><a href="/problems/tags/Technology">[编程综合]</a></td>
-							
-							  <td class="date">2011-05-13</td>
-							  <td>26</td>      
-							  <td><span class="score">30</span></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="open"><a title="如何求出两个日期相差的天数" href="/problems/65261">如何求出两个日期相差的天数</a></td>
-							<td class="tag"><a href="/problems/tags/Struts">[Struts]</a></td>
-							
-							  <td class="date">2011-05-16</td>
-							  <td>15</td>      
-							  <td><span class="score">30</span></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="open"><a title="求站内搜索解决方案" href="/problems/64985">求站内搜索解决方案</a></td>
-							<td class="tag"><a href="/problems/tags/Java">[Java综合]</a></td>
-							
-							  <td class="date">2011-05-11</td>
-							  <td>10</td>      
-							  <td><span class="score">25</span></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="open"><a title="我学的java，2010年毕业的，现在对自己的发展感觉有点失望和迷茫，希望各位给我点帮助，小弟谢谢了！" href="/problems/65142">我学的java，2010年毕业的，现在对自己的发展感觉有点失望和 ...</a></td>
-							<td class="tag"><a href="/problems/tags/Java">[Java综合]</a></td>
-							
-							  <td class="date">2011-05-13</td>
-							  <td>8</td>      
+             <% @hot_asks.each do |hot_ask| %>
+             <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
+							  <td class="open"><a title="<%= hot_ask.title %>" href="/asks/<%= hot_ask.id%>"><%= hot_ask.title %></a></td>
+							  <td class="tag"><a href="/problems/tags/<%= hot_ask.ask_type.id%>">[<%= hot_ask.ask_type.name%>]</a></td>
+							  <td class="date"><%= hot_ask.created_at.strftime('%Y-%m-%d') %></td>
+							  <td><%= hot_ask.replies%></td>
 							  <td><span class="score">20</span></td>
-							 
 						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="open"><a title="Android下R.java这个类，来看看吧，或许你也有兴趣" href="/problems/65422">Android下R.java这个类，来看看吧，或许你也有兴趣</a></td>
-							<td class="tag"><a href="/problems/tags/Android">[Android]</a></td>
-							
-							  <td class="date">2011-05-18</td>
-							  <td>8</td>      
-							  <td><span class="score">20</span></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="open"><a title="求找错误的经验" href="/problems/65703">求找错误的经验</a></td>
-							<td class="tag"><a href="/problems/tags/Java">[Java综合]</a></td>
-							
-							  <td class="date">24 小时前</td>
-							  <td>6</td>      
-							  <td><span class="score">30</span></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="open"><a title="java 如何实现按时间段搜索 文件名都是按时间命名的。例如snsportal16700201103312000260017.txt" href="/problems/65524">java 如何实现按时间段搜索 文件名都是按时间命名的。例如 ...</a></td>
-							<td class="tag"><a href="/problems/tags/Java">[Java综合]</a></td>							
-							  <td class="date">2011-05-19</td>
-							  <td>6</td>      
-							  <td><span class="score">20</span></td>							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="open"><a title="HttpServletRequest的方法应用" href="/problems/65688">HttpServletRequest的方法应用</a></td>
-							<td class="tag"><a href="/problems/tags/J2EE">[企业应用]</a></td>							
-							  <td class="date">昨天</td>
-							  <td>5</td>      
-							  <td><span class="score">25</span></td>							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="open"><a title="tomcat启动慢" href="/problems/65711">tomcat启动慢</a></td>
-							<td class="tag"><a href="/problems/tags/Web">[Web综合]</a></td>
-							  <td class="date">21 小时前</td>
-							  <td>4</td>      
-							  <td><span class="score">20</span></td>
-						  </tr>	
+             <% end %>
 					  </tbody>
 					</table>
-					
-					<h3><span class="ask_title">未解决问题</span><a href="#">更多</a></h3> 
+
+					<h3><span class="ask_title">未解决问题</span><a href="#">更多</a></h3>
 					<table class="grid">
 						<thead>
 							<tr>
-							<td>问题</td>
-							<td width="80">类型</td>
-							<td width="80">提问时间</td>
-							<td width="35">回答</td>
-							<td width="35">悬赏</td>
+							  <td>问题</td>
+							  <td width="80">类型</td>
+							  <td width="80">提问时间</td>
+							  <td width="35">回答</td>
+							  <td width="35">悬赏</td>
 							</tr>
 						</thead>
 						<tbody>
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="open"><a title="最近有些迷茫，请各位有远见的指点下小弟" href="/problems/64797">最近有些迷茫，请各位有远见的指点下小弟</a></td>
-							<td class="tag"><a href="/problems/tags/Java">[Java综合]</a></td>
-							
-							  <td class="date">2011-05-09</td>
-							  <td>45</td>      
-							  <td><span class="score">30</span></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="open"><a title="个人主页加载数据的问题" href="/problems/65124">个人主页加载数据的问题</a></td>
-							<td class="tag"><a href="/problems/tags/Technology">[编程综合]</a></td>
-							
-							  <td class="date">2011-05-13</td>
-							  <td>26</td>      
-							  <td><span class="score">30</span></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="open"><a title="如何求出两个日期相差的天数" href="/problems/65261">如何求出两个日期相差的天数</a></td>
-							<td class="tag"><a href="/problems/tags/Struts">[Struts]</a></td>
-							
-							  <td class="date">2011-05-16</td>
-							  <td>15</td>      
-							  <td><span class="score">30</span></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="open"><a title="求站内搜索解决方案" href="/problems/64985">求站内搜索解决方案</a></td>
-							<td class="tag"><a href="/problems/tags/Java">[Java综合]</a></td>
-							
-							  <td class="date">2011-05-11</td>
-							  <td>10</td>      
-							  <td><span class="score">25</span></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="open"><a title="我学的java，2010年毕业的，现在对自己的发展感觉有点失望和迷茫，希望各位给我点帮助，小弟谢谢了！" href="/problems/65142">我学的java，2010年毕业的，现在对自己的发展感觉有点失望和 ...</a></td>
-							<td class="tag"><a href="/problems/tags/Java">[Java综合]</a></td>
-							
-							  <td class="date">2011-05-13</td>
-							  <td>8</td>      
+             <% @unsolve_asks.each do |unsolve_ask| %>
+             <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
+							  <td class="open"><a title="<%= unsolve_ask.title%>" href="/asks/<%= unsolve_ask.id%>"><%= unsolve_ask.title%></a></td>
+							  <td class="tag"><a href="/asks/tags/<%= unsolve_ask.ask_type.id%>">[<%= unsolve_ask.ask_type.name%>]</a></td>
+							  <td class="date"><%= unsolve_ask.created_at.strftime('%Y-%m-%d') %></td>
+							  <td><%= unsolve_ask.replies%></td>
 							  <td><span class="score">20</span></td>
-							 
 						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="open"><a title="Android下R.java这个类，来看看吧，或许你也有兴趣" href="/problems/65422">Android下R.java这个类，来看看吧，或许你也有兴趣</a></td>
-							<td class="tag"><a href="/problems/tags/Android">[Android]</a></td>
-							
-							  <td class="date">2011-05-18</td>
-							  <td>8</td>      
-							  <td><span class="score">20</span></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="open"><a title="求找错误的经验" href="/problems/65703">求找错误的经验</a></td>
-							<td class="tag"><a href="/problems/tags/Java">[Java综合]</a></td>
-							
-							  <td class="date">24 小时前</td>
-							  <td>6</td>      
-							  <td><span class="score">30</span></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="open"><a title="java 如何实现按时间段搜索 文件名都是按时间命名的。例如snsportal16700201103312000260017.txt" href="/problems/65524">java 如何实现按时间段搜索 文件名都是按时间命名的。例如 ...</a></td>
-							<td class="tag"><a href="/problems/tags/Java">[Java综合]</a></td>							
-							  <td class="date">2011-05-19</td>
-							  <td>6</td>      
-							  <td><span class="score">20</span></td>							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="open"><a title="HttpServletRequest的方法应用" href="/problems/65688">HttpServletRequest的方法应用</a></td>
-							<td class="tag"><a href="/problems/tags/J2EE">[企业应用]</a></td>							
-							  <td class="date">昨天</td>
-							  <td>5</td>      
-							  <td><span class="score">25</span></td>							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="open"><a title="tomcat启动慢" href="/problems/65711">tomcat启动慢</a></td>
-							<td class="tag"><a href="/problems/tags/Web">[Web综合]</a></td>
-							  <td class="date">21 小时前</td>
-							  <td>4</td>      
-							  <td><span class="score">20</span></td>
-						  </tr>	
+             <% end %>
 					  </tbody>
 					</table>
-					
-					<h3><span class="ask_title">已解决问题</span><a href="#">更多</a></h3> 
+
+					<h3><span class="ask_title">已解决问题</span><a href="#">更多</a></h3>
 					<table class="grid">
 					  <thead>
 						<tr>
 						  <td>问题</td>
 						  <td width="80">类型</td>
-						  
 							<td width="80">更新时间</td>
 							<td width="80">解决者</td>
-						  
 						</tr>
 					  </thead>
 					  <tbody>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="close"><a title="关于一段字符串的处理" href="/problems/65778">关于一段字符串的处理</a></td>
-							<td class="tag"><a href="/problems/tags/Java">[Java综合]</a></td>
-							
-							  <td class="date">28 分钟前</td>
-							  <td><a target="_blank" href="http://mougaidong-163-com.iteye.com">牟盖东</a></td>
-							 
+             <% @solved_asks.each do |solved_ask| %>
+             <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
+							  <td class="open"><a title="<%= solved_ask.title%>" href="/asks/<%= solved_ask.id%>"><%= solved_ask.title%></a></td>
+							  <td class="tag"><a href="/asks/tags/<%= solved_ask.ask_type.id%>">[<%= solved_ask.ask_type.name%>]</a></td>
+							  <td class="date"><%= solved_ask.updated_at.strftime('%Y-%m-%d') %></td>
+							  <td><%= solved_ask.bestanswer_username %></td>
 						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="close"><a title="个人主页加载数据的问题" href="/problems/65124">个人主页加载数据的问题</a></td>
-							<td class="tag"><a href="/problems/tags/Technology">[编程综合]</a></td>
-							
-							  <td class="date">1 小时前</td>
-							  <td><a target="_blank" href="http://redstarofsleep.iteye.com">redstarofsleep</a></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="close"><a title="正则表达式 怎么匹配文件名？" href="/problems/65779">正则表达式 怎么匹配文件名？</a></td>
-							<td class="tag"><a href="/problems/tags/Java">[Java综合]</a></td>
-							
-							  <td class="date">1 小时前</td>
-							  <td><a target="_blank" href="http://fmjsjx.iteye.com">fmjsjx</a></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="close"><a title="java 如何实现按时间段搜索 文件名都是按时间命名的。例如snsportal16700201103312000260017.txt" href="/problems/65524">java 如何实现按时间段搜索 文件名都是按时间命名的。例如 ...</a></td>
-							<td class="tag"><a href="/problems/tags/Java">[Java综合]</a></td>
-							
-							  <td class="date">4 小时前</td>
-							  <td><a target="_blank" href="http://tsaowe.iteye.com">tsaowe</a></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="close"><a title="表单提交的值怎么通过反射赋值给javabean啊？大家看我代码" href="/problems/65288">表单提交的值怎么通过反射赋值给javabean啊？大家看我代码</a></td>
-							<td class="tag"><a href="/problems/tags/Java">[Java综合]</a></td>
-							
-							  <td class="date">5 小时前</td>
-							  <td><a target="_blank" href="http://fmjsjx.iteye.com">fmjsjx</a></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="close"><a title="mx:ButtonBar 按钮置灰问题" href="/problems/65068">mx:ButtonBar 按钮置灰问题</a></td>
-							<td class="tag"><a href="/problems/tags/Flex">[Flex]</a></td>
-							
-							  <td class="date">5 小时前</td>
-							  <td><a target="_blank" href="http://mrchai.iteye.com">柴秉承</a></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="close"><a title="线程 ThreadLocal" href="/problems/65760">线程 ThreadLocal</a></td>
-							<td class="tag"><a href="/problems/tags/Java">[Java综合]</a></td>
-							
-							  <td class="date">5 小时前</td>
-							  <td><a target="_blank" href="http://fmjsjx.iteye.com">fmjsjx</a></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="close"><a title="区分电信联通网络类型" href="/problems/65380">区分电信联通网络类型</a></td>
-							<td class="tag"><a href="/problems/tags/Internet">[互联网]</a></td>
-							
-							  <td class="date">5 小时前</td>
-							  <td><a target="_blank" href="http://tangpython.iteye.com">dream_hanker</a></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="close"><a title="有谁了解oracle中国成都分公司" href="/problems/65654">有谁了解oracle中国成都分公司</a></td>
-							<td class="tag"><a href="/problems/tags/career">[职场话题]</a></td>
-							
-							  <td class="date">6 小时前</td>
-							  <td><a target="_blank" href="http://iihero.iteye.com">iihero</a></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="close"><a title="关于编辑器TextField保存空值到数据库变“undefined”字符串" href="/problems/64944">关于编辑器TextField保存空值到数据库变“undefined”字符 ...</a></td>
-							<td class="tag"><a href="/problems/tags/EXT">[EXT]</a></td>
-							
-							  <td class="date">6 小时前</td>
-							  <td><a target="_blank" href="http://gavinhwa.iteye.com">GavinHwa</a></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="close"><a title="surfaceview中surfaceHolder.lockCanvas(null)返回为空? " href="/problems/64830">surfaceview中surfaceHolder.lockCanvas(null)返回为空? </a></td>
-							<td class="tag"><a href="/problems/tags/Android">[Android]</a></td>
-							
-							  <td class="date">6 小时前</td>
-							  <td><a target="_blank" href="http://hudingchen.iteye.com">hudingchen</a></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="close"><a title="ant的taskdef问题" href="/problems/65412">ant的taskdef问题</a></td>
-							<td class="tag"><a href="/problems/tags/Java">[Java综合]</a></td>
-							
-							  <td class="date">6 小时前</td>
-							  <td><a target="_blank" href="http://mrchai.iteye.com">柴秉承</a></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="close"><a title="怎样用EL表达式获取tomcat下webapps的路径？" href="/problems/65645">怎样用EL表达式获取tomcat下webapps的路径？</a></td>
-							<td class="tag"><a href="/problems/tags/JQuery">[JQuery]</a></td>
-							
-							  <td class="date">6 小时前</td>
-							  <td><a target="_blank" href="http://houfeng0923.iteye.com">houfeng0923</a></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="close"><a title="jqgrid如何用getRowData获取对象中的对象数据" href="/problems/65696">jqgrid如何用getRowData获取对象中的对象数据</a></td>
-							<td class="tag"><a href="/problems/tags/JQuery">[JQuery]</a></td>
-							
-							  <td class="date">6 小时前</td>
-							  <td><a target="_blank" href="http://conanca.iteye.com">conanca</a></td>
-							 
-						  </tr>
-						
-						  <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							<td class="close"><a title="java的反射机制是怎么实现的" href="/problems/65542">java的反射机制是怎么实现的</a></td>
-							<td class="tag"><a href="/problems/tags/Hibernate">[Hibernate]</a></td>
-							
-							  <td class="date">15 小时前</td>
-							  <td><a target="_blank" href="http://redstarofsleep.iteye.com">redstarofsleep</a></td>
-							 
-						  </tr>
+             <% end %>
 					  </tbody>
 					</table>
 				</div>
 			</div>
 			<div class="main_right fl">
 				<div class="my_ask">
-					<h2><a href="#">我要提问</a></h2>
-					<h2><a href="#">我的问答</a></h2>
+					<h2><a href="/asks/new">我要提问</a></h2>
+					<h2><a href="/asks/my_ask">我的问答</a></h2>
 				</div>
 				<div class="ask_tags">
 					<h2 class="subject">问答分类</h2>
-					<h4><a href="">托福</a></h4>
-					<h4><a href="">雅思</a></h4>
-					<h4><a href="">GRE</a></h4>
-					<h4><a href="">SAT</a></h4>
-					<h4><a href="">出国留学</a></h4>
+					<h4><a href="/asks/tags/1">托福</a></h4>
+					<h4><a href="/asks/tags/2">雅思</a></h4>
+					<h4><a href="/asks/tags/3">GRE</a></h4>
+					<h4><a href="/asks/tags/4">SAT</a></h4>
+					<h4><a href="/asks/tags/5">出国留学</a></h4>
 				</div>
 			</div>
-			<div class="clear"></div>	
+			<div class="clear"></div>
 		</div><!-- #container -->
+

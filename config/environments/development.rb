@@ -26,7 +26,7 @@ Xmapps::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
   config.active_record.default_timezone = :local
 
-  config.cache_store = :dalli_store, 'localhost:11211',    { :namespace => 'xmapps', :expires_in => 1.day, :compress => true }
+  #config.cache_store = :dalli_store, 'localhost:11211',    { :namespace => 'xmapps', :expires_in => 1.day, :compress => true }
 
   COOKIE_DOMAIN_NAME = "localhost"
   # жВсРцШ

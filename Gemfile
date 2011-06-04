@@ -17,3 +17,4 @@ gem 'dalli'
 gem 'rmagick', '2.12.0'
 
 gem 'simple_captcha', '0.1.1'
+

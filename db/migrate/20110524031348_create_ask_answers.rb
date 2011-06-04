@@ -2,13 +2,13 @@
 class CreateAskAnswers < ActiveRecord::Migration
   def self.up
     create_table :ask_answers do |t|
-	  t.references :ask
-	  t.references :user
-	  t.string :username , :limit => 32
-	  t.integer :badrate ,:limit  => 10
-	  t.integer :goodrate ,:limit  => 10
-	  t.text :content
-	  t.integer :ifcheck, :limit  => 1, :default => 0
+	    t.references :ask
+	    t.references :user
+	    t.string :username , :limit => 32
+	    t.integer :badrate ,:limit  => 10, :default => 0
+	    t.integer :goodrate ,:limit  => 10, :default => 0
+	    t.text :content
+	    t.integer :ifcheck, :limit  => 1, :default => 0
       t.timestamps
     end
 	execute <<-SQL
@@ -17,7 +17,7 @@ class CreateAskAnswers < ActiveRecord::Migration
         FOREIGN KEY (user_id)
         REFERENCES users(id)
     SQL
-	
+
 	execute <<-SQL
       ALTER TABLE ask_answers
         ADD CONSTRAINT fk_answers_ask
@@ -32,3 +32,4 @@ class CreateAskAnswers < ActiveRecord::Migration
     drop_table :ask_answers
   end
 end
+

@@ -16,17 +16,17 @@ class CreateAsks < ActiveRecord::Migration
 	  t.text :content
       t.timestamps
     end
-	execute <<-SQL
-      ALTER TABLE asks
-        ADD CONSTRAINT fk_asks_user
-        FOREIGN KEY (user_id)
-        REFERENCES users(id)
+	  execute <<-SQL
+        ALTER TABLE asks
+          ADD CONSTRAINT fk_asks_user
+          FOREIGN KEY (user_id)
+          REFERENCES users(id)
     SQL
-	execute <<-SQL
-      ALTER TABLE asks
-        ADD CONSTRAINT fk_asks_type
-        FOREIGN KEY (ask_type_id)
-        REFERENCES ask_types(id)
+	  execute <<-SQL
+        ALTER TABLE asks
+          ADD CONSTRAINT fk_asks_type
+          FOREIGN KEY (ask_type_id)
+          REFERENCES ask_types(id)
     SQL
   end
 
@@ -36,3 +36,4 @@ class CreateAsks < ActiveRecord::Migration
     drop_table :asks
   end
 end
+

@@ -539,6 +539,7 @@ form #form_submit input.download  {
 .rich_list .content h5 .dl_type {
 	color: red;
 }
+
 .rich_list .content .description, .rich_list .content img {
 	float: left;
 	margin-right: 20px;
@@ -557,7 +558,7 @@ form #form_submit input.download  {
 .index_rich_list ul li {
 	margin-left:-40px;
 }
-.dl_type {
+.dl_type, .category {
 	color: red;
 }
 .index_rich_list .content h5 .dl_type {
@@ -808,6 +809,9 @@ h2.subject {
 }
 
 /*问答的左边表格*/
+table.grid {
+    width: 100%;
+}
 table.grid tbody td {
     border-top: 1px dashed #DDDDDD;
     padding: 5px 3px;
@@ -857,6 +861,89 @@ span.score {
     background-repeat: no-repeat;
     padding-left: 15px;
 }
+
+.base_short_info {
+	width: 100%;
+	background: none repeat scroll 0 0 #EEEEEE;
+    padding: 6px 9px;
+	margin: 10px 0 5px 0;
+}
+
+.base_short_info .date {
+    color: red;
+}
+
+.question {
+    border: 1px solid #793fe5;
+    padding: 15px;
+    margin: 5px 0 15px;
+}
+
+.answer_form {
+    border: 1px solid #DDDDDD;
+    padding: 0;
+    margin: 5px 0 15px;
+}
+
+.answer_form h5 {
+    /*border: 1px solid #793fe5;*/
+    background: none repeat scroll 0 0 #EEEEEE;
+    padding: 5px;
+    margin: 0 0 15px;
+}
+#answers_textarea {
+    margin: 20px;
+}
+
+.other_answers {
+    border: 1px solid #DDDDDD;
+    padding: 0;
+    margin: 5px 0 15px;
+}
+
+.other_answers h5 {
+    /*border: 1px solid #793fe5;*/
+    background: none repeat scroll 0 0 #EEEEEE;
+    padding: 5px;
+    margin: 0 0 15px;
+}
+
+.answer_info {
+    border-bottom: 1px dashed #CCCCCC;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 26px;
+    text-align: right;
+}
+
+.answer_info .date {
+    color: red;
+}
+
+.operation {
+    border: 1px solid red;
+    padding: 0;
+    margin: 5px 0 15px;
+}
+.operation h5 {
+    margin: 5px;
+}
+.operation h5 a{
+    color: #d71818;
+}
+
+.page_title span.ask_status_2 {
+    color: red;
+}
+
+.page_title span.ask_status_1 {
+    color: #10d427;
+}
+
+span.right_answer, span.mark_right_answer a {
+    color: #10d427;
+}
+
 /*问答右侧*/
 .ask_tags h4 {
 	padding-left:5px;
