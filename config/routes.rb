@@ -1,12 +1,12 @@
 Xmapps::Application.routes.draw do
   # 问答
-  resources :asks do
+  #resources :asks do
     # 我的问答
-    collection do
-      get 'my'
-    end
-    resource :ask_answers
-  end
+  #  collection do
+  #    get 'my'
+  #  end
+  #  resource :ask_answers
+  #end
 
   # download application
   # 首页

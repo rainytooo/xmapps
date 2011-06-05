@@ -8,7 +8,7 @@ class DlThread < ActiveRecord::Base
 	validates_length_of :name, :maximum => 128
 	#validates_presence_of :photo
 	validates_presence_of :content_desc
-	#validates_length_of :content_desc, :minimum => 20
+	#validates_length_of :content_desc, :minimum => 10
 	#validates_length_of :content_desc, :maximum => 255
 	#validates_presence_of :content
 
@@ -43,11 +43,13 @@ class DlThread < ActiveRecord::Base
 	private
 
 	  def randomize_file_name
-		extension = File.extname(photo_file_name).downcase
-		self.photo.instance_write(:file_name, "#{ActiveSupport::SecureRandom.hex(16)}#{extension}")
+	    if !photo_file_name.nil?
+		    extension = File.extname(photo_file_name).downcase
+		    self.photo.instance_write(:file_name, "#{ActiveSupport::SecureRandom.hex(16)}#{extension}")
+      end
 	  end
 	  def reprocess_photo
-		photo.reprocess!
+		  photo.reprocess!
 	  end
 
 end

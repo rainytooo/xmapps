@@ -20,19 +20,10 @@
            },
           content_desc: {
              required: true,
-             minlength: 20,
+             minlength: 10,
              maxlength: 128
-           },
-          photo: {
-             required: true
-          }
-         },
-        messages: {
-           photo: {
-             required: "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请为此资源选择一张封面图片"
            }
          }
-
       }
     );
   });
@@ -48,27 +39,13 @@
 			<div class="form_container">
 
 				<div class="form_left">
-				<% if @dl_thread.errors.any? %>
-					<div id="error_explanation">
-					  <h2><%= pluralize(@dl_thread.errors.count, "个错误") %> 阻止了此次资源上传:</h2>
-					  <ul>
-					  <% @dl_thread.errors.full_messages.each do |msg| %>
-						<li><%= msg %></li>
-					  <% end %>
-					  </ul>
-					  <div class="clear"></div>
-					</div>
-				  <% end %>
-				  <div class="clear"></div>
-				  <form id="simplenew" method="post" action="/dl/threads" accept-charset="UTF-8" enctype="multipart/form-data">
-
-					<% if flash[:message] %>
+         <% if flash[:message] %>
 					<div class="submit_message"><%= flash[:message] %></div><!-- .message -->
 					<% end %>
 					<% if flash[:error] %>
 					<div class="submit_error"><%= flash[:error] %></div><!-- .error -->
 					<% end %>
-					<input type="hidden" name="thread_id" value="<%= @dl_thread.id %>">
+				  <form id="simplenew" method="post" action="/dl/threads" accept-charset="UTF-8" enctype="multipart/form-data">
 					<div class="global_form">
 						<%= label_tag :name, "下载资源的标题:" %><div class="clear"></div>
 						<input id="thread_name" type="text" name="thread_name" >
@@ -90,8 +67,6 @@
 					</div>
 					<div class="form_tips">请填写这个资源的简单介绍,请输入大于20,小于128个字</div>
 
-					<iframe scrolling="no" frameborder="0" resizable="no" allowtransparency="true" cellspacing="0" border="0" style="border:0px;height:300px;width:100%;" src="/downloads/dl_threads/<%= @dl_thread.id.to_s %>/dl_attachments/new">
-					</iframe>
 
 
 					<div id="form_submit">

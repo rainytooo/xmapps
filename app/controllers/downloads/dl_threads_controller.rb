@@ -69,13 +69,13 @@ class Downloads::DlThreadsController < ApplicationController
 
   # 快速上传资源
   def simplenew
-	  user_id = session[:login_user_id]
-    last_id = DlThread.maximum('id')
-	  current_id = last_id ? last_id + 1 : 1
-	  t = Time.now
-	  created_at = t.strftime("%Y-%m-%d %H:%M:%S")
-	  ActiveRecord::Base.connection.insert("insert into dl_threads (id,user_id,created_at,updated_at,dl_type_id,name) values(#{current_id},#{user_id},'#{created_at}','#{created_at}',2,'该资源名称未定义' ) ")
-	  @dl_thread = DlThread.find_by_id(current_id)
+	  #user_id = session[:login_user_id]
+    #last_id = DlThread.maximum('id')
+	  #current_id = last_id ? last_id + 1 : 1
+	  #t = Time.now
+	  #created_at = t.strftime("%Y-%m-%d %H:%M:%S")
+	  #ActiveRecord::Base.connection.insert("insert into dl_threads (id,user_id,created_at,updated_at,dl_type_id,name) values(#{current_id},#{user_id},'#{created_at}','#{created_at}',2,'该资源名称未定义' ) ")
+	  #@dl_thread = DlThread.find_by_id(current_id)
   end
 
 
@@ -96,10 +96,20 @@ class Downloads::DlThreadsController < ApplicationController
 
   # 快速上传资源
   def simplecreate
-	  @dl_thread = DlThread.find_by_id(params[:thread_id])
+	  @dl_thread = DlThread.new #DlThread.find_by_id(params[:thread_id])
+
 	  dl_photo = params[:photo]
 	  if dl_photo
 		  logger.debug 'has threads photo'
+		  # 保存
+		  @dl_thread.dl_type_id = params[:dl_type_id]
+		  @dl_thread.name = params[:thread_name]
+		  @dl_thread.content_desc = params[:content_desc]
+		  #@dl_thread.photo_file_name = new_name
+		  #@dl_thread.photo_content_type = dl_photo.content_type
+		  #@dl_thread.photo_file_size = dl_photo.size
+		  @dl_thread.user_id  = session[:login_user_id]
+		  @dl_thread.save
 		  # 创建路径
 		  # 初始化日期路径
 		  #年月日
@@ -137,19 +147,24 @@ class Downloads::DlThreadsController < ApplicationController
 		  thumb = org_img_obj.crop_resized(100,100)#org_img_obj.resize(org_img_obj.columns*0.1, org_img_obj.rows*0.1)
       # 写出一个最小的缩略图
 		  thumb.write(thumb_path)
-       @dl_thread.update_attributes({
-          :dl_type_id => params[:dl_type_id],
-          :name => params[:thread_name],
-          :content_desc => params[:content_desc],
+
+      @dl_thread.update_attributes({
           :photo_file_name => new_name,
           :photo_content_type => dl_photo.content_type,
           :photo_file_size => dl_photo.size
       })
 	  else
 		  logger.debug 'has not threads photo'
-      @dl_thread.update_attributes({:dl_type_id => params[:dl_type_id], :name => params[:thread_name], :content_desc => params[:content_desc] })
+      #@dl_thread.update_attributes({:dl_type_id => params[:dl_type_id], :name => params[:thread_name], :content_desc => params[:content_desc] })
+      @dl_thread.dl_type_id = params[:dl_type_id]
+		  @dl_thread.name = params[:thread_name]
+		  @dl_thread.content_desc = params[:content_desc]
+		  @dl_thread.user_id  = session[:login_user_id]
+		  @dl_thread.save
 	  end
-    redirect_to dl_index_path
+	  @dl_attachment = DlAttachment.new
+		redirect_to downloads_dl_thread_dl_attachments_path(@dl_thread)
+    #redirect_to dl_index_path
   end
 
 
@@ -158,20 +173,17 @@ class Downloads::DlThreadsController < ApplicationController
   # POST /dl_threads.xml
   def create
     @dl_thread = DlThread.new(params[:dl_thread])
-	@dl_thread.user_id = session[:login_user_id].to_i
-	@dl_thread.dl_type_id = params[:dl_type_id]
-    respond_to do |format|
-      if @dl_thread.save
-		handle_tags params[:tag_names], @dl_thread
-		if params[:dl_thread][:photo].blank?
-		  format.html { redirect_to([:downloads, @dl_thread], :notice => 'Dl thread was successfully created.') }
-		else
-		  format.html { render :action => "crop" }
-		end
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @dl_thread.errors, :status => :unprocessable_entity }
-      end
+	  @dl_thread.user_id = session[:login_user_id].to_i
+	  @dl_thread.dl_type_id = params[:dl_type_id]
+    if @dl_thread.save
+	    handle_tags params[:tag_names], @dl_thread
+	    if params[:dl_thread][:photo].blank?
+	      redirect_to([:downloads, @dl_thread], :notice => 'Dl thread was successfully created.')
+	    else
+	      render :action => "crop"
+	    end
+    else
+      render :action => "new"
     end
   end
 
@@ -182,9 +194,9 @@ class Downloads::DlThreadsController < ApplicationController
 	@dl_thread.update_attributes(params[:dl_thread])
     if @dl_thread.update_attributes(params[:dl_thread])
 	  if params[:crop] == "1"
-		# 如果是切图,转到第三步 上传文件
+		  # 如果是切图,转到第三步 上传文件
 	    @dl_attachment = DlAttachment.new
-		redirect_to new_downloads_dl_thread_dl_attachment_path(@dl_thread, @dl_attachment)
+		  redirect_to new_downloads_dl_thread_dl_attachment_path(@dl_thread, @dl_attachment)
 	  elsif params[:recrop] == "1"
 		# 这是重新便激动 直接跳转到编辑界面
 		@dl_threads = DlThread.where("user_id = ?", session[:login_user_id]).paginate(:page=>params[:page]||1,:per_page=>10)
