@@ -1,5 +1,5 @@
 <% content_for :head do %>
-<title>小马过河-问答频道</title>
+<title>小马过河-问答频道 我的问答</title>
 <meta name="description" content="任何的雅思,托福,留学,GRE,SAT,GMAT,SSAT,AP,等考试相关的问题,留学申请,签证,考试技巧,经验,考试报名,考试流程,等留学相关问题,可以在这里提问和寻找答案">
 <meta name="keywords" content="雅思,托福,留学,出国,GRE,SAT,GMAT,SSAT,AP,留学申请,签证,考试技巧,经验,考试报名,考试流程">
 <%= stylesheet_link_tag "global" %>
@@ -8,9 +8,13 @@
 <% end %>
 
 		<div class="container">
+	      <div class="page_path">
+			  <a href="/">首页</a> &gt;&gt; <a href="/asks">问答频道</a> &gt;&gt; 我的问答
+			  </div><!-- .page_path -->
+			  <div class="page_title"><h1>所有我参与的问题</h1></div>
 			<div class="main_left fl">
 				<div>
-					<h3><span class="ask_title">热门问题</span></h3>
+					<h3><span class="ask_title">我的提问</span></h3>
 					<table class="grid">
 						<thead>
 							<tr>
@@ -22,19 +26,25 @@
 							</tr>
 						</thead>
 						<tbody>
-             <% @hot_asks.each do |hot_ask| %>
+             <% @my_asks.each do |ask| %>
              <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							  <td class="open"><a title="<%= hot_ask.title %>" href="/asks/<%= hot_ask.id%>"><%= hot_ask.title %></a></td>
-							  <td class="tag"><a href="/problems/tags/<%= hot_ask.ask_type.id%>">[<%= hot_ask.ask_type.name%>]</a></td>
-							  <td class="date"><%= hot_ask.created_at.strftime('%Y-%m-%d') %></td>
-							  <td><%= hot_ask.replies%></td>
+							  <% if ask.status == 0 %>
+							  <td class="open">
+							  <% else %>
+							  <td class="close">
+							  <% end %>
+							  <a title="<%= ask.title %>" href="/asks/<%= ask.id%>"><%= ask.title %></a>
+							  </td>
+							  <td class="tag"><a href="/problems/tags/<%= ask.ask_type.id%>">[<%= ask.ask_type.name%>]</a></td>
+							  <td class="date"><%= ask.created_at.strftime('%Y-%m-%d') %></td>
+							  <td><%= ask.replies%></td>
 							  <td><span class="score">20</span></td>
 						  </tr>
              <% end %>
 					  </tbody>
 					</table>
 
-					<h3><span class="ask_title">未解决问题</span><a href="/asks/unsolved">更多</a></h3>
+					<h3><span class="ask_title">我回答的问题</span></h3>
 					<table class="grid">
 						<thead>
 							<tr>
@@ -46,35 +56,49 @@
 							</tr>
 						</thead>
 						<tbody>
-             <% @unsolve_asks.each do |unsolve_ask| %>
+             <% @my_answer_asks.each do |ask| %>
              <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							  <td class="open"><a title="<%= unsolve_ask.title%>" href="/asks/<%= unsolve_ask.id%>"><%= unsolve_ask.title%></a></td>
-							  <td class="tag"><a href="/asks/tags/<%= unsolve_ask.ask_type.id%>">[<%= unsolve_ask.ask_type.name%>]</a></td>
-							  <td class="date"><%= unsolve_ask.created_at.strftime('%Y-%m-%d') %></td>
-							  <td><%= unsolve_ask.replies%></td>
+							  <% if ask.status == 0 %>
+							  <td class="open">
+							  <% else %>
+							  <td class="close">
+							  <% end %>
+							  <a title="<%= ask.title %>" href="/asks/<%= ask.id%>"><%= ask.title %></a>
+							  </td>
+							  <td class="tag"><a href="/problems/tags/<%= ask.ask_type.id%>">[<%= ask.ask_type.name%>]</a></td>
+							  <td class="date"><%= ask.created_at.strftime('%Y-%m-%d') %></td>
+							  <td><%= ask.replies%></td>
 							  <td><span class="score">20</span></td>
 						  </tr>
              <% end %>
 					  </tbody>
 					</table>
 
-					<h3><span class="ask_title">已解决问题</span><a href="/asks/closed">更多</a></h3>
+					<h3><span class="ask_title">我解决问题</span></h3>
 					<table class="grid">
-					  <thead>
-						<tr>
-						  <td>问题</td>
-						  <td width="80">类型</td>
-							<td width="80">更新时间</td>
-							<td width="80">解决者</td>
-						</tr>
-					  </thead>
-					  <tbody>
-             <% @solved_asks.each do |solved_ask| %>
+						<thead>
+							<tr>
+							  <td>问题</td>
+							  <td width="80">类型</td>
+							  <td width="80">提问时间</td>
+							  <td width="35">回答</td>
+							  <td width="35">悬赏</td>
+							</tr>
+						</thead>
+						<tbody>
+             <% @my_solved_asks.each do |ask| %>
              <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							  <td class="close"><a title="<%= solved_ask.title%>" href="/asks/<%= solved_ask.id%>"><%= solved_ask.title%></a></td>
-							  <td class="tag"><a href="/asks/tags/<%= solved_ask.ask_type.id%>">[<%= solved_ask.ask_type.name%>]</a></td>
-							  <td class="date"><%= solved_ask.updated_at.strftime('%Y-%m-%d') %></td>
-							  <td><%= solved_ask.bestanswer_username %></td>
+							  <% if ask.status == 0 %>
+							  <td class="open">
+							  <% else %>
+							  <td class="close">
+							  <% end %>
+							  <a title="<%= ask.title %>" href="/asks/<%= ask.id%>"><%= ask.title %></a>
+							  </td>
+							  <td class="tag"><a href="/problems/tags/<%= ask.ask_type.id%>">[<%= ask.ask_type.name%>]</a></td>
+							  <td class="date"><%= ask.created_at.strftime('%Y-%m-%d') %></td>
+							  <td><%= ask.replies%></td>
+							  <td><span class="score">20</span></td>
 						  </tr>
              <% end %>
 					  </tbody>

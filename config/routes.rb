@@ -4,9 +4,12 @@ Xmapps::Application.routes.draw do
     # 我的问答
   #  collection do
   #    get 'my'
+  #    get 'closed'
+  #    get 'unsolved'
   #  end
   #  resource :ask_answers
   #end
+  match "asks/tags/:id", :to => "asks#tags", :via => [:get], :as => "asks_tags"
 
   # download application
   # 首页

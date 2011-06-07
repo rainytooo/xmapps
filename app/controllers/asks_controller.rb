@@ -1,10 +1,12 @@
 class AsksController < ApplicationController
-  before_filter :require_login , :except => [:index, :show]
+  before_filter :require_login , :except => [:index, :show, :unsolved, :closed, :tags]
   # GET /asks
   # GET /asks.xml
   def index
+    date_after = Date.today - 14
+    logger.debug date_after
     # 热点问题
-    @hot_asks = Ask.order("views ASC").limit(10)
+    @hot_asks = Ask.where("created_at >= ?", date_after).order("views DESC, replies DESC").limit(10)
     # 未解决问题
     @unsolve_asks = Ask.where("status = 0").order("created_at DESC").limit(10)
     # 已解决问题
@@ -15,12 +17,39 @@ class AsksController < ApplicationController
   # GET /asks/1.xml
   def show
     @ask = Ask.find(params[:id])
-    @ask_answers = AskAnswer.where("ask_id = :ask_id" , {:ask_id => params[:id]}).order("created_at desc").limit(10)
+    ActiveRecord::Base.connection.update("update asks set views = views+1 where id = #{@ask.id}")
+    @ask_answers = AskAnswer.where("ask_id = :ask_id" , {:ask_id => params[:id]}).order("created_at desc")
   end
-
+  # 我的问答
   def my
+    # 我提问的问题
+    @my_asks = Ask.where("user_id = ?" , session[:login_user_id])
+    # 我回答的问题
+    @my_answer_asks = Ask.find_by_sql("SELECT  asks.*
+      FROM asks
+      right outer JOIN
+      (select distinct (ask_answers.ask_id) as answer_ask_id from ask_answers  where ask_answers.user_id = 1 )
+      b ON asks.id = b.answer_ask_id
+      ORDER by asks.created_at desc")
+    # 我解决的问题
+    @my_solved_asks = Ask.where("bestanswer_uid = ?", session[:login_user_id])
   end
 
+  # 未解决的
+  def unsolved
+    @unsolve_asks = Ask.where("status = 0").order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>10)
+  end
+
+  # 已关闭的
+  def closed
+    @solved_asks = Ask.where("status = 1").order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>10)
+  end
+
+  # 标签
+  def tags
+    @ask_type = AskType.find_by_name(params[:id])
+    @tag_asks = Ask.where("ask_type_id = ?", @ask_type.id).order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>10)
+  end
   # GET /asks/new
   # GET /asks/new.xml
   def new
@@ -84,10 +113,13 @@ class AsksController < ApplicationController
       flash[:message] = "您的问题已经正常关闭,并且选择了正确答案"
       # 给解决问题的人发通知
       your_ask_url = XMAPP_MAIN_DOMAIN_URL+"/asks/#{@ask.id}"
-      message = "您对问题<a href=\"#{your_ask_url}\" >#{@ask.title}<\/a>的回答被选择为正确答案,系统将赏给你20个金币"
+      message = "您对问题<a href=\"#{your_ask_url}\" >#{@ask.title}<\/a>的回答被选择为正确答案,系统将赏给你30个金币和20的积分"
       send_dz_notify bestanswer.user.dz_common_id, @ask.user.dz_common_id, '', message, 'slove_ask'
-      # 给解决问题的人加金币
-      add_discuz_extcredits bestanswer.user.dz_common_id, 20
+      # 给解决问题的人加金币和积分
+      add_discuz_extcredits bestanswer.user.dz_common_id, 30
+      add_discuz_credits bestanswer.user.dz_common_id, 20
+      # 更新这个答案的状态为 checked
+      bestanswer.update_attributes({:ifcheck => 1})
       # 发全站动态
       dz_user = session[:login_user]
       ask_index_url = XMAPP_MAIN_DOMAIN_URL+"/asks"

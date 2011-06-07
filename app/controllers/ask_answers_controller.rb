@@ -17,6 +17,8 @@ class AskAnswersController < ApplicationController
     @ask_answer.username = session[:login_user].username
     @ask_answer.content = params[:answers_content]
     @ask_answer.save
+    # 提问的回复加1
+    ActiveRecord::Base.connection.update("update asks set replies = replies+1 where id = #{ask.id}")
     flash[:message] = "您的回答已经成功提交"
     # 发通知给提问的人
     answer_user_url = USER_SPACE_URL_BASE.gsub('{dz_uid}', session[:login_user].uid.to_s)

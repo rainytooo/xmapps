@@ -1,0 +1,68 @@
+<% content_for :head do %>
+<title>小马过河-问答频道 <%= @ask_type.name %></title>
+<meta name="description" content="关于<%= @ask_type.name %>的问题">
+<meta name="keywords" content="<%= @ask_type.name %>的问题 留学申请,签证,考试技巧,经验,考试报名,考试流程">
+<%= stylesheet_link_tag "global" %>
+<%= stylesheet_link_tag "index" %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<% end %>
+
+		<div class="container">
+	      <div class="page_path">
+			  <a href="/">首页</a> &gt;&gt; <a href="/asks">问答频道</a> &gt;&gt; <%= @ask_type.name %>的问题
+			  </div><!-- .page_path -->
+			  <div class="page_title"><h1>所有关于<%= @ask_type.name %>的问题</h1></div>
+			<div class="main_left fl">
+
+				<div>
+
+
+					<table class="grid">
+						<thead>
+							<tr>
+							  <td>问题</td>
+							  <td width="80">类型</td>
+							  <td width="80">提问时间</td>
+							  <td width="35">回答</td>
+							  <td width="35">悬赏</td>
+							</tr>
+						</thead>
+						<tbody>
+             <% @tag_asks.each do |unsolve_ask| %>
+             <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
+              <% if unsolve_ask.status == 0 %>
+							  <td class="open">
+							  <% else %>
+							  <td class="close">
+							  <% end %>
+							    <a title="<%= unsolve_ask.title%>" href="/asks/<%= unsolve_ask.id%>"><%= unsolve_ask.title%></a>
+							  </td>
+							  <td class="tag"><a href="/asks/tags/<%= unsolve_ask.ask_type.id%>">[<%= unsolve_ask.ask_type.name%>]</a></td>
+							  <td class="date"><%= unsolve_ask.created_at.strftime('%Y-%m-%d') %></td>
+							  <td><%= unsolve_ask.replies%></td>
+							  <td><span class="score">20</span></td>
+						  </tr>
+             <% end %>
+					  </tbody>
+					</table>
+
+
+				</div>
+			</div>
+			<div class="main_right fl">
+				<div class="my_ask">
+					<h2><a href="/asks/new">我要提问</a></h2>
+					<h2><a href="/asks/my">我的问答</a></h2>
+				</div>
+				<div class="ask_tags">
+					<h2 class="subject">问答分类</h2>
+					<h4><a href="/asks/tags/托福">托福</a></h4>
+					<h4><a href="/asks/tags/雅思">雅思</a></h4>
+					<h4><a href="/asks/tags/GRE">GRE</a></h4>
+					<h4><a href="/asks/tags/SAT">SAT</a></h4>
+					<h4><a href="/asks/tags/出国留学">出国留学</a></h4>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div><!-- #container -->
+

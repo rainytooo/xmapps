@@ -1,0 +1,62 @@
+<% content_for :head do %>
+<title>小马过河-问答频道 已解决问题</title>
+<meta name="description" content="已解决问题 任何的雅思,托福,留学,GRE,SAT,GMAT,SSAT,AP,等考试相关的问题,留学申请,签证,考试技巧,经验,考试报名,考试流程,等留学相关问题,可以在这里提问和寻找答案">
+<meta name="keywords" content="雅思,托福,留学,出国,GRE,SAT,GMAT,SSAT,AP,留学申请,签证,考试技巧,经验,考试报名,考试流程">
+<%= stylesheet_link_tag "global" %>
+<%= stylesheet_link_tag "index" %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<% end %>
+
+		<div class="container">
+		    <div class="page_path">
+			  <a href="/">首页</a> &gt;&gt; <a href="/asks">问答频道</a> &gt;&gt; 已解决问题
+			  </div><!-- .page_path -->
+			  <div class="page_title"><h1>所有已解决问题</h1></div>
+			<div class="main_left fl">
+				<div>
+					<h3><span class="ask_title">已解决问题</span><a href="#">更多</a></h3>
+					<table class="grid">
+					  <thead>
+						<tr>
+						  <td>问题</td>
+						  <td width="80">类型</td>
+							<td width="80">更新时间</td>
+							<td width="80">解决者</td>
+						</tr>
+					  </thead>
+					  <tbody>
+             <% @solved_asks.each do |solved_ask| %>
+             <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
+							  <td class="close"><a title="<%= solved_ask.title%>" href="/asks/<%= solved_ask.id%>"><%= solved_ask.title%></a></td>
+							  <td class="tag"><a href="/asks/tags/<%= solved_ask.ask_type.id%>">[<%= solved_ask.ask_type.name%>]</a></td>
+							  <td class="date"><%= solved_ask.updated_at.strftime('%Y-%m-%d') %></td>
+							  <td><%= solved_ask.bestanswer_username %></td>
+						  </tr>
+             <% end %>
+					  </tbody>
+					</table>
+
+
+				</div>
+				<div class="clear"></div>
+				<div class="will_pagination">
+					<%=h will_paginate @solved_asks, :previous_label => '上一页',  :next_label => '下一页'%>
+				</div>
+			</div>
+			<div class="main_right fl">
+				<div class="my_ask">
+					<h2><a href="/asks/new">我要提问</a></h2>
+					<h2><a href="/asks/my">我的问答</a></h2>
+				</div>
+				<div class="ask_tags">
+					<h2 class="subject">问答分类</h2>
+					<h4><a href="/asks/tags/托福">托福</a></h4>
+					<h4><a href="/asks/tags/雅思">雅思</a></h4>
+					<h4><a href="/asks/tags/GRE">GRE</a></h4>
+					<h4><a href="/asks/tags/SAT">SAT</a></h4>
+					<h4><a href="/asks/tags/出国留学">出国留学</a></h4>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div><!-- #container -->
+
