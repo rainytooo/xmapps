@@ -1,4 +1,6 @@
 class CampaignsController < ApplicationController
+  before_filter :require_login , :except => [:index, :show]
+  before_filter :require_admin , :except => [:index, :show]
   # GET /campaigns
   # GET /campaigns.xml
   def index
@@ -81,3 +83,4 @@ class CampaignsController < ApplicationController
     end
   end
 end
+

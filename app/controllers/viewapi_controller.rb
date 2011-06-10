@@ -4,13 +4,13 @@ class ViewapiController < ApplicationController
     # 查询最新的问题
     @new_asks = Ask.find_by_sql("SELECT  * FROM asks ORDER by created_at desc limit 10 OFFSET 0 ")
     # 写出文本
-    js_text = "document.write('<div class=\"module cl xl xl1\">\n<ul>"
+    js_text = "document.write('"
     @new_asks.each do |ask|
       js_text += "<li>"
       js_text += "<a title=\"#{ask.title}\" href=\"#{XMAPP_MAIN_DOMAIN_URL}/asks/#{ask.id}\">#{ask.title}"
       js_text += "</a></li>"
     end
-    js_text += "</ul>\n</div>');"
+    js_text += "');"
     render :text => js_text
   end
 
