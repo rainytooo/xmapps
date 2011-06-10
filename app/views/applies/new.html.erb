@@ -2,7 +2,57 @@
 <title>小马过河-预约参加讲座活动-<%= @campaign.name %></title>
 <meta name="keywords" content="小马过河 申请参加讲座活动,<%= @campaign.name %>" />
 <meta name="description" content="小马过河 讲座活动,<%= @campaign.name %>" />
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/localization/messages_cn.js"></script>
+<script language="Javascript">
+	$(document).ready(function(){
+	  jQuery.validator.addMethod("isMobile", function(value, element) {
+	    var length = value.length;
+	    var mobile = /^(((13[0-9]{1})|(15[0-9]{1}))+\d{8})$/;
+	    return this.optional(element) || (length == 11 && mobile.test(value));
+	  }, "请正确填写您的手机号码");
+    $("#new_apply").validate(
+      {
+        rules: {
+          "apply[name]": {
+             required: true,
+             maxlength: 64
+           },
+          "apply[email]": {
+             required: true,
+             email: true
+           },
+          "apply[mobile]": {
+             isMobile: true
+           },
+          "apply[school]": {
+             required: true,
+             maxlength: 128
+           },
+          "apply[age]": {
+             required: true,
+             number: true,
+             range: [1,99]
+           },
+          "apply[city]": {
+             required: true
+           }
+         },
+         messages: {
+           "apply[age]": {
+             required: "请填写您的年龄",
+             number: "年龄必须为数字",
+             range: "年龄范围为1到99"
+            },
+            "apply[city]": {
+             required: "请填写您现在所在的城市"
+            }
+         }
+      }
+    );
+  });
+</script>
 <% end %>
 		<div class="container">
 			<div class="page_path">

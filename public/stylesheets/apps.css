@@ -1011,7 +1011,10 @@ input#query{
     padding: 1px 0 3px 3px;
     text-align: center;
 }
-
+form label.error {
+    width: 250px;
+    color: red;
+}
 form .global_form label.error {
     width: 250px;
     color: red;

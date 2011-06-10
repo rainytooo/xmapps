@@ -14,6 +14,14 @@
 
 
 				<div class="list_left">
+				<% if not @messages_rendered -%>
+					<% if flash[:message] %>
+					<div class="submit_message"><%= flash[:message] %></div><!-- .message -->
+					<% end %>
+					<% if flash[:error] %>
+					<div class="submit_error"><%= flash[:error] %></div><!-- .error -->
+					<% end %>
+				<% end -%>
 					<% @campaigns.each do |campaign| %>
 					<div class="list_line">
 						<h3><%= link_to campaign.name, campaign %></h3>
