@@ -6,13 +6,14 @@ class SearchController < ApplicationController
 		@search_string = params[:query]
 		logger.debug @search_string
 		@search_string.strip
-		if @search_string 
+		if @search_string
 			# 去掉多余的空格
 			@search_string.squeeze!("\s")
 			@origin_words = params[:query].strip
 			@origin_words.squeeze("\s")
 			@search_string = '%'+@search_string+'%'
-			@dl_threads = DlThread.where(" ispass = 1 and  ( name like :search_string  or   ispass = 1 and content_desc like :search_string )", {:search_string => @search_string}).order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>10)
+			@dl_threads = DlThread.where(" ispass = 1 and  ( name like :search_string  or   ispass = 1 and content_desc like :search_string )",
+			    {:search_string => @search_string}).order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>10)
 			if @dl_threads.empty?
 				flash.now[:message] = "对不起,没有搜索到相关内容,您可以在右侧点击我要上传来添加这个资源,可以获取大量积分和金币"
 				render 'dl_search.html'
@@ -33,12 +34,44 @@ class SearchController < ApplicationController
 			render 'dl_search.html'
 			return
 		end
-		
+
 	end
-	
+	def sockettest
+	  logger.debug 'start a tcp socket ,and send a message'
+	  socket_client
+  end
+
 	private
-	
+
 		def dl_search
-			
+
 		end
+
+		def socket_client
+		  require 'socket'                # Get sockets from stdlib
+      streamSock = TCPSocket.new( "127.0.0.1", 12260 )
+      test_a = "{\'querytype\' : \'type_value\', \'keywords\' : \'keywords_value\'}"
+      logger.debug test_a
+      streamSock.send( "#{test_a}\n" , 0)
+      content = ""
+      loop {
+        str = streamSock.recv( 1024 )
+        content += str
+        if str.length <= 1024
+          # check if it has the end flag => '{79end07}'
+          len = str.length
+          end_flag = str[(len-9)..len]
+          logger.debug end_flag
+          if end_flag == '{79end07}'
+            logger.debug 'the session is over close the scoket connection'
+            break
+          end
+        end
+       }
+      logger.debug content
+      #logger.debug str.bytes.to_a.size
+      #logger.debug content.length
+      streamSock.close
+    end
 end
+

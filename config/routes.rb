@@ -1,14 +1,24 @@
 Xmapps::Application.routes.draw do
   # 问答
-  #resources :asks do
+  resources :asks do
     # 我的问答
-  #  collection do
-  #    get 'my'
-  #    get 'closed'
-  #    get 'unsolved'
-  #  end
-  #  resource :ask_answers
-  #end
+    collection do
+      get 'my'
+      get 'closed'
+      get 'unsolved'
+    end
+    resource :ask_answers
+  end
+
+  # 外部调用api
+  resources :viewapi do
+    collection do
+      get 'asks_new'
+      get 'asks_closed'
+      get 'asks_unsolved'
+    end
+  end
+
   match "asks/tags/:id", :to => "asks#tags", :via => [:get], :as => "asks_tags"
 
   # download application
@@ -23,6 +33,7 @@ Xmapps::Application.routes.draw do
   match "dl/category/:id", :to => "downloads/dl_threads#category", :via => [:get], :as => "dl_category"
   match "dl/attachment/:id", :to => "downloads/attachments#show", :via => [:get], :as => "dl_attachment"
   match "search", :to => "search#search", :via => [:get]
+  match "searchtest", :to => "search#sockettest", :via => [:get]
   # 标签
   resources :tags
   # 前台显示和后台的管理

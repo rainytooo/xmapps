@@ -1,13 +1,13 @@
 <% content_for :head do %>
 <title>小马过河-上传资料</title>
-<meta name="description" content="上传资料" /> 
-<meta name="keywords" content="小马过河 英语 学习资料 上传" /> 
+<meta name="description" content="上传资料" />
+<meta name="keywords" content="小马过河 英语 学习资料 上传" />
 <%= stylesheet_link_tag('jquery.fileupload-ui') %>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
 <%= javascript_include_tag 'jquery.fileupload', 'jquery.fileupload-ui' %>
 
-<script type="text/javascript" charset="utf-8"> 
+<script type="text/javascript" charset="utf-8">
    $(function () {
    var maxFiles = <%= @max_files %>,
    filesCounter = 0;
@@ -21,7 +21,7 @@
 				return;
 			}
 			filesCounter = filesCounter + 1;
-			if (files[index].size > 5000000) {
+			if (files[index].size > 20000000) {
 				handler.uploadRow.find('.file_upload_progress').html('<span class="warning">文件大小超出限制!<\/span>');
 				setTimeout(function () {
 					handler.removeNode(handler.uploadRow);
@@ -54,7 +54,7 @@
 			return $(inner_html);
         },
     });
-	
+
 });
 </script>
 <% end %>
@@ -72,13 +72,13 @@
 					<% if flash[:error] %>
 					<div class="submit_error"><%= flash[:error] %></div><!-- .error -->
 					<% end %>
-				<div class="files"> 
+				<div class="files">
 					<%= form_for( [:downloads, @dl_thread, @dl_attachment], :html => { :class => "upload", :multipart => true } ) do |f| %>
 					  <%= f.file_field :attachment %>
 					  <div>点击添加附件</div>
 					<% end %>
-					
-					
+
+
 				</div>
 				<div class="clear"></div>
 				<div class="uploaded_files">
@@ -103,12 +103,12 @@
 						<%= link_to "点击完成,并返回下载首页", dl_index_path %>		或		 <%= link_to "返回我的上传", manage_uploads_path %>
 				</div>
 				</div><!-- .form_left -->
-				
+
 				<div class="form_right">
 					<div class="submit_message">
 					<h3>上传帮助</h3>
 					<p>点击左边绿色的"点击添加附件"按钮来选择上传的文件,一次只能选择一个文件,当一个文件上传完了之后不会刷新页面,在本页面就会有提示,之后您可以继续上传下一个附件.
-					
+
 					</p>
 					<h3>注意</h3>
 					<p>请不要上传大于<span class="warning">5M</span>的文件,
@@ -125,3 +125,4 @@
 			</div><!-- .form_container -->
 		</div><!-- #content_container -->
 		<div class="clear"></div>
+

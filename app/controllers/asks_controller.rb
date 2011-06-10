@@ -68,7 +68,8 @@ class AsksController < ApplicationController
     @ask.ask_type_id = params[:ask_type_id]
     @ask.typename = AskType.find_by_id(params[:ask_type_id]).name
     @ask.user_id = session[:login_user_id]
-    @ask.expiredtime = Time.now.to_i + 20#60*60*24*15
+    # 设置15天以后过期
+    @ask.expiredtime = Time.now.to_i + 60*60*24*15
     logger.debug 'now time is ' + Time.now.to_s + 'this question will auto close until ' + @ask.expiredtime.to_s
     if @ask.save
       # 发送全局动态
