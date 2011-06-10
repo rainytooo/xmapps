@@ -7,6 +7,7 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/localization/messages_cn.js"></script>
 <%= javascript_include_tag 'editor/kindeditor-min'%>
 <script type="text/javascript">
+  var isinit = 0;
 	$(document).ready(function() {
 
 	  $("#new_ask").validate(
@@ -36,7 +37,8 @@
 		allowPreviewEmoticons : false,
 		allowUpload : false,
 		items : [
-		'textcolor','removeformat']
+		'textcolor','removeformat'],
+		afterFocus : function(){if (isinit == 0){KE.html('ask_content', '');isinit = 1;}}
 	});
 
 
@@ -70,7 +72,7 @@
 					  <div class="form_tips">清选择您要提问的分类</div>
 					  <div class="global_form">
 						  <%= f.label :content, "问题的详细介绍:" %><div class="clear"></div>
-						  <%= f.text_area :content , :size => "65x15", :class => "tinymce" %>
+						  <%= f.text_area :content , :size => "65x15", :class => "tinymce", :value => '请在这里详细描述您的问题' %>
 					  </div>
 					  <div class="form_tips">请填写这个问题的详细介绍</div>
 					  <div id="form_submit">

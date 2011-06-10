@@ -77,13 +77,15 @@
            <% if @ask.user_id != session[:login_user_id] and @ask.status == 0 %>
 <%= javascript_include_tag 'editor/kindeditor-min'%>
 <script type="text/javascript">
+  var is_answers_content_init = 0
   KE.show({
       id : 'answers_content',
       resizeMode : 1,
       allowPreviewEmoticons : false,
       allowUpload : false,
       items : [
-      'textcolor','removeformat']
+      'textcolor','removeformat'],
+		   afterFocus : function(){if (is_answers_content_init == 0){KE.html('answers_content', '');is_renew_ask_init = 1;}}
     });
 </script>
            <div class="answer_form">
@@ -101,13 +103,15 @@
           <% elsif @ask.user_id == session[:login_user_id] and @ask.status == 0 %>
 <%= javascript_include_tag 'editor/kindeditor-min'%>
 <script type="text/javascript">
+  var is_renew_ask_init = 0;
   KE.show({
 		  id : 'answers_content_renew',
 		  resizeMode : 1,
 		  allowPreviewEmoticons : false,
 		  allowUpload : false,
 		  items : [
-		  'textcolor','removeformat']
+		  'textcolor','removeformat'],
+		afterFocus : function(){if (is_renew_ask_init == 0){KE.html('answers_content_renew', '');is_renew_ask_init = 1;}}
 	  });
 </script>
            <div class="answer_form">
