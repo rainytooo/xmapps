@@ -28,7 +28,7 @@ class AsksController < ApplicationController
     @my_answer_asks = Ask.find_by_sql("SELECT  asks.*
       FROM asks
       right outer JOIN
-      (select distinct (ask_answers.ask_id) as answer_ask_id from ask_answers  where ask_answers.user_id = 1 )
+      (select distinct (ask_answers.ask_id) as answer_ask_id from ask_answers  where ask_answers.user_id = #{session[:login_user_id]} )
       b ON asks.id = b.answer_ask_id
       ORDER by asks.created_at desc")
     # 我解决的问题
