@@ -28,7 +28,7 @@
              <% @solved_asks.each do |solved_ask| %>
              <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
 							  <td class="close"><a title="<%= solved_ask.title%>" href="/asks/<%= solved_ask.id%>"><%= solved_ask.title%></a></td>
-							  <td class="tag"><a href="/asks/tags/<%= solved_ask.ask_type.id%>">[<%= solved_ask.ask_type.name%>]</a></td>
+							  <td class="tag"><a href="/asks/tags/<%= solved_ask.ask_type.name%>">[<%= solved_ask.ask_type.name%>]</a></td>
 							  <td class="date"><%= solved_ask.updated_at.strftime('%Y-%m-%d') %></td>
 							  <td><%= solved_ask.bestanswer_username %></td>
 						  </tr>

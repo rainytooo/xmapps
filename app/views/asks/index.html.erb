@@ -25,7 +25,7 @@
              <% @hot_asks.each do |hot_ask| %>
              <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
 							  <td class="open"><a title="<%= hot_ask.title %>" href="/asks/<%= hot_ask.id%>"><%= hot_ask.title %></a></td>
-							  <td class="tag"><a href="/asks/tags/<%= hot_ask.ask_type.id%>">[<%= hot_ask.ask_type.name%>]</a></td>
+							  <td class="tag"><a href="/asks/tags/<%= hot_ask.ask_type.name%>">[<%= hot_ask.ask_type.name%>]</a></td>
 							  <td class="date"><%= hot_ask.created_at.strftime('%Y-%m-%d') %></td>
 							  <td><%= hot_ask.replies%></td>
 							  <td><span class="score">20</span></td>
@@ -49,7 +49,7 @@
              <% @unsolve_asks.each do |unsolve_ask| %>
              <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
 							  <td class="open"><a title="<%= unsolve_ask.title%>" href="/asks/<%= unsolve_ask.id%>"><%= unsolve_ask.title%></a></td>
-							  <td class="tag"><a href="/asks/tags/<%= unsolve_ask.ask_type.id%>">[<%= unsolve_ask.ask_type.name%>]</a></td>
+							  <td class="tag"><a href="/asks/tags/<%= unsolve_ask.ask_type.name%>">[<%= unsolve_ask.ask_type.name%>]</a></td>
 							  <td class="date"><%= unsolve_ask.created_at.strftime('%Y-%m-%d') %></td>
 							  <td><%= unsolve_ask.replies%></td>
 							  <td><span class="score">20</span></td>
@@ -72,7 +72,7 @@
              <% @solved_asks.each do |solved_ask| %>
              <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
 							  <td class="close"><a title="<%= solved_ask.title%>" href="/asks/<%= solved_ask.id%>"><%= solved_ask.title%></a></td>
-							  <td class="tag"><a href="/asks/tags/<%= solved_ask.ask_type.id%>">[<%= solved_ask.ask_type.name%>]</a></td>
+							  <td class="tag"><a href="/asks/tags/<%= solved_ask.ask_type.name%>">[<%= solved_ask.ask_type.name%>]</a></td>
 							  <td class="date"><%= solved_ask.updated_at.strftime('%Y-%m-%d') %></td>
 							  <td><%= solved_ask.bestanswer_username %></td>
 						  </tr>

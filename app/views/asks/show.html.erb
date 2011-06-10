@@ -14,7 +14,7 @@
 			<div class="page_title">
 			<% if @ask %>
 				<h1>
-         <a href="/asks/tags/<%= @ask.ask_type.id %>" title="<%= @ask.ask_type.name %>" class="category">[<%= @ask.ask_type.name %>]</a>&nbsp;
+         <a href="/asks/tags/<%= @ask.ask_type.name %>" title="<%= @ask.ask_type.name %>" class="category">[<%= @ask.ask_type.name %>]</a>&nbsp;
 					<%= @ask.title %>
 
 					<% if @ask.status == 2 or @ask.status == 3 %>
