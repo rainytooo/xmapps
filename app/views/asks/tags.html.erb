@@ -37,7 +37,7 @@
 							  <% end %>
 							    <a title="<%= unsolve_ask.title%>" href="/asks/<%= unsolve_ask.id%>"><%= unsolve_ask.title%></a>
 							  </td>
-							  <td class="tag"><a href="/asks/tags/<%= unsolve_ask.ask_type.id%>">[<%= unsolve_ask.ask_type.name%>]</a></td>
+							  <td class="tag"><a href="/asks/tags/<%= unsolve_ask.ask_type.name%>">[<%= unsolve_ask.ask_type.name%>]</a></td>
 							  <td class="date"><%= unsolve_ask.created_at.strftime('%Y-%m-%d') %></td>
 							  <td><%= unsolve_ask.replies%></td>
 							  <td><span class="score">20</span></td>
