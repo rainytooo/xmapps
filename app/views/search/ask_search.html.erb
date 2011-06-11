@@ -1,7 +1,7 @@
 <% content_for :head do %>
-<title>小马过河-问答频道 未解决问题</title>
-<meta name="description" content="任何的雅思,托福,留学,GRE,SAT,GMAT,SSAT,AP,等考试相关的问题,留学申请,签证,考试技巧,经验,考试报名,考试流程,等留学相关问题,可以在这里提问和寻找答案">
-<meta name="keywords" content="雅思,托福,留学,出国,GRE,SAT,GMAT,SSAT,AP,留学申请,签证,考试技巧,经验,考试报名,考试流程">
+<title>小马过河-问答频道 所有<%= @origin_words%>的相关问题</title>
+<meta name="description" content="小马过河-问答频道 所有<%= @origin_words%>的相关问题">
+<meta name="keywords" content="小马过河-问答频道 所有<%= @origin_words%>的相关问题">
 <%= stylesheet_link_tag "global" %>
 <%= stylesheet_link_tag "index" %>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
@@ -9,15 +9,15 @@
 
 		<div class="container">
 	    <div class="page_path">
-			  <a href="/">首页</a> &gt;&gt; <a href="/asks">问答频道</a> &gt;&gt; 未解决问题
+			  <a href="/">首页</a> &gt;&gt; <a href="/asks">问答频道</a> &gt;&gt; <%= @origin_words%>的相关问题
 			  </div><!-- .page_path -->
-			  <div class="page_title"><h1>所有未解决问题</h1></div>
+			  <div class="page_title"><h1><%= @origin_words%>的问题</h1></div>
 			<div class="main_left fl">
 
 				<div>
 
 
-					<h3><span class="ask_title">未解决问题</span>
+					<h3><span class="ask_title"><%= @origin_words%></span>
 					<table class="grid">
 						<thead>
 							<tr>
@@ -29,7 +29,7 @@
 							</tr>
 						</thead>
 						<tbody>
-             <% @unsolve_asks.each do |unsolve_ask| %>
+             <% @asks.each do |unsolve_ask| %>
              <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
 							  <td class="open"><a title="<%= unsolve_ask.title%>" href="/asks/<%= unsolve_ask.id%>"><%= unsolve_ask.title%></a></td>
 							  <td class="tag"><a href="/asks/tags/<%= unsolve_ask.ask_type.name%>">[<%= unsolve_ask.ask_type.name%>]</a></td>
@@ -45,7 +45,7 @@
 				</div>
 				<div class="clear"></div>
 				<div class="will_pagination">
-					<%=h will_paginate @unsolve_asks, :previous_label => '上一页',  :next_label => '下一页'%>
+					<%=h will_paginate @asks, :previous_label => '上一页',  :next_label => '下一页'%>
 				</div>
 			</div>
 			<div class="main_right fl">
