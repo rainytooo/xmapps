@@ -1,5 +1,79 @@
+<% content_for :head do %>
+<title>小马过河-预约参加讲座活动-<%= @campaign.name %></title>
+<meta name="keywords" content="小马过河 申请参加讲座活动,<%= @campaign.name %>" />
+<meta name="description" content="小马过河 讲座活动,<%= @campaign.name %>" />
 <%= javascript_include_tag 'WdatePicker' %>
-<%= render 'form' %>
+<%= javascript_include_tag 'editor/kindeditor-min'%>
+<script type="text/javascript">
 
-<%= link_to 'Show', @campaign %> |
-<%= link_to 'Back', campaigns_path %>
+
+
+	KE.show({
+		id : 'campaign_desc_content',
+		resizeMode : 1,
+		allowPreviewEmoticons : false,
+		allowUpload : false,
+		items : [
+		'textcolor','removeformat']
+	});
+
+
+</script>
+<% end %>
+
+		<div class="container">
+			<div class="page_path">
+			<a href="/">首页</a> &gt;&gt; <a href="/campaigns" title="">讲座活动</a> &gt;&gt; 新建讲座活动
+			</div><!-- .page_path -->
+			<div class="page_title"><h1>5月8日马骏讲座预约申请</h1></div>
+			<div class="form_container">
+				<div class="form_desc">1.填写表单 -> 2.点击提交 -> 3.完成新的讲座活动</div><!-- .form_desc -->
+
+				<div class="form_left">
+				<%= form_for(@campaign) do |f| %>
+
+					<div class="yuyue_form">
+						<%= f.label :name, "活动名称" %>
+						<%= f.text_field :name %>
+					</div><div class="clear"></div>
+					<div class="form_tips">请填写活动名称</div>
+					<div class="yuyue_form">
+						<%= f.label :title, "活动标题"%>
+						<%= f.text_field :title %>
+					</div><div class="clear"></div>
+					<div class="form_tips">请填写活动标题</div>
+					<div class="yuyue_form">
+						<div class="fl"><%= f.label :desc_content, "活动描述" %></div>
+						<%= f.text_area :desc_content ,:cols=>"40", :rows=>"8",:class=>"fl"%>
+					</div><div class="clear"></div>
+					<div class="form_tips">请填写活动简介描述</div>
+					<div class="yuyue_form">
+						<%= f.label :addr, "活动地点"%>
+						<%= f.text_field :addr %>
+					</div><div class="clear"></div>
+					<div class="form_tips">请填写活动地点</div>
+					<div class="yuyue_form">
+						<%= f.label :start_date, "活动时间"%>
+						<%= f.text_field :start_date , :onclick => "WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" %>
+
+					</div><div class="clear"></div>
+					<div class="form_tips">请填写活动时间</div>
+
+					<div id="form_submit">
+						<input id="campaign_submit" name="commit" type="submit" value="提交预约">
+					</div>
+					<div class="clear"></div>
+
+
+				<% end %>
+				</div><!-- .form_left -->
+
+				<div class="form_right">
+					<h3>简要的一些提示和说明</h3>
+					<p>请您留下您的个人真实信息,</p>
+					<p>不公布活动地点，预约确认后在通过短信或站内信发给他，避免非目标客户临时到场过于混乱。</p>
+				</div><!-- .form_right -->
+			</div><!-- .form_container -->
+		</div><!-- #content_container -->
+		<div class="clear"></div>
+
