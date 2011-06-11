@@ -128,7 +128,7 @@ class AsksController < ApplicationController
       #title_template = "#{dz_user.username}在<a href=\"#{ask_index_url}\" >问答频道<\/a>提了一个问题<a href=\"#{ask_thread_url}\" >#{@ask.title}<\/a>"
 	    answer_user_url = USER_SPACE_URL_BASE.gsub('{dz_uid}', bestanswer.user.dz_common_id.to_s)
 	    ask_user_url = USER_SPACE_URL_BASE.gsub('{dz_uid}', @ask.user.dz_common_id.to_s)
-	    title_template = "<a href=\"#{answer_user_url}\" >#{@ask.bestanswer_username}<\/a>解决了<a href=\"#{ask_user_url}\" >#{@ask.user.username}<\/a>的问题<a href=\"\/asks\/#{@ask.id}\" >#{@ask.title}<\/a>"
+	    title_template = "<a href=\"#{answer_user_url}\" >#{@ask.bestanswer_username}<\/a>解决了<a href=\"#{ask_user_url}\" >#{@ask.user.username}<\/a>的问题<a href=\"#{ask_thread_url}\" >#{@ask.title}<\/a>"
 	    title_data = {}
 	    require 'php_serialization'
 	    title_data = PhpSerialization.dump(title_data)
