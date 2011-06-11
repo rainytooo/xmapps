@@ -1,3 +1,9 @@
+<% content_for :head do %>
+<title>小马过河-线下活动和讲座 <%= @campaign.name%></title>
+<meta name="description" content="线下活动和讲座 <%= @campaign.name%>" />
+<meta name="keywords" content="小马过河 线下活动和讲座 <%= @campaign.name%>" />
+<% end %>
+
 		<div class="container">
 			<div class="page_path">
 			<a href="/">首页</a> &gt;&gt; <%= link_to '讲座', campaigns_path %> &gt;&gt;  <%= @campaign.name %>
@@ -7,6 +13,11 @@
 			<div class="form_info_container">
 				<div class="form_info_desc"><%= @campaign.name %>的详细信息</div><!-- .form_desc -->
 				<div class="form_info_left">
+				  <div>
+				  <p>
+						<input type="button" class="shenqing_huodong"  onclick="location.href='<%= XMAPP_MAIN_DOMAIN_URL %>/campaigns/<%= @campaign.id%>/applies/new'">
+					</p>
+				  </div>
 					<div><%= link_to '申请参与此次活动', new_campaign_apply_path(@campaign) , :class => "red" %></div>
 					<p><label>讲座名称:</label><%= @campaign.name %></p>
 					<p><label>讲座标题:</label> <%= @campaign.title %></p>
