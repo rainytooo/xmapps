@@ -14,7 +14,7 @@
 					<p><label>讲座日期:</label> <%= @campaign.start_date.strftime('%Y-%m-%d %H:%M') %></p>
 					<p><label>讲座内容:</label></p>
 					<p>
-					<%= @campaign.desc_content%>
+					<%= raw @campaign.desc_content%>
 					</p>
 
 
