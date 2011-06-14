@@ -22,7 +22,7 @@ class Downloads::DlThreadsController < ApplicationController
 	  # 最新免金币下载资源
     @free_dl = DlThread.where("ispass = 1 and gold = 0").order("created_at DESC").limit(10).offset(0)
     # 精华和推荐
-    @tuijian = DlThread.where("ispass = 1 and ( level = 1 or level = 2 )")order("created_at DESC").limit(10).offset(0)
+    @tuijian = DlThread.where("ispass = 1 and ( level = 1 or level = 2 )").order("created_at DESC").limit(10).offset(0)
   end
 
   # 分类浏览
