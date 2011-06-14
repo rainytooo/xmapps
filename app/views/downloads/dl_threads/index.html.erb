@@ -124,6 +124,14 @@
 					</li>
 					<% end %>
 				</ul>
+				<h2 class="subject">精华和推荐</h2>
+				<ul class="rank_list clearfix">
+					<% @tuijian.each do |hot_dl_thread| %>
+					<li>
+						<%= link_to hot_dl_thread.name, dl_path(hot_dl_thread.id) %> (<%= hot_dl_thread.views %>)
+					</li>
+					<% end %>
+				</ul>
 				<h2 class="subject">最新免费</h2>
 				<ul class="rank_list clearfix">
 					<% @free_dl.each do |hot_dl_thread| %>
@@ -132,18 +140,7 @@
 					</li>
 					<% end %>
 				</ul>
-				<h2 class="subject">上传用户排行</h2>
-				<ul class="img_rank_list clearfix">
-					 <% @rank_users.each do |rank_user| %>
-					<li>
-						<a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', rank_user.dz_common_id.to_s) %>">
-							<img src="<%= USER_DISCUZ_SMALL_AVATAR_BASE.gsub('{dz_uid}', rank_user.dz_common_id.to_s) %>">
-						</a>
-						<p><span class="hideoverflow headname"><%= rank_user.username %><span></p>
-						<p><%= rank_user.uploads %></p>
-					</li>
-					<% end %>
-				</ul>
+
 
 			</div>
 			<div class="clear"></div>
