@@ -105,6 +105,7 @@ class Downloads::DlThreadsController < ApplicationController
 		  @dl_thread.dl_type_id = params[:dl_type_id]
 		  @dl_thread.name = params[:thread_name]
 		  @dl_thread.content_desc = params[:content_desc]
+		  @dl_thread.gold = params[:gold]
 		  #@dl_thread.photo_file_name = new_name
 		  #@dl_thread.photo_content_type = dl_photo.content_type
 		  #@dl_thread.photo_file_size = dl_photo.size
@@ -191,7 +192,7 @@ class Downloads::DlThreadsController < ApplicationController
   # PUT /dl_threads/1.xml
   def update
     @dl_thread = DlThread.find(params[:id])
-	@dl_thread.update_attributes(params[:dl_thread])
+	  @dl_thread.update_attributes(params[:dl_thread])
     if @dl_thread.update_attributes(params[:dl_thread])
 	  if params[:crop] == "1"
 		  # 如果是切图,转到第三步 上传文件

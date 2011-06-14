@@ -872,6 +872,26 @@ span.score {
     background-repeat: no-repeat;
     padding-left: 15px;
 }
+span.level0 {
+    background-image: url("../images/star.jpg");
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding-left: 15px;
+}
+span.level1 {
+    background-image: url("../images/star.jpg");
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding-left: 15px;
+    color: #f472f9;
+}
+span.level2 {
+    background-image: url("../images/star.jpg");
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding-left: 15px;
+    color: red;
+}
 
 .base_short_info {
 	width: 100%;

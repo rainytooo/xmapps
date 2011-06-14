@@ -32,7 +32,7 @@ Xmapps::Application.configure do
   # 主域名
   XMAPP_MAIN_DOMAIN_URL = "http://localhost:3000"
   # 下载服务器的url
-  DOWNLOAD_SERVER_URL = "http://localhost:3001"
+  DOWNLOAD_SERVER_URL = "http://localhost:3000"
   # 以下部分是项目用到的常量
   DOWNLOAD_THREAD_PHOTO_ROOT_PATH = "/var/www/html/xmappimages"
   DOWNLOAD_THREAD_PHOTO_ROOT_URL = "http://localhost/xmappimages"

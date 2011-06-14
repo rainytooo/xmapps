@@ -1,7 +1,7 @@
 class DlThread < ActiveRecord::Base
   belongs_to :user,:class_name => "User"
 	belongs_to :dl_type,:class_name => "DlType"
-
+  #gold金币  等级 0 普通, 1推荐 2 精华
 	#表单的客户端验证
 	validates_presence_of :name
 	validates_length_of :name, :minimum => 5

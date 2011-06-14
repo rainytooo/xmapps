@@ -37,6 +37,14 @@
 						<!-- <span class="comment">评论(18)</span> -->
 						<span class="view">有<%= @dl_thread.views %>人浏览</span>
 						<span class="date"><%= @dl_thread.created_at.strftime('%Y-%m-%d') %></span>
+						<span class="score">售价<%= @dl_thread.gold %></span>
+           <% if @dl_thread.level == 0 %>
+						<span class="level0">普通</span>
+						<% elsif @dl_thread.level == 1 %>
+						<span class="level1">推荐</span>
+						<% elsif @dl_thread.level == 2%>
+						<span class="level2">精华</span>
+						<% end %>
 					</div><!-- .upload_info -->
 					<div class="clear"></div>
 					<h4>

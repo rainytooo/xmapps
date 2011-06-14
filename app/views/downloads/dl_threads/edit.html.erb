@@ -1,7 +1,7 @@
 <% content_for :head do %>
 <title>小马过河-上传资料</title>
-<meta name="description" content="上传资料" /> 
-<meta name="keywords" content="小马过河 英语 学习资料 上传" /> 
+<meta name="description" content="上传资料" />
+<meta name="keywords" content="小马过河 英语 学习资料 上传" />
 <%= javascript_include_tag 'jquery.min', 'rails.validations', 'editor/kindeditor-min' %>
 <script language="Javascript">
 	KE.show({
@@ -34,7 +34,7 @@
 					  <div class="clear"></div>
 					</div>
 				  <% end %>
-				  <div class="clear"></div>		
+				  <div class="clear"></div>
 				<%= form_for([:downloads, @dl_thread], :validate => true, :html => { :multipart => true } ) do |f| %>
 					<% if flash[:message] %>
 					<div class="submit_message"><%= flash[:message] %></div><!-- .message -->
@@ -43,46 +43,52 @@
 					<div class="submit_error"><%= flash[:error] %></div><!-- .error -->
 					<% end %>
 					<div class="global_form">
-						<%= f.label :name, "下载资源的标题:" %><div class="clear"></div>						
-						<%= f.text_field :name %>						
+						<%= f.label :name, "下载资源的标题:" %><div class="clear"></div>
+						<%= f.text_field :name %>
 					</div>
 					<div class="form_tips">清填写下载资源的标题</div>
 					<div class="global_form">
-						<%= f.label :dl_type_id, "下载资源的类型:" %><div class="clear"></div>						
-						<%= select_tag(:dl_type_id,  options_for_select(DlType.where("id != 1").collect{ |p| [p.typename, p.id] }, @dl_thread.dl_type_id) , :onchange => "$.post('#{downloads_dl_thread_path(@dl_thread.id)}', {'_method':'put', 'dl_thread[dl_type_id]':this.value} );") %>						
+						<%= f.label :dl_type_id, "下载资源的类型:" %><div class="clear"></div>
+						<%= select_tag(:dl_type_id,  options_for_select(DlType.where("id != 1").collect{ |p| [p.typename, p.id] }, @dl_thread.dl_type_id) , :onchange => "$.post('#{downloads_dl_thread_path(@dl_thread.id)}', {'_method':'put', 'dl_thread[dl_type_id]':this.value} );") %>
 					</div>
 					<div class="form_tips">清选择下载资源的类型</div>
 					<div class="global_form">
-						<%= label_tag(:tag_names, "下载资源的标签:") %><div class="clear"></div>						
-						<%= text_field_tag( :tag_names, @tag_names.join(',')) %>						
+						<%= f.label :gold, "售价:" %><div class="clear"></div>
+						<%= select_tag(:gold,  options_for_select({ "5" => "5", "10" => "10", "15" => "15", "20" => 20 }, "5"),
+						  :onchange => "$.post('#{downloads_dl_thread_path(@dl_thread.id)}', {'_method':'put', 'dl_thread[gold]':this.value} );" ) %>
+					</div>
+					<div class="form_tips">清选择该资源下载的售价</div>
+					<div class="global_form">
+						<%= label_tag(:tag_names, "下载资源的标签:") %><div class="clear"></div>
+						<%= text_field_tag( :tag_names, @tag_names.join(',')) %>
 					</div>
 					<div class="form_tips">清填写下载资源的标签,用半角的逗号隔开</div>
 					<% if not @dl_thread.photo %>
 					<div class="global_form">
-						<%= f.label :photo, "预览图:" %><div class="clear"></div>						
-						<%= f.file_field  :photo %>							
+						<%= f.label :photo, "预览图:" %><div class="clear"></div>
+						<%= f.file_field  :photo %>
 					</div>
 					<div class="form_tips">选择您要上传的预览图或者封面,文件格式为jpeg,gif或者png,大小不要超过1M</div>
 					<% end %>
 					<div class="global_form">
-						<%= f.label :content_desc, "简介:" %><div class="clear"></div>						
-						<%= f.text_area :content_desc , :size => "75x10"%>							
+						<%= f.label :content_desc, "简介:" %><div class="clear"></div>
+						<%= f.text_area :content_desc , :size => "75x10"%>
 					</div>
 					<div class="form_tips">请填写这个资源的简单介绍,不得少于30个字</div>
 					<div class="global_form">
-						<%= f.label :content, "内容:" %><div class="clear"></div>						
-						<%= f.text_area :content , :size => "75x20"%>							
+						<%= f.label :content, "内容:" %><div class="clear"></div>
+						<%= f.text_area :content , :size => "75x20"%>
 					</div>
 					<div class="form_tips">请填写这个资源的完整内容介绍,不得少于100个字</div>
 					<div id="form_submit">
-						<input id="campaign_submit" name="commit" type="submit" value="提交">				
+						<input id="campaign_submit" name="commit" type="submit" value="提交">
 					</div>
 					<div class="clear"></div>
-					
-				
+
+
 				<% end %>
 				</div><!-- .form_left -->
-				
+
 				<div class="form_right">
 					<h5>上传资料有什么好处</h5>
 					<p>出国留学的历程充满了酸甜苦乐,备考的同道中人彼此相互默默地支撑.分享,无形的共勉与快乐.大家行动起来吧,把资源分享给每一个需要的人

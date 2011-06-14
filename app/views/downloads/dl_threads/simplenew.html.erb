@@ -57,6 +57,12 @@
 					</div>
 					<div class="form_tips">清选择下载资源的类型</div>
 					<div class="global_form">
+          <%= label_tag :gold, "售价:" %><div class="clear"></div>
+          <div class="clear"></div>
+          <%= select_tag(:gold,  options_for_select({ "5" => "5", "10" => "10", "15" => "15", "20" => 20 }, "5") ) %>
+        </div>
+        <div class="form_tips">清选择该资源下载的售价</div>
+					<div class="global_form">
 						<label for="photo">预览图:</label><div class="clear"></div>
 						<input id="photo" type="file" name="photo">
 					</div>

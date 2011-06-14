@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110530081143) do
+ActiveRecord::Schema.define(:version => 20110614173058) do
 
   create_table "applies", :force => true do |t|
     t.string   "name"
@@ -119,6 +119,8 @@ ActiveRecord::Schema.define(:version => 20110530081143) do
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
+    t.integer  "gold",                              :default => 5
+    t.integer  "level",                             :default => 0
   end
 
   add_index "dl_threads", ["dl_type_id"], :name => "fk_dlthreads_dltype"
