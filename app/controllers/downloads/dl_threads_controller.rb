@@ -15,7 +15,12 @@ class Downloads::DlThreadsController < ApplicationController
 	# 拿出最多上传的用户
 	@rank_users = User.find_by_sql('select * from users LEFT OUTER JOIN user_counts ON user_counts.user_id = users.id where user_counts.uploads != 0 order by user_counts.uploads desc limit 0, 12')
 	# 拿出最热下载
-	@hot_dl_threads = DlThread.where("ispass = ?", 1).order("views DESC").limit(10).offset(0)
+	#@hot_dl_threads = DlThread.where("ispass = ?", 1).order("views DESC").limit(10).offset(0)
+	# 本周热门
+	date_after = Date.today - 7
+	@week_hot = DlThread.where("ispass = ? and created_at >= ?", 1, date_after).order("views DESC").order("created_at DESC").limit(10).offset(0)
+	# 最新免金币下载资源
+  @free_dl = DlThread.where("ispass = 1 and gold = 0").order("views DESC").order("created_at DESC").limit(10).offset(0)
   end
 
   # 分类浏览

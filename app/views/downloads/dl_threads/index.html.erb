@@ -116,9 +116,17 @@
 					<li><%= link_to "SAT物理", tag_url("SAT物理") %></li>
 					<li><%= link_to "SAT真题", tag_url("SAT真题") %></li>
 				</ul>
-				<h2 class="subject">最热下载</h2>
+				<h2 class="subject">本周热门</h2>
 				<ul class="rank_list clearfix">
-					<% @hot_dl_threads.each do |hot_dl_thread| %>
+					<% @week_hot.each do |hot_dl_thread| %>
+					<li>
+						<%= link_to hot_dl_thread.name, dl_path(hot_dl_thread.id) %> (<%= hot_dl_thread.views %>)
+					</li>
+					<% end %>
+				</ul>
+				<h2 class="subject">最新免费</h2>
+				<ul class="rank_list clearfix">
+					<% @free_dl.each do |hot_dl_thread| %>
 					<li>
 						<%= link_to hot_dl_thread.name, dl_path(hot_dl_thread.id) %> (<%= hot_dl_thread.views %>)
 					</li>
