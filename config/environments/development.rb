@@ -48,11 +48,11 @@ Xmapps::Application.configure do
   # 加积分
   DZ_CREDITS_ADD_COUNT = 50
   # 加金币
-  DZ_EXTCREDITS_ADD_COUNT = 100
+  DZ_EXTCREDITS_ADD_COUNT = 20
   # 扣积分
   DZ_CREDITS_REDUCE_COUNT = -50
   # 扣金币
-  DZ_EXTCREDITS_REDUCE_COUNT = -100
+  DZ_EXTCREDITS_REDUCE_COUNT = -20
   # 文件上传相关
   FILE_UPLOAD_DIRECTORY = "/var/www/html/xmappimages"
   # 下载服务器上的文件根路径
