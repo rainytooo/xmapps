@@ -91,7 +91,7 @@ class SearchController < ApplicationController
         #logger.debug 'aaaaaaaaaaaaaaaaa' + str
         content += str
         repeat_num += 1
-        if str.length < 1024 or repeat_num > 20
+        if repeat_num > 20
           streamSock.close
           break
         end
