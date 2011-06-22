@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110614173058) do
+ActiveRecord::Schema.define(:version => 20110616125229) do
 
   create_table "applies", :force => true do |t|
     t.string   "name"
@@ -181,6 +181,10 @@ ActiveRecord::Schema.define(:version => 20110614173058) do
     t.integer  "count",                    :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "update_index_record", :force => true do |t|
+    t.integer "last_update"
   end
 
   create_table "user_counts", :force => true do |t|

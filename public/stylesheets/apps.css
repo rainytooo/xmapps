@@ -556,7 +556,7 @@ form #form_submit input.download  {
 }
 
 .index_rich_list ul li {
-	margin-left:-40px;
+	margin-left:0px;
 }
 .dl_type, .category {
 	color: red;
@@ -1055,5 +1055,61 @@ form .global_form label.message {
     width: 250px;
     color: red;
 
+}
+/*搜索引擎*/
+span.rstl {
+    display: inline-block;
+    position: relative;
+}
+em, .rbt b, .c b, #mbEnd b {
+    color: #CC0033;
+    font-style: normal;
+}
+.search_result h3.r {
+    font-size: medium;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+a em, a b {
+    text-decoration: underline;
+}
+.search_result span.search_url {
+    color: #0E774A;
+}
+
+.search_result li.sl {
+    margin-bottom: 14px;
+}
+.search_result div.sbc {
+    width:620px;
+}
+
+/*搜索框*/
+.all_search input.search_textinput {
+    border: 1px solid #C3C3C3;
+    height: 24px;
+    line-height: 24px;
+    width: 180px;
+    margin-top:0px;
+    margin-bottom:0px;
+    padding: 0 2px;
+}
+
+.all_search .btn-srh {
+    background: url("../images/ui_ns_sbg4.png") no-repeat scroll -360px -100px transparent;
+    border: medium none;
+    cursor: pointer;
+    height: 26px;
+    letter-spacing: 3px;
+    margin: 0 0 0 2px;
+    padding-bottom: 2px;
+    padding-left: 1px;
+    width: 50px;
+}
+
+.hot_keywords {
+    height:26px;
+    line-height:26px;
+    overflow:hidden;
 }
 

@@ -2,7 +2,7 @@ class SearchController < ApplicationController
 	# 搜索
 	def search
 		# 预处理
-		search_type = params[:type]
+		@search_type = params[:type]
 		@search_string = params[:query]
 		logger.debug @search_string
 		@search_string.strip
@@ -12,19 +12,18 @@ class SearchController < ApplicationController
 		  @origin_words = params[:query].strip
 		  @origin_words.squeeze("\s")
 		  @search_string = '%'+@search_string+'%'
-		  if search_type == "dl"
+		  if @search_type == "dl"
         dl_search
-      elsif search_type == "ask"
+      elsif @search_type == "ask"
         ask_search
+    elsif @search_type == "all"
+        all_search
 	    end
 		end
 
 	end
 
-	def sockettest
-	  logger.debug 'start a tcp socket ,and send a message'
-	  socket_client
-  end
+
 
 	private
 
@@ -74,31 +73,34 @@ class SearchController < ApplicationController
 		  return
 		end
 
+		def all_search
+	    logger.debug 'start a tcp socket ,and send a message'
+	    @html_str = socket_client
+	    render 'sockettest.html'
+    end
+
 		def socket_client
 		  require 'socket'                # Get sockets from stdlib
+		  @pagenum = params[:page]
       streamSock = TCPSocket.new( "127.0.0.1", 12260 )
-      test_a = "{\'querytype\' : \'type_value\', \'keywords\' : \'keywords_value\'}"
-      logger.debug test_a
+      test_a = "{\'querytype\' : \'#{@search_type}\', \'keywords\' : \'#{@origin_words}\', \'page\' : \'#{@pagenum}\'}"
       streamSock.send( "#{test_a}\n" , 0)
       content = ""
-      loop {
-        str = streamSock.recv( 1024 )
+      repeat_num = 0
+      while ( str = streamSock.recv( 1024 ) )
+        #logger.debug 'aaaaaaaaaaaaaaaaa' + str
         content += str
-        if str.length <= 1024
-          # check if it has the end flag => '{79end07}'
-          len = str.length
-          end_flag = str[(len-9)..len]
-          logger.debug end_flag
-          if end_flag == '{79end07}'
-            logger.debug 'the session is over close the scoket connection'
-            break
-          end
+        repeat_num += 1
+        if str.length < 1024 or repeat_num > 20
+          streamSock.close
+          break
         end
-       }
-      logger.debug content
+      end
+      logger.debug 'repeat time' + repeat_num.to_s
       #logger.debug str.bytes.to_a.size
       #logger.debug content.length
-      streamSock.close
+
+      return content
     end
 end
 

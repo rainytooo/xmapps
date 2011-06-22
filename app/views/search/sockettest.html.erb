@@ -1,0 +1,27 @@
+<% content_for :head do %>
+<title>小马过河-问答频道 </title>
+<meta name="description" content="小马过河-问答频道 ">
+<meta name="keywords" content="小马过河-问答频道 ">
+<%= stylesheet_link_tag "global" %>
+<%= stylesheet_link_tag "index" %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<% end %>
+
+		<div class="container">
+	    <div class="page_path">
+			  <a href="/">首页</a> &gt;&gt; 搜索
+			  </div><!-- .page_path -->
+			  <div class="page_title"><h1><%= @origin_words %>的相关文章</h1></div>
+			<div class="main_left fl">
+        <div class="search_result">
+          <%= raw @html_str %>
+        </div>
+        <div class="clear"></div>
+
+			</div>
+			<div class="main_right fl">
+
+			</div>
+			<div class="clear"></div>
+		</div><!-- #container -->
+

@@ -40,6 +40,11 @@ li {
 ol, ul {
     list-style: none outside none;
 }
+ol, ul, li {
+    border: 0 none;
+    margin: 0;
+    padding: 0;
+}
 .clear {
 	clear:both;
 }
@@ -47,3 +52,4 @@ ol, ul {
 .red {
 	color:red;
 }
+
