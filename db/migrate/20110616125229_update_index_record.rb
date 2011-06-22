@@ -4,7 +4,7 @@ class UpdateIndexRecord < ActiveRecord::Migration
 	    t.integer :last_update ,:limit  => 10
     end
     execute <<-SQL
-      INSERT INTO `xmapps_development`.`update_index_record` (
+      INSERT INTO `update_index_record` (
         `id` , `last_update`) VALUES ('1', '0')
     SQL
   end
