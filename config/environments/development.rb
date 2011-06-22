@@ -28,6 +28,8 @@ Xmapps::Application.configure do
 
   #config.cache_store = :dalli_store, 'localhost:11211',    { :namespace => 'xmapps', :expires_in => 1.day, :compress => true }
 
+  SEARCH_HOST = "127.0.0.1"
+
   COOKIE_DOMAIN_NAME = "localhost"
   # Ö÷ÓòÃû
   XMAPP_MAIN_DOMAIN_URL = "http://localhost:3000"

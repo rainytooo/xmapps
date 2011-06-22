@@ -54,6 +54,8 @@ Xmapps::Application.configure do
   # #####################################################################################
   # project config
   # #####################################################################################
+  SEARCH_HOST = "127.0.0.1"
+
   COOKIE_DOMAIN_NAME = ".testxmcmx.com"
   # 主域名
   XMAPP_MAIN_DOMAIN_URL = "http://dl1.testxmcmx.com"
@@ -83,10 +85,11 @@ Xmapps::Application.configure do
   FILE_UPLOAD_DIRECTORY = "/app/www/img.testxmcmx.com/htdocs/attachments"
   # 图片服务器根地址
   IMG_SERVER_URL = "http://imgttt.testxmcmx.com"
-  # 一次最大上传附件总数 
+  # 一次最大上传附件总数
   MAX_ATTACHMENT_FILES = 10
   # uc space 基础路径
   USER_SPACE_URL_BASE = "http://space.xiaoma.com/space-uid-{dz_uid}.html"
   # 头像路径 默认small
   USER_DISCUZ_SMALL_AVATAR_BASE = "http://bbs.xiaoma.com/uc_server/avatar.php?uid={dz_uid}&size=small"
 end
+
