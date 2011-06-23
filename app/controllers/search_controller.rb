@@ -76,6 +76,7 @@ class SearchController < ApplicationController
 		def all_search
 	    logger.debug 'start a tcp socket ,and send a message'
 	    @html_str = socket_client
+	    save_user_keyword 'all'
 	    render 'sockettest.html'
     end
 

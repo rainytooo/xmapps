@@ -20,6 +20,8 @@ Xmapps::Application.routes.draw do
   end
 
   match "asks/tags/:id", :to => "asks#tags", :via => [:get], :as => "asks_tags"
+  # 报名的提交
+  match "baomings", :to => "baomings#create", :via => [:post]
 
   # download application
   # 首页
