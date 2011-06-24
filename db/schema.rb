@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110623031349) do
+ActiveRecord::Schema.define(:version => 20110624063546) do
 
   create_table "applies", :force => true do |t|
     t.string   "name"
@@ -216,6 +216,17 @@ ActiveRecord::Schema.define(:version => 20110623031349) do
     t.string   "passwd"
     t.integer  "dz_common_id"
     t.integer  "regdate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "zhuanti_indices", :force => true do |t|
+    t.string   "title",        :limit => 128
+    t.string   "content_desc", :limit => 512
+    t.text     "content",      :limit => 255
+    t.integer  "index_id",     :limit => 2,   :default => 1
+    t.string   "campaign",     :limit => 32
+    t.string   "url",          :limit => 128
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -812,6 +812,11 @@ h2.subject {
 	padding:2px;
 }
 
+.container .admin_main {
+	width: 920px;
+	margin:0 10px 10px 0px;
+	padding:2px;
+}
 
 .container .main_right {
 	width: 276px;

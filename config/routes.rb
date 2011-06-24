@@ -40,25 +40,25 @@ Xmapps::Application.routes.draw do
   resources :tags
   # 前台显示和后台的管理
   namespace "downloads" do
-	resources :dl_threads do
-		# collection do
-			# get  'recrop', 'category'
-			# post :on_offer
-		# end
-		get 'recrop', :on => :member
-		get 'category', :on => :member
-		get 'reuploadimg', :on => :member
-		resources :dl_attachments
-	end
-	resources :attachments do
-		get 'download', :on => :member
-	end
-	namespace "admin" do
-		resources :dl_types do
-			get 'addsub', :on => :member
-		end
-		resources :threads
-	end
+	  resources :dl_threads do
+		  # collection do
+			  # get  'recrop', 'category'
+			  # post :on_offer
+		  # end
+		  get 'recrop', :on => :member
+		  get 'category', :on => :member
+		  get 'reuploadimg', :on => :member
+		  resources :dl_attachments
+	  end
+	  resources :attachments do
+		  get 'download', :on => :member
+	  end
+	  namespace "admin" do
+		  resources :dl_types do
+			  get 'addsub', :on => :member
+		  end
+		  resources :threads
+	  end
   end
 
   # site index page
@@ -73,9 +73,16 @@ Xmapps::Application.routes.draw do
 
   # 用户的应用管理
   namespace "manage" do
-	resources :uploads
+	  resources :uploads
   end
-
+  # 后台管理统一入口
+  namespace "xmadmin" do
+    match "searches" => "searches#index", :via => [:get]
+    match "searches/new" => "searches#new", :via => [:get]
+    match "searches" => "searches#create", :via => [:post]
+    match "searches/refresh" => "searches#refresh", :via => [:get]
+    match "searches/:id" => "searches#update", :via => [:put]
+  end
   # uc api
   match "api/uc.php" => "admin#ucapi", :via => [:get]
 
