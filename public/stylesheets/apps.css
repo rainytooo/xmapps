@@ -185,6 +185,10 @@ h1 span.title_keywords {
     width: 960px;
 }
 
+.container_spilt {
+    margin-bottom: 8px;
+}
+
 .content_container {
 	margin-left: 20px;
 	padding-right:20px;
@@ -1116,5 +1120,89 @@ a em, a b {
     height:26px;
     line-height:26px;
     overflow:hidden;
+}
+/*首页的专栏*/
+.container .zjzl{
+    border: 1px solid #CCCCCC;
+    display: inline;
+    float: left;
+    margin: 0 5px 10px;
+    padding: 10px;
+    width: 208px;
+}
+.container .zjzl h2 {
+    font-size: 12px;
+    margin: 0;
+}
+.container h2.zjzl_title {
+    background: url("../images/title_bottom_line.gif") repeat-x scroll center bottom transparent;
+    font-size: 14px;
+    height: 15px;
+    margin-bottom: 10px;
+}
+
+h2.zjzl_title span {
+    background: none repeat scroll 0 0 #FFFFFF;
+    display: block;
+    float: left;
+    line-height: 15px;
+    padding-right: 5px;
+}
+
+.container .zjzl .zjzl_preview {
+    height: 100px;
+    overflow: hidden;
+}
+.container .zjzl .zjzl_preview img {
+    width: 90px;
+}
+
+.container .zjzl .zjzl_preview .zjzl_photo {
+    float: left;
+    height: 55px;
+    overflow: hidden;
+    padding-right: 10px;
+    width: 90px;
+}
+.container .zjzl .zjzl_preview p {
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.container .zjzl .public_list li {
+    background: url("../images/list_style_disc1.png") no-repeat scroll left 2px transparent;
+    list-style: none outside none !important;
+    padding-left: 10px;
+}
+.container .zjzl .public_list li a {
+    display: block;
+    height: 20px;
+    overflow: hidden;
+    width: 190px;
+}
+
+.container .app_hot {
+    float: left;
+    width: 310px;
+    padding: 5px;
+}
+
+.container .app_hot li{
+    background: url("../images/list_style_disc.gif") no-repeat scroll left 2px transparent;
+    list-style: none outside none !important;
+    padding-left: 10px;
+}
+
+.container .app_hot h2.subject{
+    color: #000000;
+    margin: 0 5px 10px 0;
+}
+
+.container .app_hot li a {
+    display: block;
+    height: 20px;
+    overflow: hidden;
+    width: 190px;
 }
 
