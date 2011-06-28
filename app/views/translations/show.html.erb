@@ -91,10 +91,8 @@
 						<!-- <span class="comment">评论(18)</span> -->
 						<span class="view">有<%= @translation.views %>人浏览</span>
 						<span class="date"><%= @translation.created_at.strftime('%Y-%m-%d') %></span>
-						aaaaaaaa<%= session[:toupiao]["trans_best_"+@translation.source_id.to_s] %>
             <%
               if session[:toupiao]
-
                 session[:toupiao] = Hash.new
               end
             %>
