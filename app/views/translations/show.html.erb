@@ -92,7 +92,7 @@
 						<span class="view">有<%= @translation.views %>人浏览</span>
 						<span class="date"><%= @translation.created_at.strftime('%Y-%m-%d') %></span>
             <%
-              if session[:toupiao]
+              if not session[:toupiao]
                 session[:toupiao] = Hash.new
               end
             %>

@@ -587,11 +587,15 @@ form #form_submit input.download  {
 	width: 500px;
 }
 
-.index_rich_list .upload_info {
+.index_rich_list .upload_info, .index_rich_list .trans_info {
 	width: 500px;
 	background: none repeat scroll 0 0 #EEEEEE;
     padding: 6px 9px;
 	margin: 10px 0 21px 0;
+}
+
+.upload_info span.json_digg {
+    padding-left: 00px;
 }
 
 .upload_info span {
@@ -600,21 +604,26 @@ form #form_submit input.download  {
     padding-left: 20px;
 }
 
+.trans_info span {
+    background-repeat: no-repeat;
+    margin: 0 6px;
+}
+
 .upload_info .comment {
 	background-image: url("../images/icon_comment.gif");
 }
 
-.upload_info .view {
+.upload_info .view,  .trans_info .view{
     background-image: url("../images/icon_arrow.gif");
 	color: gray;
 }
 
-.upload_info .date {
+.upload_info .date, .trans_info .date{
     color: #A12A2A;
     padding-left: 0;
 }
 
-.upload_info .edit {
+.upload_info .edit,  .trans_info .edit{
     float:right;
 }
 /*分页样式*/
