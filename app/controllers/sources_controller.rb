@@ -163,6 +163,9 @@ class SourcesController < ApplicationController
       else
         user_count.update_attributes({:uploads => user_count.uploads + 1 })
       end
+       # 加积分 和金币
+      add_discuz_credits @source.dz_user_id, 20
+      add_discuz_extcredits @source.dz_user_id, 30
       redirect_to my_sources_path
     else
       flash[:error] = "保存错误,请重试"

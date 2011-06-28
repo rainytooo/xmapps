@@ -1231,3 +1231,9 @@ h2.zjzl_title span {
     padding: 0 0 0 11px;
 }
 
+.digg .push_up, span.json_digg .best_tran {
+    /*background: url("../images/arrow_up.gif") no-repeat scroll left 2px transparent;*/
+    color: #17A300;
+    padding: 0 0 0 2px;
+}
+

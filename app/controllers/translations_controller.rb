@@ -93,35 +93,56 @@ class TranslationsController < ApplicationController
       end
       return
     end
+
+    # 最佳翻译投票
+    if params[:best_tran]
+      tp_uid = params[:uid]
+      # 查出改用户的总积分
+      @dzuser = Dzuser.where("uid = ?", tp_uid).first
+      credits = @dzuser.credits
+      @translation.update_attributes({:best_trans => @translation.best_trans + 1,  :best_trans_score => @translation.best_trans_score + credits})
+      if @translation.best_trans_score >= 2000
+         # 评为最佳翻译
+        @translation.update_attributes({:status => 1})
+         # 加金币和积分
+        add_discuz_credits @translation.dz_user_id, 100
+        add_discuz_extcredits @translation.dz_user_id, 150
+      end
+
+      # 防止刷票
+      session[:toupiao]["trans_best_"+@translation.source_id.to_s] = 1
+      logger.debug 'aaaaaaaaaaaaaa'
+      logger.debug session[:toupiao]["trans_best_"+@translation.source_id.to_s]
+      logger.debug session[:toupiao]["trans_digg_"+@translation.id.to_s]
+      @json_data = {:best_trans => @translation.best_trans}
+      render :json => @json_data
+      return
+    end
+
+    # 顶和踩
     if params[:digg]
       logger.debug "update translation digg"
       @translation.update_attributes({:trans_good => @translation.trans_good + 1})
       @json_data = {:bad => @translation.trans_bad, :good => @translation.trans_good}
+      # 防止刷票
+      session[:toupiao]["trans_digg_"+@translation.id.to_s] = 1
+      logger.debug 'bbbbbbbbbbbbbb'
+      logger.debug session[:toupiao]["trans_best_"+@translation.source_id.to_s]
+      logger.debug session[:toupiao]["trans_digg_"+@translation.id.to_s]
       render :json => @json_data
-
-    elsif params[:bury]
+      return
+  elsif params[:bury]
       logger.debug "update translation digg"
       @translation.update_attributes({:trans_bad => @translation.trans_bad + 1})
       @json_data = {:bad => @translation.trans_bad, :good => @translation.trans_good}
+      session[:toupiao]["trans_digg_"+@translation.id.to_s] = 1
+      logger.debug 'bbbbbbbbbbbbbb'
+      logger.debug session[:toupiao]["trans_best_"+@translation.source_id.to_s]
+      logger.debug session[:toupiao]["trans_digg_"+@translation.id.to_s]
       render :json => @json_data
+      return
+    end
 
-    end
-    if params[:bury] or params[:digg]
-      # 防止刷票
-      diggs = session[:diggs]
-      if diggs
-         # 如果已经有了,拿出所有trans的
-         tras_digg = diggs["trans_"+@translation.id.to_s]
-         if not tras_digg
-            diggs["trans_"+@translation.id.to_s] = 1
-         end
-         session[:diggs] = diggs
-      else
-        diggs = Hash.new
-        diggs["trans_"+@translation.id.to_s] = 1
-        session[:diggs] = diggs
-      end
-    end
 
   end
 

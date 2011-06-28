@@ -2,6 +2,7 @@
 <title>译文-<%= @source.source_type.name%>-<%= @source.title %> - </title>
 <meta name="description" content="国外精品文章 翻译 译文 英语学习 英语文章 <%= @source.source_type.name%>-<%= @source.title %>">
 <meta name="keywords" content="国外精品文章 翻译 译文 英语学习 英语文章 英语范文学习 <%= @source.source_type.name%>-<%= @source.title %>">
+<%= javascript_include_tag 'jquery.min' %>
 <% end %>
 
 		<div class="container <%= "empty_list" if not @dl_thread %>">
@@ -56,6 +57,11 @@
 					<%= raw(@source.source_desc) %>
 					<div class="clear"></div>
 				</div>
+
+				<div class="downloads_list">
+					<h3><span class="warning">来源网址:</span><a href="<%= @source.origin_url %>" target="_blank"><%= @source.origin_url %></a></h3>
+				</div>
+
 				<% if @translations %>
 				  <% if @translations.size > 0  %>
 				  <div class="downloads_list">

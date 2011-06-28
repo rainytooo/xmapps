@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110628052904) do
+ActiveRecord::Schema.define(:version => 20110628071219) do
 
   create_table "applies", :force => true do |t|
     t.string   "name"
@@ -236,17 +236,19 @@ ActiveRecord::Schema.define(:version => 20110628052904) do
     t.integer  "source_type_id"
     t.integer  "source_lang_id"
     t.integer  "dz_user_id"
-    t.string   "username",       :limit => 32
+    t.string   "username",         :limit => 32
     t.string   "title"
     t.string   "source_desc"
     t.string   "origin_url"
     t.text     "content"
-    t.integer  "trans_good",                   :default => 0
-    t.integer  "trans_bad",                    :default => 0
-    t.integer  "status",                       :default => 0
-    t.integer  "views",                        :default => 0
+    t.integer  "trans_good",                     :default => 0
+    t.integer  "trans_bad",                      :default => 0
+    t.integer  "status",                         :default => 0
+    t.integer  "views",                          :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "best_trans",                     :default => 0
+    t.integer  "best_trans_score",               :default => 0
   end
 
   add_index "translations", ["source_id"], :name => "fk_translations_source"

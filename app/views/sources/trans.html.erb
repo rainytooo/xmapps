@@ -4,6 +4,34 @@
 <meta name="keywords" content="国外精品文章 翻译 译文 英语学习 英语文章 英语范文学习 ">
 <%= stylesheet_link_tag "global" %>
 <%= stylesheet_link_tag "index" %>
+<%= javascript_include_tag 'jquery.min' %>
+<script type="text/javascript">
+	function json_digg(pid, sid, uid){
+	  $.post('/sources/'+sid+'/translations/'+pid,
+	  {'_method':'put', 'digg':1, 'uid': uid},
+	  function(data){
+	    var change_el = "#digg_count_"+pid
+      //$( change_el ).empty().append( data.count );
+      var span_el = "#digg_link_"+pid
+      $(span_el).replaceWith('<span id="digg_link_'+pid+'" class="digg fr json_digg"><span class="push_up">顶<b id="digg_count_'+pid+'">'+data.good+'</b></span><span class="trample">踩<b id="bury_count_'+pid+'">'+data.bad+'</b></span></span>');
+	  },
+	  "json"
+	  );
+	}
+
+	function json_bury(pid, sid, uid){
+	  $.post('/sources/'+sid+'/translations/'+pid,
+	  {'_method':'put', 'bury':1},
+	  function(data){
+	    var change_el = "#bury_count_"+pid
+	    var span_el = "#digg_link_"+pid
+      //$( change_el ).empty().append( data.count );
+      $(span_el).replaceWith('<span id="digg_link_'+pid+'" class="digg fr json_digg"><span class="push_up">顶<b id="digg_count_'+pid+'">'+data.good+'</b></span><span class="trample">踩<b id="bury_count_'+pid+'">'+data.bad+'</b></span></span>');
+	  },
+	  "json"
+	  );
+	}
+</script>
 <% end %>
 
 		<div class="container">
@@ -32,7 +60,35 @@
 									  <a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', source.dz_user_id.to_s) %>"><%= source.username%></a>
 										<span class="view">有<%= source.views %>人浏览</span>
 										<span class="date"><%= source.created_at.strftime('%Y-%m-%d') %></span>
-
+                  <%
+						        diggs = session[:diggs]
+                  if not diggs
+                    session[:diggs] = Hash.new
+                  end
+						      %>
+						      <% if session[:diggs]["trans_"+source.id.to_s] != 1%>
+						      <span id="digg_link_<%= source.id %>" class="digg fr json_digg">
+                  <a class="push_up" onclick="json_digg(<%= source.id %>,<%= source.source_id %>, <%= source.user_id %>); return false;" href="#">
+                      顶
+                  <b id="digg_count_<%= source.id %>"><%= source.trans_good %></b>
+                  </a>
+                  <a class="trample" onclick="json_bury(<%= source.id %>,<%= source.source_id %>, <%= source.user_id %>); return false;" href="#">
+                      踩
+                  <b id="bury_count_<%= source.id %>"><%= source.trans_bad %></b>
+                  </a>
+                </span>
+                <% else %>
+                 <span id="digg_link_<%= source.id %>" class="digg fr json_digg">
+                  <span class="push_up">
+                      顶
+                  <b id="digg_count_<%= source.id %>"><%= source.trans_good %></b>
+                  </span>
+                  <span class="trample">
+                      踩
+                  <b id="bury_count_<%= source.id %>"><%= source.trans_bad %></b>
+                  </span>
+                </span>
+                <% end %>
 
 									</div>
 								</div>

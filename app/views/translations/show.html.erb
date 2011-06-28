@@ -3,10 +3,12 @@
 <meta name="description" content="国外精品文章 翻译 译文 英语学习 英语文章 <%= @source.source_type.name%>-<%= @source.title %>">
 <meta name="keywords" content="国外精品文章 翻译 译文 英语学习 英语文章 英语范文学习 <%= @source.source_type.name%>-<%= @source.title %>">
 <%= javascript_include_tag 'jquery.min' %>
+<%= csrf_meta_tag %>
 <script type="text/javascript">
+
 	function json_digg(pid){
 	  $.post('/sources/<%= @source.id %>/translations/<%= @translation.id %>',
-	  {'_method':'put', 'digg':1, 'uid':'<%= @translation.user_id %>'},
+	  {'_method':'put', 'digg':1, 'uid':'<%= @translation.user_id %>', 'authenticity_token': "<%= form_authenticity_token %>"},
 	  function(data){
 	    var change_el = "#digg_count_"+pid
       //$( change_el ).empty().append( data.count );
@@ -19,7 +21,7 @@
 
 	function json_bury(pid){
 	  $.post('/sources/<%= @source.id %>/translations/<%= @translation.id %>',
-	  {'_method':'put', 'bury':1},
+	  {'_method':'put', 'bury':1,'authenticity_token':"<%= form_authenticity_token %>" },
 	  function(data){
 	    var change_el = "#bury_count_"+pid
 	    var span_el = "#digg_link_"+pid
@@ -29,7 +31,31 @@
 	  "json"
 	  );
 	}
+
+	function best_trans(pid, sid, uid){
+	  if (uid != 0){
+	    $.post('/sources/'+sid+'/translations/'+pid,
+	    {'_method':'put', 'best_tran':1, 'uid':uid,'authenticity_token':"<%= form_authenticity_token %>"},
+	    function(data){
+	      var change_el = "#bury_count_"+pid
+	      var span_el = "#best_trans_"+pid
+        //$( change_el ).empty().append( data.count );
+        $(span_el).replaceWith('<span id="best_trans_<%= @translation.id %>" class="digg fr json_digg"><span class="best_tran">最佳翻译<b id="best_trans_count_<%= @translation.id %>">'+data.best_trans+'</b></span></span>');
+	    },
+	    "json"
+	    );
+	  } else {
+	    alert('您还没有登录,不能进行此操作')
+	  }
+	}
+
+	$.ajaxSetup({
+    beforeSend: function(xhr) {
+      xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+    }
+  });
 </script>
+
 <% end %>
 
 		<div class="container <%= "empty_list" if not @dl_thread %>">
@@ -65,13 +91,30 @@
 						<!-- <span class="comment">评论(18)</span> -->
 						<span class="view">有<%= @translation.views %>人浏览</span>
 						<span class="date"><%= @translation.created_at.strftime('%Y-%m-%d') %></span>
-						<%
-						  diggs = session[:diggs]
-            if not diggs
-              session[:diggs] = Hash.new
-            end
-						%>
-						<% if session[:diggs]["trans_"+@translation.id.to_s] != 1%>
+						aaaaaaaa<%= session[:toupiao]["trans_best_"+@translation.source_id.to_s] %>
+            <%
+              if session[:toupiao]
+
+                session[:toupiao] = Hash.new
+              end
+            %>
+						<% if session[:toupiao]["trans_best_"+@translation.source_id.to_s] != 1%>
+						<span id="best_trans_<%= @translation.id %>" class="digg fr json_digg">
+            <a class="" onclick="best_trans(<%= @translation.id %>, <%= @translation.source_id %>,<%= session[:login_user] ? session[:login_user].uid : 0 %>); return false;" href="#">
+                最佳翻译
+            <b id="best_trans_count_<%= @translation.id %>"><%= @translation.best_trans %></b>
+            </a>
+          </span>
+          <% else %>
+           <span id="best_trans_<%= @translation.id %>" class="digg fr json_digg">
+            <span class="best_tran">
+                最佳翻译
+            <b id="best_trans_count_<%= @translation.id %>"><%= @translation.best_trans %></b>
+            </span>
+          </span>
+          <% end %>
+
+						<% if session[:toupiao]["trans_digg_"+@translation.id.to_s] != 1%>
 						<span id="digg_link_<%= @translation.id %>" class="digg fr json_digg">
             <a class="push_up" onclick="json_digg(<%= @translation.id %>); return false;" href="#">
                 顶
