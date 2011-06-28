@@ -68,6 +68,9 @@
 				<h1>
 					<a class="dl_type" href="http://localhost:3000/sources/tags/<%= @source.source_type.id%>">[<%= @source.source_type.name%>]</a>
 					<%= @translation.title %>
+					<% if @translation.status == 1 %>
+					--<span class="ask_status_1">最佳翻译</span>
+					<% end %>
 				</h1>
 			<% end %>
 			</div>

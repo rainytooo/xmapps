@@ -111,9 +111,6 @@ class TranslationsController < ApplicationController
 
       # 防止刷票
       session[:toupiao]["trans_best_"+@translation.source_id.to_s] = 1
-      logger.debug 'aaaaaaaaaaaaaa'
-      logger.debug session[:toupiao]["trans_best_"+@translation.source_id.to_s]
-      logger.debug session[:toupiao]["trans_digg_"+@translation.id.to_s]
       @json_data = {:best_trans => @translation.best_trans}
       render :json => @json_data
       return
@@ -126,9 +123,8 @@ class TranslationsController < ApplicationController
       @json_data = {:bad => @translation.trans_bad, :good => @translation.trans_good}
       # 防止刷票
       session[:toupiao]["trans_digg_"+@translation.id.to_s] = 1
-      logger.debug 'bbbbbbbbbbbbbb'
-      logger.debug session[:toupiao]["trans_best_"+@translation.source_id.to_s]
-      logger.debug session[:toupiao]["trans_digg_"+@translation.id.to_s]
+      # 加金币和积分
+      add_discuz_extcredits @translation.dz_user_id, 2
       render :json => @json_data
       return
   elsif params[:bury]
@@ -136,9 +132,7 @@ class TranslationsController < ApplicationController
       @translation.update_attributes({:trans_bad => @translation.trans_bad + 1})
       @json_data = {:bad => @translation.trans_bad, :good => @translation.trans_good}
       session[:toupiao]["trans_digg_"+@translation.id.to_s] = 1
-      logger.debug 'bbbbbbbbbbbbbb'
-      logger.debug session[:toupiao]["trans_best_"+@translation.source_id.to_s]
-      logger.debug session[:toupiao]["trans_digg_"+@translation.id.to_s]
+      add_discuz_extcredits @translation.dz_user_id, -2
       render :json => @json_data
       return
     end
