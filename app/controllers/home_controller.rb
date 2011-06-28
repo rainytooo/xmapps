@@ -9,6 +9,14 @@ class HomeController < ApplicationController
     # 最新问答
     @new_asks = Ask.order("created_at DESC").limit(10)
   end
+  # 赚金币
+  def i_want_credits
+      # 未关闭的问题
+      @unsolve_asks = Ask.where("status = 0").order("created_at DESC").limit(10)
+      # 未翻译的文章
+      @sources = Source.where("status = 1").order("created_at DESC").limit(10)
+
+  end
 
   # def robots
 	# robots = ROBOTS_TXT

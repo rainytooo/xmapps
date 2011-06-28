@@ -85,6 +85,7 @@ Xmapps::Application.routes.draw do
 
   # site index page
   get "home/index"
+  match "i_want_credits", :to => "home#i_want_credits", :via => [:get]
   root :to => "home#index"
   match "index" => "home#index"
   #match "robots" => "home#robots"
