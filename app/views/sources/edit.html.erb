@@ -1,0 +1,108 @@
+<% content_for :head do %>
+<title>小马过河-国外原文 编辑原文</title>
+<meta name="description" content="发布原文" />
+<meta name="keywords" content="小马过河 外国原文发布" />
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/localization/messages_cn.js"></script>
+<%= javascript_include_tag 'tiny_mce/tiny_mce' %>
+<script type="text/javascript">
+	tinyMCE.init({
+		mode : "exact",
+   elements : "source_content",
+
+		theme : "advanced",
+		// Theme options
+
+		theme_advanced_toolbar_location : "top",
+    theme_advanced_toolbar_align : "left",
+    theme_advanced_statusbar_location : "bottom",
+    theme_advanced_resizing : true,
+
+	});
+</script>
+
+<script language="Javascript">
+
+	$(document).ready(function(){
+    $("#simplenew").validate(
+      {
+        rules: {
+          "source[title]": {
+             required: true,
+             minlength: 5,
+             maxlength: 128
+           },
+          "source[origin_url]": {
+             url: true
+           }
+         },
+         messages: {
+          "source[title]": {
+              required: "您必须填写文章的标题"
+           },
+          "source[origin_url]": {
+              url: "请您填写合法的文章的来源的url,比如http://www.xiaoma.com"
+           }
+         }
+      }
+    );
+  });
+</script>
+
+
+<% end %>
+		<div class="container">
+			<div class="page_path">
+			<a href="/">首页</a> &gt;&gt; <a href="/sources">国外原文</a> &gt;&gt; 我要发布原文
+			</div><!-- .page_path -->
+			<div class="page_title"><h1>国外原文发布 - 填写基本信息</h1></div>
+
+		</div><!-- #container -->
+
+		<div class="container">
+	      <!-- 错误和提示信息 开始 -->
+       <% if flash[:message] %>
+				<div class="submit_message"><%= flash[:message] %></div><!-- .message -->
+				<% end %>
+				<% if flash[:error] %>
+				<div class="submit_error"><%= flash[:error] %></div><!-- .error -->
+				<% end %>
+        <!-- 错误和提示信息 结束 -->
+       <div class="simpleform">
+         <form id="simplenew" method="post" action="/sources/<%= @source.id%>" accept-charset="UTF-8" enctype="multipart/form-data">
+          <input type="hidden" name="_method" value="put">
+           <div class="global_form">
+						  <label for="name">原文的标题:</label>
+						  <input id="source_title" type="text" class="langip" name="source[title]" value="<%= @source.title %>">
+					  </div>
+					  <div class="global_form">
+						  <label for="source_url">原文的地址:</label>
+						  <input id="source_url" type="text" class="langip" name="source[origin_url]" value="<%= @source.origin_url %>">
+					  </div>
+
+
+
+					  <div class="global_form">
+						  <div class="fl"><label for="name">原文的简介:</label></div>
+						  <textarea id="source_desc" rows="6" name="source[source_desc]"  cols="60"><%= @source.source_desc %></textarea>
+					  </div>
+
+					  <div class="global_form">
+						  <div class="fl"><label for="name">正文内容:</label></div>
+						  <textarea id="source_content" rows="35" name="source[content]"  cols="100"><%= @source.content %></textarea>
+					  </div>
+
+
+           <div id="form_submit">
+						  <input class="submit" name="commit" type="submit" value="提交">
+					  </div>
+					  <div class="clear"></div>
+				  </form>
+       </div><!-- .simpleform -->
+
+		</div><!-- #container -->
+		<div class="clear"></div>
+

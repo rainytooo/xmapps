@@ -1,4 +1,26 @@
 Xmapps::Application.routes.draw do
+
+
+  # 翻译的原文
+  match "sources/search", :to => "sources#search", :via => [:get], :as => "sources_search"
+  resources :sources do
+    collection do
+      #所有发布的
+      get 'release'
+      #所有翻译的
+      get 'trans'
+      # 我de
+      get 'my'
+      # 我发布的
+      get 'my_release'
+      # 我翻译的
+      get 'my_trans'
+      # 所有未翻译的
+      get 'untrans'
+    end
+    resources :translations
+  end
+
   # 问答
   resources :asks do
     # 我的问答

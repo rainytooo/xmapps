@@ -1,0 +1,98 @@
+<% content_for :head do %>
+<title>小马过河-翻译原文</title>
+<meta name="description" content="翻译原文" />
+<meta name="keywords" content="小马过河 翻译原文" />
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/localization/messages_cn.js"></script>
+<%= javascript_include_tag 'tiny_mce/tiny_mce' %>
+<script type="text/javascript">
+	tinyMCE.init({
+		mode : "exact",
+   elements : "translation_content",
+
+		theme : "advanced",
+		// Theme options
+
+		theme_advanced_toolbar_location : "top",
+    theme_advanced_toolbar_align : "left",
+    theme_advanced_statusbar_location : "bottom",
+    theme_advanced_resizing : true,
+
+	});
+</script>
+
+<script language="Javascript">
+
+	$(document).ready(function(){
+    $("#simplenew").validate(
+      {
+        rules: {
+          "translation[title]": {
+             required: true,
+             maxlength: 128
+           }
+         },
+         messages: {
+          "translation[title]": {
+              required: "您必须填写文章的标题"
+           }
+         }
+      }
+    );
+  });
+</script>
+
+
+<% end %>
+		<div class="container">
+			<div class="page_path">
+			<a href="/">首页</a> &gt;&gt; <a href="/sources">译文频道</a> &gt;&gt; <a href="/sources/<%= @source.id%>"><%= @source.title%></a> &gt;&gt; 翻译
+			</div><!-- .page_path -->
+			<div class="page_title"><h1>翻译原文</h1></div>
+
+		</div><!-- #container -->
+
+		<div class="container">
+	      <!-- 错误和提示信息 开始 -->
+       <% if flash[:message] %>
+				<div class="submit_message"><%= flash[:message] %></div><!-- .message -->
+				<% end %>
+				<% if flash[:error] %>
+				<div class="submit_error"><%= flash[:error] %></div><!-- .error -->
+				<% end %>
+        <!-- 错误和提示信息 结束 -->
+        <div class="downloads_content list_bottom_partition">
+					<h5><%= @source.title %></h5>
+
+					<%= raw(@source.content) %>
+					<div class="clear"></div>
+				</div>
+       <div class="simpleform">
+         <form id="simplenew" method="post" action="/sources/<%= @source.id%>/translations/<%= @translation.id %>" accept-charset="UTF-8" >
+            <input type="hidden" value="put" name="_method">
+            <input type="hidden" value="1" name="update_trans">
+            <div class="global_form">
+						  <label for="name">翻译后的标题:</label>
+						  <input id="translation_title" type="text" class="langip" name="translation[title]" value="<%= @translation.title %>">
+					  </div>
+
+					  <div class="global_form">
+						  <div class="fl"><label for="name">翻译正文:</label></div>
+						  <textarea id="translation_content" rows="35" name="translation[content]"  cols="100">value="<%= @translation.content %>"</textarea>
+					  </div>
+
+
+           <div id="form_submit">
+						  <input class="submit" name="commit" type="submit" value="提交">
+					  </div>
+					  <div class="clear"></div>
+				  </form>
+       </div><!-- .simpleform -->
+
+
+		</div><!-- #container -->
+		<div class="clear"></div>
+

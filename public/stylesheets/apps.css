@@ -86,6 +86,9 @@ h1 span.title_keywords {
 	margin: 0 auto;
     width: 960px;
 }
+span.warning a {
+    color:red;
+}
 
 .roundedLarge {
     border-radius: 5px 5px 5px 5px;
@@ -197,6 +200,7 @@ h1 span.title_keywords {
 /*页面标题部分*/
 .page_title {
 	border-bottom: 1px solid #DEDEDE;
+	margin-bottom: 12px;
 }
 .page_title h1 {
 	font-family: 'Microsoft YaHei',Verdana,Tahoma,Helvetica,Arial,sans-serif;
@@ -382,11 +386,18 @@ form input {
 	width:180px;
 }
 
+form input.langip {
+    height:20px;
+    width:455px;
+}
+
 form select {
 	width:184px;
 }
 .global_form {
 	margin-bottom: 9px;
+	vertical-align:middle;
+	padding-top: 1px;
 }
 
 .global_form .input_title {
@@ -1204,5 +1215,19 @@ h2.zjzl_title span {
     height: 20px;
     overflow: hidden;
     width: 190px;
+}
+
+.digg .push_up, span.json_digg .push_up {
+    background: url("../images/arrow_up.gif") no-repeat scroll left 2px transparent;
+    color: #17A300;
+    margin: 0 2em 0 0;
+    padding: 0 0 0 11px;
+}
+
+.digg .push_up, span.json_digg .trample {
+    background: url("../images/arrow_down.gif") no-repeat scroll left 2px transparent;
+    color: #FF0000;
+    margin: 0 2em 0 0;
+    padding: 0 0 0 11px;
 }
 

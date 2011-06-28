@@ -1,0 +1,179 @@
+<% content_for :head do %>
+<title>译文-<%= @source.source_type.name%>-<%= @translation.title %> - </title>
+<meta name="description" content="国外精品文章 翻译 译文 英语学习 英语文章 <%= @source.source_type.name%>-<%= @source.title %>">
+<meta name="keywords" content="国外精品文章 翻译 译文 英语学习 英语文章 英语范文学习 <%= @source.source_type.name%>-<%= @source.title %>">
+<%= javascript_include_tag 'jquery.min' %>
+<script type="text/javascript">
+	function json_digg(pid){
+	  $.post('/sources/<%= @source.id %>/translations/<%= @translation.id %>',
+	  {'_method':'put', 'digg':1, 'uid':'<%= @translation.user_id %>'},
+	  function(data){
+	    var change_el = "#digg_count_"+pid
+      //$( change_el ).empty().append( data.count );
+      var span_el = "#digg_link_"+pid
+      $(span_el).replaceWith('<span id="digg_link_<%= @translation.id %>" class="digg fr json_digg"><span class="push_up">顶<b id="digg_count_<%= @translation.id %>">'+data.good+'</b></span><span class="trample">踩<b id="bury_count_<%= @translation.id %>">'+data.bad+'</b></span></span>');
+	  },
+	  "json"
+	  );
+	}
+
+	function json_bury(pid){
+	  $.post('/sources/<%= @source.id %>/translations/<%= @translation.id %>',
+	  {'_method':'put', 'bury':1},
+	  function(data){
+	    var change_el = "#bury_count_"+pid
+	    var span_el = "#digg_link_"+pid
+      //$( change_el ).empty().append( data.count );
+      $(span_el).replaceWith('<span id="digg_link_<%= @translation.id %>" class="digg fr json_digg"><span class="push_up">顶<b id="digg_count_<%= @translation.id %>">'+data.good+'</b></span><span class="trample">踩<b id="bury_count_<%= @translation.id %>">'+data.bad+'</b></span></span>');
+	  },
+	  "json"
+	  );
+	}
+</script>
+<% end %>
+
+		<div class="container <%= "empty_list" if not @dl_thread %>">
+			<div class="page_path">
+				<a href="/">首页</a> &gt;&gt; <a href="/sources">译文频道</a> &gt;&gt; <%= @translation.title %>
+			</div><!-- .page_path -->
+
+			<div class="page_title">
+			<% if @source %>
+				<h1>
+					<a class="dl_type" href="http://localhost:3000/sources/tags/<%= @source.source_type.id%>">[<%= @source.source_type.name%>]</a>
+					<%= @translation.title %>
+				</h1>
+			<% end %>
+			</div>
+
+			<div class="list_leftside">
+					<% if flash[:message] %>
+					<div class="submit_message"><%= flash[:message] %></div><!-- .message -->
+					<% end %>
+					<% if flash[:error] %>
+					<div class="submit_error"><%= flash[:error] %></div><!-- .error -->
+					<% end %>
+				<% if @source %>
+				<div class="page_sample_info">
+					<div class="page_user_info">
+						<a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', @translation.dz_user_id.to_s) %>">
+							<img src="<%= USER_DISCUZ_SMALL_AVATAR_BASE.gsub('{dz_uid}', @translation.dz_user_id.to_s) %>">
+						</a>
+					</div><!-- .page_user_info -->
+					<div class="upload_info">
+						<a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', @source.dz_user_id.to_s) %>"><%= @translation.username%></a>
+						<!-- <span class="comment">评论(18)</span> -->
+						<span class="view">有<%= @translation.views %>人浏览</span>
+						<span class="date"><%= @translation.created_at.strftime('%Y-%m-%d') %></span>
+						<%
+						  diggs = session[:diggs]
+            if not diggs
+              session[:diggs] = Hash.new
+            end
+						%>
+						<% if session[:diggs]["trans_"+@translation.id.to_s] != 1%>
+						<span id="digg_link_<%= @translation.id %>" class="digg fr json_digg">
+            <a class="push_up" onclick="json_digg(<%= @translation.id %>); return false;" href="#">
+                顶
+            <b id="digg_count_<%= @translation.id %>"><%= @translation.trans_good %></b>
+            </a>
+            <a class="trample" onclick="json_bury(<%= @translation.id %>); return false;" href="#">
+                踩
+            <b id="bury_count_<%= @translation.id %>"><%= @translation.trans_bad %></b>
+            </a>
+          </span>
+          <% else %>
+           <span id="digg_link_<%= @translation.id %>" class="digg fr json_digg">
+            <span class="push_up">
+                顶
+            <b id="digg_count_<%= @translation.id %>"><%= @translation.trans_good %></b>
+            </span>
+            <span class="trample">
+                踩
+            <b id="bury_count_<%= @translation.id %>"><%= @translation.trans_bad %></b>
+            </span>
+          </span>
+          <% end %>
+
+					</div><!-- .upload_info -->
+					<div class="clear"></div>
+
+				</div><!-- .page_sample_info -->
+				<div class="downloads_content_desc list_bottom_partition">
+					<p>
+						<img src="<%= @source.photo.url(:medium)%>"></img>
+
+					</p>
+					<h2>内容简介</h2>
+					<%= raw(@source.source_desc) %>
+					<div class="clear"></div>
+				</div>
+
+				<div class="downloads_list">
+					<h3><span class="warning">查看原文:</span><a href="/sources/<%= @source.id %>" target="_blank"><%= @source.title %></a></h3>
+				</div>
+				<div class="downloads_content list_bottom_partition">
+					<h5><span>翻译正文:</span><%= @translation.title %></h5>
+					<%= raw(@translation.content) %>
+					<div class="clear"></div>
+				</div>
+
+				<% end %>
+			</div><!-- .list_leftside -->
+
+			<div class="list_rightside">
+<!-- JiaThis Button BEGIN -->
+<div id="ckepop">
+	<a href="http://www.jiathis.com/share/?uid=1502974" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">分享到：</a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_kaixin001"></a>
+	<a class="jiathis_button_renren"></a>
+</div>
+<script type="text/javascript" src="http://v1.jiathis.com/code/jia.js?uid=1502974" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+        <div class="right_search">
+					<form method="get" action="/sources/search" accept-charset="UTF-8">
+						<input type="hidden" value="source" name="type">
+						<input id="query" type="text" name="query">
+						<input id="search_submit" class="btn_srh" type="submit" value="搜索">
+					</form>
+				</div>
+				<div class="my_ask">
+				  <h2><a href="/sources/my">我的译文</a></h2>
+					<h2><a href="/sources/new">我要发布</a></h2>
+					<h2><a href="/sources/untrans">我要翻译</a></h2>
+				</div>
+				<div class="ask_tags">
+					<h2 class="subject">译文分类</h2>
+					<h4>
+					<a href="/sources/search?tags=1">科技</a>&nbsp;
+					<a href="/sources/search?tags=2">文化</a>&nbsp;
+					<a href="/sources/search?tags=3">体育</a>&nbsp;
+					<a href="/sources/search?tags=4">生活</a>&nbsp;
+					<a href="/sources/search?tags=5">八卦</a>&nbsp;
+					<a href="/sources/search?tags=6">社会</a>&nbsp;
+					<a href="/sources/search?tags=99">其他</a>
+					</h4>
+				</div>
+				<div class="ask_tags">
+					<h2 class="subject">语言分类</h2>
+					<h4>
+					<a href="/sources/search?lang=1">英语</a>&nbsp;
+					<a href="/sources/search?lang=2">德语</a>&nbsp;
+					<a href="/sources/search?lang=3">法语</a>&nbsp;
+					<a href="/sources/search?lang=4">西班牙语</a>&nbsp;
+					<a href="/sources/search?lang=5">意大利语</a>&nbsp;
+					<a href="/sources/search?lang=6">日语</a>&nbsp;
+					<a href="/sources/search?lang=7">韩语</a>&nbsp;
+					<a href="/sources/search?lang=8">俄语</a>&nbsp;
+					<a href="/sources/search?lang=9">葡语</a>&nbsp;
+					<a href="/sources/search?lang=99">其他</a>
+					</h4>
+				</div>
+
+			</div>
+			<div class="clear"></div>
+		</div><!-- #content_container -->
+		<div class="clear"></div>
+

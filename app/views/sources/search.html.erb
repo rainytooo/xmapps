@@ -1,0 +1,104 @@
+<% content_for :head do %>
+<title>小马过河-译文频道</title>
+<meta name="description" content="国外精品文章 翻译 译文 英语学习 英语文章 ">
+<meta name="keywords" content="国外精品文章 翻译 译文 英语学习 英语文章 英语范文学习 ">
+<%= stylesheet_link_tag "global" %>
+<%= stylesheet_link_tag "index" %>
+<% end %>
+
+		<div class="container">
+			<div class="list_leftside">
+				<div class="index_rich_list">
+				    <% if @sources.empty? %>
+					  <div class="submit_message">没有搜索到您要的结果</div><!-- .message -->
+					  <% end %>
+
+						<ul>
+						   <% @sources.each do |source| %>
+							<li>
+								<div class="content">
+									<h5>
+										<a class="dl_type" href="/sources/search?tags=<%= source.source_type.id%>">[<%= source.source_type.name%>]</a>
+										&nbsp;
+										<a href="/source/<%= source.id %>" title="<%= source.title %>" target="_blank" class="title"><%= source.title %></a>
+									</h5>
+
+									<div class="description">
+									<p><img src="<%= source.photo.url(:thumb)%>"></img>
+									<%= h(source.source_desc.truncate(160))%>
+									</p>
+									</div>
+									<div class="clear"></div>
+									<div class="upload_info">
+									  <a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', source.dz_user_id.to_s) %>"><%= source.username%></a>
+										<span class="view">有<%= source.views %>人浏览</span>
+										<span class="date"><%= source.created_at.strftime('%Y-%m-%d') %></span>
+
+
+									</div>
+								</div>
+							</li>
+							<% end %>
+						</ul>
+					<div class="clear"></div>
+					<div class="will_pagination">
+						<%=h will_paginate @sources, :previous_label => '上一页',  :next_label => '下一页'%>
+					</div>
+				</div><!-- .index_rich_list -->
+			</div><!-- .list_leftside -->
+			<div class="list_rightside">
+<!-- JiaThis Button BEGIN -->
+<div id="ckepop">
+	<a href="http://www.jiathis.com/share/?uid=1502974" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">分享到：</a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_kaixin001"></a>
+	<a class="jiathis_button_renren"></a>
+</div>
+<script type="text/javascript" src="http://v1.jiathis.com/code/jia.js?uid=1502974" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+       <div class="right_search">
+					<form method="get" action="/sources/search" accept-charset="UTF-8">
+						<input type="hidden" value="source" name="type">
+						<input id="query" type="text" name="query">
+						<input id="search_submit" class="btn_srh" type="submit" value="搜索">
+					</form>
+				</div>
+				<div class="my_ask">
+				  <h2><a href="/sources/my">我的译文</a></h2>
+					<h2><a href="/sources/new">我要发布</a></h2>
+					<h2><a href="/sources/untrans">我要翻译</a></h2>
+				</div>
+				<div class="ask_tags">
+					<h2 class="subject">译文分类</h2>
+					<h4>
+					<a href="/sources/search?tags=1">科技</a>&nbsp;
+					<a href="/sources/search?tags=2">文化</a>&nbsp;
+					<a href="/sources/search?tags=3">体育</a>&nbsp;
+					<a href="/sources/search?tags=4">生活</a>&nbsp;
+					<a href="/sources/search?tags=5">八卦</a>&nbsp;
+					<a href="/sources/search?tags=6">社会</a>&nbsp;
+					<a href="/sources/search?tags=99">其他</a>
+					</h4>
+				</div>
+				<div class="ask_tags">
+					<h2 class="subject">语言分类</h2>
+					<h4>
+					<a href="/sources/search?lang=1">英语</a>&nbsp;
+					<a href="/sources/search?lang=2">德语</a>&nbsp;
+					<a href="/sources/search?lang=3">法语</a>&nbsp;
+					<a href="/sources/search?lang=4">西班牙语</a>&nbsp;
+					<a href="/sources/search?lang=5">意大利语</a>&nbsp;
+					<a href="/sources/search?lang=6">日语</a>&nbsp;
+					<a href="/sources/search?lang=7">韩语</a>&nbsp;
+					<a href="/sources/search?lang=8">俄语</a>&nbsp;
+					<a href="/sources/search?lang=9">葡语</a>&nbsp;
+					<a href="/sources/search?lang=99">其他</a>
+					</h4>
+				</div>
+
+			</div>
+			<div class="clear"></div>
+		</div><!-- #content_container -->
+		<div class="clear"></div>
+

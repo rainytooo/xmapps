@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110624063546) do
+ActiveRecord::Schema.define(:version => 20110628052904) do
 
   create_table "applies", :force => true do |t|
     t.string   "name"
@@ -181,6 +181,39 @@ ActiveRecord::Schema.define(:version => 20110624063546) do
 
   add_index "simple_captcha_data", ["key"], :name => "idx_key"
 
+  create_table "source_langs", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "source_types", :force => true do |t|
+    t.string "name"
+  end
+
+  create_table "sources", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "source_type_id"
+    t.integer  "source_lang_id"
+    t.integer  "dz_user_id"
+    t.string   "username",           :limit => 32
+    t.string   "title",              :limit => 128
+    t.string   "source_desc"
+    t.string   "origin_url"
+    t.text     "content"
+    t.string   "photo_file_name",    :limit => 128
+    t.string   "photo_content_type", :limit => 32
+    t.integer  "photo_file_size"
+    t.integer  "views",                             :default => 0
+    t.integer  "status",                            :default => 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sources", ["source_lang_id"], :name => "fk_sources_lang"
+  add_index "sources", ["source_type_id"], :name => "fk_sources_type"
+  add_index "sources", ["user_id"], :name => "fk_sources_user"
+
   create_table "tag_relationships", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "object_id"
@@ -197,15 +230,40 @@ ActiveRecord::Schema.define(:version => 20110624063546) do
     t.datetime "updated_at"
   end
 
+  create_table "translations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "source_id"
+    t.integer  "source_type_id"
+    t.integer  "source_lang_id"
+    t.integer  "dz_user_id"
+    t.string   "username",       :limit => 32
+    t.string   "title"
+    t.string   "source_desc"
+    t.string   "origin_url"
+    t.text     "content"
+    t.integer  "trans_good",                   :default => 0
+    t.integer  "trans_bad",                    :default => 0
+    t.integer  "status",                       :default => 0
+    t.integer  "views",                        :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "translations", ["source_id"], :name => "fk_translations_source"
+  add_index "translations", ["source_lang_id"], :name => "fk_translations_lang"
+  add_index "translations", ["source_type_id"], :name => "fk_translations_type"
+  add_index "translations", ["user_id"], :name => "fk_translations_user"
+
   create_table "update_index_record", :force => true do |t|
     t.integer "last_update"
   end
 
   create_table "user_counts", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "uploads",    :default => 0
+    t.integer  "uploads",                  :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "app_name",   :limit => 20, :default => "dl"
   end
 
   add_index "user_counts", ["user_id"], :name => "fk_user_counts_user"
