@@ -7,6 +7,9 @@
 <% end %>
 
 		<div class="container">
+		  <div class="page_path">
+				<a href="/">首页</a> &gt;&gt; <a href="/sources">译文频道</a> &gt;&gt; 分类搜索
+			</div><!-- .page_path -->
 			<div class="list_leftside">
 				<div class="index_rich_list">
 				    <% if @sources.empty? %>
@@ -20,7 +23,7 @@
 									<h5>
 										<a class="dl_type" href="/sources/search?tags=<%= source.source_type.id%>">[<%= source.source_type.name%>]</a>
 										&nbsp;
-										<a href="/source/<%= source.id %>" title="<%= source.title %>" target="_blank" class="title"><%= source.title %></a>
+										<a href="/sources/<%= source.id %>" title="<%= source.title %>" target="_blank" class="title"><%= source.title %></a>
 									</h5>
 
 									<div class="description">
