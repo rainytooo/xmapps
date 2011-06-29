@@ -102,7 +102,7 @@ class TranslationsController < ApplicationController
       @dzuser = Dzuser.where("uid = ?", tp_uid).first
       credits = @dzuser.credits
       @translation.update_attributes({:best_trans => @translation.best_trans + 1,  :best_trans_score => @translation.best_trans_score + credits})
-      if @translation.best_trans_score >= 1
+      if @translation.best_trans_score >= 5000
          # 查还有没有别的最佳翻译
         other_best = Translation.where("source_id = #{@translation.source_id} and status = 1")
         if other_best.empty?
