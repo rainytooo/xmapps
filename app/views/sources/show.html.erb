@@ -45,7 +45,7 @@
 						<span class="view">有<%= @source.views %>人浏览</span>
 						<span class="date"><%= @source.created_at.strftime('%Y-%m-%d') %></span>
             <% if @source.status == 1 %>
-            <span class="other_trans fr">
+            <span class="warning fr">
             <a href="/sources/<%= @source.id %>/translations/new" target="_blank">我来翻译</a>
             </span>
             <% end %>
@@ -53,7 +53,7 @@
             <span class="other_trans fr">
             <a href="/sources/<%= @source.id %>/translations" target="_blank">其他翻译</a>
             </span>
-            <span class="other_trans fr">
+            <span class="warning fr">
             <a href="/sources/<%= @source.id %>/translations/new" target="_blank">我来翻译</a>
             </span>
             <% end %>
