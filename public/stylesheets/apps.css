@@ -1200,6 +1200,7 @@ h2.zjzl_title span {
     height: 20px;
     overflow: hidden;
     width: 190px;
+    line-height:20px;
 }
 
 .container .app_hot {
@@ -1222,6 +1223,7 @@ h2.zjzl_title span {
 .container .app_hot li a {
     display: block;
     height: 20px;
+    line-height:20px;
     overflow: hidden;
     width: 190px;
 }

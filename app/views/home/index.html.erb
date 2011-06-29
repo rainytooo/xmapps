@@ -791,6 +791,61 @@
 
     </div><!-- #container -->
 
+    <div class="container">
+      <div class="app_hot bg_right_split">
+          <h2 class="subject">最新国外原文</h2>
+          <ul>
+						<% @sources.each do |source| %>
+						<li>
+							<a target="_blank" href="http://www.xiaoma.com/sources/<%= source.id %>" title="<%= source.title %>"><%= source.title %></a>
+						</li>
+
+						<% end %>
+						<div class="clear"></div>
+					</ul>
+					<p class="fr" style="margin: 0pt; padding: 0pt;">
+           <a href="http://www.xiaoma.com/sources" target="_blank">更多 »</a>
+         </p>
+
+      </div>
+
+      <div class="app_hot bg_right_split">
+          <h2 class="subject">最新译文</h2>
+          <ul>
+          <% @translations.each do |source| %>
+						<li>
+							<a target="_blank" href="http://www.xiaoma.com/sources/<%= source.source_id %>/translations/source.id" title="<%= source.title %>"><%= source.title %></a>
+						</li>
+
+						<% end %>
+						<div class="clear"></div>
+					</ul>
+					<p class="fr" style="margin: 0pt; padding: 0pt;">
+           <a href="http://www.xiaoma.com/sources/trans" target="_blank">更多 »</a>
+         </p>
+
+      </div>
+
+      <div class="app_hot">
+          <h2 class="subject">最新解决问题</h2>
+          <ul>
+						<% @solved_asks.each do |new_ask| %>
+						<li>
+							<a target="_blank" href="http://www.xiaoma.com/asks/<%= new_ask.id %>" title="<%= new_ask.title %>"><%= new_ask.title %></a>
+						</li>
+
+						<% end %>
+						<div class="clear"></div>
+					</ul>
+					<p class="fr" style="margin: 0pt; padding: 0pt;">
+           <a href="http://www.xiaoma.org/asks" target="_blank">更多 »</a>
+         </p>
+
+      </div>
+
+
+    </div><!-- #container -->
+
 
 
 

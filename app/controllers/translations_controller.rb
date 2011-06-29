@@ -97,16 +97,20 @@ class TranslationsController < ApplicationController
     # 最佳翻译投票
     if params[:best_tran]
       tp_uid = params[:uid]
-      # 查出改用户的总积分
+       # 查出改用户的总积分
       @dzuser = Dzuser.where("uid = ?", tp_uid).first
       credits = @dzuser.credits
       @translation.update_attributes({:best_trans => @translation.best_trans + 1,  :best_trans_score => @translation.best_trans_score + credits})
-      if @translation.best_trans_score >= 2000
-         # 评为最佳翻译
-        @translation.update_attributes({:status => 1})
-         # 加金币和积分
-        add_discuz_credits @translation.dz_user_id, 100
-        add_discuz_extcredits @translation.dz_user_id, 150
+      if @translation.best_trans_score >= 300
+         # 查还有没有别的最佳翻译
+        other_best = Translation.where("source_id = #{@translation.source_id} and status = 1")
+        if other_best.empty?
+           # 评为最佳翻译
+          @translation.update_attributes({:status => 1})
+           # 加金币和积分
+          add_discuz_credits @translation.dz_user_id, 100
+          add_discuz_extcredits @translation.dz_user_id, 150
+        end
       end
 
       # 防止刷票
