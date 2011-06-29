@@ -814,6 +814,17 @@ h2.subject {
 	cursor: pointer;
 }
 
+.credits_img {
+    background: url("../images/232211iu73qd9iv39uar3b.png") no-repeat scroll 0 0 transparent;
+	height:66px;
+	border:0;
+	width: 200px ;
+	color:#FFFFFF;
+	font-size:14px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
 .shenqing_huodong {
     background: url("../images/shenqinghuodong.png") no-repeat scroll 0 0 transparent;
 	height:47px;

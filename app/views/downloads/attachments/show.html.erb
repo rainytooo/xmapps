@@ -8,7 +8,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
   $('#dialog').jqm();
-  $('#dialog').jqmShow();
+  //$('#dialog').jqmShow();
 });
 </script>
 <% end %>
@@ -74,7 +74,12 @@ $(document).ready(function() {
 						</p>
 					</div>
 					<h5>我当前的金币为:<%= @extcredits.extcredits6%></h5>
-					<h5>如何获取积分和金币</h5>
+					<h5><a href="/i_want_credits" target="_blank"><em>金币不够?来赚取吧</em></a></h5>
+					<div class="user_upload">
+						<p>
+							<input type="button" class="credits_img"  onclick="location.href='<%= XMAPP_MAIN_DOMAIN_URL %>/i_want_credits'">
+						</p>
+					</div>
 					<p>
 						由于下载人数众多,服务器压力过大,我们将下载改为需要扣除金币的方式,金币是小马过河的唯一虚拟货币,获取金币的方式有很多,在论坛的帮助里有详细介绍,具体请<a href="http://bbs.xiaoma.com/thread-155879-1-1.html">点击查看</a>
 					</p>
