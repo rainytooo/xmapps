@@ -7,7 +7,7 @@
 
 		<div class="container <%= "empty_list" if not @dl_thread %>">
 			<div class="page_path">
-				<a href="/">首页</a> &gt;&gt; <a href="/sources">译文频道</a> &gt;&gt; <%= @source.title %>
+				<a href="/">首页</a> &gt;&gt; <a href="/sources">译文频道</a> &gt;&gt; <a href="/sources/release">国外原文</a> &gt;&gt; <%= @source.title %>
 			</div><!-- .page_path -->
 
 			<div class="page_title">
@@ -62,7 +62,7 @@
             <a href="/sources/<%= @source.id %>/translations" target="_blank">其他翻译</a>
             </span>
             <span class="best_trans fr">
-            <a href="/sources/<%= @source.id %>/translations/<%= @source.best_trans_id %>" target="_blank">最佳翻译</a>
+            <a href="/sources/<%= @source.id %>/translations/<%= @source.best_trans_id %>" target="_blank">浏览最佳翻译</a>
             </span>
             <% end %>
 					</div><!-- .upload_info -->
@@ -114,10 +114,12 @@
 					  <h3><a href="/sources/<%= @source.id %>/translations/new" target="_blank"><span class="warning">不满意? 我来翻译</span></a></h3>
 				  </div>
 				  <% else %>
+				    <% if @source.status != 3 %>
 				  <div class="downloads_list">
 					  <h3>此文章还没有人翻译</h3>
 					  <h2><a href="/sources/<%= @source.id %>/translations/new" target="_blank"><span class="warning">我来翻译</span></a></h2>
 				  </div>
+				    <% end %>
 				  <% end %>
 				<% end %>
 				<div class="downloads_content list_bottom_partition">
