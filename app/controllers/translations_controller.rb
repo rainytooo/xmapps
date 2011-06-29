@@ -58,7 +58,7 @@ class TranslationsController < ApplicationController
     @translation.source_desc = @source.source_desc
     if @translation.save
       flash[:message] = "成功发布翻译"
-      if @source.status != 2
+      if @source.status == 1
         @source.update_attributes({:status => 2})
       end
       user_count = UserCount.where("user_id = #{session[:login_user_id].to_s} and app_name = 'tran'").first
@@ -72,6 +72,9 @@ class TranslationsController < ApplicationController
       else
         user_count.update_attributes({:uploads => user_count.uploads + 1 })
       end
+      # 加金币和积分
+      add_discuz_credits @translation.dz_user_id, 30
+      add_discuz_extcredits @translation.dz_user_id, 50
       redirect_to source_path @source
     else
       flash[:error] = "保存错误,请重试"
