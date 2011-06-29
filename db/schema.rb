@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110628071219) do
+ActiveRecord::Schema.define(:version => 20110629052744) do
 
   create_table "applies", :force => true do |t|
     t.string   "name"
@@ -196,18 +196,22 @@ ActiveRecord::Schema.define(:version => 20110628071219) do
     t.integer  "source_type_id"
     t.integer  "source_lang_id"
     t.integer  "dz_user_id"
-    t.string   "username",           :limit => 32
-    t.string   "title",              :limit => 128
+    t.string   "username",            :limit => 32
+    t.string   "title",               :limit => 128
     t.string   "source_desc"
     t.string   "origin_url"
     t.text     "content"
-    t.string   "photo_file_name",    :limit => 128
-    t.string   "photo_content_type", :limit => 32
+    t.string   "photo_file_name",     :limit => 128
+    t.string   "photo_content_type",  :limit => 32
     t.integer  "photo_file_size"
-    t.integer  "views",                             :default => 0
-    t.integer  "status",                            :default => 1
+    t.integer  "views",                              :default => 0
+    t.integer  "status",                             :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "best_trans_id"
+    t.integer  "best_trans_userid"
+    t.string   "best_trans_username"
+    t.integer  "best_trans_userdzid"
   end
 
   add_index "sources", ["source_lang_id"], :name => "fk_sources_lang"

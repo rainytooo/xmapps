@@ -16,7 +16,7 @@ class CreateSources < ActiveRecord::Migration
       t.string :photo_content_type, :limit => 32
       t.integer :photo_file_size
       t.integer :views, :default => 0  #浏览次数
-      t.integer :status, :default => 1 #状态 0 未通过 1 已通过 2 已翻译
+      t.integer :status, :default => 1 #状态 0 未通过 1 已通过 2 已翻译 3以有最佳翻译
       t.timestamps
     end
     execute <<-SQL

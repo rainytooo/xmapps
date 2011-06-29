@@ -15,9 +15,12 @@
 				<h1>
 					<a class="dl_type" href="/sources/search?tags=<%= @source.source_type.id%>">[<%= @source.source_type.name%>]</a>
 					<%= @source.title %>
-					        <% if @source.status != 2 %>
-                  <span class="warning"><a href="/sources/<%= @source.id %>/translations/new">我来翻译</a></span>
-                  <% end %>
+        <% if @source.status == 2 || @source.status == 1 %>
+        <span class="warning"><a href="/sources/<%= @source.id %>/translations/new" target="_blank">我来翻译</a></span>
+        <% end %>
+        <% if @source.status == 3 %>
+					--<span class="ask_status_1">已有最佳翻译</span>
+					<% end %>
 				</h1>
 			<% end %>
 			</div>
@@ -41,9 +44,27 @@
 						<!-- <span class="comment">评论(18)</span> -->
 						<span class="view">有<%= @source.views %>人浏览</span>
 						<span class="date"><%= @source.created_at.strftime('%Y-%m-%d') %></span>
-            <% if @source.status != 2 %>
-                  <span class="warning fr"><a href="/sources/<%= @source.id %>/translations/new">我来翻译</a></span>
-                  <% end %>
+            <% if @source.status == 1 %>
+            <span class="other_trans fr">
+            <a href="/sources/<%= @source.id %>/translations/new" target="_blank">我来翻译</a>
+            </span>
+            <% end %>
+            <% if @source.status == 2 %>
+            <span class="other_trans fr">
+            <a href="/sources/<%= @source.id %>/translations" target="_blank">其他翻译</a>
+            </span>
+            <span class="other_trans fr">
+            <a href="/sources/<%= @source.id %>/translations/new" target="_blank">我来翻译</a>
+            </span>
+            <% end %>
+							<% if @source.status == 3 %>
+            <span class="other_trans fr">
+            <a href="/sources/<%= @source.id %>/translations" target="_blank">其他翻译</a>
+            </span>
+            <span class="best_trans fr">
+            <a href="/sources/<%= @source.id %>/translations/<%= @source.best_trans_id %>" target="_blank">最佳翻译</a>
+            </span>
+            <% end %>
 					</div><!-- .upload_info -->
 					<div class="clear"></div>
 

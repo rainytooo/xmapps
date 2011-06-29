@@ -66,7 +66,7 @@
 			<div class="page_title">
 			<% if @source %>
 				<h1>
-					<a class="dl_type" href="http://localhost:3000/sources/tags/<%= @source.source_type.id%>">[<%= @source.source_type.name%>]</a>
+					<a class="dl_type" href="/sources/tags/<%= @source.source_type.id%>">[<%= @source.source_type.name%>]</a>
 					<%= @translation.title %>
 					<% if @translation.status == 1 %>
 					--<span class="ask_status_1">最佳翻译</span>
@@ -90,7 +90,7 @@
 						</a>
 					</div><!-- .page_user_info -->
 					<div class="upload_info">
-						<a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', @source.dz_user_id.to_s) %>"><%= @translation.username%></a>
+						<a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', translation.dz_user_id.to_s) %>"><%= @translation.username%></a>
 						<!-- <span class="comment">评论(18)</span> -->
 						<span class="view">有<%= @translation.views %>人浏览</span>
 						<span class="date"><%= @translation.created_at.strftime('%Y-%m-%d') %></span>

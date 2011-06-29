@@ -3,12 +3,8 @@ class TranslationsController < ApplicationController
   # GET /translations
   # GET /translations.xml
   def index
-    @translations = Translation.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @translations }
-    end
+    @translations = Translation.where("source_id = #{params[:source_id]}")
+    @source = Source.find_by_id params[:source_id]
   end
 
   # GET /translations/1
@@ -24,10 +20,15 @@ class TranslationsController < ApplicationController
   def new
     @source = Source.find_by_id params[:source_id]
     @translation = Translation.where("user_id = #{session[:login_user_id].to_s} and source_id = #{@source.id.to_s}")
+    if @source.status == 3
+      flash[:error] = "此文章已经有最佳翻译了,不能再次重复翻译"
+      redirect_to source_path @source
+    end
     if @translation.size > 0
       flash[:error] = "您已经翻译过此文章了,防止刷分现象,您不能重复翻译"
       redirect_to source_path @source
     end
+
   end
 
   # GET /translations/1/edit
@@ -101,7 +102,7 @@ class TranslationsController < ApplicationController
       @dzuser = Dzuser.where("uid = ?", tp_uid).first
       credits = @dzuser.credits
       @translation.update_attributes({:best_trans => @translation.best_trans + 1,  :best_trans_score => @translation.best_trans_score + credits})
-      if @translation.best_trans_score >= 300
+      if @translation.best_trans_score >= 1
          # 查还有没有别的最佳翻译
         other_best = Translation.where("source_id = #{@translation.source_id} and status = 1")
         if other_best.empty?
@@ -110,10 +111,30 @@ class TranslationsController < ApplicationController
            # 加金币和积分
           add_discuz_credits @translation.dz_user_id, 100
           add_discuz_extcredits @translation.dz_user_id, 150
+           # 最佳翻译统计
+          user_count = UserCount.where("user_id = #{session[:login_user_id].to_s} and app_name = 'best_tran'").first
+           # 更新发布总数
+          if not user_count
+            user_count = UserCount.new
+            user_count.user_id = session[:login_user_id]
+            user_count.app_name = "best_tran"
+            user_count.uploads = 1
+		        user_count.save
+          else
+            user_count.update_attributes({:uploads => user_count.uploads + 1 })
+          end
+           # 更改原文的状态为 不能再翻译了 ,已经有最佳翻译了
+          @source = Source.find_by_id @translation.source_id
+          @source.update_attributes({:status => 3,
+            :best_trans_id => @translation.id,
+            :best_trans_userid => @translation.user_id,
+            :best_trans_username =>  @translation.username,
+            :best_trans_userdzid => @translation.dz_user_id
+            })
         end
       end
 
-      # 防止刷票
+       # 防止刷票
       session[:toupiao]["trans_best_"+@translation.source_id.to_s] = 1
       @json_data = {:best_trans => @translation.best_trans}
       render :json => @json_data

@@ -17,6 +17,8 @@ Xmapps::Application.routes.draw do
       get 'my_trans'
       # 所有未翻译的
       get 'untrans'
+      # 翻译大赛
+      get 'match'
     end
     resources :translations
   end

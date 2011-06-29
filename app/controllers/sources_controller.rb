@@ -21,13 +21,16 @@ class SourcesController < ApplicationController
   end
   # 未翻译的
   def untrans
-    @sources = Source.where("status = 1").order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>10)
+    @sources = Source.where("status = 1 or status = 2").order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>10)
   end
 
   # 翻译的
   def trans
     @translations = Translation.order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>10)
   end
+
+  # 翻译大赛
+
 
   #搜索
   def search

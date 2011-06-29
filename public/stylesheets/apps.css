@@ -1258,4 +1258,11 @@ h2.zjzl_title span {
     color: #17A300;
     padding: 0 0 0 2px;
 }
+span.best_trans a {
+    color: green;
+}
+
+span.other_trans a {
+    color: #ab24bf;
+}
 
