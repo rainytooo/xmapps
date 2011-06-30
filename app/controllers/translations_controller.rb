@@ -91,7 +91,7 @@ class TranslationsController < ApplicationController
       # 发送全局动态
       source_index_url = XMAPP_MAIN_DOMAIN_URL+"/sources"
       trans_url = XMAPP_MAIN_DOMAIN_URL+"/sources/#{@source.id}/translations/#{@translation.id}"
-      title_template = "#{@translation.username}在<a href=\"#{source_index_url}\" >译文频道<\/a>翻译了文章<a href=\"#{trans_url}\" >#{@translation.title}<\/a>,并获得了金币"
+      title_template = "#{@translation.username}在<a href=\"#{source_index_url}\" >译文频道<\/a>翻译了文章<a href=\"#{trans_url}\" >#{@translation.title}<\/a>,并获得了金币,快来投票啊"
 	    title_data = {}
 	    require 'php_serialization'
 	    title_data = PhpSerialization.dump(title_data)

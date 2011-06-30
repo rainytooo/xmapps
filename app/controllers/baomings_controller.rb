@@ -6,7 +6,7 @@ class BaomingsController < ApplicationController
     baoming.zhuanye = params[:zhuanye]
     baoming.baokaoxuexiao = params[:baokaoxuexiao]
     baoming.tuofucj = params[:tuofucj]
-    baoming.campaign = 'mglxkc'
+    baoming.campaign = params[:campaign]
     if baoming.save
       flash.now[:message] = "报名成功"
       render '/errors_messages.html'
