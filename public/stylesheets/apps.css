@@ -1265,4 +1265,21 @@ span.best_trans a {
 span.other_trans a {
     color: #ab24bf;
 }
+.countdown {
+    margin: 10px;
+}
+
+textarea {
+    border: 1px solid #CCCCCC;
+    font-size: 14px;
+    padding: 3px;
+}
+
+.comment_title {
+    background: none repeat scroll 0 0 #EEEEEE;
+    display: block;
+}
+.comment_body {
+   word-wrap: break-word;
+}
 

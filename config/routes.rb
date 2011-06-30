@@ -1,6 +1,4 @@
 Xmapps::Application.routes.draw do
-
-
   # 翻译的原文
   match "sources/search", :to => "sources#search", :via => [:get], :as => "sources_search"
   resources :sources do
@@ -20,8 +18,13 @@ Xmapps::Application.routes.draw do
       # 翻译大赛
       get 'match'
     end
-    resources :translations
+    resources :translations do
+      # 提交评论
+      post 'comments'
+    end
   end
+  # 翻译大赛
+  match "translation_match", :to => "home#translation_match", :via => [:get]
 
   # 问答
   resources :asks do
@@ -88,6 +91,7 @@ Xmapps::Application.routes.draw do
   # site index page
   get "home/index"
   match "i_want_credits", :to => "home#i_want_credits", :via => [:get]
+
   root :to => "home#index"
   match "index" => "home#index"
   #match "robots" => "home#robots"

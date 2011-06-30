@@ -1,0 +1,62 @@
+<% content_for :head do %>
+<title>第一届小马过河翻译大赛</title>
+<meta name="description" content="小马过河是一个专业的出国留学备考社区,包含丰富的学习资源,资料下载,涉及内容包括托福,sat,gre,雅思,以及出国一些专业知识,并为大家提供一个学习和交流的平台">
+<meta name="keywords" content="第一届小马过河翻译大赛 雅思考试,托福考试,出国,留学,GRE,SAT,GMAT,SSAT,AP,美国名校">
+<%= stylesheet_link_tag "jq_cd/style" %>
+<%= javascript_include_tag 'jquery.min'%>
+<%= javascript_include_tag 'jq_countdown/jquery.countdown'%>
+<script type="text/javascript">
+var urodz = new Date("7/10/2011 23:59:59");
+	$(function () {
+		$('#defaultCountdown').countdown({
+			until: urodz,
+			format: 'dHMS',
+			layout: '<div id="t7_timer">'+
+						'<div id="t7_vals">'+
+             '<div id="t7_d" class="t7_numbs">{dnn}</div>'+
+							'<div id="t7_h" class="t7_numbs">{hnn}</div>'+
+							'<div id="t7_m" class="t7_numbs">{mnn}</div>'+
+							'<div id="t7_s" class="t7_numbs">{snn}</div>'+
+						'</div>'+
+						'<div id="t7_labels">'+
+							'<div id="t7_dl" class="t7_labs">天</div>'+
+							'<div id="t7_hl" class="t7_labs">小时</div>'+
+							'<div id="t7_ml" class="t7_labs">分</div>'+
+							'<div id="t7_sl" class="t7_labs">秒</div>'+
+						'</div>'+
+						'<div id="t7_timer_over"></div>'+
+					'</div>'
+			});
+	});
+</script>
+<% end %>
+
+		<div class="container">
+		  <div class="page_path">
+				<a href="/">首页</a> &gt;&gt; 第一届翻译大赛
+			</div><!-- .page_path -->
+			<div class="main_left fl">
+			    <div class="countdown">
+              <h3 class="fl"><em>距离比赛结束还剩下:</em></h3>
+              <div id="defaultCountdown" class="fl"></div>
+              <div class="clear"></div>
+          </div>
+
+
+
+			</div>
+			<div class="main_right fl">
+<!-- JiaThis Button BEGIN -->
+<div id="ckepop">
+	<a href="http://www.jiathis.com/share/?uid=1502974" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">分享到：</a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_kaixin001"></a>
+	<a class="jiathis_button_renren"></a>
+</div>
+<script type="text/javascript" src="http://v1.jiathis.com/code/jia.js?uid=1502974" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      </div>
+			<div class="clear"></div>
+		</div><!-- #container -->
+

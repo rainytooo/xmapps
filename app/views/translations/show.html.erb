@@ -3,7 +3,24 @@
 <meta name="description" content="国外精品文章 翻译 译文 英语学习 英语文章 <%= @source.source_type.name%>-<%= @source.title %>">
 <meta name="keywords" content="国外精品文章 翻译 译文 英语学习 英语文章 英语范文学习 <%= @source.source_type.name%>-<%= @source.title %>">
 <%= javascript_include_tag 'jquery.min' %>
-<%= csrf_meta_tag %>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/localization/messages_cn.js"></script>
+<script language="Javascript">
+
+	$(document).ready(function(){
+    $("#simple_comment").validate(
+      {
+        rules: {
+          translation_comment: {
+             required: true,
+             minlength: 5,
+             maxlength: 500
+           }
+         }
+      }
+    );
+  });
+</script>
 <script type="text/javascript">
 
 	function json_digg(pid){
@@ -55,6 +72,8 @@
     }
   });
 </script>
+
+
 
 <% end %>
 
@@ -160,6 +179,29 @@
 					<h5><span>翻译正文:</span><%= @translation.title %></h5>
 					<%= raw(@translation.content) %>
 					<div class="clear"></div>
+				</div>
+
+        <h3>评论</h3>
+        <div class="list_bottom_partition comment_body">
+          <% @comments.each do |comment|  %>
+          <span class="comment_title">
+				    <h5><%= comment.created_at.strftime('%Y-%m-%d %H:%M:%S') %> <a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', comment.dz_user_id.to_s) %>"><%= comment.username%></a></h5>
+				   </span>
+          <div>
+            <%= comment.content %>
+          </div>
+          <% end %>
+
+				</div>
+
+				<div class="list_bottom_partition">
+				  <h3>我来评论</h3>
+				  <form id="simple_comment" action="/sources/<%= @source.id %>/translations/<%= @translation.id %>/comments" method="post" accept-charset="UTF-8" >
+				    <textarea id="translation_comment" rows="5" name="translation_comment"  cols="65"></textarea>
+				    <br/>
+				    <input type="submit" value="提交" style="width:40px;">
+				  </form>
+
 				</div>
 
 				<% end %>
