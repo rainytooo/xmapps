@@ -32,6 +32,7 @@
 									  <a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', source.dz_user_id.to_s) %>"><%= source.username%></a>
 										<span class="view">有<%= source.views %>人浏览</span>
 										<span class="date"><%= source.created_at.strftime('%Y-%m-%d') %></span>
+										<span class="score"><%= source.excredits %></span>
 										<% if source.status == 1 %>
                   <span class="warning fr">
                   <a href="/sources/<%= source.id %>/translations/new" target="_blank">我来翻译</a>

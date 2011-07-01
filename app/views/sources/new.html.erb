@@ -89,6 +89,11 @@
 					  </div>
 
 					  <div class="global_form">
+						  <label for="source_excredits">翻译悬赏:</label>
+						  <%= select_tag(:excredits,  options_for_select({ "0" => 0,"10" => "10", "20" => "20", "50" => "50", "100" => "100", "150" => "150", "200" => 200 }, "20") ) %>
+					  </div>
+
+					  <div class="global_form">
 						  <label for="source_type">原文的类型:</label>
 						  <%= select_tag(:source_type,  options_for_select(SourceType.all.collect{ |p| [p.name, p.id] }) ) %>
 					  </div>

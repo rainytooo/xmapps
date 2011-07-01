@@ -15,12 +15,27 @@ class HomeController < ApplicationController
     # 最新已关闭问答
     @solved_asks = Ask.where("status = 1").order("created_at DESC").limit(10)
   end
+
   # 赚金币
   def i_want_credits
       # 未关闭的问题
       @unsolve_asks = Ask.where("status = 0").order("created_at DESC").limit(10)
       # 未翻译的文章
       @sources = Source.where("status = 1").order("created_at DESC").limit(10)
+
+  end
+
+  # 翻译大赛
+  def translation_match
+    # 所有未翻译的文章
+    @sources = Source.where("status = 1").order("created_at DESC").limit(20)
+    # 文章总数
+    @total_count = Source.where("status != 0").count
+    # 译文总数
+    @trans_total_count = Translation.count
+    # 最佳译文总数
+    @trans_best_total_count = Translation.where("status = 1").count
+    # 排行榜
 
   end
 

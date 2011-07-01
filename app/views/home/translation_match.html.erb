@@ -6,7 +6,7 @@
 <%= javascript_include_tag 'jquery.min'%>
 <%= javascript_include_tag 'jq_countdown/jquery.countdown'%>
 <script type="text/javascript">
-var urodz = new Date("7/10/2011 23:59:59");
+var urodz = new Date("7/16/2011 23:59:59");
 	$(function () {
 		$('#defaultCountdown').countdown({
 			until: urodz,
@@ -41,6 +41,31 @@ var urodz = new Date("7/10/2011 23:59:59");
               <div id="defaultCountdown" class="fl"></div>
               <div class="clear"></div>
           </div>
+         <h3><span class="ask_title">最新发布的没有翻译的原文</span><a href="/sources/untrans">更多</a></h3>
+					<table class="grid">
+						<thead>
+							<tr>
+							  <td>标题</td>
+							  <td width="80">类型</td>
+							  <td width="80">发布日期</td>
+							  <td width="35">浏览</td>
+							  <td width="35">悬赏</td>
+							</tr>
+						</thead>
+						<tbody>
+             <% @sources.each do |source| %>
+             <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
+							  <td>
+							  <a title="<%= source.title %>" href="/sources/<%= source.id%>"><%= source.title %></a>
+							  </td>
+							  <td class="tag"><a href="/sources/search?tags=<%= source.source_type.id%>">[<%= source.source_type.name%>]</a></td>
+							  <td class="date"><%= source.created_at.strftime('%Y-%m-%d') %></td>
+							  <td><span class="browse"><%= source.views %></span></td>
+							  <td><span class="score"><%= source.excredits %></span></td>
+						  </tr>
+             <% end %>
+					  </tbody>
+					</table>
 
 
 
@@ -56,7 +81,27 @@ var urodz = new Date("7/10/2011 23:59:59");
 </div>
 <script type="text/javascript" src="http://v1.jiathis.com/code/jia.js?uid=1502974" charset="utf-8"></script>
 <!-- JiaThis Button END -->
-      </div>
-			<div class="clear"></div>
+        <div class="ask_tags">
+			    <h2 class="subject">翻译排行榜</h2>
+				  <h5>文章总数:<em><%= @total_count %></em></h5>
+				  <h5>被翻译的译文总数:<em><%= @trans_total_count %></em></h5>
+				  <h5>最佳译文总数:<em><%= @trans_best_total_count %></em></h5>
+			  </div>
+
+			  <div class="ask_tags">
+			    <h2 class="subject">译文统计</h2>
+				  <h5>文章总数:<em><%= @total_count %></em></h5>
+				  <h5>被翻译的译文总数:<em><%= @trans_total_count %></em></h5>
+				  <h5>最佳译文总数:<em><%= @trans_best_total_count %></em></h5>
+			  </div>
+
+        <div class="my_ask">
+				    <h2><a href="/sources/my">我的译文</a></h2>
+					  <h2><a href="/sources/new">我要发布</a></h2>
+					  <h2><a href="/sources/untrans">我要翻译</a></h2>
+			  </div>
+
+			  <div class="clear"></div>
+			</div>
 		</div><!-- #container -->
 

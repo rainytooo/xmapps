@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110630022220) do
+ActiveRecord::Schema.define(:version => 20110701034401) do
 
   create_table "applies", :force => true do |t|
     t.string   "name"
@@ -212,6 +212,7 @@ ActiveRecord::Schema.define(:version => 20110630022220) do
     t.integer  "best_trans_userid"
     t.string   "best_trans_username"
     t.integer  "best_trans_userdzid"
+    t.integer  "excredits",                          :default => 50
   end
 
   add_index "sources", ["source_lang_id"], :name => "fk_sources_lang"
@@ -233,6 +234,20 @@ ActiveRecord::Schema.define(:version => 20110630022220) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "tran_ranks", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "dz_user_id"
+    t.string   "username",        :limit => 32
+    t.string   "campaign",        :limit => 32
+    t.integer  "total_trans",     :limit => 8,  :default => 0
+    t.integer  "best_trans",      :limit => 8,  :default => 0
+    t.integer  "total_excredits",               :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tran_ranks", ["user_id"], :name => "fk_tran_ranks_user"
 
   create_table "trans_comments", :force => true do |t|
     t.integer  "user_id"

@@ -17,7 +17,7 @@
 							  <td>标题</td>
 							  <td width="80">类型</td>
 							  <td width="80">发布日期</td>
-							  <td width="35">语言</td>
+							  <td width="55">语言</td>
 							  <td width="35">浏览</td>
 							</tr>
 						</thead>
@@ -36,7 +36,33 @@
 					  </tbody>
 					</table>
 
-          <h3><span class="ask_title">最新翻译的文章</span><a href="/sources/trans">更多</a></h3>
+					<h3><span class="ask_title">悬赏翻译的原文</span><a href="/sources/release">更多</a></h3>
+					<table class="grid">
+						<thead>
+							<tr>
+							  <td>标题</td>
+							  <td width="80">类型</td>
+							  <td width="80">发布日期</td>
+							  <td width="55">语言</td>
+							  <td width="35">悬赏</td>
+							</tr>
+						</thead>
+						<tbody>
+             <% @untrans_sources.each do |source| %>
+             <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
+							  <td>
+							  <a title="<%= source.title %>" href="/sources/<%= source.id%>"><%= source.title %></a>
+							  </td>
+							  <td class="tag"><a href="/sources/search?tags=<%= source.source_type.id%>">[<%= source.source_type.name%>]</a></td>
+							  <td class="date"><%= source.created_at.strftime('%Y-%m-%d') %></td>
+							  <td><%= source.source_lang.name %></td>
+							  <td><span class="score"><%= source.excredits %></span></td>
+						  </tr>
+             <% end %>
+					  </tbody>
+					</table>
+
+         <h3><span class="ask_title">最新翻译的文章</span><a href="/sources/trans">更多</a></h3>
 					<table class="grid">
 						<thead>
 							<tr>

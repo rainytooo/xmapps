@@ -73,8 +73,8 @@ class TranslationsController < ApplicationController
         ex_credits = 10 # 金币
         flash[:message] = "此文章已经有人在你翻译之前发布了翻译,所以您获得积分和金币将比第一个翻译的人要少"
       end
+      # 更新发布总数
       user_count = UserCount.where("user_id = #{session[:login_user_id].to_s} and app_name = 'tran'").first
-       # 更新发布总数
       if not user_count
         user_count = UserCount.new
         user_count.user_id = session[:login_user_id]
@@ -84,6 +84,20 @@ class TranslationsController < ApplicationController
       else
         user_count.update_attributes({:uploads => user_count.uploads + 1 })
       end
+       # 更新排行榜
+      trans_rank = TranRank.where("user_id = #{session[:login_user_id].to_s}").first
+      if not trans_rank
+        trans_rank = TranRank.new
+        trans_rank.user_id = session[:login_user_id]
+        trans_rank.campaign = "all"
+        trans_rank.total_trans = 1
+        trans_rank.total_excredits = ex_credits
+        trans_rank.dz_user_id = session[:login_user].uid
+        trans_rank.username = session[:login_user].username
+		    trans_rank.save
+      else
+        trans_rank.update_attributes({:total_trans => trans_rank.total_trans + 1 , :total_excredits => trans_rank.total_excredits + ex_credits })
+      end
       # 加金币和积分
       add_discuz_credits @translation.dz_user_id, credits
       add_discuz_extcredits @translation.dz_user_id, ex_credits
@@ -91,7 +105,7 @@ class TranslationsController < ApplicationController
       # 发送全局动态
       source_index_url = XMAPP_MAIN_DOMAIN_URL+"/sources"
       trans_url = XMAPP_MAIN_DOMAIN_URL+"/sources/#{@source.id}/translations/#{@translation.id}"
-      title_template = "#{@translation.username}在<a href=\"#{source_index_url}\" >译文频道<\/a>翻译了文章<a href=\"#{trans_url}\" >#{@translation.title}<\/a>,并获得了金币,快来投票啊"
+      title_template = "#{@translation.username}在<a href=\"#{source_index_url}\" >译文频道<\/a>翻译了文章<a href=\"#{trans_url}\" >#{@translation.title}<\/a>,并获得了金币,快来投票吧"
 	    title_data = {}
 	    require 'php_serialization'
 	    title_data = PhpSerialization.dump(title_data)
@@ -128,19 +142,19 @@ class TranslationsController < ApplicationController
       @dzuser = Dzuser.where("uid = ?", tp_uid).first
       credits = @dzuser.credits
       @translation.update_attributes({:best_trans => @translation.best_trans + 1,  :best_trans_score => @translation.best_trans_score + credits})
-      if @translation.best_trans_score >= 5000
+      if @translation.best_trans_score >= 6800
          # 查还有没有别的最佳翻译
         other_best = Translation.where("source_id = #{@translation.source_id} and status = 1")
         if other_best.empty?
            # 评为最佳翻译
           @translation.update_attributes({:status => 1})
            # 加金币和积分
-          add_discuz_credits @translation.dz_user_id, 100
-          add_discuz_extcredits @translation.dz_user_id, 150
+          add_discuz_credits @translation.dz_user_id, 20
+          add_discuz_extcredits @translation.dz_user_id, @source.excredits
           # 发送全局动态
         source_index_url = XMAPP_MAIN_DOMAIN_URL+"/sources"
         trans_url = XMAPP_MAIN_DOMAIN_URL+"/sources/#{@source.id}/translations/#{@translation.id}"
-        title_template = "#{@translation.username}在<a href=\"#{source_index_url}\" >译文频道<\/a>翻译的文章<a href=\"#{trans_url}\" >#{@translation.title}<\/a>被大家评选为最佳翻译,并因此获得了金币150和积分100"
+        title_template = "#{@translation.username}在<a href=\"#{source_index_url}\" >译文频道<\/a>翻译的文章<a href=\"#{trans_url}\" >#{@translation.title}<\/a>被大家评选为最佳翻译,并因此获得了金币#{@source.excredits.to_s}"
 	      title_data = {}
 	      require 'php_serialization'
 	      title_data = PhpSerialization.dump(title_data)
@@ -158,8 +172,10 @@ class TranslationsController < ApplicationController
           else
             user_count.update_attributes({:uploads => user_count.uploads + 1 })
           end
+          # 更新排行榜
+          trans_rank = TranRank.where("user_id = #{session[:login_user_id].to_s}").first
+          trans_rank.update_attributes({:best_trans => trans_rank.best_trans + 1, :total_excredits => trans_rank.total_excredits + @source.excredits })
            # 更改原文的状态为 不能再翻译了 ,已经有最佳翻译了
-          @source = Source.find_by_id @translation.source_id
           @source.update_attributes({:status => 3,
             :best_trans_id => @translation.id,
             :best_trans_userid => @translation.user_id,

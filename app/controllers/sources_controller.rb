@@ -14,6 +14,7 @@ class SourcesController < ApplicationController
     @sources = Source.where("status != 0").order("created_at DESC").limit(20)
     # 最新翻译的
     @translations = Translation.order("created_at DESC").limit(20)
+    @untrans_sources = Source.where("status = 1").order("created_at DESC").limit(20)
   end
   # 新发布的
   def release
@@ -21,7 +22,7 @@ class SourcesController < ApplicationController
   end
   # 未翻译的
   def untrans
-    @sources = Source.where("status = 1 or status = 2").order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>10)
+    @sources = Source.where("status = 1").order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>10)
   end
 
   # 翻译的
@@ -102,6 +103,7 @@ class SourcesController < ApplicationController
     @source.username = session[:login_user].username
     @source.source_type_id = params[:source_type]
     @source.source_lang_id = params[:source_lang]
+    @source.excredits = params[:excredits].to_i
     if @source.save
       source_photo = params[:photo]
       # 如果有缩略图
@@ -173,7 +175,7 @@ class SourcesController < ApplicationController
       # 发送全局动态
       source_index_url = XMAPP_MAIN_DOMAIN_URL+"/sources"
       source_thread_url = XMAPP_MAIN_DOMAIN_URL+"/sources/#{@source.id}"
-      title_template = "#{@source.username}在<a href=\"#{source_index_url}\" >译文频道<\/a>发布了一篇文章<a href=\"#{source_thread_url}\" >#{@source.title}<\/a>,并获得了30的金币,翻译此文章将有50的金币奖励,如果被评选为最佳翻译将总共获取200的金币和积分,快来<a href=\"#{source_thread_url}/translations/new\" >翻译<\/a>吧"
+      title_template = "#{@source.username}在<a href=\"#{source_index_url}\" >译文频道<\/a>发布了一篇文章<a href=\"#{source_thread_url}\" >#{@source.title}<\/a>,并获得了30的金币,翻译此文章将有金币奖励,如果被评选为最佳翻译将额外获取获#{@source.excredits.to_s}的金币,快来<a href=\"#{source_thread_url}/translations/new\" >翻译<\/a>吧"
 	    title_data = {}
 	    require 'php_serialization'
 	    title_data = PhpSerialization.dump(title_data)
@@ -190,14 +192,20 @@ class SourcesController < ApplicationController
   # PUT /sources/1.xml
   def update
     @source = Source.find(params[:id])
-
-      if @source.update_attributes(params[:source])
-        flash[:message] = "成功编辑译文"
-        redirect_to my_sources_path
-      else
-        flash[:error] = "保存错误,请重试"
-        redirect_to new_source_path
+    if params[:excredits]
+      if @source.status != 3
+        @source.update_attributes({:excredits => params[:excredits]})
+        return
       end
+    end
+
+    if @source.update_attributes(params[:source])
+      flash[:message] = "成功编辑译文"
+      redirect_to my_sources_path
+    else
+      flash[:error] = "保存错误,请重试"
+      redirect_to new_source_path
+    end
   end
 
   # DELETE /sources/1

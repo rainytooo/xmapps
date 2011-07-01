@@ -83,7 +83,12 @@
 						  <input id="source_url" type="text" class="langip" name="source[origin_url]" value="<%= @source.origin_url %>">
 					  </div>
 
-
+					  <div class="global_form">
+						<label for="source_excredits">翻译悬赏:</label>
+						<%= select_tag(:gold,  options_for_select(
+						{ "0" => 0,"10" => "10", "20" => "20", "50" => "50", "100" => "100", "150" => "150", "200" => 200 }, "50"),
+						  :onchange => "$.post('#{source_path(@source.id)}', {'_method':'put', 'excredits':this.value} );" ) %>
+					  </div>
 
 					  <div class="global_form">
 						  <div class="fl"><label for="name">原文的简介:</label></div>

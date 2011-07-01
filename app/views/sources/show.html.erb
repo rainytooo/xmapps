@@ -44,6 +44,7 @@
 						<!-- <span class="comment">评论(18)</span> -->
 						<span class="view">有<%= @source.views %>人浏览</span>
 						<span class="date"><%= @source.created_at.strftime('%Y-%m-%d') %></span>
+						<span class="score"><%= @source.excredits %></span>
             <% if @source.status == 1 %>
             <span class="warning fr">
             <a href="/sources/<%= @source.id %>/translations/new" target="_blank">我来翻译</a>
