@@ -68,7 +68,7 @@ class SourcesController < ApplicationController
   # GET /sources/1/edit
   def edit
     @source = Source.find(params[:id])
-    if @source.user_id == session[:login_user_id] or logged_admin?
+    if @source.user_id == session[:login_user_id] or logged_admin? or logged_xm_admin?
       logger.debug 'edit source ' + @source.id.to_s
     else
       flash.now[:error] = "对不起,您无权进行此操作"

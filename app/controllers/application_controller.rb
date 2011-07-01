@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   # 过滤器定义
   before_filter :check_cookie
-  
+
   # 下面是过滤器的定义部分
   private
   def record_not_found
@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
 	"""
 	Dzxdb.connection.insert(sql)
   end
-  
+
   # 加discuz积分
   def add_discuz_credits(dz_user_id, counts)
 	Dzxdb.connection.insert("update #{DZ_TABLE_PRE}common_member_count set extcredits8 = extcredits8 + #{counts} where uid = #{dz_user_id}")
@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
   def add_discuz_extcredits(dz_user_id, counts)
 	Dzxdb.connection.insert("update #{DZ_TABLE_PRE}common_member_count set extcredits6 = extcredits6 + #{counts} where uid = #{dz_user_id}")
   end
-  
+
   # 检查cookie里是否已经登录,从discuz登录的就自动登录一下
   def check_cookie
 
@@ -65,29 +65,29 @@ class ApplicationController < ActionController::Base
 			reset_session
 			cookies.delete(DZ_COOKIE_NAME, :domain => COOKIE_DOMAIN_NAME)
 			return
-		end 
+		end
 		dzuser = Dzuser.find_by_uid(passwd_uid[1])
 		dzucuser = Dzucuser.find_by_uid(passwd_uid[1])
 		# 如果id和密码匹配
 		if dzuser.password == passwd_uid[0]
 		  # 存session
-		  session[:login_user] = dzuser	
+		  session[:login_user] = dzuser
 		  sync_local_user(dzuser)
 		  # 拿出用户
 		  local_user = User.find_by_username(dzuser.username)
 		  # 把本地用具的id存session里
 		  session[:login_user_id] = local_user.id
 		end
-	  end	
-	else 
+	  end
+	else
 	  # 如果session里有,cookie里没有,说明discuz那边已经退出了
 	  if not cookies[DZ_COOKIE_NAME]
 		reset_session
 		cookies.delete(DZ_COOKIE_NAME)
 	  end
-	end  
+	end
   end
-  
+
   # 检查此资源是否自己可以访问
   def check_self_manage
 	unless is_not_mine?
@@ -95,7 +95,7 @@ class ApplicationController < ActionController::Base
       redirect_to login_url # halts request cycle
 	end
   end
-  
+
   # 同步本地用户
   def sync_local_user(user)
   # 判断用户在表里是否存在
@@ -115,11 +115,11 @@ class ApplicationController < ActionController::Base
 		user_count.user_id = local_user.id
 		user_count.save
 	  end
-	  
+
 	end
   end
-  
- 
+
+
   def require_login
     unless logged_in?
       flash[:error] = "必须登录才能继续刚才的操作,请登录"
@@ -131,31 +131,61 @@ class ApplicationController < ActionController::Base
       redirect_to login_url # halts request cycle
 	end
   end
- 
+
   def logged_in?
     !!session[:login_user]
   end
-  
+
   # 验证会员是否验证了邮箱
   def require_checkedemail?
 	session[:login_user].emailstatus
   end
-  
+
   def require_admin
-	unless logged_admin?
-      flash[:error] = "你必须具有管理员权限,请用管理员身份登录"
-      redirect_to login_url # halts request cycle
-	end
+	  unless logged_admin?
+        flash[:error] = "你必须具有管理员权限,请用管理员身份登录"
+        redirect_to login_url # halts request cycle
+	  end
   end
-  
+
+  def require_xm_admin
+	  unless logged_xm_admin?
+        flash[:error] = "你必须具有管理员权限,请用小马管理员身份登录"
+        redirect_to adminlogin_url # halts request cycle
+	  end
+  end
+
+  def require_zhongjiao_admin
+	  unless logged_zhongjiao_admin?
+        flash[:error] = "你必须具有管理员权限,请用小马管理员身份登录"
+        redirect_to adminlogin_url # halts request cycle
+	  end
+  end
+
   def logged_admin?
-	if session[:login_user].id == 1
-	  return true
-	else
-	  return false
-	end
+	  if session[:login_user].id == 1
+	    return true
+	  else
+	    return false
+	  end
   end
-  
+
+  def logged_xm_admin?
+	  if session[:xiaom_admin] == 1
+	    return true
+	  else
+	    return false
+	  end
+  end
+
+  def logged_zhongjiao_admin?
+	  if session[:zhongjiao_admin] == 1
+	    return true
+	  else
+	    return false
+	  end
+  end
+
   # 检查是不是用户的
   def is_not_mine?
 	if session[:login_user].id == params[id]
@@ -164,5 +194,6 @@ class ApplicationController < ActionController::Base
 	  return true
 	end
   end
-  
+
 end
+

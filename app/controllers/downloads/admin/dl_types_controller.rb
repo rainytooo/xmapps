@@ -1,5 +1,5 @@
 class Downloads::Admin::DlTypesController < ApplicationController
-  before_filter :require_login , :require_admin
+  before_filter :require_login , :require_xm_admin
   # GET /dl_types
   # GET /dl_types.xml
   def index
@@ -30,7 +30,7 @@ class Downloads::Admin::DlTypesController < ApplicationController
       format.xml  { render :xml => @dl_type }
     end
   end
-  
+
   def addsub
 	@dl_type_parent = DlType.find(params[:id])
 	@dl_type = DlType.new
@@ -53,7 +53,7 @@ class Downloads::Admin::DlTypesController < ApplicationController
 	if @dl_type.dl_type
 		@dl_type.type_lv = @dl_type.dl_type.type_lv + 1
 	end
-	
+
     respond_to do |format|
       if @dl_type.save
         format.html { redirect_to(downloads_admin_dl_types_url, :notice => 'Dl type was successfully created.') }
@@ -92,6 +92,7 @@ class Downloads::Admin::DlTypesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
 
 end
+

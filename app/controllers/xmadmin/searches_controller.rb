@@ -1,4 +1,5 @@
 class Xmadmin::SearchesController < ApplicationController
+  before_filter :require_xm_admin
   # 显示现在所有的专题
   def index
     @zhaunti_indexs = ZhuantiIndex.where("index_id = 1").order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>20)

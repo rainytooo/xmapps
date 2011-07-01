@@ -40,7 +40,7 @@ class TranslationsController < ApplicationController
   def edit
     @source = Source.find_by_id params[:source_id]
     @translation = Translation.find(params[:id])
-    if @translation.user_id == session[:login_user_id] or logged_admin?
+    if @translation.user_id == session[:login_user_id] or logged_admin? or logged_xm_admin?
       logger.debug 'edit translations:'+ @translation.id.to_s
     else
       flash.now[:error] = "对不起,您无权进行此操作"

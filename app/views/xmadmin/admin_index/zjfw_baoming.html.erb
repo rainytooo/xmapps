@@ -1,0 +1,58 @@
+<% content_for :head do %>
+<title>小马过河-中教后台管理-报名信息</title>
+<meta name="description" content="国外精品文章 翻译 译文 英语学习 英语文章 ">
+<meta name="keywords" content="国外精品文章 翻译 译文 英语学习 英语文章 英语范文学习 ">
+<%= stylesheet_link_tag "global" %>
+<%= stylesheet_link_tag "index" %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<% end %>
+
+		<div class="container  empty_list">
+				<div>
+					<h3><span class="ask_title">浏览报名数据</span></h3>
+					<table class="grid">
+						<thead>
+							<tr>
+							  <td width="100">姓名</td>
+							  <td width="100">报名时间</td>
+							  <td width="80">电话</td>
+							  <td width="80">学校</td>
+							  <td width="55">年龄</td>
+							  <td width="35">城市</td>
+							  <td width="50">专业</td>
+							  <td width="50">托福成绩</td>
+							  <td width="50">报考学校</td>
+							  <td width="50">广告系列</td>
+							</tr>
+						</thead>
+						<tbody>
+             <% @baomings.each do |baoming| %>
+             <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
+							  <td>
+							  <%= baoming.name %>
+							  </td>
+							  <td class="date"><%= baoming.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+							  <td><%= baoming.telnum %></td>
+							  <td><%= baoming.school %></td>
+							  <td><%= baoming.age %></td>
+							  <td><%= baoming.city %></td>
+							  <td><%= baoming.zhuanye %></td>
+							  <td><%= baoming.tuofucj %></td>
+							  <td><%= baoming.baokaoxuexiao %></td>
+							  <td><%= baoming.campaign %></td>
+						  </tr>
+             <% end %>
+					  </tbody>
+					</table>
+
+					<div class="clear"></div>
+					<div class="will_pagination">
+						<%=h will_paginate @baomings, :previous_label => '上一页',  :next_label => '下一页'%>
+					</div>
+
+
+				</div>
+
+			<div class="clear"></div>
+		</div><!-- #container -->
+

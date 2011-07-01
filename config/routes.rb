@@ -100,12 +100,19 @@ Xmapps::Application.routes.draw do
   match 'login' => 'logins#create', :via => [:post]
   match "logout" => "logins#logout", :via => [:get]
 
+  # 管理员登录
+  match "adminlogin" => "admin_login#index", :via => [:get]
+  match "adminlogin" => "admin_login#create", :via => [:post]
   # 用户的应用管理
   namespace "manage" do
 	  resources :uploads
   end
   # 后台管理统一入口
   namespace "xmadmin" do
+    match "index" => "admin_index#index", :via => [:get]
+    match "zjfw" => "admin_index#zjfw", :via => [:get]
+    # 学员报名信息
+    match "zjfw/baoming" => "admin_index#zjfw_baoming", :via => [:get]
     match "searches" => "searches#index", :via => [:get]
     match "searches/new" => "searches#new", :via => [:get]
     match "searches" => "searches#create", :via => [:post]

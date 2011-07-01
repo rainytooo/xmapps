@@ -1,4 +1,5 @@
 class Xmadmin::Sources::SourcesAdminController < ApplicationController
+  before_filter :require_xm_admin
   # 显示现在所有的专题
   def source
     @sources = Source.order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>30)

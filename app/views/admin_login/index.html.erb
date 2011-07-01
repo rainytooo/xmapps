@@ -1,0 +1,46 @@
+<% content_for :head do %>
+<title>小马过河-后台管理员登录</title>
+<meta name="description" content="小马过河是一个专业的出国留学备考社区,包含丰富的学习资源,资料下载,涉及内容包括托福,sat,gre,雅思,以及出国一些专业知识,并为大家提供一个学习和交流的平台">
+<meta name="keywords" content="雅思考试,托福考试,出国,留学,GRE,SAT,GMAT,SSAT,AP,美国名校">
+<% end %>
+
+		<div class="container">
+			<div class="page_path">
+			<a href="/">首页</a> &gt;&gt; 后台管理员登录
+			</div><!-- .page_path -->
+			<div class="page_title"><h1>后台管理员登录</h1></div>
+			<div class="form_container empty_list">
+
+				<div class="form_left">
+				<%= form_for(@login, :url => adminlogin_path, :method => "post") do |f|%>
+					<% if flash[:message] %>
+					<div class="submit_message"><%= flash[:message] %></div><!-- .message -->
+					<% end %>
+					<% if flash[:error] %>
+					<div class="submit_error"><%= flash[:error] %></div><!-- .error -->
+					<% end %>
+					<div class="global_form">
+						<%= f.label :username, "用户名:" %><div class="clear"></div>
+						<%= f.text_field :username %>
+					</div>
+					<div class="form_tips">请填您在小马注册的用户名或者邮箱</div>
+					<div class="global_form">
+						<%= f.label :password, "密码:" %><div class="clear"></div>
+						<%= f.password_field :password %>
+					</div>
+					<div class="form_tips">请填您的密码</div>
+
+					<div id="form_submit">
+						<input id="campaign_submit" name="commit" type="submit" value="登录">
+					</div>
+					<div class="clear"></div>
+
+
+				<% end %>
+				</div><!-- .form_left -->
+
+
+			</div><!-- .form_container -->
+		</div><!-- #content_container -->
+		<div class="clear"></div>
+
