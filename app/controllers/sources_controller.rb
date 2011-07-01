@@ -15,6 +15,8 @@ class SourcesController < ApplicationController
     # 最新翻译的
     @translations = Translation.order("created_at DESC").limit(20)
     @untrans_sources = Source.where("status = 1").order("created_at DESC").limit(20)
+    # 排行榜
+    @trans_rank = TranRank.where("campaign = 'all'").order("total_excredits DESC").limit(30)
   end
   # 新发布的
   def release
