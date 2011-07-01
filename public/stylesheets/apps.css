@@ -1035,6 +1035,10 @@ span.right_answer, span.mark_right_answer a {
 	height: 400px;
 }
 
+.empty_high_list {
+	height: 1200px;
+}
+
 
 .common_error {
     color: red;
