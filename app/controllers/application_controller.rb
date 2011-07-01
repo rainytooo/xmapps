@@ -15,30 +15,47 @@ class ApplicationController < ActionController::Base
   end
   # 给discuz 用户发提醒
   def send_dz_notify(dz_user_id, authorid, author, message, from_idtype)
-	sql = """
-	insert into #{DZ_TABLE_PRE}home_notification (uid,type,new,authorid,author,note,dateline,from_id,from_idtype,from_num) VALUES
-	(
-		#{dz_user_id}, 'upload_pass', 1, #{authorid}, '#{author}', '#{message}', #{Time.now.to_i}, 0, '#{from_idtype}', 1
-	)
-	"""
-	sql2 = """
-	update #{DZ_TABLE_PRE}common_member_status SET notifications=notifications+1 WHERE uid=#{dz_user_id}
-	"""
-	sql3 = """
-	update #{DZ_TABLE_PRE}common_member SET newprompt=newprompt+1 WHERE uid=#{dz_user_id}
-	"""
-	Dzxdb.connection.insert(sql)
-	Dzxdb.connection.update(sql2)
-	Dzxdb.connection.update(sql3)
+    #homeNotification = DzHomeNotification.new
+    #homeNotification
+	  sql = """
+	  insert into #{DZ_TABLE_PRE}home_notification (uid,type,new,authorid,author,note,dateline,from_id,from_idtype,from_num) VALUES
+	  (
+		  #{dz_user_id}, 'upload_pass', 1, #{authorid}, '#{author}', '#{message}', #{Time.now.to_i}, 0, '#{from_idtype}', 1
+	  )
+	  """
+	  sql2 = """
+	  update #{DZ_TABLE_PRE}common_member_status SET notifications=notifications+1 WHERE uid=#{dz_user_id}
+	  """
+	  sql3 = """
+	  update #{DZ_TABLE_PRE}common_member SET newprompt=newprompt+1 WHERE uid=#{dz_user_id}
+	  """
+	  Dzxdb.connection.insert(sql)
+	  Dzxdb.connection.update(sql2)
+	  Dzxdb.connection.update(sql3)
   end
   # 添加discuz动态
   def send_dz_feed(appid, dz_user_id, dz_user_name, title_template, title_data, body_template, body_data)
-	sql = """
-	INSERT INTO #{DZ_TABLE_PRE}home_feed SET appid=#{appid}, icon='sitefeed', uid=#{dz_user_id}, username='#{dz_user_name}',
-			title_template='#{title_template}', title_data='#{title_data}', body_template='#{body_template}', body_data='#{$body_data}',
-			dateline=#{Time.now.to_i}, body_general='', target_ids=''
-	"""
-	Dzxdb.connection.insert(sql)
+    feed = DzHomeFeed.new
+    feed.appid = appid.to_i
+    feed.icon = 'sitefeed'
+    feed.uid = dz_user_id.to_i
+    feed.username = dz_user_name
+    feed.title_template = title_template
+    feed.title_data = title_data
+    feed.body_template = body_template
+    feed.body_data = "#{$body_data}"
+    feed.dateline = Time.now.to_i
+    feed.body_general = ''
+    feed.target_ids = ''
+    feed.id = 0
+    feed.save
+
+	  sql = """
+	   INSERT INTO #{DZ_TABLE_PRE}home_feed SET appid=#{appid}, icon='sitefeed', uid=#{dz_user_id}, username='#{dz_user_name}',
+			  title_template='#{title_template}', title_data='#{title_data}', body_template='#{body_template}', body_data='#{$body_data}',
+			  dateline=#{Time.now.to_i}, body_general='', target_ids=''
+	  """
+	  #Dzxdb.connection.insert(sql)
   end
 
   # 加discuz积分
