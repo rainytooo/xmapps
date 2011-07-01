@@ -9,7 +9,7 @@ class AdminLoginController < ApplicationController
     @login = Login.new(params[:login])
     if @login.username == "xiaomaadmin" and @login.password == "1q2w3e4r"
       flash[:message] = "后台管理员登录成功,身份为小马管理员"
-      session[:xiaom_admin] = 1
+      session[:xiaoma_admin] = 1
       redirect_to xmadmin_index_path
       return
     elsif

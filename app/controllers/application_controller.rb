@@ -157,7 +157,7 @@ class ApplicationController < ActionController::Base
 
   def require_zhongjiao_admin
 	  unless logged_zhongjiao_admin?
-        flash[:error] = "你必须具有管理员权限,请用小马管理员身份登录"
+        flash[:error] = "你必须具有管理员权限,请用中教服务管理员身份登录"
         redirect_to adminlogin_url # halts request cycle
 	  end
   end
@@ -171,7 +171,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_xm_admin?
-	  if session[:xiaom_admin] == 1
+	  if session[:xiaoma_admin] == 1
 	    return true
 	  else
 	    return false

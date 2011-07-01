@@ -67,6 +67,32 @@ var urodz = new Date("7/16/2011 23:59:59");
 					  </tbody>
 					</table>
 
+					<h3><span class="ask_title">给已经翻译的文章投票</span><a href="/sources/trans">更多</a></h3>
+					<table class="grid">
+						<thead>
+							<tr>
+							  <td>标题</td>
+							  <td width="80">类型</td>
+							  <td width="80">发布日期</td>
+							  <td width="35">语言</td>
+							  <td width="35">浏览</td>
+							</tr>
+						</thead>
+						<tbody>
+             <% @translations.each do |source| %>
+             <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
+							  <td>
+							  <a title="<%= source.title %>" href="/sources/<%= source.source_id%>/translations/<%= source.id %>"><%= source.title %></a>
+							  </td>
+							  <td class="tag"><a href="/sources/search?tags=<%= source.source_type.id%>">[<%= source.source_type.name%>]</a></td>
+							  <td class="date"><%= source.created_at.strftime('%Y-%m-%d') %></td>
+							  <td><%= source.source_lang.name %></td>
+							  <td><span class="browse"><%= source.views %></span></td>
+						  </tr>
+             <% end %>
+					  </tbody>
+					</table>
+
 
 
 			</div>

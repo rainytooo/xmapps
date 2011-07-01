@@ -29,6 +29,8 @@ class HomeController < ApplicationController
   def translation_match
     # 所有未翻译的文章
     @sources = Source.where("status = 1").order("created_at DESC").limit(20)
+    # 翻译的文章
+    @translations = Translation.order("created_at DESC").limit(20)
     # 文章总数
     @total_count = Source.where("status != 0").count
     # 译文总数
@@ -36,7 +38,7 @@ class HomeController < ApplicationController
     # 最佳译文总数
     @trans_best_total_count = Translation.where("status = 1").count
     # 排行榜
-    @trans_rank = TranRank.where("campaign = 'dyjfyds'").order("total_excredits DESC").limit(30)
+    @trans_rank = TranRank.where("campaign = 'dyjfyds' and total_excredits > 0").order("total_excredits DESC").limit(30)
   end
 
   # def robots
