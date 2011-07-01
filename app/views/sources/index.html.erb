@@ -88,19 +88,7 @@
 					  </tbody>
 					</table>
 
-        <div class="rank_list">
-			    <h2 class="subject">翻译排行总榜</h2>
-				  <ul>
-						<% @trans_rank.each do |userrank| %>
-						<li>
-							<a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', userrank.dz_user_id.to_s) %>"><%= userrank.username %></a>
-							金币:<%= userrank.total_excredits  %>,翻译:<%= userrank.total_trans   %>篇
-						</li>
 
-						<% end %>
-						<div class="clear"></div>
-					</ul>
-			  </div>
 
 				</div>
 			</div>
@@ -154,6 +142,19 @@
 					<a href="/sources/search?lang=99">其他</a>
 					</h4>
 				</div>
+				<div class="rank_list">
+			    <h2 class="subject">翻译排行总榜</h2>
+				  <ul>
+						<% @trans_rank.each do |userrank| %>
+						<li>
+							<a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', userrank.dz_user_id.to_s) %>"><%= userrank.username %></a>
+							金币:<%= userrank.total_excredits  %>,翻译:<%= userrank.total_trans   %>篇
+						</li>
+
+						<% end %>
+						<div class="clear"></div>
+					</ul>
+			  </div>
 			</div>
 			<div class="clear"></div>
 		</div><!-- #container -->
