@@ -81,11 +81,18 @@ var urodz = new Date("7/16/2011 23:59:59");
 </div>
 <script type="text/javascript" src="http://v1.jiathis.com/code/jia.js?uid=1502974" charset="utf-8"></script>
 <!-- JiaThis Button END -->
-        <div class="ask_tags">
-			    <h2 class="subject">翻译排行榜</h2>
-				  <h5>文章总数:<em><%= @total_count %></em></h5>
-				  <h5>被翻译的译文总数:<em><%= @trans_total_count %></em></h5>
-				  <h5>最佳译文总数:<em><%= @trans_best_total_count %></em></h5>
+        <div class="rank_list">
+			    <h2 class="subject">大赛排行榜</h2>
+				  <ul>
+						<% @trans_rank.each do |userrank| %>
+						<li>
+							<a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', userrank.dz_user_id.to_s) %>"><%= userrank.username %></a>
+							金币:<%= userrank.total_excredits  %>,翻译:<%= userrank.total_trans   %>篇
+						</li>
+
+						<% end %>
+						<div class="clear"></div>
+					</ul>
 			  </div>
 
 			  <div class="ask_tags">

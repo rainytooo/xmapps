@@ -1282,4 +1282,10 @@ textarea {
 .comment_body {
    word-wrap: break-word;
 }
+.rank_list li {
+    background: url("../images/list_style_disc.gif") no-repeat scroll left 2px transparent;
+    list-style: none outside none !important;
+    padding-left: 10px;
+    float:none;
+}
 
