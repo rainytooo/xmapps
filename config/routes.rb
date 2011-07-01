@@ -111,6 +111,12 @@ Xmapps::Application.routes.draw do
     match "searches" => "searches#create", :via => [:post]
     match "searches/refresh" => "searches#refresh", :via => [:get]
     match "searches/:id" => "searches#update", :via => [:put]
+    namespace "sources" do
+      match "source" => "sources_admin#source", :via => [:get]
+      match "source/:id" => "sources_admin#del_source", :via => [:delete]
+      match "translation" => "sources_admin#translation", :via => [:get]
+      match "translation/:id" => "sources_admin#del_translation", :via => [:delete]
+    end
   end
   # uc api
   match "api/uc.php" => "admin#ucapi", :via => [:get]

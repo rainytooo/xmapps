@@ -1,0 +1,52 @@
+<% content_for :head do %>
+<title>小马过河-后台管理-原文管理</title>
+<meta name="description" content="国外精品文章 翻译 译文 英语学习 英语文章 ">
+<meta name="keywords" content="国外精品文章 翻译 译文 英语学习 英语文章 英语范文学习 ">
+<%= stylesheet_link_tag "global" %>
+<%= stylesheet_link_tag "index" %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<% end %>
+
+		<div class="container">
+				<div>
+					<h3><span class="ask_title">最新发布的原文</span></h3>
+					<table class="grid">
+						<thead>
+							<tr>
+							  <td width="300">标题</td>
+							  <td width="80">类型</td>
+							  <td width="80">发布日期</td>
+							  <td width="55">语言</td>
+							  <td width="35">浏览</td>
+							  <td width="50">操作</td>
+							</tr>
+						</thead>
+						<tbody>
+             <% @translations.each do |source| %>
+             <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
+							  <td>
+							  <a title="<%= source.title %>" href="/sources/<%= source.source_id%>/translations/<%= source.id%>"><%= source.title %></a>
+							  </td>
+							  <td class="tag"><a href="/sources/search?tags=<%= source.source_type.id%>">[<%= source.source_type.name%>]</a></td>
+							  <td class="date"><%= source.created_at.strftime('%Y-%m-%d') %></td>
+							  <td><%= source.source_lang.name %></td>
+							  <td><span class="browse"><%= source.views %></span></td>
+							  <td>
+							  <a href="/xmadmin/sources/translation/<%= source.id%>" onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var at = document.createElement('input'); at.setAttribute('type', 'hidden'); at.setAttribute('name', 'authenticity_token'); at.setAttribute('value', '#{form_authenticity_token}'); f.appendChild(at);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'delete'); f.appendChild(m);f.submit(); };return false;">删除</a>
+							  </td>
+						  </tr>
+             <% end %>
+					  </tbody>
+					</table>
+
+					<div class="clear"></div>
+					<div class="will_pagination">
+						<%=h will_paginate @translations, :previous_label => '上一页',  :next_label => '下一页'%>
+					</div>
+
+
+				</div>
+
+			<div class="clear"></div>
+		</div><!-- #container -->
+

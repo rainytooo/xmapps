@@ -74,7 +74,7 @@ class TranslationsController < ApplicationController
         flash[:message] = "此文章已经有人在你翻译之前发布了翻译,所以您获得积分和金币将比第一个翻译的人要少"
       end
       # 更新发布总数
-      user_count = UserCount.where("user_id = #{session[:login_user_id].to_s} and app_name = 'tran'").first
+      user_count = UserCount.where("user_id = #{@translation.user_id.to_s} and app_name = 'tran'").first
       if not user_count
         user_count = UserCount.new
         user_count.user_id = session[:login_user_id]
@@ -85,7 +85,7 @@ class TranslationsController < ApplicationController
         user_count.update_attributes({:uploads => user_count.uploads + 1 })
       end
        # 更新总排行榜
-      trans_rank = TranRank.where("user_id = #{session[:login_user_id].to_s}").first
+      trans_rank = TranRank.where("user_id = #{@translation.user_id.to_s} and campaign = 'all'").first
       if not trans_rank
         trans_rank = TranRank.new
         trans_rank.user_id = session[:login_user_id]
@@ -99,7 +99,7 @@ class TranslationsController < ApplicationController
         trans_rank.update_attributes({:total_trans => trans_rank.total_trans + 1 , :total_excredits => trans_rank.total_excredits + ex_credits })
       end
       # 更新第一届翻译大赛排行榜
-      trans_rank_f = TranRank.where("user_id = #{session[:login_user_id].to_s} and campaign = 'dyjfyds'").first
+      trans_rank_f = TranRank.where("user_id = #{@translation.user_id.to_s} and campaign = 'dyjfyds'").first
       if not trans_rank_f
         trans_rank_f = TranRank.new
         trans_rank_f.user_id = session[:login_user_id]
@@ -175,11 +175,11 @@ class TranslationsController < ApplicationController
         send_dz_feed 2005, @translation.dz_user_id, @translation.username, title_template, title_data, '', title_data
         # end 发送全局动态
            # 最佳翻译统计
-          user_count = UserCount.where("user_id = #{session[:login_user_id].to_s} and app_name = 'best_tran'").first
+          user_count = UserCount.where("user_id = #{@translation.user_id.to_s} and app_name = 'best_tran'").first
            # 更新发布总数
           if not user_count
             user_count = UserCount.new
-            user_count.user_id = session[:login_user_id]
+            user_count.user_id = @translation.user_id
             user_count.app_name = "best_tran"
             user_count.uploads = 1
 		        user_count.save
@@ -187,12 +187,16 @@ class TranslationsController < ApplicationController
             user_count.update_attributes({:uploads => user_count.uploads + 1 })
           end
            # 更新排行榜
-          trans_rank = TranRank.where("user_id = #{session[:login_user_id].to_s}").first
-          trans_rank.update_attributes({:best_trans => trans_rank.best_trans + 1, :total_excredits => trans_rank.total_excredits + @source.excredits })
+          trans_rank = TranRank.where("user_id = #{@translation.user_id.to_s} and campaign = 'all'").first
+          if trans_rank
+            trans_rank.update_attributes({:best_trans => trans_rank.best_trans + 1,
+              :total_excredits => trans_rank.total_excredits + @source.excredits })
+          end
            # 更新第一届翻译大赛排行榜
-          trans_rank_f = TranRank.where("user_id = #{session[:login_user_id].to_s} and campaign = 'dyjfyds'").first
+          trans_rank_f = TranRank.where("user_id = #{@translation.user_id.to_s} and campaign = 'dyjfyds'").first
           if trans_rank_f
-            trans_rank_f.update_attributes({:best_trans => trans_rank_f.best_trans + 1, :total_excredits => trans_rank_f.total_excredits + @source.excredits })
+            trans_rank_f.update_attributes({:best_trans => trans_rank_f.best_trans + 1,
+              :total_excredits => trans_rank_f.total_excredits + @source.excredits })
           end
            # 更改原文的状态为 不能再翻译了 ,已经有最佳翻译了
           @source.update_attributes({:status => 3,
