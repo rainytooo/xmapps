@@ -4,12 +4,13 @@ class AppliesController < ApplicationController
   # GET /applies
   # GET /applies.xml
   def index
-    @applies = Apply.all
-	# 添加了活动
-	@campaign = Campaign.find(params[:campaign_id])
+    
+     # 添加了活动
+    @campaign = Campaign.find(params[:campaign_id])
+    @applies = Apply.where("campaign_id = ?" , @@campaign.id).order("created_at desc")
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @applies }
+            format.html # index.html.erb
+            format.xml  { render :xml => @applies }
     end
   end
 
