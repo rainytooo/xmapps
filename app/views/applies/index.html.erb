@@ -9,7 +9,7 @@
 				<div class="list_left">
 					<% @applies.each do |apply| %>
 					<div class="list_line">
-						<h3><%= link_to apply.name, campaign_apply_path(@campaign, apply) %></h3>
+						<h3><%= link_to apply.name, campaign_apply_path(@campaign, apply) %> &nbsp;&nbsp;手机:<%= apply.mobile %>&nbsp;&nbsp;电邮:<%= apply.email %></h3>
 						<div>
 							<label>学校:</label><%= apply.school %> 
 							<label>年龄:</label><%= apply.age %>
