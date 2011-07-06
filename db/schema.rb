@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(:version => 20110701034401) do
     t.integer  "ask_id"
     t.integer  "user_id"
     t.string   "username",   :limit => 32
-    t.integer  "badrate"
-    t.integer  "goodrate"
+    t.integer  "badrate",                  :default => 0
+    t.integer  "goodrate",                 :default => 0
     t.text     "content"
     t.integer  "ifcheck",    :limit => 1,  :default => 0
     t.datetime "created_at"
@@ -197,7 +197,7 @@ ActiveRecord::Schema.define(:version => 20110701034401) do
     t.integer  "source_lang_id"
     t.integer  "dz_user_id"
     t.string   "username",            :limit => 32
-    t.string   "title",               :limit => 128
+    t.string   "title"
     t.string   "source_desc"
     t.string   "origin_url"
     t.text     "content"
@@ -316,9 +316,9 @@ ActiveRecord::Schema.define(:version => 20110701034401) do
     t.string   "title",        :limit => 128
     t.string   "content_desc", :limit => 512
     t.text     "content",      :limit => 255
-    t.integer  "index_id",     :limit => 2,   :default => 1
     t.string   "campaign",     :limit => 32
     t.string   "url",          :limit => 128
+    t.integer  "index_id",     :limit => 2,   :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end

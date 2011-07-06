@@ -64,7 +64,7 @@ h1 span.title_keywords {
 	/*background: url("../images/bg.jpg") repeat scroll 0 0 #2E2E2E;*/
 	background: none repeat scroll 0 0 #a83336;
 	border-bottom:5px solid #4d4d4d;
-	height:185px;
+	height:200px;
 	margin-bottom: 5px;
 
 }
@@ -83,7 +83,7 @@ h1 span.title_keywords {
     list-style: none outside none;
     overflow: hidden;
     padding: 5px;
-	margin: 0 auto;
+	 margin: 0 auto;
     width: 960px;
 }
 span.warning a {
@@ -133,8 +133,14 @@ span.warning a {
 
 #head_center {
 	margin: 0 auto;
-
     width: 960px;
+}
+#top_tel {
+    margin: 0 auto;
+    width: 960px;
+}
+#top_tel h2{
+    margin-bottom: 12px;
 }
 .setlink {
 	color: #FFFFFF;
@@ -1291,5 +1297,15 @@ textarea {
     list-style: none outside none !important;
     padding-left: 10px;
     float:none;
+}
+
+.search_ads h3 {
+    margin:5px;
+}
+.search_ads li {
+    width:240px;
+}
+.search_ads span.search_url {
+    color: #0E774A;
 }
 
