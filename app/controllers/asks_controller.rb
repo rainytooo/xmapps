@@ -37,18 +37,18 @@ class AsksController < ApplicationController
 
   # 未解决的
   def unsolved
-    @unsolve_asks = Ask.where("status = 0").order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>10)
+    @unsolve_asks = Ask.where("status = 0").order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>30)
   end
 
   # 已关闭的
   def closed
-    @solved_asks = Ask.where("status = 1").order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>10)
+    @solved_asks = Ask.where("status = 1").order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>30)
   end
 
   # 标签
   def tags
     @ask_type = AskType.find_by_name(params[:id])
-    @tag_asks = Ask.where("ask_type_id = ?", @ask_type.id).order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>10)
+    @tag_asks = Ask.where("ask_type_id = ?", @ask_type.id).order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>30)
   end
   # GET /asks/new
   # GET /asks/new.xml
