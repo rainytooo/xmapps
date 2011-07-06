@@ -20,7 +20,7 @@
              maxlength: 64
            },
           "apply[email]": {
-             required: true,
+             //required: true,
              email: true
            },
           "apply[mobile]": {
@@ -31,12 +31,12 @@
              maxlength: 128
            },
           "apply[age]": {
-             required: true,
+             //required: true,
              number: true,
              range: [1,99]
            },
           "apply[city]": {
-             required: true
+             //required: true
            }
          },
          messages: {
@@ -73,11 +73,13 @@
 						<%= f.text_field :name %>
 					</div><div class="clear"></div>
 					<div class="form_tips">请填您的姓名</div>
+<!--
 					<div class="yuyue_form">
 						<%= f.label :email, "电子邮件"%>
 						<%= f.text_field :email %>
 					</div><div class="clear"></div>
 					<div class="form_tips">请填您的电子邮件</div>
+-->
 					<div class="yuyue_form">
 						<%= f.label :mobile, "手机号码"%>
 						<%= f.text_field :mobile %>
@@ -88,16 +90,19 @@
 						<%= f.text_field :school %>
 					</div><div class="clear"></div>
 					<div class="form_tips">请填您现在所就读的学校</div>
+<!-- 
 					<div class="yuyue_form">
 						<%= f.label :age, "年龄"%>
 						<%= f.text_field :age %>
 					</div><div class="clear"></div>
 					<div class="form_tips">请填您的年龄</div>
+
 					<div class="yuyue_form">
 						<%= f.label :city, "城市"%>
 						<%= f.text_field :city %>
 					</div><div class="clear"></div>
 					<div class="form_tips">请填您所在的城市</div>
+-->
 					<div id="form_submit">
 						<input id="campaign_submit" name="commit" type="submit" value="提交预约">
 					</div>
