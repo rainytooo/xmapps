@@ -37,6 +37,8 @@ class AskAnswersController < ApplicationController
     require 'php_serialization'
     title_data = PhpSerialization.dump(title_data)
     send_dz_feed 2001, dz_user.uid, dz_user.username, title_template, title_data, '', title_data
+    # 记录用户操作
+    user_op_log session[:login_user_id] ,dz_user.uid, dz_user.username, 'all'
     redirect_to ask_path(ask)
   end
 
