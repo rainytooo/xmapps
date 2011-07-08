@@ -166,7 +166,7 @@ class ApplicationController < ActionController::Base
   # 检查操作是否合法在一定时间内
   def require_operation_check
     unless operation_pass?
-      flash.now[:error] = "对不起,距离您上一次操作时间间隔小于5分钟,请稍候再试"
+      flash.now[:error] = "对不起,距离您上一次操作时间间隔小于1分钟,请稍候再试"
 		  render '/errors_messages.html'
     end
   end
@@ -177,7 +177,7 @@ class ApplicationController < ActionController::Base
 
   def sync_check_status?
     dzuser = Dzuser.find_by_uid session[:login_user].uid
-    jianxitime = dzuser.regdate + (60 * 1200)
+    jianxitime = dzuser.regdate + (60 * 1440)
     if dzuser.status == 0 and jianxitime < Time.now.to_i and dzuser.adminid > 0
       return true
     else
@@ -261,7 +261,7 @@ class ApplicationController < ActionController::Base
   def operation_pass?
     uol = UserOperationLog.where("user_id = ? and app = 'all'", session[:login_user_id]).order("created_at desc").first
     if uol
-      if (uol.action_time + 300 ) > Time.now.to_i
+      if (uol.action_time + 60 ) > Time.now.to_i
         # 不合法
         return false
       else
