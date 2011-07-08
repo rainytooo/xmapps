@@ -178,7 +178,7 @@ class ApplicationController < ActionController::Base
   def sync_check_status?
     dzuser = Dzuser.find_by_uid session[:login_user].uid
     jianxitime = dzuser.regdate + (60 * 1200)
-    if dzuser.status == 0 and jianxitime < Time.now.to_i and dzuser.adminid >= 0
+    if dzuser.status == 0 and jianxitime < Time.now.to_i and dzuser.adminid > 0
       return true
     else
       false
