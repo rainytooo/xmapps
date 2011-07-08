@@ -7,6 +7,7 @@ require 'RMagick'
 include Magick
 class SourcesController < ApplicationController
   before_filter :require_login , :except => [:index, :show, :untrans, :search, :release]
+  before_filter :require_sync_check_status, :only => [:create]
   before_filter :require_operation_check , :only => [:create]
   # GET /sources
   # GET /sources.xml

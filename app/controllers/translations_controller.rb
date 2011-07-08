@@ -1,5 +1,6 @@
 class TranslationsController < ApplicationController
   before_filter :require_login , :except => [:index, :show]
+  before_filter :require_sync_check_status, :only => [:create]
   before_filter :require_operation_check , :only => [:create]
   # GET /translations
   # GET /translations.xml

@@ -115,25 +115,24 @@ class ApplicationController < ActionController::Base
 
   # 同步本地用户
   def sync_local_user(user)
-  # 判断用户在表里是否存在
-	local_user = User.find_by_email(user.email)
-	if not local_user
-	  # 不存在就创建一个
-	  local_user = User.new
-	  local_user.email = user.email
-	  local_user.username = user.username
-	  local_user.passwd = user.password
-	  local_user.regdate = user.regdate
-	  local_user.dz_common_id = user.uid
-	  if local_user.new_record?
-		local_user.save
-		# 创建一个计数器记录
-		user_count = UserCount.new
-		user_count.user_id = local_user.id
-		user_count.save
+    # 判断用户在表里是否存在
+	  local_user = User.find_by_email(user.email)
+	  if not local_user
+	    # 不存在就创建一个
+	    local_user = User.new
+	    local_user.email = user.email
+	    local_user.username = user.username
+	    local_user.passwd = user.password
+	    local_user.regdate = user.regdate
+	    local_user.dz_common_id = user.uid
+	    if local_user.new_record?
+		  local_user.save
+		  # 创建一个计数器记录
+		  user_count = UserCount.new
+		  user_count.user_id = local_user.id
+		  user_count.save
+	    end
 	  end
-
-	end
   end
 
 
@@ -146,12 +145,24 @@ class ApplicationController < ActionController::Base
 	  unless require_checkedemail?
       flash[:error] = "您的邮箱还没有验证 请登录您的邮箱" + session[:login_user].email + "进行验证,如果您已验证过了,请退出重新登录"
       redirect_to login_url # halts request cycle
+      return
 	  end
 	  if require_checkstatus?
 	    flash[:error] = "您当前的状态不允许发言,如果您可以在论坛正常发帖,请重新登录"
       redirect_to login_url # halts request cycle
+      return
     end
   end
+
+  # 动态检查状态
+  def require_sync_check_status
+    if sync_check_status?
+      flash[:error] = "您当前的状态不允许发言,如果您可以在论坛正常发帖,请重新登录"
+      redirect_to login_url # halts request cycle
+      return
+    end
+  end
+
   # 检查操作是否合法在一定时间内
   def require_operation_check
     unless operation_pass?
@@ -162,6 +173,11 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     !!session[:login_user]
+  end
+
+  def sync_check_status?
+    dzuser = Dzuser.find_by_uid session[:login_user].uid
+    dzuser.status
   end
 
   # 验证会员是否验证了邮箱
