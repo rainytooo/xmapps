@@ -141,12 +141,16 @@ class ApplicationController < ActionController::Base
     unless logged_in?
       flash[:error] = "必须登录才能继续刚才的操作,请登录"
       redirect_to login_url # halts request cycle
-	  return
+	    return
     end
-	unless require_checkedemail?
+	  unless require_checkedemail?
       flash[:error] = "您的邮箱还没有验证 请登录您的邮箱" + session[:login_user].email + "进行验证,如果您已验证过了,请退出重新登录"
       redirect_to login_url # halts request cycle
-	end
+	  end
+	  if require_checkstatus?
+	    flash[:error] = "您当前的状态不允许发言"
+      redirect_to login_url # halts request cycle
+    end
   end
 
   def logged_in?
@@ -155,7 +159,11 @@ class ApplicationController < ActionController::Base
 
   # 验证会员是否验证了邮箱
   def require_checkedemail?
-	session[:login_user].emailstatus
+	  session[:login_user].emailstatus
+  end
+
+  def require_checkstatus?
+    session[:login_user].status
   end
 
   def require_admin
@@ -205,11 +213,11 @@ class ApplicationController < ActionController::Base
 
   # 检查是不是用户的
   def is_not_mine?
-	if session[:login_user].id == params[id]
-	  return false
-	else
-	  return true
-	end
+	  if session[:login_user].id == params[id]
+	    return false
+	  else
+	    return true
+	  end
   end
 
 end

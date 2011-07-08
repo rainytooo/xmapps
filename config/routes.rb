@@ -10,7 +10,7 @@ Xmapps::Application.routes.draw do
       # 我de
       get 'my'
       # 我发布的
-      get 'my_release'
+      get 'my_releasematch "index" => "admin_index#index", :via => [:get]'
       # 我翻译的
       get 'my_trans'
       # 所有未翻译的
@@ -111,6 +111,7 @@ Xmapps::Application.routes.draw do
   namespace "xmadmin" do
     match "index" => "admin_index#index", :via => [:get]
     match "zjfw" => "admin_index#zjfw", :via => [:get]
+    match "users" => "admin_index#users", :via => [:get]
     # 学员报名信息
     match "zjfw/baoming" => "admin_index#zjfw_baoming", :via => [:get]
     match "searches" => "searches#index", :via => [:get]
