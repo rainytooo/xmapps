@@ -1,5 +1,5 @@
 class Xmadmin::AdminIndexController < ApplicationController
-  before_filter :require_xm_admin ,:only => [:index]
+  before_filter :require_admin ,:only => [:index]
   before_filter :require_zhongjiao_admin ,:only => [:zjfw, :zjfw_baoming]
 
   def index

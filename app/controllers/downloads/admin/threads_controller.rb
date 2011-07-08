@@ -1,5 +1,5 @@
 class Downloads::Admin::ThreadsController < ApplicationController
-  before_filter :require_login , :require_xm_admin
+  before_filter :require_login , :require_admin
   # GET /dl_threads
   # GET /dl_threads.xml
   def index

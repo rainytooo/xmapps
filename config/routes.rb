@@ -124,6 +124,13 @@ Xmapps::Application.routes.draw do
       match "translation" => "sources_admin#translation", :via => [:get]
       match "translation/:id" => "sources_admin#del_translation", :via => [:delete]
     end
+    # ÎÊ´ğ¹ÜÀí
+    namespace "asks" do
+      match "ask" => "asks_admin#ask", :via => [:get]
+      match "ask/:id" => "asks_admin#del_ask", :via => [:delete]
+      match "answer" => "asks_admin#answer", :via => [:get]
+      match "answer/:id" => "asks_admin#del_answer", :via => [:delete]
+    end
   end
   # uc api
   match "api/uc.php" => "admin#ucapi", :via => [:get]

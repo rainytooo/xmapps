@@ -1,5 +1,5 @@
 class Downloads::Admin::DlTypesController < ApplicationController
-  before_filter :require_login , :require_xm_admin
+  before_filter :require_login , :require_admin
   # GET /dl_types
   # GET /dl_types.xml
   def index
