@@ -1,5 +1,6 @@
 class TranslationsController < ApplicationController
   before_filter :require_login , :except => [:index, :show]
+  before_filter :require_operation_check , :only => [:create]
   # GET /translations
   # GET /translations.xml
   def index
@@ -125,6 +126,8 @@ class TranslationsController < ApplicationController
 	    title_data = PhpSerialization.dump(title_data)
       send_dz_feed 2004, @translation.dz_user_id, @translation.username, title_template, title_data, '', title_data
       # end 发送全局动态
+      # 记录用户操作
+      user_op_log session[:login_user_id] ,@translation.dz_user_id, @translation.username, 'all'
       redirect_to source_path @source
     else
       flash[:error] = "保存错误,请重试"

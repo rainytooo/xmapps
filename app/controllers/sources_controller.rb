@@ -7,6 +7,7 @@ require 'RMagick'
 include Magick
 class SourcesController < ApplicationController
   before_filter :require_login , :except => [:index, :show, :untrans, :search, :release]
+  before_filter :require_operation_check , :only => [:create]
   # GET /sources
   # GET /sources.xml
   def index
@@ -183,6 +184,8 @@ class SourcesController < ApplicationController
 	    title_data = PhpSerialization.dump(title_data)
       send_dz_feed 2003, @source.dz_user_id, @source.username, title_template, title_data, '', title_data
       # end 发送全局动态
+       # 记录用户操作
+      user_op_log session[:login_user_id] ,@source.dz_user_id, @source.username, 'all'
       redirect_to my_sources_path
     else
       flash[:error] = "保存错误,请重试"
