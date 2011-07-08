@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110701034401) do
+ActiveRecord::Schema.define(:version => 20110708042854) do
 
   create_table "applies", :force => true do |t|
     t.string   "name"
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(:version => 20110701034401) do
     t.integer  "ask_id"
     t.integer  "user_id"
     t.string   "username",   :limit => 32
-    t.integer  "badrate",                  :default => 0
-    t.integer  "goodrate",                 :default => 0
+    t.integer  "badrate"
+    t.integer  "goodrate"
     t.text     "content"
     t.integer  "ifcheck",    :limit => 1,  :default => 0
     t.datetime "created_at"
@@ -197,7 +197,7 @@ ActiveRecord::Schema.define(:version => 20110701034401) do
     t.integer  "source_lang_id"
     t.integer  "dz_user_id"
     t.string   "username",            :limit => 32
-    t.string   "title"
+    t.string   "title",               :limit => 128
     t.string   "source_desc"
     t.string   "origin_url"
     t.text     "content"
@@ -302,6 +302,18 @@ ActiveRecord::Schema.define(:version => 20110701034401) do
 
   add_index "user_counts", ["user_id"], :name => "fk_user_counts_user"
 
+  create_table "user_operation_logs", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "dz_user_id"
+    t.string   "username",    :limit => 32
+    t.string   "app",         :limit => 32
+    t.integer  "action_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_operation_logs", ["user_id"], :name => "fk_user_operation_logs_user"
+
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "email"
@@ -316,9 +328,9 @@ ActiveRecord::Schema.define(:version => 20110701034401) do
     t.string   "title",        :limit => 128
     t.string   "content_desc", :limit => 512
     t.text     "content",      :limit => 255
+    t.integer  "index_id",     :limit => 2,   :default => 1
     t.string   "campaign",     :limit => 32
     t.string   "url",          :limit => 128
-    t.integer  "index_id",     :limit => 2,   :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end

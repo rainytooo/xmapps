@@ -1,5 +1,6 @@
 class AsksController < ApplicationController
   before_filter :require_login , :except => [:index, :show, :unsolved, :closed, :tags]
+  before_filter :require_operation_check , :only => [:create]
   # GET /asks
   # GET /asks.xml
   def index
@@ -81,6 +82,8 @@ class AsksController < ApplicationController
 	    require 'php_serialization'
 	    title_data = PhpSerialization.dump(title_data)
       send_dz_feed 2002, dz_user.uid, dz_user.username, title_template, title_data, '', title_data
+      # 记录用户操作
+      user_op_log session[:login_user_id] ,dz_user.uid, dz_user.username, 'all'
       redirect_to(@ask, :notice => 'Ask was successfully created.')
     else
       flash.now[:error] = "您提交的问题出现了错误"

@@ -148,8 +148,15 @@ class ApplicationController < ActionController::Base
       redirect_to login_url # halts request cycle
 	  end
 	  if require_checkstatus?
-	    flash[:error] = "您当前的状态不允许发言"
+	    flash[:error] = "您当前的状态不允许发言,如果您可以在论坛正常发帖,请重新登录"
       redirect_to login_url # halts request cycle
+    end
+  end
+  # 检查操作是否合法在一定时间内
+  def require_operation_check
+    unless operation_pass?
+      flash.now[:error] = "对不起,距离您上一次操作时间间隔小于5分钟,请稍候再试"
+		  render '/errors_messages.html'
     end
   end
 
@@ -219,6 +226,29 @@ class ApplicationController < ActionController::Base
 	    return true
 	  end
   end
+  # 记录用户操作
+  def user_op_log(user_id ,dz_user_id, user_name, app_name)
+    uol = UserOperationLog.new
+    uol.user_id = user_id
+    uol.dz_user_id = dz_user_id
+    uol.username = user_name
+    uol.app = app_name
+    uol.action_time = Time.now.to_i
+    uol.save
+  end
 
+  def operation_pass?
+    uol = UserOperationLog.where("user_id = ? and app = 'all'", session[:login_user_id]).order("created_at desc").first
+    if uol
+      if (uol.action_time + 300 ) > Time.now.to_i
+        # 不合法
+        return false
+      else
+        return true
+      end
+    else
+      return true
+    end
+  end
 end
 
