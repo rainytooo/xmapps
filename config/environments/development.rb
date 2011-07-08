@@ -25,7 +25,6 @@ Xmapps::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
   config.active_record.default_timezone = :local
-
   #config.cache_store = :dalli_store, 'localhost:11211',    { :namespace => 'xmapps', :expires_in => 1.day, :compress => true }
 
   SEARCH_HOST = "127.0.0.1"

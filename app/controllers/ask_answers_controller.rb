@@ -1,5 +1,7 @@
 class AskAnswersController < ApplicationController
   before_filter :require_login
+  before_filter :require_sync_check_status, :only => [:create]
+  before_filter :require_operation_check , :only => [:create]
 
 
   # GET /ask_answers/1/edit

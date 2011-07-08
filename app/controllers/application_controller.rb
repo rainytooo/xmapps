@@ -147,16 +147,11 @@ class ApplicationController < ActionController::Base
       redirect_to login_url # halts request cycle
       return
 	  end
-	  if require_checkstatus?
-	    flash[:error] = "您当前的状态不允许发言,如果您可以在论坛正常发帖,请重新登录"
-      redirect_to login_url # halts request cycle
-      return
-    end
   end
 
   # 动态检查状态
   def require_sync_check_status
-    if sync_check_status?
+    unless sync_check_status?
       flash[:error] = "您当前的状态不允许发言,如果您可以在论坛正常发帖,请重新登录"
       redirect_to login_url # halts request cycle
       return
@@ -178,7 +173,7 @@ class ApplicationController < ActionController::Base
   def sync_check_status?
     dzuser = Dzuser.find_by_uid session[:login_user].uid
     jianxitime = dzuser.regdate + (60 * 1440)
-    if dzuser.status == 0 and jianxitime < Time.now.to_i and dzuser.adminid > 0
+    if (dzuser.status == 0) and (jianxitime < Time.now.to_i) and (dzuser.adminid >= 0)
       return true
     else
       false
@@ -190,9 +185,6 @@ class ApplicationController < ActionController::Base
 	  session[:login_user].emailstatus
   end
 
-  def require_checkstatus?
-    session[:login_user].status
-  end
 
   def require_admin
 	  unless logged_admin?
