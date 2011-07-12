@@ -8,13 +8,13 @@
 
 
 					<% if flash[:message] %>
-						<div class="common_message"><%= flash[:message] %></div><!-- .message -->
+						<div class="common_message"><%= flash[:message] %><br/><a href="/">返回首页</a></div><!-- .message -->
 						<% end %>
 						<% if flash[:error] %>
-						<div class="common_error"><%= flash[:error] %></div><!-- .error -->
+						<div class="common_error"><%= flash[:error] %><br/><a href="/">返回首页</a></div><!-- .error -->
 					<% end %>
-					<br/>
-					<a href="/">返回首页</a>
+
+
 
 
 	</div><!-- #content_container -->
