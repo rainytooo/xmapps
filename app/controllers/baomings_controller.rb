@@ -8,12 +8,20 @@ class BaomingsController < ApplicationController
     baoming.tuofucj = params[:tuofucj]
     baoming.campaign = params[:campaign]
     if baoming.save
-      flash.now[:message] = "报名成功"
-      render '/errors_messages.html'
+      flash[:message] = "报名成功"
+      redirect_to :action => "bm_result"
+      #flash.now[:message] = "报名成功"
+      #render '/errors_messages.html'
     else
-      flash.now[:error] = "您提交的内容有错误,请重新填写"
-		  render '/errors_messages.html'
+      flash[:error] = "您提交的内容有错误,请重新填写"
+      redirect_to :action => "bm_result"
+      #flash.now[:error] = "您提交的内容有错误,请重新填写"
+		  #render '/errors_messages.html'
     end
+  end
+
+  def bm_result
+
   end
 end
 
