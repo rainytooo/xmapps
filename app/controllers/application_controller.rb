@@ -157,11 +157,19 @@ class ApplicationController < ActionController::Base
       return
     end
   end
+  # 积分大于多少才能发问答
+  def require_dz_credits
+    if session[:login_user].credits < 10
+      flash.now[:error] = "您的积分太低,不允发言"
+      render '/errors_messages.html'
+      return
+    end
+  end
 
   # 检查操作是否合法在一定时间内
   def require_operation_check
     unless operation_pass?
-      flash.now[:error] = "对不起,距离您上一次操作时间间隔小于1分钟,请稍候再试"
+      flash.now[:error] = "对不起,距离您上一次操作时间间隔太短,请稍候再试(午夜系统默认间隔时间较长)"
 		  render '/errors_messages.html'
     end
   end
@@ -251,9 +259,15 @@ class ApplicationController < ActionController::Base
   end
 
   def operation_pass?
+    # 得到系统时间,默认发言间隔为3分钟,夜间为30分钟
+    hour_i = Time.now.hour
+    jiange = 30
+    if hour_i > 0 and hour_i < 8
+      jiange = 1800
+    end
     uol = UserOperationLog.where("user_id = ? and app = 'all'", session[:login_user_id]).order("created_at desc").first
     if uol
-      if (uol.action_time + 60 ) > Time.now.to_i
+      if (uol.action_time + jiange ) > Time.now.to_i
         # 不合法
         return false
       else

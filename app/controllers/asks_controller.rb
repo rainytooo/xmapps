@@ -2,6 +2,7 @@ class AsksController < ApplicationController
   before_filter :require_login , :except => [:index, :show, :unsolved, :closed, :tags]
   before_filter :require_sync_check_status, :only => [:create]
   before_filter :require_operation_check , :only => [:create]
+  before_filter :require_dz_credits , :only => [:new]
   # GET /asks
   # GET /asks.xml
   def index
