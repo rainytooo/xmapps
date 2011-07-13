@@ -190,7 +190,11 @@ class ApplicationController < ActionController::Base
 
   # 验证会员是否验证了邮箱
   def require_checkedemail?
-	  session[:login_user].emailstatus
+	  if session[:login_user].emailstatus == 1
+	    return true
+   else
+     return false
+   end
   end
 
 
