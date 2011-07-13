@@ -109,6 +109,11 @@ class Xmadmin::Sources::SourcesAdminController < ApplicationController
         :total_excredits => trans_rank_f.total_excredits - @source.excredits })
       end
     end
+    # shanchu pinglun
+    comments = TransComment.where("translation_id = ? ", translation.id)
+    comments.each do |comment|
+      comment.destroy
+    end
      # 删除翻译
     translation.destroy
     redirect_to :action => "translation"
