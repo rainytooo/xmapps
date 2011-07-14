@@ -3,6 +3,7 @@
 <meta name="description" content="下载<%= @dl_attachment.originname %>" />
 <meta name="keywords" content="小马留学网 英语 学习资料 下载" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://cbjs.baidu.com/js/m.js"></script>
 <%= javascript_include_tag 'jqModal' %>
 <%= stylesheet_link_tag "jqModal" %>
 <script type="text/javascript">
@@ -74,6 +75,7 @@ $(document).ready(function() {
 							<h5><a href="<%= XMAPP_MAIN_DOMAIN_URL %>/manage/uploads">管理我的上传</a></h5>
 						</p>
 					</div>
+					<script type="text/javascript">BAIDU_CLB_fillSlot("182242");</script>
 					<h5>我当前的金币为:<%= @extcredits.extcredits6%></h5>
 					<h5><a href="/i_want_credits" target="_blank"><em>金币不够?来赚取吧</em></a></h5>
 					<div class="user_upload">
