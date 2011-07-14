@@ -7,20 +7,40 @@ class BaomingsController < ApplicationController
     baoming.baokaoxuexiao = params[:baokaoxuexiao]
     baoming.tuofucj = params[:tuofucj]
     baoming.campaign = params[:campaign]
-    if baoming.save
-      flash[:message] = "报名成功"
-      redirect_to :action => "bm_result"
-      #flash.now[:message] = "报名成功"
-      #render '/errors_messages.html'
+    baoming.flag = params[:flag]
+    if baoming.flag == 1
+      if baoming.save
+        flash[:message] = "报名成功"
+        redirect_to :action => "bm_result2"
+        #flash.now[:message] = "报名成功"
+        #render '/errors_messages.html'
+      else
+        flash[:error] = "您提交的内容有错误,请重新填写"
+        redirect_to :action => "bm_result2"
+        #flash.now[:error] = "您提交的内容有错误,请重新填写"
+		    #render '/errors_messages.html'
+      end
     else
-      flash[:error] = "您提交的内容有错误,请重新填写"
-      redirect_to :action => "bm_result"
-      #flash.now[:error] = "您提交的内容有错误,请重新填写"
-		  #render '/errors_messages.html'
+      if baoming.save
+        flash[:message] = "报名成功"
+        redirect_to :action => "bm_result"
+        #flash.now[:message] = "报名成功"
+        #render '/errors_messages.html'
+      else
+        flash[:error] = "您提交的内容有错误,请重新填写"
+        redirect_to :action => "bm_result"
+        #flash.now[:error] = "您提交的内容有错误,请重新填写"
+		    #render '/errors_messages.html'
+      end
     end
+
+
   end
 
   def bm_result
+
+  end
+  def bm_result2
 
   end
 end

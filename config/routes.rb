@@ -50,6 +50,7 @@ Xmapps::Application.routes.draw do
   # 报名的提交
   match "baomings", :to => "baomings#create", :via => [:post]
   match "bm_success", :to => "baomings#bm_result", :via => [:get]
+  match "bm_xm_success", :to => "baomings#bm_result2", :via => [:get]
 
   # download application
   # 首页
