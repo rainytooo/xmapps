@@ -43,6 +43,7 @@ Xmapps::Application.routes.draw do
       get 'asks_new'
       get 'asks_closed'
       get 'asks_unsolved'
+      get 'asks_chuguo'
     end
   end
 
