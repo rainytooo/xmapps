@@ -1,13 +1,13 @@
 <% content_for :head do %>
-<title>小马过河-上传资料</title>
-<meta name="description" content="上传资料" /> 
-<meta name="keywords" content="小马过河 英语 学习资料 上传" /> 
+<title>小马留学网-上传资料</title>
+<meta name="description" content="上传资料" />
+<meta name="keywords" content="小马留学网 英语 学习资料 上传" />
 <%= stylesheet_link_tag('jquery.fileupload-ui') %>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
 <%= javascript_include_tag 'jquery.fileupload', 'jquery.fileupload-ui' %>
 
-<script type="text/javascript" charset="utf-8"> 
+<script type="text/javascript" charset="utf-8">
    $(function () {
   $('.upload').fileUploadUI({
         uploadTable: $('.upload_files'),
@@ -36,21 +36,22 @@
 			<div class="form_container">
 				<div class="form_desc"><span class="form_desc_tip">操作流程:&nbsp;</span>1.填写基本信息 -> 2.编辑缩略图 -> <span class="current">3.添加附件</span> -> 4.完成资源上传</div><!-- .form_desc -->
 				<div class="form_left">
-				<div class="files"> 
+				<div class="files">
 					<%= form_for( [:downloads, @dl_thread, @dl_attachment], :html => { :class => "upload", :multipart => true } ) do |f| %>
 					  <%= f.file_field :attachment %>
 					  <div>上传预览图片或封面</div>
 					<% end %>
-					
+
 					<table class="upload_files"></table>
 					<table class="download_files"></table>
-				</div>	
-				
+				</div>
+
 				</div><!-- .form_left -->
-				
+
 				<div class="form_right">
-					
+
 				</div><!-- .form_right -->
 			</div><!-- .form_container -->
 		</div><!-- #content_container -->
 		<div class="clear"></div>
+

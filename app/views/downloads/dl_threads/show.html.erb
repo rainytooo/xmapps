@@ -1,7 +1,7 @@
 <% content_for :head do %>
 <title><%= @dl_thread.name if @dl_thread %> <%= @dl_thread.dl_type.typename if @dl_thread %></title>
 <meta name="description" content="浏览<%= @dl_thread.name if @dl_thread%> 描述:<%= @dl_thread.content_desc if @dl_thread %>" />
-<meta name="keywords" content="小马过河 资料 下载 <%= @dl_thread.name if @dl_thread %> <%= @dl_thread.dl_type.keywords if @dl_thread %>" />
+<meta name="keywords" content="小马留学网 资料 下载 <%= @dl_thread.name if @dl_thread %> <%= @dl_thread.dl_type.keywords if @dl_thread %>" />
 <% end %>
 
 		<div class="container <%= "empty_list" if not @dl_thread %>">

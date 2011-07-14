@@ -1,7 +1,7 @@
 <% content_for :head do %>
-<title>小马过河-编辑资料上传的缩略图</title>
-<meta name="description" content="编辑资料上传的缩略图" /> 
-<meta name="keywords" content="小马过河 英语 学习资料 上传" /> 
+<title>小马留学网-编辑资料上传的缩略图</title>
+<meta name="description" content="编辑资料上传的缩略图" />
+<meta name="keywords" content="小马留学网 英语 学习资料 上传" />
 <%= stylesheet_link_tag('jquery.Jcrop.css') %>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <%= javascript_include_tag 'jquery.Jcrop.min' %>
@@ -13,7 +13,7 @@
 			setSelect: [0, 0, 200, 200],
 			aspectRatio: 1
         });
-    });	
+    });
 function update_crop(coords) {
   var rx = 100/coords.w;
   var ry = 100/coords.h;
@@ -28,7 +28,7 @@ function update_crop(coords) {
   $("#crop_y").val(Math.round(coords.y * ratio));
   $("#crop_w").val(Math.round(coords.w * ratio));
   $("#crop_h").val(Math.round(coords.h * ratio));
-}	
+}
 </script>
 <% end %>
 		<div class="container">
@@ -36,7 +36,7 @@ function update_crop(coords) {
 			<a href="/">首页</a> &gt;&gt; <%= link_to '资源下载', dl_index_path %> &gt;&gt; <%= @dl_thread.name %>
 			</div><!-- .page_path -->
 			<div class="page_title"><h1><%= @dl_thread.name %></h1></div>
-			
+
 			<div class="form_info_container">
 				<div class="form_desc"><span class="form_desc_tip">操作流程:&nbsp;</span>1.填写基本信息 -> <span class="current">2.编辑缩略图</span> -> 3.添加附件</div><!-- .form_desc -->
 				<div class="form_info_left">
@@ -51,38 +51,39 @@ function update_crop(coords) {
 					  <div class="clear"></div>
 					</div>
 				    <% end %>
-				<div class="clear"></div>	
-				
+				<div class="clear"></div>
+
 					<p><label>资源名称:</label><%= @dl_thread.name %></p>
-									
+
 					<% form_for( [:downloads, @dl_thread] ) do |f| %>
 					  <%= hidden_field_tag(:recrop, "1") %>
 					  <div class="yuyue_form">
 						<%= label_tag(:crop_origin, "原图:") %>
-						<%= image_tag @dl_thread.photo.url(:medium), :id => 'cropbox' %>			
+						<%= image_tag @dl_thread.photo.url(:medium), :id => 'cropbox' %>
 					  </div><div class="clear"></div>
 					  <div class="form_tips">请选取你要的区域</div>
 					  <div class="yuyue_form">
 						<%= label_tag(:crop_preview, "预览图:") %>
 						<div style="width:100px; height:100px; overflow:hidden">
 						  <%= image_tag @dl_thread.photo.url(:medium), :id => "preview" %>
-						</div>			
+						</div>
 					  </div><div class="clear"></div>
 					  <div class="form_tips">这里是预览的效果</div>
 					  <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
 						<%= f.hidden_field attribute, :id => attribute %>
 					  <% end %>
 					  <div id="form_submit">
-						<input id="campaign_submit" name="commit" type="submit" value="提交">				
+						<input id="campaign_submit" name="commit" type="submit" value="提交">
 					  </div>
 					<% end %>
-					
+
 					<div class="clear"></div>
-					
-				
+
+
 				</div><!-- .form_info_left -->
-				
-				
+
+
 			</div><!-- .form_info_container -->
 		</div><!-- #content_container -->
 		<div class="clear"></div>
+
