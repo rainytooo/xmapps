@@ -7,8 +7,8 @@ class BaomingsController < ApplicationController
     baoming.baokaoxuexiao = params[:baokaoxuexiao]
     baoming.tuofucj = params[:tuofucj]
     baoming.campaign = params[:campaign]
-    baoming.flag = params[:flag]
-    if baoming.flag == 1
+    bm_flag = params[:flag]
+    if bm_flag == 1
       if baoming.save
         flash[:message] = "报名成功"
         redirect_to :action => "bm_result2"
