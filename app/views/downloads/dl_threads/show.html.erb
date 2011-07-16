@@ -2,7 +2,6 @@
 <title><%= @dl_thread.name if @dl_thread %> <%= @dl_thread.dl_type.typename if @dl_thread %></title>
 <meta name="description" content="浏览<%= @dl_thread.name if @dl_thread%> 描述:<%= @dl_thread.content_desc if @dl_thread %>" />
 <meta name="keywords" content="小马留学网 资料 下载 <%= @dl_thread.name if @dl_thread %> <%= @dl_thread.dl_type.keywords if @dl_thread %>" />
-<script type="text/javascript" src="http://cbjs.baidu.com/js/m.js"></script>
 <% end %>
 
 		<div class="container <%= "empty_list" if not @dl_thread %>">
@@ -114,7 +113,7 @@
 						<h5><a href="<%= XMAPP_MAIN_DOMAIN_URL %>/manage/uploads">管理我的上传</a></h5>
 					</p>
 				</div>
-       <script type="text/javascript">BAIDU_CLB_fillSlot("182242");</script>
+       <script src='http://www.xiaoma.com/plus/ad_js.php?aid=15' language='javascript'></script>
 			</div>
 			<div class="clear"></div>
 		</div><!-- #content_container -->
