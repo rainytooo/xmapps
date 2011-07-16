@@ -38,7 +38,7 @@ class HomeController < ApplicationController
     # 最佳译文总数
     @trans_best_total_count = Translation.where("status = 1").count
     # 排行榜
-    @trans_rank = TranRank.where("campaign = 'dyjfyds' and total_excredits > 0 ").order("total_excredits DESC").limit(30)
+    @trans_rank = TranRank.where("campaign = 'dyjfyds' and total_excredits > 0 ").order("total_excredits DESC").limit(41)
   end
 
   # def robots
