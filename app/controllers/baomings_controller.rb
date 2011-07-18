@@ -23,7 +23,7 @@ class BaomingsController < ApplicationController
     else
       if @baoming.save
         flash[:message] = "报名成功"
-        redirect_to :action => "bm_result"
+        redirect_to bm_success_a_path @baoming
         #flash.now[:message] = "报名成功"
         #render '/errors_messages.html'
       else
@@ -38,7 +38,7 @@ class BaomingsController < ApplicationController
   end
 
   def bm_result
-
+    @baoming = Baoming.find_by_id params[:id]
   end
   def bm_result2
 

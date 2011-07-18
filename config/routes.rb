@@ -50,7 +50,7 @@ Xmapps::Application.routes.draw do
   match "asks/tags/:id", :to => "asks#tags", :via => [:get], :as => "asks_tags"
   # 报名的提交
   match "baomings", :to => "baomings#create", :via => [:post]
-  match "bm_success", :to => "baomings#bm_result", :via => [:get]
+  match "bm_success/:id", :to => "baomings#bm_result", :via => [:get], :as => "bm_success_a"
   match "bm_xm_success", :to => "baomings#bm_result2", :via => [:get]
 
   # download application
