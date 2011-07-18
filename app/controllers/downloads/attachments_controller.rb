@@ -29,8 +29,13 @@ class Downloads::AttachmentsController < ApplicationController
 		# 消耗的金币数量
     cost_gold = dl_thread.gold
 		extcredits6 = DzCommonMemberCount.find_by_uid(dz_user.uid)
+		# 如果用户积分少于30 不能下载
+		if dz_user.credits.to_i < 30
+		  flash[:error] = "小马留学是免费网站,所以没有收取会员任何费用,由于服务器带宽有限,同时下载的人数太多,为了保证下载质量,所以下载资源需要有一定的积分,您的积分太低不足以下载此资源,下载此资源至少需要30的积分,您只有" + dz_user.credits.to_s
+			redirect_to downloads_attachment_path(params[:attachment_id])
+    end
 		if (extcredits6.extcredits6.to_i - cost_gold) < 0
-			flash[:error] = "对不起!您的金币数量不足以下载此资源,下载此资源至少需要#{cost_gold}个金币,您只有" + extcredits6.extcredits6.to_s
+			flash[:error] = "小马留学是免费网站,所以没有收取会员任何费用,由于服务器带宽有限,同时下载的人数太多,为了保证下载质量,所以下载资源需要扣除金币,下载此资源至少需要#{cost_gold}个金币,您只有" + extcredits6.extcredits6.to_s
 			redirect_to downloads_attachment_path(params[:attachment_id])
 		else
 			# 输出流
@@ -55,7 +60,7 @@ class Downloads::AttachmentsController < ApplicationController
 				dl_record.extcredits = cost_gold
 				dl_record.save
 				# 给用户加金币
-				add_discuz_extcredits dl_thread.user.dz_common_id, cost_gold
+				#add_discuz_extcredits dl_thread.user.dz_common_id, cost_gold
 			end
 		end
 	else

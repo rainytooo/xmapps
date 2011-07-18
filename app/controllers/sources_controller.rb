@@ -174,13 +174,13 @@ class SourcesController < ApplicationController
         user_count.update_attributes({:uploads => user_count.uploads + 1 })
       end
        # 加积分 和金币
-      add_discuz_credits @source.dz_user_id, 20
-      add_discuz_extcredits @source.dz_user_id, 30
+      add_discuz_credits @source.dz_user_id, 10
+      add_discuz_extcredits @source.dz_user_id, 10
       # 发全站动态
       # 发送全局动态
       source_index_url = XMAPP_MAIN_DOMAIN_URL+"/sources"
       source_thread_url = XMAPP_MAIN_DOMAIN_URL+"/sources/#{@source.id}"
-      title_template = "#{@source.username}在<a href=\"#{source_index_url}\" >译文频道<\/a>发布了一篇文章<a href=\"#{source_thread_url}\" >#{@source.title}<\/a>,并获得了30的金币,翻译此文章将有金币奖励,如果被评选为最佳翻译将额外获取获#{@source.excredits.to_s}的金币,快来<a href=\"#{source_thread_url}/translations/new\" >翻译<\/a>吧"
+      title_template = "#{@source.username}在<a href=\"#{source_index_url}\" >译文频道<\/a>发布了一篇文章<a href=\"#{source_thread_url}\" >#{@source.title}<\/a>,并获得了10的金币,翻译此文章将有金币奖励,如果被评选为最佳翻译将额外获取获#{@source.excredits.to_s}的金币,快来<a href=\"#{source_thread_url}/translations/new\" >翻译<\/a>吧"
 	    title_data = {}
 	    require 'php_serialization'
 	    title_data = PhpSerialization.dump(title_data)
