@@ -159,7 +159,8 @@ class ApplicationController < ActionController::Base
   end
   # 积分大于多少才能发问答
   def require_dz_credits
-    if session[:login_user].credits < 10
+    dzuser = Dzuser.find_by_uid session[:login_user].uid
+    if dzuser.credits.to_i < 10
       flash.now[:error] = "您的积分太低,不允发言"
       render '/errors_messages.html'
       return
