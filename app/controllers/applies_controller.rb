@@ -4,7 +4,7 @@ class AppliesController < ApplicationController
   # GET /applies
   # GET /applies.xml
   def index
-    
+
      # 添加了活动
     @campaign = Campaign.find(params[:campaign_id])
     @applies = Apply.where("campaign_id = ?" , @campaign.id).order("created_at desc")
@@ -55,7 +55,7 @@ class AppliesController < ApplicationController
 
     if @apply.save
       flash[:message] = "您已经成功预约了参与此次讲座活动:#{@campaign.name}"
-      redirect_to campaigns_path
+      redirect_to bm_xmjz_success_path
     else
       flash.now[:error] = "您填写的信息有误,请重新填写"
       render :action => "new"
@@ -93,6 +93,8 @@ class AppliesController < ApplicationController
       #format.html { redirect_to(@campaign.applies, :notice => 'Apply was successfully destroyed.') }
       format.xml  { head :ok }
     end
+  end
+  def bm_result
   end
 end
 

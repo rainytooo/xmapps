@@ -52,6 +52,7 @@ Xmapps::Application.routes.draw do
   match "baomings", :to => "baomings#create", :via => [:post]
   match "bm_success/:id", :to => "baomings#bm_result", :via => [:get], :as => "bm_success_a"
   match "bm_xm_success", :to => "baomings#bm_result2", :via => [:get]
+  match "bm_xmjz_success", :to => "applies#bm_result", :via => [:get]
 
   # download application
   # Ê×Ò³

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110708042854) do
+ActiveRecord::Schema.define(:version => 20110720063527) do
 
   create_table "applies", :force => true do |t|
     t.string   "name"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(:version => 20110708042854) do
     t.integer  "campaign_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "campany",      :limit => 64
+    t.string   "diqu_code",    :limit => 32, :default => "010"
   end
 
   create_table "ask_answers", :force => true do |t|
@@ -92,6 +94,8 @@ ActiveRecord::Schema.define(:version => 20110708042854) do
     t.datetime "start_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "campany",      :limit => 64
+    t.string   "diqu_code",    :limit => 32, :default => "010"
   end
 
   create_table "dl_attachments", :force => true do |t|
