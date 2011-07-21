@@ -178,7 +178,7 @@ class ApplicationController < ActionController::Base
   def logged_in?
     !!session[:login_user]
   end
-
+  # 检查用户的注册见习时间到了吗
   def sync_check_status?
     dzuser = Dzuser.find_by_uid session[:login_user].uid
     jianxitime = dzuser.regdate + (60 * 1440)
