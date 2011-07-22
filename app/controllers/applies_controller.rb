@@ -1,6 +1,6 @@
 class AppliesController < ApplicationController
-  before_filter :require_login , :except => [:create, :new]
-  before_filter :require_admin , :except => [:create, :new]
+  before_filter :require_login , :except => [:create, :new, :bm_result]
+  before_filter :require_admin , :except => [:create, :new, :bm_result]
   # GET /applies
   # GET /applies.xml
   def index
