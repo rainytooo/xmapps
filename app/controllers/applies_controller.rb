@@ -51,15 +51,27 @@ class AppliesController < ApplicationController
     # 添加了活动
 	@campaign = Campaign.find(params[:campaign_id])
 
-	@apply = @campaign.applies.create(params[:apply])
 
-    if @apply.save
+  # 防止重复提交
+	@apply_record = Apply.where("campaign_id = #{@campaign.id} and mobile = #{params[:apply][:mobile]}")
+	if not @apply_record.empty?
+    flash[:message] = "您已经成功预约了参与此次讲座活动:#{@campaign.name}"
+    redirect_to bm_xmjz_success_path
+    return
+  else
+    @apply = @campaign.applies.create(params[:apply])
+	  if @apply.save
       flash[:message] = "您已经成功预约了参与此次讲座活动:#{@campaign.name}"
       redirect_to bm_xmjz_success_path
+      return
     else
       flash.now[:error] = "您填写的信息有误,请重新填写"
       render :action => "new"
+      return
     end
+  end
+
+
 
   end
 

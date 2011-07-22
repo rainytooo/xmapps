@@ -104,7 +104,7 @@
 					<div class="form_tips">请填您所在的城市</div>
 -->
 					<div id="form_submit">
-						<input id="campaign_submit" name="commit" type="submit" value="提交预约">
+					<%= submit_tag "提交预约", :disable_with => "提交中...", :name => "commit", :id => "campaign_submit"%>
 					</div>
 					<div class="clear"></div>
 
