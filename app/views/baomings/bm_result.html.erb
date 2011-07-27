@@ -6,12 +6,14 @@
 <% end %>
 <script type="text/javascript">
 var _agq = _agq || [];
+var url=this.location.href;
+_agq.push(['_url', url]);
 _agq.push(['_cid', '211']); //生成value
 _agq.push(['_eid', '120']); //生成value
 
 //以下参数需要客户配合填写。'**'为需要替代内容
 _agq.push（['_id','<%= @baoming.id %>']）;            //客户方唯一标识id
-_agq.push（['_name','<%= @baoming.name %>']）;        //患者姓名
+_agq.push（['_name',escape('<%= @baoming.name %>')]）;        //患者姓名
 _agq.push（['_tel','<%= @baoming.telnum %>']）;            //电话号码
 ag_send(_agq); //在AG_Tracking.js中定义
 </script>
