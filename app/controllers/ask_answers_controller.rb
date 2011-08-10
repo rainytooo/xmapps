@@ -39,6 +39,9 @@ class AskAnswersController < ApplicationController
     send_dz_feed 2001, dz_user.uid, dz_user.username, title_template, title_data, '', title_data
     # 记录用户操作
     user_op_log session[:login_user_id] ,dz_user.uid, dz_user.username, 'all'
+    # 加积分 和金币
+    add_discuz_credits dz_user.uid, 5
+    add_discuz_extcredits dz_user.uid, 5
     redirect_to ask_path(ask)
   end
 
