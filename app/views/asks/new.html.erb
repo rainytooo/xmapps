@@ -2,6 +2,8 @@
 <title>小马留学网-问答频道</title>
 <meta name="keywords" content="小马留学网 问答频道" />
 <meta name="description" content="问答频道" />
+<%= stylesheet_link_tag "global" %>
+<%= stylesheet_link_tag "index" %>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/localization/messages_cn.js"></script>
@@ -47,7 +49,7 @@
 
 <div class="container">
 			<div class="page_path">
-			<a href="/">首页</a> &gt;&gt; <a href="/asks">问答频道</a> &gt;&gt; 我要提问
+			<a href="<%= XMAPP_MAIN_DOMAIN_URL %>">首页</a> &gt;&gt; <a href="/asks">问答频道</a> &gt;&gt; 我要提问
 			</div><!-- .page_path -->
 			<div class="page_title"><h1>我要提问</h1></div>
 			<div class="form_container">

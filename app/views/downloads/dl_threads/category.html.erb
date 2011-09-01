@@ -7,7 +7,7 @@
 		<div class="container">
 		<script src='http://www.xiaoma.com/plus/ad_js.php?aid=46' language='javascript'></script>
 			<div class="page_path">
-				<a href="/">首页</a> &gt;&gt; <%= link_to "资源下载", dl_index_path %> &gt;&gt; <%= @dl_category.typename %>
+				<a href="<%= XMAPP_MAIN_DOMAIN_URL %>">首页</a> &gt;&gt; <%= link_to "资源下载", dl_index_path %> &gt;&gt; <%= @dl_category.typename %>
 			</div><!-- .page_path -->
 			<div class="page_title"><h1>所有<%= @dl_category.typename %>下载列表 <span class="title_keywords">此分类包括:<%= @dl_category.keywords %>的相关资料</span></h1></div>
 			<div class="list_leftside">

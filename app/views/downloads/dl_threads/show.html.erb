@@ -7,7 +7,7 @@
 		<div class="container <%= "empty_list" if not @dl_thread %>">
 		<script src='http://www.xiaoma.com/plus/ad_js.php?aid=46' language='javascript'></script>
 			<div class="page_path">
-				<a href="/">首页</a> &gt;&gt; <%= link_to "资源下载", dl_index_path %> &gt;&gt; <%= @dl_thread.name if @dl_thread %>
+				<a href="<%= XMAPP_MAIN_DOMAIN_URL %>">首页</a> &gt;&gt; <%= link_to "资源下载", dl_index_path %> &gt;&gt; <%= @dl_thread.name if @dl_thread %>
 			</div><!-- .page_path -->
 
 			<div class="page_title">

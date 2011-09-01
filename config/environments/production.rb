@@ -56,6 +56,8 @@ Xmapps::Application.configure do
   # #####################################################################################
   SEARCH_HOST = "127.0.0.1"
 
+  MAIN_DOMAIN = "http://www.xiaoma.com"
+
   COOKIE_DOMAIN_NAME = ".testxmcmx.com"
   # Ö÷ÓòÃû
   XMAPP_MAIN_DOMAIN_URL = "http://dl1.testxmcmx.com"

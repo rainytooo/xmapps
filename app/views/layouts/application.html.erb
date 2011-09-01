@@ -4,16 +4,16 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<%= yield :head %>
 		<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
-		<%= stylesheet_link_tag "apps" %>
-		<%= stylesheet_link_tag "common" %>
+ <%= stylesheet_link_tag "apps" %>
+<%= stylesheet_link_tag "common" %>
 		<%= csrf_meta_tag %>
 	</head>
 <body>
 	<div id="top-header">
 		<div id="top_bar">
 			<div class="fl">
-				<a href="http://www.xiaoma.com">小马留学网</a>&nbsp;|&nbsp;
-				<a href="http://www.xiaoma.com">首页</a>
+				<a href="<%= XMAPP_MAIN_DOMAIN_URL %>">小马留学网</a>&nbsp;|&nbsp;
+				<a href="<%= XMAPP_MAIN_DOMAIN_URL %>">首页</a>
 			</div>
 			<div class="fr">
 				<% if session[:login_user] %>

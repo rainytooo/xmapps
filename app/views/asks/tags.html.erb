@@ -2,15 +2,15 @@
 <title>小马留学网-问答频道 <%= @ask_type.name %></title>
 <meta name="description" content="关于<%= @ask_type.name %>的问题">
 <meta name="keywords" content="<%= @ask_type.name %>的问题 留学申请,签证,考试技巧,经验,考试报名,考试流程">
-<%= stylesheet_link_tag "global" %>
-<%= stylesheet_link_tag "index" %>
+<link href="http://www.xiaoma.com/stylesheets/global.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://www.xiaoma.com/stylesheets/index.css" media="screen" rel="stylesheet" type="text/css" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <% end %>
 
 		<div class="container">
 		<script src='http://www.xiaoma.com/plus/ad_js.php?aid=48' language='javascript'></script>
 	      <div class="page_path">
-			  <a href="/">首页</a> &gt;&gt; <a href="/asks">问答频道</a> &gt;&gt; <%= @ask_type.name %>的问题
+			  <a href="<%= XMAPP_MAIN_DOMAIN_URL %>">首页</a> &gt;&gt; <a href="/asks">问答频道</a> &gt;&gt; <%= @ask_type.name %>的问题
 			  </div><!-- .page_path -->
 			  <div class="page_title"><h1>所有关于<%= @ask_type.name %>的问题</h1></div>
 			<div class="main_left fl">

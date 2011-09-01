@@ -8,7 +8,7 @@
 		<div class="container <%= "empty_list" if not @dl_thread %>">
 		<script src='http://www.xiaoma.com/plus/ad_js.php?aid=44' language='javascript'></script>
 			<div class="page_path">
-				<a href="/">首页</a> &gt;&gt; <a href="/sources">译文频道</a> &gt;&gt; <a href="/sources/release">国外原文</a> &gt;&gt; <%= @source.title %>
+				<a href="<%= XMAPP_MAIN_DOMAIN_URL %>">首页</a> &gt;&gt; <a href="/sources">译文频道</a> &gt;&gt; <a href="/sources/release">国外原文</a> &gt;&gt; <%= @source.title %>
 			</div><!-- .page_path -->
 
 			<div class="page_title">
