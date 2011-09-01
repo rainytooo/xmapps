@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  layout "empty", :except => [:i_want_credits, :translation_match, :notfound, :errorpage]
   def index
     # 取出最新的下载
     # 本周热门
