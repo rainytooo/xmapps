@@ -266,7 +266,7 @@ class ApplicationController < ActionController::Base
   def operation_pass?
     # 得到系统时间,默认发言间隔为3分钟,夜间为30分钟
     hour_i = Time.now.hour
-    jiange = 30
+    jiange = 1800
     if hour_i > 0 and hour_i < 8
       jiange = 1800
     end
