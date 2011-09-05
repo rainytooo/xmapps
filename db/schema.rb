@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110720063527) do
+ActiveRecord::Schema.define(:version => 20110905013831) do
 
   create_table "applies", :force => true do |t|
     t.string   "name"
@@ -165,6 +165,21 @@ ActiveRecord::Schema.define(:version => 20110720063527) do
     t.string "username", :limit => 32
     t.string "password", :limit => 32
   end
+
+  create_table "questionnaires", :force => true do |t|
+    t.string   "name",        :limit => 64
+    t.integer  "gender",      :limit => 3
+    t.integer  "age",         :limit => 3
+    t.string   "school",      :limit => 128
+    t.string   "subject",     :limit => 128
+    t.string   "telnum",      :limit => 12
+    t.integer  "liuxue_plan", :limit => 3
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "questionnaires", ["user_id"], :name => "fk_questionnaires_user"
 
   create_table "search_keywords", :force => true do |t|
     t.integer  "user_id"

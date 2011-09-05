@@ -1,4 +1,7 @@
 Xmapps::Application.routes.draw do
+  # 问卷调查
+  resources :questionnaires
+
   # 翻译的原文
   match "sources/search", :to => "sources#search", :via => [:get], :as => "sources_search"
   resources :sources do

@@ -42,29 +42,48 @@ class Downloads::DlThreadsController < ApplicationController
   # GET /dl_threads/1
   # GET /dl_threads/1.xml
   def show
-	@dl_thread = DlThread.find_by_id(params[:id])
-	if not @dl_thread
-		flash[:message] = "对不起,此资源不存在或者已被删除"
-	else
-		if @dl_thread.ispass == 0
-			@dl_thread = nil
-			flash[:message] = "对不起,此资源不存在或者已被删除"
-		else
-			#flash[:message] = "对不起,此资源不存在或者已被删除"
-			@dl_attachments = DlAttachment.where("dl_thread_id  = ?", @dl_thread.id)
-			@tags = Tag.joins('LEFT OUTER JOIN tag_relationships ON tag_relationships.tag_id = tags.id ').where('tag_relationships.object_id = ?', @dl_thread.id)
-			ActiveRecord::Base.connection.update("update dl_threads set views = views+1 where id = " + @dl_thread.id.to_s)
-		end
+	  @dl_thread = DlThread.find_by_id(params[:id])
+	  user_question = Questionnaire.find_by_user_id(session[:login_user_id])
+	  if not user_question
+	     # 保存浏览的下载的id
+	      if "development" == Rails.env
+          cookies[:last_dl_id] = {
+            :value => @dl_thread.id,
+            :expires => 1.hour.from_now
+            #:domain => COOKIE_DOMAIN_NAME
+           }
+        elsif "production" == Rails.env
+          cookies[:last_dl_id] = {
+            :value => @dl_thread.id,
+            :expires => 1.hour.from_now,
+            :domain => COOKIE_DOMAIN_NAME
+           }
+        end
+       redirect_to new_questionnaire_path
+       return
+    end
+	  if not @dl_thread
+		  flash[:message] = "对不起,此资源不存在或者已被删除"
+	  else
+		  if @dl_thread.ispass == 0
+			  @dl_thread = nil
+			  flash[:message] = "对不起,此资源不存在或者已被删除"
+		  else
+			  #flash[:message] = "对不起,此资源不存在或者已被删除"
+			  @dl_attachments = DlAttachment.where("dl_thread_id  = ?", @dl_thread.id)
+			  @tags = Tag.joins('LEFT OUTER JOIN tag_relationships ON tag_relationships.tag_id = tags.id ').where('tag_relationships.object_id = ?', @dl_thread.id)
+			  ActiveRecord::Base.connection.update("update dl_threads set views = views+1 where id = " + @dl_thread.id.to_s)
+		  end
 
 
-	end
+	  end
 
 
-	# if not @dl_thread
-		# raise ActiveRecord::NotFound
-		# render :status => 404
-		# render '/404.html'
-	# end
+	  # if not @dl_thread
+		  # raise ActiveRecord::NotFound
+		  # render :status => 404
+		  # render '/404.html'
+	  # end
 
   end
 
