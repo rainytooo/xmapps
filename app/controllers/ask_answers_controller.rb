@@ -42,7 +42,7 @@ class AskAnswersController < ApplicationController
     # 加积分 和金币
     add_discuz_credits dz_user.uid, 5
     add_discuz_extcredits dz_user.uid, 5
-    redirect_to ask_path(ask)
+    redirect_to XMAPP_ASK_DOMAIN_URL + "/" + ask.id.to_s
   end
 
   # PUT /ask_answers/1

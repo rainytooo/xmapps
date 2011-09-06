@@ -60,9 +60,12 @@ Xmapps::Application.configure do
 
   COOKIE_DOMAIN_NAME = ".testxmcmx.com"
   # 主域名
-  XMAPP_MAIN_DOMAIN_URL = "http://dl1.testxmcmx.com"
+  XMAPP_MAIN_DOMAIN_URL = "http://www.xiaoma.com"
+  XMAPP_ASK_DOMAIN_URL = "http://asks.xiaoma.com"
+  XMAPP_DL_DOMAIN_URL = "http://dl.xiaoma.com"
+  XMAPP_SOURCE_DOMAIN_URL = "http://sources.xiaoma.com"
   # 下载服务器的url
-  DOWNLOAD_SERVER_URL = "http://dl2.testxmcmx.com"
+  DOWNLOAD_SERVER_URL = "http://tmpdl.xiaoma.com"
   # 以下部分是项目用到的常量
   DOWNLOAD_THREAD_PHOTO_ROOT_PATH = "/app/www/img.testxmcmx.com/htdocs/xmappimages"
   DOWNLOAD_THREAD_PHOTO_ROOT_URL = "http://img.testxmcmx.com"

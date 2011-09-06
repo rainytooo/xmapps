@@ -59,7 +59,7 @@ class Downloads::DlThreadsController < ApplicationController
             :domain => COOKIE_DOMAIN_NAME
            }
         end
-       redirect_to new_questionnaire_path
+       redirect_to XMAPP_MAIN_DOMAIN_URL + "/questionnaires/new"
        return
     end
 	  if not @dl_thread
