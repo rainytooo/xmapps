@@ -109,7 +109,7 @@ class ApplicationController < ActionController::Base
   def check_self_manage
 	unless is_not_mine?
       flash[:error] = "你没有权限查看此资源,请用相应身份登录"
-      redirect_to XMAPP_MAIN_DOMAIN_URL +"/login" # halts request cycle
+      redirect_to login_url # halts request cycle
 	end
   end
 
@@ -139,12 +139,12 @@ class ApplicationController < ActionController::Base
   def require_login
     unless logged_in?
       flash[:error] = "必须登录才能继续刚才的操作,请登录"
-      redirect_to XMAPP_MAIN_DOMAIN_URL +"/login" # halts request cycle
+      redirect_to login_url # halts request cycle
 	    return
     end
 	  unless require_checkedemail?
       flash[:error] = "您的邮箱还没有验证 请登录您的邮箱" + session[:login_user].email + "进行验证,如果您已验证过了,请退出重新登录"
-      redirect_to XMAPP_MAIN_DOMAIN_URL +"/login" # halts request cycle
+      redirect_to login_url # halts request cycle
       return
 	  end
   end
@@ -153,7 +153,7 @@ class ApplicationController < ActionController::Base
   def require_sync_check_status
     unless sync_check_status?
       flash[:error] = "您当前的状态不允许发言,如果您可以在论坛正常发帖,请重新登录"
-      redirect_to XMAPP_MAIN_DOMAIN_URL +"/login" # halts request cycle
+      redirect_to login_url # halts request cycle
       return
     end
   end
