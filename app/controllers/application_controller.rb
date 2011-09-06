@@ -109,7 +109,7 @@ class ApplicationController < ActionController::Base
   def check_self_manage
 	unless is_not_mine?
       flash[:error] = "你没有权限查看此资源,请用相应身份登录"
-      redirect_to login_url # halts request cycle
+      redirect_to XMAPP_MAIN_DOMAIN_URL +"/login" # halts request cycle
 	end
   end
 
