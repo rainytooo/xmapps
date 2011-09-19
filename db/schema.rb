@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110905013831) do
+ActiveRecord::Schema.define(:version => 20110919033728) do
 
   create_table "applies", :force => true do |t|
     t.string   "name"
@@ -96,6 +96,13 @@ ActiveRecord::Schema.define(:version => 20110905013831) do
     t.datetime "updated_at"
     t.string   "campany",      :limit => 64
     t.string   "diqu_code",    :limit => 32, :default => "010"
+  end
+
+  create_table "counters", :force => true do |t|
+    t.string   "campaign",    :limit => 64
+    t.integer  "total_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "dl_attachments", :force => true do |t|

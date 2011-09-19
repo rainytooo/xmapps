@@ -1,4 +1,6 @@
 Xmapps::Application.routes.draw do
+  resources :counters
+
   # ÎÊ¾íµ÷²é
   resources :questionnaires
 
