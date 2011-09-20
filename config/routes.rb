@@ -1,4 +1,5 @@
 Xmapps::Application.routes.draw do
+  resources :mailout
   resources :counters
 
   # ÎÊ¾íµ÷²é

@@ -1,0 +1,2 @@
+module MailoutHelper
+end
