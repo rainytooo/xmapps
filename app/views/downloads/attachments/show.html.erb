@@ -47,9 +47,12 @@ $(document).ready(function() {
 					<div class="submit_error"><%= flash[:error] %></div>
 					<% end %>
 					<%= hidden_field_tag(:attachment_id, @dl_attachment.id) %>
+          <image src="<%= XMAPP_MAIN_DOMAIN_URL %>/validate_images/genvi">
 					<div class="global_form">
-						<%= show_simple_captcha(:label => "请输入验证码") %>
+
+						<input type="text" name="imagecode"/>
 					</div>
+					<div class="form_tips">请输入验证码</div>
 
 					<div class="form_tips">提示:重复下载不会重复扣除金币</div>
 					<div class="form_tips">注意:本下载经验证不支持sogou浏览器和IE6,请使用IE7以上版本,推荐火狐和google浏览器</div>

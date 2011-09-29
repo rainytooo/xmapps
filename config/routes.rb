@@ -5,6 +5,13 @@ Xmapps::Application.routes.draw do
   # 问卷调查
   resources :questionnaires
 
+  # 验证码的
+  resources :validate_images do
+    collection do
+      get 'genvi'
+    end
+  end
+
   # 翻译的原文
   match "sources/search", :to => "sources#search", :via => [:get], :as => "sources_search"
   resources :sources do

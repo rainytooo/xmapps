@@ -18,8 +18,9 @@ class Downloads::AttachmentsController < ApplicationController
   end
   # 下载的方法
   def create
+    # 拿出验证码
 	# 获取文件
-	if simple_captcha_valid?
+	if session[:vicode] == params[:imagecode]
 		@dl_attachment = DlAttachment.find(params[:attachment_id])
 		# 获取文件路径
 		file_full_path = FILE_UPLOAD_DIRECTORY + "/"+ @dl_attachment.filepath + "/" + @dl_attachment.filename
