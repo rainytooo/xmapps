@@ -1,20 +1,30 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.6'
-gem 'rake', '0.8.7'
-gem "will_paginate", "~> 3.0.pre2"
+gem 'rails', '3.1.0'
 
+# Bundle edge Rails instead:
+# gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql'
+gem 'sqlite3'
 
-gem 'client_side_validations'
+gem 'json'
 
-gem 'uuidtools'
-gem 'dalli'
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails', "  ~> 3.1.0"
+  gem 'coffee-rails', "~> 3.1.0"
+  gem 'uglifier'
+end
 
-#gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
+gem 'jquery-rails'
 
-gem 'rmagick', '2.12.0'
+# Use unicorn as the web server
+# gem 'unicorn'
 
-gem 'simple_captcha', '0.1.1'
+# Deploy with Capistrano
+# gem 'capistrano'
+
+# To use debugger
+# gem 'ruby-debug'
 
