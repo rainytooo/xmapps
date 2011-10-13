@@ -1,0 +1,147 @@
+<% content_for :head do %>
+<title>第一届小马留学网翻译大赛</title>
+<meta name="description" content="小马留学网是一个专业的出国留学备考社区,包含丰富的学习资源,资料下载,涉及内容包括托福,sat,gre,雅思,以及出国一些专业知识,并为大家提供一个学习和交流的平台">
+<meta name="keywords" content="第一届小马留学网翻译大赛 雅思考试,托福考试,出国,留学,GRE,SAT,GMAT,SSAT,AP,美国名校">
+<%= stylesheet_link_tag "jq_cd/style" %>
+<%= javascript_include_tag 'jquery.min'%>
+<%= javascript_include_tag 'jq_countdown/jquery.countdown'%>
+<script type="text/javascript">
+var urodz = new Date("7/16/2011 23:59:59");
+	$(function () {
+		$('#defaultCountdown').countdown({
+			until: urodz,
+			format: 'dHMS',
+			layout: '<div id="t7_timer">'+
+						'<div id="t7_vals">'+
+             '<div id="t7_d" class="t7_numbs">{dnn}</div>'+
+							'<div id="t7_h" class="t7_numbs">{hnn}</div>'+
+							'<div id="t7_m" class="t7_numbs">{mnn}</div>'+
+							'<div id="t7_s" class="t7_numbs">{snn}</div>'+
+						'</div>'+
+						'<div id="t7_labels">'+
+							'<div id="t7_dl" class="t7_labs">天</div>'+
+							'<div id="t7_hl" class="t7_labs">小时</div>'+
+							'<div id="t7_ml" class="t7_labs">分</div>'+
+							'<div id="t7_sl" class="t7_labs">秒</div>'+
+						'</div>'+
+						'<div id="t7_timer_over"></div>'+
+					'</div>'
+			});
+	});
+</script>
+<% end %>
+
+		<div class="container">
+		  <div class="page_path">
+				<a href="/">首页</a> &gt;&gt; 第一届翻译大赛
+			</div><!-- .page_path -->
+			<div class="main_left fl">
+			    <div class="countdown">
+              <h3 class="fl"><em>距离比赛结束还剩下:</em></h3>
+              <div id="defaultCountdown" class="fl"></div>
+              <div class="clear"></div>
+          </div>
+          <p>
+            活动详情和刷分现象和刷票现象举报<a href="http://bbs.xiaoma.com/thread-167290-1-1.html"><em>点击这里</em></a>
+
+          </p>
+          <p>
+            <em>比赛已经圆满结束</em>,详情查看<a href="http://bbs.xiaoma.com/thread-173732-1-1.html">http://bbs.xiaoma.com/thread-173732-1-1.html</a>
+          </p>
+         <h3><span class="ask_title">最新发布的没有翻译的原文</span><a href="/sources/untrans">更多</a></h3>
+					<table class="grid">
+						<thead>
+							<tr>
+							  <td>标题</td>
+							  <td width="80">类型</td>
+							  <td width="80">发布日期</td>
+							  <td width="35">浏览</td>
+							  <td width="35">悬赏</td>
+							</tr>
+						</thead>
+						<tbody>
+             <% @sources.each do |source| %>
+             <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
+							  <td>
+							  <a title="<%= source.title %>" href="/sources/<%= source.id%>" target="_blank"><%= source.title %></a>
+							  </td>
+							  <td class="tag"><a href="/sources/search?tags=<%= source.source_type.id%>">[<%= source.source_type.name%>]</a></td>
+							  <td class="date"><%= source.created_at.strftime('%Y-%m-%d') %></td>
+							  <td><span class="browse"><%= source.views %></span></td>
+							  <td><span class="score"><%= source.excredits %></span></td>
+						  </tr>
+             <% end %>
+					  </tbody>
+					</table>
+
+					<h3><span class="ask_title">给已经翻译的文章投票</span><a href="/sources/trans">更多</a></h3>
+					<table class="grid">
+						<thead>
+							<tr>
+							  <td>标题</td>
+							  <td width="80">类型</td>
+							  <td width="80">发布日期</td>
+							  <td width="35">语言</td>
+							  <td width="35">浏览</td>
+							</tr>
+						</thead>
+						<tbody>
+             <% @translations.each do |source| %>
+             <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
+							  <td>
+							  <a title="<%= source.title %>" href="/sources/<%= source.source_id%>/translations/<%= source.id %>" target="_blank"><%= source.title %></a>
+							  </td>
+							  <td class="tag"><a href="/sources/search?tags=<%= source.source_type.id%>">[<%= source.source_type.name%>]</a></td>
+							  <td class="date"><%= source.created_at.strftime('%Y-%m-%d') %></td>
+							  <td><%= source.source_lang.name %></td>
+							  <td><span class="browse"><%= source.views %></span></td>
+						  </tr>
+             <% end %>
+					  </tbody>
+					</table>
+
+
+
+			</div>
+			<div class="main_right fl">
+<!-- JiaThis Button BEGIN -->
+<div id="ckepop">
+	<a href="http://www.jiathis.com/share/?uid=1502974" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">分享到：</a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_kaixin001"></a>
+	<a class="jiathis_button_renren"></a>
+</div>
+<script type="text/javascript" src="http://v1.jiathis.com/code/jia.js?uid=1502974" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+        <div class="rank_list">
+			    <h2 class="subject">大赛排行榜</h2>
+				  <ul>
+						<% @trans_rank.each do |userrank| %>
+						<li>
+							<a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', userrank.dz_user_id.to_s) %>"><%= userrank.username %></a>
+							金币:<%= userrank.total_excredits  %>,翻译:<%= userrank.total_trans   %>篇
+						</li>
+
+						<% end %>
+						<div class="clear"></div>
+					</ul>
+			  </div>
+
+			  <div class="ask_tags">
+			    <h2 class="subject">译文统计</h2>
+				  <h5>文章总数:<em><%= @total_count %></em></h5>
+				  <h5>被翻译的译文总数:<em><%= @trans_total_count %></em></h5>
+				  <h5>最佳译文总数:<em><%= @trans_best_total_count %></em></h5>
+			  </div>
+
+        <div class="my_ask">
+				    <h2><a href="/sources/my">我的译文</a></h2>
+					  <h2><a href="/sources/new">我要发布</a></h2>
+					  <h2><a href="/sources/untrans">我要翻译</a></h2>
+			  </div>
+
+			  <div class="clear"></div>
+			</div>
+		</div><!-- #container -->
+

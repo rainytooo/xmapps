@@ -1,0 +1,63 @@
+<% content_for :head do %>
+<title>小马留学网-托福考试,雅思考试,GRE,最专业的出国留学备考社区</title>
+<meta name="description" content="小马留学网过河是一个专业的出国留学备考社区,包含丰富的学习资源,资料下载,涉及内容包括托福,sat,gre,雅思,以及出国一些专业知识,并为大家提供一个学习和交流的平台">
+<meta name="keywords" content="雅思考试,托福考试,出国,留学,GRE,SAT,GMAT,SSAT,AP,美国名校">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<%= javascript_include_tag 'rails.validations'%>
+<% end %>
+<script language="javascript">
+  var thisURL = document.URL;  
+  var thisHREF = document.location.href; 
+  alert(thisURL);
+  alert(thisHREF);
+</script>
+
+		<div class="container">
+			<div class="page_path">
+			<a href="/">首页</a> &gt;&gt; 登录
+			</div><!-- .page_path -->
+			<div class="page_title"><h1>登录小马留学网</h1></div>
+			<div class="form_container empty_list">
+
+				<div class="form_left">
+				<%= form_for(@login, :url => login_path, :method => "post", :validate => true) do |f|%>
+					<% if flash[:message] %>
+					<div class="submit_message"><%= flash[:message] %></div><!-- .message -->
+					<% end %>
+					<% if flash[:error] %>
+					<div class="submit_error"><%= flash[:error] %></div><!-- .error -->
+					<% end %>
+					<div class="global_form">
+						<%= f.label :username, "用户名或邮箱:" %><div class="clear"></div>
+						<%= f.text_field :username %>
+					</div>
+					<div class="form_tips">请填您在小马注册的用户名或者邮箱</div>
+					<div class="global_form">
+						<%= f.label :password, "密码:" %><div class="clear"></div>
+						<%= f.password_field :password %>
+					</div>
+					<div class="form_tips">请填您的密码</div>
+
+					<div id="form_submit">
+						<input id="campaign_submit" name="commit" type="submit" value="登录">
+					</div>
+					<div class="clear"></div>
+
+
+				<% end %>
+				</div><!-- .form_left -->
+
+				<div class="form_right">
+					<div class="form_right">
+					<h3>没有账户</h3>
+					<p>来这里<a href="http://bbs.xiaoma.com/member.php?mod=asdfasdf">注册</a></p>
+
+					<h3>忘记密码</h3>
+					<p><a href="http://bbs.xiaoma.com/member.php?mod=logging&action=login&viewlostpw">找回密码</a></p>
+
+				</div>
+				</div><!-- .form_right -->
+			</div><!-- .form_container -->
+		</div><!-- #content_container -->
+		<div class="clear"></div>
+

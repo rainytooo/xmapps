@@ -1,0 +1,93 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
+	<head>
+		<meta name="author" content="Ten Seven, Interactive. LLC -- http://www.tenseveninteractive.com/" />
+		<title>jQuery Countdown Example - Ten Seven, Interactive.</title>
+		<!-- load the jquery libraries from google hosted instances - FASSSTT! -->
+		<script src="http://www.google.com/jsapi"></script>
+		<script>
+		  google.load("jquery", "1.3.2");
+		</script>
+	
+		<!-- countdown js -->		
+		<script type="text/javascript" src="jquery.countdown.js"></script>
+
+		<!-- configure look of counter -->
+		<script type="text/javascript">
+		$(function () {
+			$('#defaultCountdown').countdown({
+				until: +300, 
+				format: 'YDHMS',
+				layout: '<div id="t7_timer">'+
+							'<div id="t7_vals">'+
+								'<div id="t7_y" class="t7_numbs">{ynn}</div>'+
+								'<div id="t7_d" class="t7_numbs">{dnnn}</div>'+
+								'<div id="t7_h" class="t7_numbs">{hnn}</div>'+
+								'<div id="t7_m" class="t7_numbs">{mnn}</div>'+
+								'<div id="t7_s" class="t7_numbs">{snn}</div>'+
+							'</div>'+
+							'<div id="t7_labels">'+
+								'<div id="t7_yl" class="t7_labs">years</div>'+
+								'<div id="t7_dl" class="t7_labs">days</div>'+
+								'<div id="t7_hl" class="t7_labs">hours</div>'+
+								'<div id="t7_ml" class="t7_labs">mins</div>'+
+								'<div id="t7_sl" class="t7_labs">secs</div>'+
+							'</div>'+
+							'<div id="t7_timer_over"></div>'+
+						'</div>'
+				});
+		});
+		</script>
+		
+		
+		<link rel="stylesheet" type="text/css" href="style.css" media="all" />
+		<!--[if IE]>
+		<link rel="stylesheet" type="text/css" href="style.ie.css" media="all" />
+		<![endif]-->
+
+
+	<!--                                    -->
+	<!--                                    -->
+	<!--                                    -->
+	<!--   Digtally Crafted by              -->
+	<!--   Ten Seven, Interactive. LLC      -->
+	<!--   http://tenseveninteractive.com/  -->
+	<!--                                    -->
+	<!-- 	 _            ___               -->
+	<!-- 	| |_ ___ ___ |_  |              -->
+	<!-- 	|  _| -_|   |  | |              -->
+	<!-- 	|_| |___|_|_|  |_|              -->
+	<!--                                    -->
+	<!--                                    -->
+	<!--                                    -->
+	
+
+</head>
+
+
+<body>
+
+<h2>jQuery Countdown with Shaded Background and Overlay</h2>
+<p>This example uses Keith Wood's <a href="http://keith-wood.name/countdown.html">jQuery Countdown</a> library to do the countdown itself and uses background images and a div that is overlaid on top of the text for further affect. Here's what it looks like:</p>
+
+<div id="defaultCountdown"></div>
+
+<p><a href="http://tenseveninteractive.com/examples/js-countdown/js-countdown.zip">Download</a> the files to create this on your own computer.</p>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1719985-3");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+
+
+</body>
+
+</html>
