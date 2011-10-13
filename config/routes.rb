@@ -1,4 +1,12 @@
 XiaomaCom::Application.routes.draw do
+  # µÇÂ¼
+  match "login" => "logins#index", :via => [:get]
+  match 'login' => 'logins#create', :via => [:post]
+  match "logout" => "logins#logout", :via => [:get]
+  
+  # Ê×Ò³
+  root :to => "home#index"
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

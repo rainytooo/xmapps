@@ -1,14 +1,170 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>XiaomaCom</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<%= yield :head %>
+		<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+		<%= stylesheet_link_tag "apps" %>
+		<%= stylesheet_link_tag "common" %>
+		<%= csrf_meta_tag %>
+	</head>
 <body>
+	<div id="top-header">
+		<div id="top_bar">
+			<div class="fl">
+				<a href="<%= XMAPP_MAIN_DOMAIN_URL %>">小马留学网</a>&nbsp;|&nbsp;
+				<a href="<%= XMAPP_MAIN_DOMAIN_URL %>">首页</a>
+			</div>
+			<div class="fr">
+				<% if session[:login_user] %>
+				欢迎您&nbsp;|&nbsp;<%= session[:login_user].username %>&nbsp;|&nbsp;
+				<a href="<%= XMAPP_MAIN_DOMAIN_URL %>/logout">退出</a>&nbsp;|&nbsp;
+				<% else %>
+				<a href="<%= XMAPP_MAIN_DOMAIN_URL %>/login">登录</a>&nbsp;|&nbsp;
+				<a href="http://bbs.xiaoma.com/member.php?mod=asdfasdf">注册</a>&nbsp;|&nbsp;
+				<% end %>
 
-<%= yield %>
+				<a href="http://www.xiaoma.com">帮助</a>&nbsp|&nbsp
+			</div>
+		</div><!-- #top_bar -->
+		<div class="header">
+			<div id="head_center">
+				<a class="logo" href="http://www.xiaoma.com"></a>
+				<div class="setlink fl">
+					<dl class="nav_list fl">
+						<dt>
+							<a href="#">资讯</a>
+						</dt>
+						<dd>
+							<a href="http://www.xiaoma.com/yasi/">雅思</a>
+							<a href="http://www.xiaoma.com/tuofu/">托福</a>
 
+							<a href="http://www.xiaoma.com/GRE/">GRE</a>
+							<a href="http://www.xiaoma.com/SAT/">SAT</a>
+							<br/>
+							<a href="http://www.xiaoma.com/IBTzaixian/">IBT在线</a>
+							<a href="http://www.xiaoma.com/damenguo/">大焖锅</a>
+							<a href="http://www.xiaoma.com/damenguo/mingxiaogongkaike/">公开课</a>
+
+						</dd>
+
+					</dl>
+					<dl class="nav_list fl">
+						<dt>
+							<a href="#">留学</a>
+						</dt>
+						<dd>
+							<a href="http://www.xiaoma.com/products/">美国研究生</a>
+             <a href="http://www.xiaoma.com/products/">美国高中</a>
+							<a href="http://www.xiaoma.com/products/">美国本科</a>
+							<br/>
+							<a href="http://www.xiaoma.com/products/">韩国研究生</a>
+							<a href="http://www.xiaoma.com/products/">韩国预科</a>
+							<a href="http://www.xiaoma.com/products/">美国商科</a>
+						</dd>
+					</dl>
+					<dl class="nav_list fl">
+						<dt>
+							<a href="http://bbs.xiaoma.com"><strong>论坛</strong></a>
+						</dt>
+						<dd>
+							<a href="http://bbs.xiaoma.com/forum-210-1.html">托福备考</a>
+
+							<a href="http://bbs.xiaoma.com/forum-2-1.html">托福机经</a>
+							<a href="http://bbs.xiaoma.com/forum-1-1.html">托福听力</a>
+							<br/>
+							<a href="http://bbs.xiaoma.com/forum-27-1.html">托福阅读</a>
+							<a href="http://bbs.xiaoma.com/forum-25-1.html">托福写作</a>
+							<a href="http://bbs.xiaoma.com/forum-219-1.html">GRE考试</a>
+
+						</dd>
+
+					</dl>
+
+				</div>
+
+			</div><!-- #head_center -->
+			      <!--
+          <div class="clear"></div>
+          <div id="top_tel" >
+                <span class="fl">
+                        专业出国留学品牌
+                </span>
+                <h2 class="fr">出国留学热线:400-0326-788</h2>
+          </div>
+          -->
+		</div><!-- .header -->
+
+		<div class="clear"></div>
+		<ul id="mainMenu" class="roundedLarge">
+
+			<li class="current"><a href="http://www.xiaoma.com">首页</a></li>
+			<li><a href="http://www.xiaoma.com/products/index.html">留学项目</a></li>
+			<li><a href="http://www.xiaoma.com/chuguoliuxue/">出国留学</a></li>
+			<li><a href="http://www.xiaoma.com/sources">译文</a></li>
+			<li><a href="http://www.xiaoma.com/asks" class="modal cboxElement">问答</a></li>
+			<li><a href="http://www.xiaoma.com/dl/" class="modal cboxElement">下载</a></li>
+     <li class="fr" id="submitLink"><a href="http://www.xiaoma.com/campaigns" class="modal cboxElement">活动</a></li>
+			<li class="fr" id="submitLink"><a href="http://space.xiaoma.com/" class="modal cboxElement">空间</a></li>
+			<li class="fr" id="submitLink"><a href="http://bbs.xiaoma.com/" class="modal cboxElement">论坛</a></li>
+		</ul>
+
+	</div><!-- #top-header -->
+
+	<div class="clear"></div>
+
+	<%= yield %>
+
+	<div class="clear"></div>
+
+	<div class="footer">
+		<div class="container">
+			<%= yield :friend_link %>
+			<div class="clear"></div>
+			<div class="copyright-link">
+				<ul>
+					<li><a href="<%= XMAPP_MAIN_DOMAIN_URL %>/help/about.html">关于我们</a></li>
+					<li><a href="http://space.xiaoma.com/home-space-uid-1-do-blog-view-me-from-space.html">官方日志</a></li>
+					<li><a href="<%= XMAPP_MAIN_DOMAIN_URL %>/help/lxwm.html">联系我们</a></li>
+					<li><a href="<%= XMAPP_MAIN_DOMAIN_URL %>/help/cpyc.html">诚聘英才</a></li>
+					<li><a href="<%= XMAPP_MAIN_DOMAIN_URL %>/help/wzsm.html">网站声明</a></li>
+					<li><a href="<%= XMAPP_MAIN_DOMAIN_URL %>/help/qqqlm.html">QQ联盟</a></li>
+					<li><a href="<%= XMAPP_MAIN_DOMAIN_URL %>/help/bzzx.html">帮助中心</a></li>
+				</ul>
+			</div><!-- .copyright-link -->
+			<div class="clear"></div>
+			<p>
+				小马留学网
+			</p>
+			<p>
+				注:本网站不支持IE6,请使用IE7以上版本,推荐使用firefox3以上版本或者google chrome浏览本站,效果极佳
+			</p>
+			<p>
+				经营许可证编号：京ICP备09050588号
+			</p>
+			<p>
+				版权所有 &reg; 2005-2011 www.xiaoma.com  All Rights Reserved 本站保留所有权利，未经许可，不得转载
+			</p>
+		</div><!-- .container-->
+		<div class="clear"></div>
+	</div><!-- .footer -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18258123-1']);
+  _gaq.push(['_setDomainName', '.xiaoma.com']);
+  _gaq.push(['_setAllowHash', false]);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_addOrganic', 'soso', 'w']);
+  _gaq.push(['_addOrganic', 'yodao', 'q']);
+  _gaq.push(['_addOrganic', 'sogou', 'query']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
 </body>
+
 </html>
+

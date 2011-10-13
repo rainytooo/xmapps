@@ -28,3 +28,21 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug'
 
+gem 'execjs'
+gem 'therubyracer'
+
+gem "will_paginate", "~> 3.0.pre4"
+
+
+gem 'mysql'
+
+gem 'client_side_validations'
+
+gem 'uuidtools'
+gem 'dalli'
+
+group :development, :test do  
+  gem "factory_girl_rails"
+end
+
+
