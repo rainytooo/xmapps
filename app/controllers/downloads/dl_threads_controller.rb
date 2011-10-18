@@ -43,10 +43,11 @@ class Downloads::DlThreadsController < ApplicationController
   # GET /dl_threads/1.xml
   def show
 	  @dl_thread = DlThread.find_by_id(params[:id])
+	  =begin
 	  user_question = Questionnaire.find_by_user_id(session[:login_user_id])
 	  if not user_question
-	     # 保存浏览的下载的id
-	      if "development" == Rails.env
+		# 保存浏览的下载的id
+	    if "development" == Rails.env
           cookies[:last_dl_id] = {
             :value => @dl_thread.id,
             :expires => 1.hour.from_now
@@ -59,9 +60,10 @@ class Downloads::DlThreadsController < ApplicationController
             :domain => COOKIE_DOMAIN_NAME
            }
         end
-       redirect_to XMAPP_MAIN_DOMAIN_URL + "/questionnaires/new"
-       return
-    end
+		redirect_to XMAPP_MAIN_DOMAIN_URL + "/questionnaires/new"
+		return
+      end
+	  =end
 	  if not @dl_thread
 		  flash[:message] = "对不起,此资源不存在或者已被删除"
 	  else
