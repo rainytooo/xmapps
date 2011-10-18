@@ -1,29 +1,35 @@
 require 'discuz_api'
 include DiscuzApi
+# 登录的控制器
 class LoginsController < ApplicationController
   skip_before_filter :check_cookie, :only => [:logout]
+  
   def index
     @login = Login.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-    end
+	# 获取登录来源网址
+	@login_from = params[:fromurl]
+	
+	logger.debug @login_from
   end
 
   def logout
-	  reset_session
-    if "development" == Rails.env
-      cookies.delete(DZ_COOKIE_NAME)
-    elsif "production" == Rails.env
-      cookies.delete(DZ_COOKIE_NAME, :domain => COOKIE_DOMAIN_NAME)
-    end
-	  redirect_to root_url
+	reset_session
+    #if "development" == Rails.env
+    #  cookies.delete(DZ_COOKIE_NAME)
+    #elsif "production" == Rails.env
+    #  cookies.delete(DZ_COOKIE_NAME, :domain => COOKIE_DOMAIN_NAME)
+    #end
+	cookies.delete(DZ_COOKIE_NAME, :domain => COOKIE_DOMAIN_NAME)
+	redirect_to root_url
   end
 
   # POST /logins
   # POST /logins.xml
   def create
-    @login = Login.new(params[:login])    
+    @login = Login.new(params[:login])   	
+	# 拿出返回的地址
+	return_url = params[:returnurl]
+	logger.debug return_url
 	if request.post?
 		# 这里做登录的验证
 		@dzuser = Dzuser.find_by_username(@login.username)
@@ -67,7 +73,12 @@ class LoginsController < ApplicationController
 			session[:login_user_id] = local_user.id
 			# 返回首页
 			flash[:message] = "登录成功"
-			redirect_to :root
+			# 返回登录前的页面
+			if return_url
+				redirect_to return_url
+			else
+				redirect_to :root
+			end
 		  else
 		      # 返回,告知密码错误
 		      #logger.info 'password is not correct'

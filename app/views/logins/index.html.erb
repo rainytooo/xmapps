@@ -5,12 +5,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <%= javascript_include_tag 'rails.validations'%>
 <% end %>
-<script language="javascript">
-  var thisURL = document.URL;  
-  var thisHREF = document.location.href; 
-  alert(thisURL);
-  alert(thisHREF);
-</script>
+
 
 		<div class="container">
 			<div class="page_path">
@@ -36,6 +31,7 @@
 						<%= f.label :password, "密码:" %><div class="clear"></div>
 						<%= f.password_field :password %>
 					</div>
+					<input type="hidden" name="returnurl" value="<%= @login_from %>"/>
 					<div class="form_tips">请填您的密码</div>
 
 					<div id="form_submit">

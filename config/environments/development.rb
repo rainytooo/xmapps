@@ -39,10 +39,10 @@ XiaomaCom::Application.configure do
 
   COOKIE_DOMAIN_NAME = ".xmappsdev.com"
   # 主域名
-  XMAPP_MAIN_DOMAIN_URL = "http://localhost:3000"
-  XMAPP_ASK_DOMAIN_URL = "http://localhost:3000/asks"
-  XMAPP_DL_DOMAIN_URL = "http://localhost:3000/dl"
-  XMAPP_SOURCE_DOMAIN_URL = "http://localhost:3000/sources"
+  XMAPP_MAIN_DOMAIN_URL = "http://www.xmappsdev.com"
+  XMAPP_ASK_DOMAIN_URL = "http://www.xmappsdev.com/asks"
+  XMAPP_DL_DOMAIN_URL = "http://www.xmappsdev.com/dl"
+  XMAPP_SOURCE_DOMAIN_URL = "http://www.xmappsdev.com/sources"
   # 下载服务器的url
   DOWNLOAD_SERVER_URL = "http://localhost:3001"
   # 以下部分是项目用到的常量

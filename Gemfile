@@ -39,7 +39,7 @@ gem 'mysql'
 gem 'client_side_validations'
 
 gem 'uuidtools'
-gem 'dalli'
+gem 'dalli', "~> 1.1.3"
 
 group :development, :test do  
   gem "factory_girl_rails"

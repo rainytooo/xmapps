@@ -9,18 +9,38 @@
 		<%= csrf_meta_tag %>
 	</head>
 <body>
+<script language="javascript">
+  var thisURL = document.URL;  
+  var thisHREF = document.location.href; 
+  //alert(thisURL);
+  //alert(thisHREF);
+  var XM = function XiaoMa(){
+		
+	}
+	// 静态方法 写出登录的url
+	XM.writeLogin = function(){
+		//alert('test');
+		var loginDiv = document.createElement("span");
+		var login_from_href = encodeURIComponent(thisURL) ;
+		loginDiv.innerHTML = "<a href=\"<%= XMAPP_MAIN_DOMAIN_URL %>/login?fromurl="+ login_from_href +"\">登录</a>&nbsp;|&nbsp;"
+		var login_div = document.getElementById("global_login_info");
+		login_div.appendChild(loginDiv);
+	}
+</script>
 	<div id="top-header">
 		<div id="top_bar">
 			<div class="fl">
 				<a href="<%= XMAPP_MAIN_DOMAIN_URL %>">小马留学网</a>&nbsp;|&nbsp;
 				<a href="<%= XMAPP_MAIN_DOMAIN_URL %>">首页</a>
 			</div>
-			<div class="fr">
+			<div id="global_login_info" class="fr">
 				<% if session[:login_user] %>
 				欢迎您&nbsp;|&nbsp;<%= session[:login_user].username %>&nbsp;|&nbsp;
 				<a href="<%= XMAPP_MAIN_DOMAIN_URL %>/logout">退出</a>&nbsp;|&nbsp;
-				<% else %>
-				<a href="<%= XMAPP_MAIN_DOMAIN_URL %>/login">登录</a>&nbsp;|&nbsp;
+				<% else %>				
+				<script>
+				XM.writeLogin();
+				</script>
 				<a href="http://bbs.xiaoma.com/member.php?mod=asdfasdf">注册</a>&nbsp;|&nbsp;
 				<% end %>
 
