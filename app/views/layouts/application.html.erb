@@ -182,6 +182,20 @@ piwikTracker.enableLinkTracking();
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F587382c4d54e1718065b371cf59fd0a8' type='text/javascript'%3E%3C/script%3E"));
 </script>
+<!-- Piwik -->
+<script type="text/javascript">
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://stat.xiaoma.com/" : "http://stat.xiaoma.com/");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+try {
+  var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+  piwikTracker.setCookieDomain('*.xiaoma.com');
+  piwikTracker.setDomains('*.xiaoma.com');
+  piwikTracker.trackPageView();
+  piwikTracker.enableLinkTracking();
+} catch( err ) {}
+</script>
+<!-- End Piwik Code -->
 </body>
 
 </html>
