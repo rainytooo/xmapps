@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'discuz_api'
 include DiscuzApi
 class ApplicationController < ActionController::Base
