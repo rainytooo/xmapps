@@ -1,184 +1,209 @@
 <% content_for :head do %>
-<title><%= @ask.title %></title>
-<meta name="keywords" content="小马留学网问答频道 <%= @ask.title %>" />
-<meta name="description" content="浏览问题,<%= @ask.title %>" />
-
+<title><%= @ask.title %> 小马过河-xiaoma教育 问答频道</title>
+<meta name="keywords" content="小马过河问答频道 <%= @ask.title %> 雅思,托福,留学,出国,GRE,SAT,GMAT,SSAT,AP,留学申请,签证,考试技巧,经验,考试报名,考试流程" />
+<meta name="description" content="小马过河 浏览问题,<%= @ask.title %> 雅思,托福,留学,出国,GRE,SAT,GMAT,SSAT,AP,等考试相关的问题,留学申请,签证,考试技巧,经验,考试报名,考试流程,等留学相关问题,可以在这里提问和寻找答案" />
+<%= stylesheet_link_tag "Nei_wd_det1" %>
 <% end %>
 
-		<div class="container">
-      <script src='http://www.xiaoma.com/plus/ad_js.php?aid=48' language='javascript'></script>
-			<div class="page_path">
-				<a href="<%= XMAPP_MAIN_DOMAIN_URL %>">首页</a> &gt;&gt; <a href="/asks">问答频道</a> &gt;&gt; <%= @ask.title %>
-			</div><!-- .page_path -->
 
-			<div class="page_title">
-			<% if @ask %>
-				<h1>
-         <a href="/asks/tags/<%= @ask.ask_type.name %>" title="<%= @ask.ask_type.name %>" class="category">[<%= @ask.ask_type.name %>]</a>&nbsp;
-					<%= @ask.title %>
+<div class="Main_box">
+  <!--=======Left===================================================-->
+  <div class="Main_Left">
+  
+    <div class="L_top_1_title"><a href="<%= XMAPP_MAIN_DOMAIN_URL %>" target="_blank">首页</a> > <a href="<%= XMAPP_MAIN_DOMAIN_URL %>/asks" target="_blank">问答</a> > <span><%= @ask.title %></span></div>
+    <div class="L_top_1_Con">
+       <div class="t1_title">
+			<%= @ask.title %>
+								<% if @ask.status == 2 or @ask.status == 3 %>
+								--
+								<span class="ask_status_2">已关闭</span>
+								<% elsif @ask.status == 1 %>
+								--
+								<span class="ask_status_1">已解决</span>
+								<% end %>
+	   </div>
+       <div class="t1_links">
+           <div class="t1_links_T">
+              <div class="L">
+				<a href="/asks/tags/<%= @ask.ask_type.name %>" title="<%= @ask.ask_type.name %>" target="_blank" class="category">[<%= @ask.ask_type.name %>]</a>&nbsp;&nbsp;悬赏:20&nbsp;&nbsp;
+			  </div>
+              <div class="R" >提问时间:<span style="color: red;"><%= @ask.created_at.strftime('%Y-%m-%d') %></span>&nbsp;&nbsp;提问者:<span style="color: red;"><a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', @ask.user.dz_common_id.to_s) %>"><%= @ask.user.username %></a></div>
 
-					<% if @ask.status == 2 or @ask.status == 3 %>
-					--
-					<span class="ask_status_2">已关闭</span>
-					<% elsif @ask.status == 1 %>
-					--
-					<span class="ask_status_1">已解决</span>
-					<% end %>
-				</h1>
-			<% end %>
+           </div>
+           <div class="t1_links_T">
+           <!-- JiaThis Button BEGIN -->
+            <div id="ckepop" style=" padding-top:5px; padding-left:10px;">
+                <a href="http://www.jiathis.com/share/?uid=892067" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">分享到：</a>
+                <a class="jiathis_button_tsina">新浪微博</a>
+                <a class="jiathis_button_qzone">QQ空间</a>
+                <a class="jiathis_button_kaixin001">开心网</a>
+                <a class="jiathis_button_renren">人人网</a>
+                <a class="jiathis_button_douban">豆瓣网</a></div>
+            <script type="text/javascript" src="http://v2.jiathis.com/code/jia.js?uid=892067" charset="utf-8"></script>
+        <!-- JiaThis Button END -->
+           </div>
+       </div>
+       <div class="t1_con">
+		<%= raw @ask.content %>
+	   </div>
+			  <% if @ask.status == 0 and @ask.user_id == session[:login_user_id] %>
+	          <div>
+	              <h5><a style="color: red;" href="/asks/<%= @ask.id %>" onclick="if (confirm('确定关闭问题?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var at = document.createElement('input'); at.setAttribute('type', 'hidden'); at.setAttribute('name', 'authenticity_token'); at.setAttribute('value', '#{form_authenticity_token}'); f.appendChild(at);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'put'); f.appendChild(m);var fl = document.createElement('input'); fl.setAttribute('type', 'hidden'); fl.setAttribute('name', 'status'); fl.setAttribute('value','2'); f.appendChild(fl);f.submit(); };return false;">没有合适答案关闭问题</a></h5>
+	          </div>
+	          <% end %>
+    </div>
+    <div class="L_top_2_title">
+        <div class="titL"><a href="http://search.xiaoma.com/?type=all&page=1&query=<%= @ask.title %>" target="_blank">和'<%= @ask.title %>'相关的问题</a></div>
+        <div class="searchR">
+          
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <form id="form2" name="form2" method="get" action="/search" accept-charset="UTF-8">
+				<input type="hidden" value="ask" name="type">
+              <tr>
+                <td width="74%" height="31" align="right">
+                  <input type="text" name="query" id="textfield" style="width:220px; height:20px;line-height:20px; margin-right:5px; border:#CCC 1px solid;" /></td>
+                <td width="26%"><label>
+				  <input type="submit" style="border: 0;background: url(http://img.xiaoma.com/xmimg1/wdimg/nei/WDdetails1AN_08.gif) no-repeat; background-position: 0px 0px;
+	width: 81px; height: 22px; cursor: pointer;"   id="button" value="" title="搜索答案"/>
+                </label></td>
+              </tr>
+              </form>
+            </table>
+          
+        </div>
+    </div>
+	<!-- 
+    <div class="L_top_2_Con">
+      <UL>
+           <LI>·<a href="#" target="_blank">本科去美国GPA跟SAT和托福占得比重是多少？</a></LI>
+           <LI>·<a href="#" target="_blank">本科去美国GPA跟SAT和托福占得比重是多少？</a></LI>				
+           <LI>·<a href="#" target="_blank">本科去美国GPA跟SAT和托福占得比重是多少？</a></LI>				
+           <LI>·<a href="#" target="_blank">本科去美国GPA跟SAT和托福占得比重是多少？</a></LI>				
+           <LI>·<a href="#" target="_blank">本科去美国GPA跟SAT和托福占得比重是多少？</a></LI>				
+           <LI>·<a href="#" target="_blank">本科去美国GPA跟SAT和托福占得比重是多少？</a></LI>				
+           <LI>·<a href="#" target="_blank">本科去美国GPA跟SAT和托福占得比重是多少？</a></LI>
+      </UL>
+    
+    </div>
+	-->
+      
+     
+    
+    
+    <div class="gg_l"><a href="#" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/nei/WDdetails1_09.gif" width="705" height="96" border="0" /></a></div>
+    
+    <% if @ask.user_id != session[:login_user_id] and @ask.status == 0 %>
+    <div class="L_top_3_title">我来回答这个问题：</div>
+    <div class="L_top_3_Con">
+        <form name="form1" id="form1" action="/asks/<%= @ask.id %>/ask_answers" method="post">
+        <div class="T_tit">
+            <textarea name="answers_content" cols="" rows="" class="textBox"></textarea>
+        </div>
+        <div class="T_button">
+            <div class="L_tian"><span></span></div>
+            <div class="R_button">
+				<input type="submit" style="border: 0;background: url(http://img.xiaoma.com/xmimg1/wdimg/nei/WDdetails1_15.gif) no-repeat; background-position: 0px 0px;
+	width: 128px; height: 30px; cursor: pointer;margin-top:4px;" id="button" value="" title="搜索答案"/>
 			</div>
-
-			<div class="list_leftside">
-			  <% if not @messages_rendered -%>
-					<% if flash[:message] %>
-					<div class="submit_message"><%= flash[:message] %></div><!-- .message -->
-					<% end %>
-					<% if flash[:error] %>
-					<div class="submit_error"><%= flash[:error] %></div><!-- .error -->
-					<% end %>
-				<% end -%>
-      <% @messages_rendered = true -%>
-					<h4 class="base_short_info">
-					悬赏:<span class="score">20</span>  &nbsp;
-					提问时间:<span class="date"><%= @ask.created_at.strftime('%Y-%m-%d') %></span>&nbsp;
-					提问者:<span class="question_asker">
-					        <a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', @ask.user.dz_common_id.to_s) %>"><%= @ask.user.username %></a>
-					      </span>
-					</h4>
-          <div class="question">
-          <%= raw @ask.content %>
-          </div>
-          <% if @ask.status == 0 and @ask.user_id == session[:login_user_id] %>
-          <div class="operation">
-              <h5><a href="/asks/<%= @ask.id %>" onclick="if (confirm('确定关闭问题?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var at = document.createElement('input'); at.setAttribute('type', 'hidden'); at.setAttribute('name', 'authenticity_token'); at.setAttribute('value', '#{form_authenticity_token}'); f.appendChild(at);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'put'); f.appendChild(m);var fl = document.createElement('input'); fl.setAttribute('type', 'hidden'); fl.setAttribute('name', 'status'); fl.setAttribute('value','2'); f.appendChild(fl);f.submit(); };return false;">没有合适答案关闭问题</a></h5>
-            <div class="clear"></div>
-          </div>
-          <% end %>
-          <script src='http://www.xiaoma.com/plus/ad_js.php?aid=49' language='javascript'></script>
-          <div class="other_answers">
-              <h5>回答</h5>
-                  <% @ask_answers.each do |answer| %>
-                <div class="answers">
-                    <div><%= raw answer.content %>
-                    </div>
-                    <div class="answer_info">
-                        <% if @ask.status == 0 and @ask.user_id == session[:login_user_id] %>
-                      <span class="fl mark_right_answer"><a href="/asks/<%= @ask.id %>" onclick="if (confirm('确定关闭问题?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var at = document.createElement('input'); at.setAttribute('type', 'hidden'); at.setAttribute('name', 'authenticity_token'); at.setAttribute('value', '#{form_authenticity_token}'); f.appendChild(at);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'put'); f.appendChild(m);var fl = document.createElement('input'); fl.setAttribute('type', 'hidden'); fl.setAttribute('name', 'status'); fl.setAttribute('value','1'); f.appendChild(fl);var fs = document.createElement('input'); fs.setAttribute('type', 'hidden'); fs.setAttribute('name', 'answer_id'); fs.setAttribute('value','<%= answer.id %>'); f.appendChild(fs);f.submit(); };return false;">选择为正确答案</a></span>
-                        <% end %>
-                        <% if @ask.status == 1 and @ask.bestanswer == answer.id %>
-                        <span class="fl right_answer">正确答案</span>
-                        <% end %>
-                      <a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', answer.user.dz_common_id.to_s) %>"><%= answer.username%></a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="date"><%= answer.created_at.strftime('%Y-%m-%d %H:%M:%S') %></span>&nbsp;&nbsp;
-                    </div>
-                </div>
+        </div>
+        </form>
+    </div>
+	
+	<% elsif @ask.user_id == session[:login_user_id] and @ask.status == 0 %>
+	
+	<div class="L_top_3_title">补充问题：</div>
+    <div class="L_top_3_Con">
+        <form name="form1" id="form1" method="post" action="/asks/<%= @ask.id %>">
+			<input type="hidden" value="✓" name="utf8">
+			<input type="hidden" value="put" name="_method">
+            <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token">
+        <div class="T_tit">
+            <textarea name="answers_content_renew" cols="" rows="" class="textBox"></textarea>
+        </div>
+        <div class="T_button">
+            <div class="L_tian"><span></span></div>
+            <div class="R_button">
+				<input type="submit" style="border: 0;background: url(http://img.xiaoma.com/xmimg1/wdimg/nei/WDdetails1_15.gif) no-repeat; background-position: 0px 0px;
+	width: 128px; height: 30px; cursor: pointer;margin-top:4px;" id="button" value="提交"/>
+			</div>
+        </div>
+        </form>
+    </div>
+		
+    <% end %>
+    
+    <div class="L_top_4_title">别人的回答：</div>
+    <div class="L_top_4_Con">
+        <div class="T_conlist">
+           <UL>
+			 <% @ask_answers.each do |answer| %>
+             <LI>
+			   <% if @ask.status == 0 and @ask.user_id == session[:login_user_id] %>
+			   	<a style="color: red;" href="/asks/<%= @ask.id %>" onclick="if (confirm('确定关闭问题?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var at = document.createElement('input'); at.setAttribute('type', 'hidden'); at.setAttribute('name', 'authenticity_token'); at.setAttribute('value', '#{form_authenticity_token}'); f.appendChild(at);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'put'); f.appendChild(m);var fl = document.createElement('input'); fl.setAttribute('type', 'hidden'); fl.setAttribute('name', 'status'); fl.setAttribute('value','1'); f.appendChild(fl);var fs = document.createElement('input'); fs.setAttribute('type', 'hidden'); fs.setAttribute('name', 'answer_id'); fs.setAttribute('value','<%= answer.id %>'); f.appendChild(fs);f.submit(); };return false;">选择为正确答案</a>
+			   <% end %>
+               <div class="title">如果排名比较靠前但GPA比较找学校开个rank证明的，证明一在年级的排名情况。。</div>
+				<% if @ask.status == 1 and @ask.bestanswer == answer.id %>
+                	<span style="color: green;">正确答案</span>
                 <% end %>
-              <div class="clear"></div>
-           </div>
-           <% if @ask.user_id != session[:login_user_id] and @ask.status == 0 %>
-<%= javascript_include_tag 'editor/kindeditor-min'%>
-<script type="text/javascript">
-  var is_answers_content_init = 0
-  KE.show({
-      id : 'answers_content',
-      resizeMode : 1,
-      allowPreviewEmoticons : false,
-      allowUpload : false,
-      items : [
-      'textcolor','removeformat'],
-		   afterFocus : function(){if (is_answers_content_init == 0){KE.html('answers_content', '');is_renew_ask_init = 1;}}
-    });
-</script>
-           <div class="answer_form">
-            <h5>我来回答</h5>
-              <form id="answers_form" method="post" action="/asks/<%= @ask.id %>/ask_answers">
-                  <div class="global_form">
-                    <textarea id="answers_textarea" name="answers_content" rows="20" cols="60">在这里填写您的回答,最少10个字</textarea>
-                  </div>
-                    <div id="form_submit">
-						          <input id="campaign_submit" name="commit" type="submit" value="回答">
-					          </div>
-              </form>
-              <div class="clear"></div>
-           </div>
-          <% elsif @ask.user_id == session[:login_user_id] and @ask.status == 0 %>
-<%= javascript_include_tag 'editor/kindeditor-min'%>
-<script type="text/javascript">
-  var is_renew_ask_init = 0;
-  KE.show({
-		  id : 'answers_content_renew',
-		  resizeMode : 1,
-		  allowPreviewEmoticons : false,
-		  allowUpload : false,
-		  items : [
-		  'textcolor','removeformat'],
-		afterFocus : function(){if (is_renew_ask_init == 0){KE.html('answers_content_renew', '');is_renew_ask_init = 1;}}
-	  });
-</script>
-           <div class="answer_form">
-            <h5>问题补充</h5>
-              <form id="answers_form" method="post" action="/asks/<%= @ask.id %>">
-                  <div style="margin: 0pt; padding: 0pt; display: inline;">
-                  <input type="hidden" value="✓" name="utf8">
-                  <input type="hidden" value="put" name="_method">
-                  <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token">
-                  </div>
-                  <div class="global_form">
-                    <textarea id="answers_textarea" name="answers_content_renew" rows="20" cols="60">在这里补充您的问题</textarea>
-                  </div>
-                    <div id="form_submit">
-						          <input id="campaign_submit" name="commit" type="submit" value="回答">
-					          </div>
-              </form>
-              <div class="clear"></div>
-           </div>
-          <% end %>
+               <div class="title_user">会员ID：<a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', answer.user.dz_common_id.to_s) %>"><%= answer.username%></a>    回答时间：<%= answer.created_at.strftime('%Y-%m-%d %H:%M:%S') %></div>
+             </LI>
+			 <% end %>
+             
+           </UL>
+           
+        </div>
+    </div>
+    
+    
+    
+    
+  </div>
 
 
-			</div><!-- .list_leftside -->
 
-			<div class="list_rightside">
-<!-- JiaThis Button BEGIN -->
-<div id="ckepop">
-	<a href="http://www.jiathis.com/share/?uid=1502974" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">分享到：</a>
-	<a class="jiathis_button_qzone"></a>
-	<a class="jiathis_button_tsina"></a>
-	<a class="jiathis_button_kaixin001"></a>
-	<a class="jiathis_button_renren"></a>
+<!--=======Right===================================================-->
+  <div class="Main_Right">
+    
+    <div class="R_top_1_tit"><a href="/asks/new" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_05.gif" width="240" height="49" border="0" /></a></div>
+    <div class="R_top_2_tit"><a href="/asks/my" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_08.gif" width="240" height="49" border="0" /></a></div>
+    <div class="R_top_3_tit"><a href="#" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_12.gif" width="240" height="91" border="0" /></a></div>
+    <div class="M_R_r4_tit">
+      <div class="title_r1">问答分类</div>
+    </div>
+    <div class="M_R_r4_con">
+      	<ul>
+	        <li><a href="/asks/tags/出国留学" target="_blank">出国留学</a></li>
+	        <li><a href="/asks/tags/托福" target="_blank">托福</a></li>
+	        <li><a href="/asks/tags/雅思" target="_blank">雅思</a></li>
+	        <li><a href="/asks/tags/GRE" target="_blank">GRE</a></li>
+	        <li><a href="/asks/tags/GMAT" target="_blank">GMAT</a></li>
+	        <li><a href="/asks/tags/SAT" target="_blank">SAT</a></li>
+	      </ul>
+    </div>
+
+    <div class="M_R_r5_tit">
+      <div class="title_r1">编辑推荐</div>
+      <div class="more2"><a href="#" target="_blank">更多>></a></div>
+    </div>
+    <div class="M_R_r5_con">
+      <div class="M_R_r5_con_content">
+        <ul>
+          <li>·<a href="#" target="_blank">ETS揭晓2011年度中国奖学金项目获奖</a></li>
+          <li>·<a href="#" target="_blank">2011年起中国大陆新托福考试打折促销</a></li>
+          <li>·<a href="#" target="_blank">ETS官方针对新托福关注问题进行解答</a></li>
+          <li>·<a href="#" target="_blank">新版《新托福考试官方指南》发布</a></li>
+          <li>·<a href="#" target="_blank">经验分享：取得新托福高分的十大关键</a></li>
+          <li>·<a href="#" target="_blank">北外网院成为新托福考试考点</a></li>
+          <li>·<a href="#" target="_blank">小马过河2011年托福机经预测中标记录</a></li>
+          <li>·<a href="#" target="_blank">2011年5~7月大陆托福考试新题日预测</a></li>
+          <li>·<a href="#" target="_blank">小马过河2011年托福机经预测中标记录</a></li>
+          <li>·<a href="#" target="_blank">2011年5~7月大陆托福考试新题日预测</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+
+
+  </div>
 </div>
-<script type="text/javascript" src="http://v1.jiathis.com/code/jia.js?uid=1502974" charset="utf-8"></script>
-<!-- JiaThis Button END -->
-			  <div class="right_search">
-					<form method="get" action="/search" accept-charset="UTF-8">
-						<input type="hidden" value="ask" name="type">
-						<input id="query" type="text" name="query">
-						<input id="search_submit" class="btn_srh" type="submit" value="搜索">
-					</form>
-				</div>
-      <div class="my_ask">
-					<h2><a href="/asks/new">我要提问</a></h2>
-					<h2><a href="/asks/my">我的问答</a></h2>
-				</div>
-				<h2 class="subject">留学推荐</h2>
-				<script src='http://www.xiaoma.com/plus/ad_js.php?aid=84' language='javascript'></script>
-				<div class="clear"></div>
-				<h2 class="subject">热点文章</h2>
-				<script src='http://www.xiaoma.com/plus/ad_js.php?aid=85' language='javascript'></script>
-				<div class="clear"></div>
-				<h2 class="subject">论坛精华</h2>
-				<script type="text/javascript" src="http://bbs.xiaoma.com/api.php?mod=js&bid=286"></script>
-				<div class="clear"></div>
-				<script src='http://www.xiaoma.com/plus/ad_js.php?aid=12' language='javascript'></script>
-				<div class="ask_tags">
-					<h2 class="subject">问答分类</h2>
-					<h4><a href="/asks/tags/托福">托福</a></h4>
-					<h4><a href="/asks/tags/雅思">雅思</a></h4>
-					<h4><a href="/asks/tags/GRE">GRE</a></h4>
-					<h4><a href="/asks/tags/SAT">SAT</a></h4>
-					<h4><a href="/asks/tags/出国留学">出国留学</a></h4>
-				</div>
-
-			 </div>
-			 <div class="clear"></div>
-		</div><!-- #content_container -->
-		<div class="clear"></div>
-

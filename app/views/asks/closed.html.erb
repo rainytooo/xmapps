@@ -1,50 +1,46 @@
 <% content_for :head do %>
-<title>小马留学网-问答频道 已解决问题</title>
+<title>小马过河-xiaoma教育 问答频道  已解决问题</title>
 <meta name="description" content="已解决问题 任何的雅思,托福,留学,GRE,SAT,GMAT,SSAT,AP,等考试相关的问题,留学申请,签证,考试技巧,经验,考试报名,考试流程,等留学相关问题,可以在这里提问和寻找答案">
 <meta name="keywords" content="雅思,托福,留学,出国,GRE,SAT,GMAT,SSAT,AP,留学申请,签证,考试技巧,经验,考试报名,考试流程">
-<%= stylesheet_link_tag "global" %>
-<%= stylesheet_link_tag "index" %>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<%= stylesheet_link_tag "Nei_wd_list" %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <% end %>
 
-		<div class="container">
-        <script src='http://www.xiaoma.com/plus/ad_js.php?aid=48' language='javascript'></script>
-		    <div class="page_path">
-			  <a href="<%= XMAPP_MAIN_DOMAIN_URL %>">首页</a> &gt;&gt; <a href="/asks">问答频道</a> &gt;&gt; 已解决问题
-			  </div><!-- .page_path -->
-			  <div class="page_title"><h1>所有已解决问题</h1></div>
-			<div class="main_left fl">
-				<div>
-					<h3><span class="ask_title">已解决问题</span><a href="#">更多</a></h3>
-					<table class="grid">
-					  <thead>
-						<tr>
-						  <td>问题</td>
-						  <td width="80">类型</td>
-							<td width="80">更新时间</td>
-							<td width="80">解决者</td>
-						</tr>
-					  </thead>
-					  <tbody>
-             <% @solved_asks.each do |solved_ask| %>
-             <tr onmouseout="$(this).removeClass('mouse_over');" onmouseover="$(this).addClass('mouse_over');" class="">
-							  <td class="close"><a title="<%= solved_ask.title%>" href="/asks/<%= solved_ask.id%>"><%= solved_ask.title%></a></td>
-							  <td class="tag"><a href="/asks/tags/<%= solved_ask.ask_type.name%>">[<%= solved_ask.ask_type.name%>]</a></td>
-							  <td class="date"><%= solved_ask.updated_at.strftime('%Y-%m-%d') %></td>
-							  <td><%= solved_ask.bestanswer_username %></td>
-						  </tr>
-             <% end %>
-					  </tbody>
-					</table>
 
-
-				</div>
-				<div class="clear"></div>
-				<div class="will_pagination">
-					<%=h will_paginate @solved_asks, :previous_label => '上一页',  :next_label => '下一页'%>
-				</div>
-			</div>
-			<div class="main_right fl">
+<div class="Main_box">
+  <!--=======Left===================================================-->
+  <div class="Main_Left">
+  
+    <div class="L_top_1_title"><a href="<%= XMAPP_MAIN_DOMAIN_URL %>" target="_blank">首页</a> > <a href="<%= XMAPP_MAIN_DOMAIN_URL %>/asks" target="_blank">问答</a> > <span>已关闭问答</span></div>
+    
+    <div class="L_top_3_title">已关闭问答</div>
+    <div class="L_top_3_Con">
+        <div class="T_tit"><div class="title">问题</div><div class="title_type">类型</div><div class="title_time">更新时间</div><div class="title_huida">回答者</div><div class="title_shang">悬赏</div></div>
+        <div class="T_conlist">
+           <UL>
+			<% @solved_asks.each do |solved_ask| %>
+             <LI>
+				<div class="title"><a title="<%= solved_ask.title%>" href="/asks/<%= solved_ask.id%>" target="_blank"><%= solved_ask.title%></a></div>
+				<div class="title_type"><a href="/asks/tags/<%= solved_ask.ask_type.name%>">[<%= solved_ask.ask_type.name%>]</a></div>
+				<div class="title_time"><%= solved_ask.updated_at.strftime('%Y-%m-%d') %></div>
+				<div class="title_huida"><%= solved_ask.bestanswer_username %></div>
+				<div class="title_shang">20</div>
+			 </LI>
+            <% end %> 
+           </UL>
+           
+           <div class="NumList">
+             <%=h will_paginate @solved_asks, :previous_label => '上一页',  :next_label => '下一页'%>
+           </div>
+           
+        </div>
+    </div>
+    
+   
+    
+    
+  </div>
+  <!--=======Right===================================================-->
 <!-- JiaThis Button BEGIN -->
 <div id="ckepop">
 	<a href="http://www.jiathis.com/share/?uid=1502974" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">分享到：</a>
@@ -55,36 +51,63 @@
 </div>
 <script type="text/javascript" src="http://v1.jiathis.com/code/jia.js?uid=1502974" charset="utf-8"></script>
 <!-- JiaThis Button END -->
-			  <div class="right_search">
-					<form method="get" action="/search" accept-charset="UTF-8">
-						<input type="hidden" value="ask" name="type">
-						<input id="query" type="text" name="query">
-						<input id="search_submit" class="btn_srh" type="submit" value="搜索">
-					</form>
-				</div>
-				<div class="my_ask">
-					<h2><a href="/asks/new">我要提问</a></h2>
-					<h2><a href="/asks/my">我的问答</a></h2>
-				</div>
-				<h2 class="subject">留学推荐</h2>
-				<script src='http://www.xiaoma.com/plus/ad_js.php?aid=84' language='javascript'></script>
-				<div class="clear"></div>
-				<h2 class="subject">热点文章</h2>
-				<script src='http://www.xiaoma.com/plus/ad_js.php?aid=85' language='javascript'></script>
-				<div class="clear"></div>
-				<h2 class="subject">论坛精华</h2>
-				<script type="text/javascript" src="http://bbs.xiaoma.com/api.php?mod=js&bid=286"></script>
-				<div class="clear"></div>
-				<script src='http://www.xiaoma.com/plus/ad_js.php?aid=12' language='javascript'></script>
-				<div class="ask_tags">
-					<h2 class="subject">问答分类</h2>
-					<h4><a href="/asks/tags/托福">托福</a></h4>
-					<h4><a href="/asks/tags/雅思">雅思</a></h4>
-					<h4><a href="/asks/tags/GRE">GRE</a></h4>
-					<h4><a href="/asks/tags/SAT">SAT</a></h4>
-					<h4><a href="/asks/tags/出国留学">出国留学</a></h4>
-				</div>
+  <div class="Main_Right">
+    <div class="R_top_1_tit">
+		<form name="form_search" method="get" action="/search" accept-charset="UTF-8">
+			<input type="hidden" value="ask" name="type">
+			<div class="formT">
+				<input name="query" type="text" class="form_text" />
 			</div>
-			<div class="clear"></div>
-		</div><!-- #container -->
+			<div class="button_a">
+				<input type="submit" style="border: 0;background: url(http://img.xiaoma.com/xmimg1/wdimg/nei/WDmy_05.gif) no-repeat; background-position: 0px 0px;
+width: 87px; height: 28px; cursor: pointer;"  id="button" value="" title="搜索答案"/>
+			</div>
+		</form>
+	</div>
+    <div class="R_top_1_tit"><a href="/asks/new" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_05.gif" width="240" height="49" border="0" /></a></div>
+    <div class="R_top_2_tit"><a href="/asks/my" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_08.gif" width="240" height="49" border="0" /></a></div>
+    <div class="R_top_3_tit"><a href="#" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_12.gif" width="240" height="91" border="0" /></a></div>
+    <div class="M_R_r4_tit">
+      <div class="title_r1">问答分类</div>
+    </div>
+    <div class="M_R_r4_con">
+      	<ul>
+	        <li><a href="/asks/tags/出国留学" target="_blank">出国留学</a></li>
+	        <li><a href="/asks/tags/托福" target="_blank">托福</a></li>
+	        <li><a href="/asks/tags/雅思" target="_blank">雅思</a></li>
+	        <li><a href="/asks/tags/GRE" target="_blank">GRE</a></li>
+	        <li><a href="/asks/tags/GMAT" target="_blank">GMAT</a></li>
+	        <li><a href="/asks/tags/SAT" target="_blank">SAT</a></li>
+	      </ul>
+    </div>
+    
+    <!--
+    <div class="M_R_r5_tit">
+      <div class="title_r1">编辑推荐</div>
+      <div class="more2"><a href="#" target="_blank">更多>></a></div>
+    </div>
+    <div class="M_R_r5_con">
+	  
+      <div class="M_R_r5_con_content">
+        <ul>
+          <li>·<a href="#" target="_blank">ETS揭晓2011年度中国奖学金项目获奖</a></li>
+          <li>·<a href="#" target="_blank">2011年起中国大陆新托福考试打折促销</a></li>
+          <li>·<a href="#" target="_blank">ETS官方针对新托福关注问题进行解答</a></li>
+          <li>·<a href="#" target="_blank">新版《新托福考试官方指南》发布</a></li>
+          <li>·<a href="#" target="_blank">经验分享：取得新托福高分的十大关键</a></li>
+          <li>·<a href="#" target="_blank">北外网院成为新托福考试考点</a></li>
+          <li>·<a href="#" target="_blank">小马过河2011年托福机经预测中标记录</a></li>
+          <li>·<a href="#" target="_blank">2011年5~7月大陆托福考试新题日预测</a></li>
+          <li>·<a href="#" target="_blank">小马过河2011年托福机经预测中标记录</a></li>
+          <li>·<a href="#" target="_blank">2011年5~7月大陆托福考试新题日预测</a></li>
+        </ul>
+      </div>
+	  
+    </div>
+	-->
+     
+  </div>
+</div>
+
+
 

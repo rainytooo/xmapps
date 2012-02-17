@@ -43,9 +43,9 @@ Xmapps::Application.configure do
   DOWNLOAD_THREAD_PHOTO_ROOT_PATH = "/var/www/html/xmappimages"
   DOWNLOAD_THREAD_PHOTO_ROOT_URL = "http://localhost/xmappimages"
   # discuz 的auth key的配置
-  DZ_AUTH_KEY = 'f00c28N7uXnFtcbB'
+  DZ_AUTH_KEY = '726038W8CGDcpa5k'
   # discuz的cookie的名字
-  DZ_COOKIE_PRE = '2vNK_'
+  DZ_COOKIE_PRE = '4WgC_'
   DZ_COOKIE_PATH = '/'
   DZ_COOKIE_DOMAIN = ''
   DZ_COOKIE_NAME = DZ_COOKIE_PRE + Digest::MD5.hexdigest(DZ_COOKIE_PATH + "|" + DZ_COOKIE_DOMAIN)[0,4] + "_auth"

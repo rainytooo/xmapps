@@ -20,7 +20,7 @@ discuzx:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: dzx_db
+  database: dzx_dev_db
   pool: 5
   username: root
   password: 1q2w3e4r

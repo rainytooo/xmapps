@@ -161,7 +161,7 @@ class ApplicationController < ActionController::Base
   # 积分大于多少才能发问答
   def require_dz_credits
     dzuser = Dzuser.find_by_uid session[:login_user].uid
-    if dzuser.credits.to_i < 10
+    if dzuser.credits.to_i < 1
       flash.now[:error] = "您的积分太低,不允发言"
       render '/errors_messages.html'
       return
@@ -182,7 +182,8 @@ class ApplicationController < ActionController::Base
   # 检查用户的注册见习时间到了吗
   def sync_check_status?
     dzuser = Dzuser.find_by_uid session[:login_user].uid
-    jianxitime = dzuser.regdate + (60 * 1440)
+    #jianxitime = dzuser.regdate + (60 * 1440)
+    jianxitime = dzuser.regdate + 0
     if (dzuser.status == 0) and (jianxitime < Time.now.to_i) and (dzuser.adminid >= 0)
       return true
     else
@@ -265,9 +266,9 @@ class ApplicationController < ActionController::Base
   end
 
   def operation_pass?
-    # 得到系统时间,默认发言间隔为3分钟,夜间为30分钟
+    # 得到系统时间,默认发言间隔为30秒,夜间为30分钟
     hour_i = Time.now.hour
-    jiange = 1800
+    jiange = 30
     if hour_i > 0 and hour_i < 8
       jiange = 1800
     end

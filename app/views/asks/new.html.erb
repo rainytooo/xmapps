@@ -1,103 +1,153 @@
 <% content_for :head do %>
-<title>小马留学网-问答频道</title>
+<title>小马过河-xiaoma教育-问答频道 我要提问</title>
 <meta name="keywords" content="小马留学网 问答频道" />
 <meta name="description" content="问答频道" />
-<%= stylesheet_link_tag "global" %>
-<%= stylesheet_link_tag "index" %>
+<%= stylesheet_link_tag "Nei_wd_ask" %>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/localization/messages_cn.js"></script>
-<%= javascript_include_tag 'editor/kindeditor-min'%>
+<% end %>
 <script type="text/javascript">
   var isinit = 0;
 	$(document).ready(function() {
 
 	  $("#new_ask").validate(
-      {
-        rules: {
-          "ask[title]": {
-             required: true,
-             minlength: 5,
-             maxlength: 128
-           }
-         },
-        messages: {
-           "ask[title]": {
-             required: "请填写您问题的标题,最少5个字",
-             minlength: "您问题的标题少于5个字"
-            }
-         }
-      }
-    );
-
-
-
-	});
-	KE.show({
-		id : 'ask_content',
-		resizeMode : 1,
-		allowPreviewEmoticons : false,
-		allowUpload : false,
-		items : [
-		'textcolor','removeformat'],
-		afterFocus : function(){if (isinit == 0){KE.html('ask_content', '');isinit = 1;}}
+      	{
+	        rules: {
+	          "ask[title]": {
+	             required: true,
+	             minlength: 5,
+	             maxlength: 128
+	           }
+	         },
+	        messages: {
+	           "ask[title]": {
+	             required: "请填写您问题的标题,最少5个字",
+	             minlength: "您问题的标题少于5个字"
+	            }
+	         }
+	      }
+      );
+	
 	});
 
 
 </script>
-<% end %>
 
-<div class="container">
-			<div class="page_path">
-			<a href="<%= XMAPP_MAIN_DOMAIN_URL %>">首页</a> &gt;&gt; <a href="/asks">问答频道</a> &gt;&gt; 我要提问
-			</div><!-- .page_path -->
-			<div class="page_title"><h1>我要提问</h1></div>
-			<div class="form_container">
-				<div class="form_left">
-				  <div class="clear"></div>
-				  <%= form_for(@ask ) do |f| %>
-					  <% if flash[:message] %>
-					  <div class="submit_message"><%= flash[:message] %></div><!-- .message -->
-					  <% end %>
-					  <% if flash[:error] %>
-					  <div class="submit_error"><%= flash[:error] %></div><!-- .error -->
-					  <% end %>
-					  <div class="global_form">
-						  <%= f.label :title, "您的问题:" %><div class="clear"></div>
-						  <%= f.text_field :title %>
-					  </div>
-					  <div class="form_tips">请填写您问题的标题</div>
-					  <div class="global_form">
-						  <%= f.label :ask_type_id, "问题的类型:" %><div class="clear"></div>
-						  <%= select_tag(:ask_type_id,  options_for_select(AskType.all.collect{ |p| [p.name, p.id] }) ) %>
-					  </div>
-					  <div class="form_tips">清选择您要提问的分类</div>
-					  <div class="global_form">
-						  <%= f.label :content, "问题的详细介绍:" %><div class="clear"></div>
-						  <%= f.text_area :content , :size => "65x15", :class => "tinymce", :value => '请在这里详细描述您的问题' %>
-					  </div>
-					  <div class="form_tips">请填写这个问题的详细介绍</div>
-					  <div id="form_submit">
-						  <input id="campaign_submit" name="commit" type="submit" value="提交">
-					  </div>
-					  <div class="clear"></div>
-				  <% end %>
-				</div><!-- .form_left -->
+<!--===top以上======================================-->
+<div class="Main_box">
+  <!--=======Left===================================================-->
+  <div class="Main_Left">
+  
+    <div class="L_top_1_title"><a href="<%= XMAPP_MAIN_DOMAIN_URL %>" target="_blank">首页</a> > <a href="<%= XMAPP_MAIN_DOMAIN_URL %>/asks" target="_blank">问答</a> > <span>我要提问</span></div>
+    
+    <div class="L_top_3_title">我要提问：</div>
+    <div class="L_top_3_Con">
+        
+          <table width="100%" border="0" cellspacing="2" cellpadding="2" style="margin-top:10px;">
+            <%= form_for(@ask ) do |f| %>
+            <tr>
+              <td width="16%" style="padding-left:30px;">您的问题：</td>
+              <td width="84%">
+				<%= f.text_field :title, :class => "Text_input" %><span style="font-size:12px; color:#999;">（请填写您的问题）</span>
+			</tr>
+            <tr>
+              <td style="padding-left:30px;">问题类型：</td>
+              <td>
+               <%= select_tag(:ask_type_id,  options_for_select(AskType.all.collect{ |p| [p.name, p.id] }) ) %>
+               <span style="font-size:12px; color:#999;">（请选择您的问题的分类）</span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" style="padding-left:30px;">问题的详细描述：<span style="font-size:12px; color:#999;">（请在这里详细描述您的问题）</span></td>
+              </tr>
+            <tr>
+              <td colspan="2" align="center">
+                <textarea name="ask[content]" id="textarea" cols="45" rows="5" class="Text_Box"></textarea>
+              </td>
+              </tr>
+            <tr>
+              <td height="50" colspan="2" align="center">
+                <input type="submit" style="border: 0;background: url(http://img.xiaoma.com/xmimg1/wdimg/nei/WDask_11.gif) no-repeat; background-position: 0px 0px;
+width: 200px; height: 35px; cursor: pointer;"  name="button2" id="button" value="" />
+             </td>
+              </tr>
+            <% end %>
+          </table>
+         
+    </div>
+    
+   
+    
+    
+  </div>
+  <!--=======Right===================================================-->
+<!-- JiaThis Button BEGIN -->
+<div id="ckepop">
+	<a href="http://www.jiathis.com/share/?uid=1502974" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">分享到：</a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_kaixin001"></a>
+	<a class="jiathis_button_renren"></a>
+</div>
+<script type="text/javascript" src="http://v1.jiathis.com/code/jia.js?uid=1502974" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+  <div class="Main_Right">
+    <div class="R_top_1_tit">
+		<form name="form_search" method="get" action="/search" accept-charset="UTF-8">
+			<input type="hidden" value="ask" name="type">
+			<div class="formT">
+				<input name="query" type="text" class="form_text" />
+			</div>
+			<div class="button_a">
+				<input type="submit" style="border: 0;background: url(http://img.xiaoma.com/xmimg1/wdimg/nei/WDmy_05.gif) no-repeat; background-position: 0px 0px;
+width: 87px; height: 28px; cursor: pointer;"  id="button" value="" title="搜索答案"/>
+			</div>
+		</form>
+	</div>
+    <div class="R_top_1_tit"><a href="/asks/new" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_05.gif" width="240" height="49" border="0" /></a></div>
+    <div class="R_top_2_tit"><a href="/asks/my" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_08.gif" width="240" height="49" border="0" /></a></div>
+    <div class="R_top_3_tit"><a href="#" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_12.gif" width="240" height="91" border="0" /></a></div>
+    <div class="M_R_r4_tit">
+      <div class="title_r1">问答分类</div>
+    </div>
+    <div class="M_R_r4_con">
+      	<ul>
+	        <li><a href="/asks/tags/出国留学" target="_blank">出国留学</a></li>
+	        <li><a href="/asks/tags/托福" target="_blank">托福</a></li>
+	        <li><a href="/asks/tags/雅思" target="_blank">雅思</a></li>
+	        <li><a href="/asks/tags/GRE" target="_blank">GRE</a></li>
+	        <li><a href="/asks/tags/GMAT" target="_blank">GMAT</a></li>
+	        <li><a href="/asks/tags/SAT" target="_blank">SAT</a></li>
+	      </ul>
+    </div>
+	<!--
+    <div class="M_R_r5_tit">
+      <div class="title_r1">编辑推荐</div>
+      <div class="more2"><a href="#" target="_blank">更多>></a></div>
+    </div>
+    <div class="M_R_r5_con">
+	  
+      <div class="M_R_r5_con_content">
+        <ul>
+          <li>·<a href="#" target="_blank">ETS揭晓2011年度中国奖学金项目获奖</a></li>
+          <li>·<a href="#" target="_blank">2011年起中国大陆新托福考试打折促销</a></li>
+          <li>·<a href="#" target="_blank">ETS官方针对新托福关注问题进行解答</a></li>
+          <li>·<a href="#" target="_blank">新版《新托福考试官方指南》发布</a></li>
+          <li>·<a href="#" target="_blank">经验分享：取得新托福高分的十大关键</a></li>
+          <li>·<a href="#" target="_blank">北外网院成为新托福考试考点</a></li>
+          <li>·<a href="#" target="_blank">小马过河2011年托福机经预测中标记录</a></li>
+          <li>·<a href="#" target="_blank">2011年5~7月大陆托福考试新题日预测</a></li>
+          <li>·<a href="#" target="_blank">小马过河2011年托福机经预测中标记录</a></li>
+          <li>·<a href="#" target="_blank">2011年5~7月大陆托福考试新题日预测</a></li>
+        </ul>
+      </div>
+	  
+    </div>
+	-->
 
-				<div class="form_right">
 
-			  <div class="right_search">
-					<form method="get" action="/search" accept-charset="UTF-8">
-						<input type="hidden" value="ask" name="type">
-						<input id="query" type="text" name="query">
-						<input id="search_submit" class="btn_srh" type="submit" value="搜索">
-					</form>
-				</div>
-					<h5></h5>
-					<p>
-					</p>
-				</div><!-- .form_right -->
-			</div><!-- .form_container -->
-		</div><!-- #content_container -->
-		<div class="clear"></div>
 
+
+  </div>
+</div>

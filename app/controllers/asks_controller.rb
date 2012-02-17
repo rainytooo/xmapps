@@ -1,4 +1,5 @@
 class AsksController < ApplicationController
+  layout "asks_layout"
   before_filter :require_login , :except => [:index, :show, :unsolved, :closed, :tags]
   before_filter :require_sync_check_status, :only => [:create]
   before_filter :require_operation_check , :only => [:create]
@@ -100,7 +101,11 @@ class AsksController < ApplicationController
     # 补充问题的
     if params[:answers_content_renew]
       renew = "<br/><hr/>问题补充:<br/>" + params[:answers_content_renew]
-      new_content = @ask.content + renew
+      if not @ask.content
+        new_content = renew
+      else
+        new_content = @ask.content + renew
+      end
       @ask.update_attributes({ :content => new_content })
       flash[:message] = "成功补充了您的问题"
     end
