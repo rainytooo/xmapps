@@ -47,187 +47,107 @@ width: 102px; height: 28px; cursor: pointer;"   id="button" value="" title="搜�
       <div class="BOX">
         <div class="title_bg">
           <div class="title">出国留学</div>
-          <div class="more"><a href="#" target="_blank">更多</a></div>
+          <div class="more"><a href="/asks/tags/出国留学" title="出国留学的相关问题" target="_blank">更多</a></div>
         </div>
         <div class="Content_B">
           <ul>
+			<% @tag_asks_6.each do |tag_ask| %>
             <li>
-              <div class="L_tit">·<a href="#" target="_blank">区别对待五种托福阅读题型</a></div>
-              <div class="rtime">11-15</div>
+              <div class="L_tit">·<a href="/asks/<%= tag_ask.id %>" target="_blank"><%= tag_ask.title %></a></div>
+              <div class="rtime"><%= tag_ask.updated_at.strftime('%m/%d') %></div>
             </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">托福阅读备考需要注意的四大误区</a></div>
-              <div class="rtime">11-15</div>
-            </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">区别对待五种托福阅读题型</a></div>
-              <div class="rtime">11-15</div>
-            </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">托福阅读备考需要注意的四大误区</a></div>
-              <div class="rtime">11-15</div>
-            </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">托福阅读材料：陨石与人类起源研究</a></div>
-              <div class="rtime">11-15</div>
-            </li>
+            <% end %>
           </ul>
         </div>
       </div>
       <div class="BOX">
         <div class="title_bg">
           <div class="title">托福</div>
-          <div class="more"><a href="#" target="_blank">更多</a></div>
+          <div class="more"><a href="/asks/tags/托福" title="托福的相关问题" target="_blank">更多</a></div>
         </div>
         <div class="Content_B">
           <ul>
+            <% @tag_asks_1.each do |tag_ask| %>
             <li>
-              <div class="L_tit">·<a href="#" target="_blank">区别对待五种托福阅读题型</a></div>
-              <div class="rtime">11-15</div>
+              <div class="L_tit">·<a href="/asks/<%= tag_ask.id %>" target="_blank"><%= tag_ask.title %></a></div>
+              <div class="rtime"><%= tag_ask.updated_at.strftime('%m/%d') %></div>
             </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">托福阅读备考需要注意的四大误区</a></div>
-              <div class="rtime">11-15</div>
-            </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">区别对待五种托福阅读题型</a></div>
-              <div class="rtime">11-15</div>
-            </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">托福阅读备考需要注意的四大误区</a></div>
-              <div class="rtime">11-15</div>
-            </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">托福阅读材料：陨石与人类起源研究</a></div>
-              <div class="rtime">11-15</div>
-            </li>
+            <% end %>
           </ul>
         </div>
       </div>
       <div class="BOX">
         <div class="title_bg">
           <div class="title">雅思</div>
-          <div class="more"><a href="#" target="_blank">更多</a></div>
+          <div class="more"><a href="/asks/tags/雅思" title="雅思的相关问题" target="_blank">更多</a></div>
         </div>
         <div class="Content_B">
           <ul>
+            <% @tag_asks_2.each do |tag_ask| %>
             <li>
-              <div class="L_tit">·<a href="#" target="_blank">区别对待五种托福阅读题型</a></div>
-              <div class="rtime">11-15</div>
+              <div class="L_tit">·<a href="/asks/<%= tag_ask.id %>" target="_blank"><%= tag_ask.title %></a></div>
+              <div class="rtime"><%= tag_ask.updated_at.strftime('%m/%d') %></div>
             </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">托福阅读备考需要注意的四大误区</a></div>
-              <div class="rtime">11-15</div>
-            </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">区别对待五种托福阅读题型</a></div>
-              <div class="rtime">11-15</div>
-            </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">托福阅读备考需要注意的四大误区</a></div>
-              <div class="rtime">11-15</div>
-            </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">托福阅读材料：陨石与人类起源研究</a></div>
-              <div class="rtime">11-15</div>
-            </li>
+            <% end %>
           </ul>
         </div>
       </div>
       <div class="BOX">
         <div class="title_bg">
           <div class="title">GRE</div>
-          <div class="more"><a href="#" target="_blank">更多</a></div>
+          <div class="more"><a href="/asks/tags/GRE" title="GRE的相关问题" target="_blank">更多</a></div>
         </div>
         <div class="Content_B">
           <ul>
+            <% @tag_asks_3.each do |tag_ask| %>
             <li>
-              <div class="L_tit">·<a href="#" target="_blank">区别对待五种托福阅读题型</a></div>
-              <div class="rtime">11-15</div>
+              <div class="L_tit">·<a href="/asks/<%= tag_ask.id %>" target="_blank"><%= tag_ask.title %></a></div>
+              <div class="rtime"><%= tag_ask.updated_at.strftime('%m/%d') %></div>
             </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">托福阅读备考需要注意的四大误区</a></div>
-              <div class="rtime">11-15</div>
-            </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">区别对待五种托福阅读题型</a></div>
-              <div class="rtime">11-15</div>
-            </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">托福阅读备考需要注意的四大误区</a></div>
-              <div class="rtime">11-15</div>
-            </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">托福阅读材料：陨石与人类起源研究</a></div>
-              <div class="rtime">11-15</div>
-            </li>
+            <% end %>
           </ul>
         </div>
       </div>
       <div class="BOX">
         <div class="title_bg">
           <div class="title">SAT</div>
-          <div class="more"><a href="#" target="_blank">更多</a></div>
+          <div class="more"><a href="/asks/tags/SAT" title="SAT的相关问题" target="_blank">更多</a></div>
         </div>
         <div class="Content_B">
           <ul>
+            <% @tag_asks_5.each do |tag_ask| %>
             <li>
-              <div class="L_tit">·<a href="#" target="_blank">区别对待五种托福阅读题型</a></div>
-              <div class="rtime">11-15</div>
+              <div class="L_tit">·<a href="/asks/<%= tag_ask.id %>" target="_blank"><%= tag_ask.title %></a></div>
+              <div class="rtime"><%= tag_ask.updated_at.strftime('%m/%d') %></div>
             </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">托福阅读备考需要注意的四大误区</a></div>
-              <div class="rtime">11-15</div>
-            </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">区别对待五种托福阅读题型</a></div>
-              <div class="rtime">11-15</div>
-            </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">托福阅读备考需要注意的四大误区</a></div>
-              <div class="rtime">11-15</div>
-            </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">托福阅读材料：陨石与人类起源研究</a></div>
-              <div class="rtime">11-15</div>
-            </li>
+            <% end %>
           </ul>
         </div>
       </div>
       <div class="BOX">
         <div class="title_bg">
           <div class="title">GMAT</div>
-          <div class="more"><a href="#" target="_blank">更多</a></div>
+          <div class="more"><a href="/asks/tags/GMAT" title="GMAT的相关问题" target="_blank">更多</a></div>
         </div>
         <div class="Content_B">
           <ul>
+            <% @tag_asks_4.each do |tag_ask| %>
             <li>
-              <div class="L_tit">·<a href="#" target="_blank">区别对待五种托福阅读题型</a></div>
-              <div class="rtime">11-15</div>
+              <div class="L_tit">·<a href="/asks/<%= tag_ask.id %>" target="_blank"><%= tag_ask.title %></a></div>
+              <div class="rtime"><%= tag_ask.updated_at.strftime('%m/%d') %></div>
             </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">托福阅读备考需要注意的四大误区</a></div>
-              <div class="rtime">11-15</div>
-            </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">区别对待五种托福阅读题型</a></div>
-              <div class="rtime">11-15</div>
-            </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">托福阅读备考需要注意的四大误区</a></div>
-              <div class="rtime">11-15</div>
-            </li>
-            <li>
-              <div class="L_tit">·<a href="#" target="_blank">托福阅读材料：陨石与人类起源研究</a></div>
-              <div class="rtime">11-15</div>
-            </li>
+            <% end %>
           </ul>
         </div>
       </div>
     </div>
     
     
-    <div class="gg_l"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_35.gif" width="705" height="96" /></div>
+    <div class="gg_l">
+	
+	<!-- <img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_35.gif" width="705" height="96" /> -->
+	<script src='http://www.xiaoma.com/plus/ad_js.php?aid=113' language='javascript'></script>
+	</div>
     
     
     <div class="L_top_3_title">待解决问题 &nbsp;&nbsp;<a href="/asks/unsolved">更多</a></div>
@@ -284,7 +204,10 @@ width: 102px; height: 28px; cursor: pointer;"   id="button" value="" title="搜�
 	<!-- JiaThis Button END -->
     <div class="R_top_1_tit"><a href="/asks/new" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_05.gif" width="240" height="49" border="0" /></a></div>
     <div class="R_top_2_tit"><a href="/asks/my" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_08.gif" width="240" height="49" border="0" /></a></div>
-    <div class="R_top_3_tit"><a href="#" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_12.gif" width="240" height="91" border="0" /></a></div>
+    <div class="R_top_3_tit">
+	<!-- <a href="#" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_12.gif" width="240" height="91" border="0" /></a>-->
+	<script src='http://www.xiaoma.com/plus/ad_js.php?aid=114' language='javascript'></script>
+	</div>
     <div class="M_R_r4_tit">
       <div class="title_r1">问答分类</div>
     </div>
@@ -394,7 +317,7 @@ width: 102px; height: 28px; cursor: pointer;"   id="button" value="" title="搜�
         </ul>
       </div>
     </div>
-	-->
+-->
   </div>
 	
 </div>

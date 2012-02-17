@@ -15,6 +15,12 @@ class AsksController < ApplicationController
     @unsolve_asks = Ask.where("status = 0").order("created_at DESC").limit(10)
     # 已解决问题
     @solved_asks = Ask.where("status = 1").order("created_at DESC").limit(10)
+    @tag_asks_1 = Ask.where("ask_type_id = 1").order("created_at DESC").limit(10).limit(5)
+    @tag_asks_2 = Ask.where("ask_type_id = 2").order("created_at DESC").limit(10).limit(5)
+    @tag_asks_3 = Ask.where("ask_type_id = 3").order("created_at DESC").limit(10).limit(5)
+    @tag_asks_4 = Ask.where("ask_type_id = 4").order("created_at DESC").limit(10).limit(5)
+    @tag_asks_5 = Ask.where("ask_type_id = 5").order("created_at DESC").limit(10).limit(5)
+    @tag_asks_6 = Ask.where("ask_type_id = 6").order("created_at DESC").limit(10).limit(5)
   end
 
   # GET /asks/1
