@@ -144,7 +144,7 @@
 			   <% if @ask.status == 0 and @ask.user_id == session[:login_user_id] %>
 			   	<a style="color: red;" href="/asks/<%= @ask.id %>" onclick="if (confirm('确定关闭问题?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var at = document.createElement('input'); at.setAttribute('type', 'hidden'); at.setAttribute('name', 'authenticity_token'); at.setAttribute('value', '#{form_authenticity_token}'); f.appendChild(at);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'put'); f.appendChild(m);var fl = document.createElement('input'); fl.setAttribute('type', 'hidden'); fl.setAttribute('name', 'status'); fl.setAttribute('value','1'); f.appendChild(fl);var fs = document.createElement('input'); fs.setAttribute('type', 'hidden'); fs.setAttribute('name', 'answer_id'); fs.setAttribute('value','<%= answer.id %>'); f.appendChild(fs);f.submit(); };return false;">选择为正确答案</a>
 			   <% end %>
-               <div class="title">如果排名比较靠前但GPA比较找学校开个rank证明的，证明一在年级的排名情况。。</div>
+               <div class="title"><%= raw answer.content %></div>
 				<% if @ask.status == 1 and @ask.bestanswer == answer.id %>
                 	<span style="color: green;">正确答案</span>
                 <% end %>
