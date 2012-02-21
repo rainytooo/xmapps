@@ -1,11 +1,193 @@
 <% content_for :head do %>
-<title>小马留学网-<%= @origin_words %> </title>
-<meta name="description" content="小马留学网-<%= @origin_words %> ">
-<meta name="keywords" content="小马留学网-<%= @origin_words %> ">
-<%= stylesheet_link_tag "global" %>
-<%= stylesheet_link_tag "index" %>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<title>小马过河-搜索-<%= @origin_words %> </title>
+<meta name="description" content="小马过河-<%= @origin_words %> ">
+<meta name="keywords" content="小马过河-<%= @origin_words %> ">
+<%= stylesheet_link_tag "xmwdcss" %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <% end %>
+
+
+<div class="Main_box">
+  <!--=======Left===================================================-->
+  <div class="Main_Left">
+    <div class="L_top_1">
+      <table width="610" border="0" cellspacing="0" cellpadding="0" class="tbox">
+		<form method="get" id="form1" name="form1" action="/search" accept-charset="UTF-8">
+          <tr>
+			<input type="hidden" value="all" name="type">
+            <td width="380"><input type="text" name="query" id="textfield" class="sou_input" /></td>
+            <td width="108">
+				<input type="submit" style="border: 0;background: url(http://img.xiaoma.com/xmimg1/wdimg/indwd_sou_08.gif) no-repeat; background-position: 0px 0px;
+width: 102px; height: 28px; cursor: pointer;"   id="button" value="" title="搜索答案"/>
+			</td>
+            <td width="115" align="right"><a href="/asks/new" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_sou_10.gif" width="102" height="28" border="0" /></a></td>
+          </tr>
+        </form>
+      </table>
+      <div class="hot_sou">
+        <ul>
+          <li><span>热门搜索：</span></li>
+          <li><a href="http://search.xiaoma.com/?type=all&page=1&query=美国留学" target="_blank">美国留学</a></li>
+          <li><a href="http://search.xiaoma.com/?type=all&page=1&query=签证" target="_blank">签证</a></li>
+          <li><a href="http://search.xiaoma.com/?type=all&page=1&query=转学申请" target="_blank">转学申请</a></li>
+          <li><a href="http://search.xiaoma.com/?type=all&page=1&query=留学费用" target="_blank">留学费用</a></li>
+          <li><a href="http://search.xiaoma.com/?type=all&page=1&query=大学排名" target="_blank">大学排名</a></li>
+          <li><a href="http://search.xiaoma.com/?type=all&page=1&query=托福报名" target="_blank">托福报名</a></li>
+          <li><a href="http://search.xiaoma.com/?type=all&page=1&query=托福考试" target="_blank">托福考试</a></li>
+          <li><a href="http://search.xiaoma.com/?type=all&page=1&query=雅思考试" target="_blank">雅思考试</a></li>
+          <li><a href="http://search.xiaoma.com/?type=all&page=1&query=GRE" target="_blank">GRE</a></li>
+          <li><a href="http://search.xiaoma.com/?type=all&page=1&query=GMAT" target="_blank">GMAT</a></li>
+          <li><a href="http://search.xiaoma.com/?type=all&page=1&query=SAT" target="_blank">SAT</a></li>
+          <li><a href="http://search.xiaoma.com/?type=all&page=1&query=机经预测" target="_blank">机经预测</a></li>
+        </ul>
+      </div>
+    </div>
+    
+	<div>
+		<%= raw @html_str %>
+	</div>
+    
+  </div>
+  <!--=======Right===================================================-->
+  <div class="Main_Right">
+	<!-- JiaThis Button BEGIN -->
+	<div id="ckepop">
+		<a href="http://www.jiathis.com/share/?uid=1502974" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">分享到：</a>
+		<a class="jiathis_button_qzone"></a>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_kaixin001"></a>
+		<a class="jiathis_button_renren"></a>
+	</div>
+	<script type="text/javascript" src="http://v1.jiathis.com/code/jia.js?uid=1502974" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+	<!--
+    <div class="R_top_1_tit"><a href="/asks/new" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_05.gif" width="240" height="49" border="0" /></a></div>
+    <div class="R_top_2_tit"><a href="/asks/my" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_08.gif" width="240" height="49" border="0" /></a></div>
+    -->
+	<div class="R_top_3_tit">
+	<!-- <a href="#" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_12.gif" width="240" height="91" border="0" /></a>-->
+	<script src='http://www.xiaoma.com/plus/ad_js.php?aid=114' language='javascript'></script>
+	</div>
+	<!--
+    <div class="M_R_r4_tit">
+      <div class="title_r1">问答分类</div>
+    </div>
+    <div class="M_R_r4_con">
+      <ul>
+        <li><a href="/asks/tags/出国留学" target="_blank">出国留学</a></li>
+        <li><a href="/asks/tags/托福" target="_blank">托福</a></li>
+        <li><a href="/asks/tags/雅思" target="_blank">雅思</a></li>
+        <li><a href="/asks/tags/GRE" target="_blank">GRE</a></li>
+        <li><a href="/asks/tags/GMAT" target="_blank">GMAT</a></li>
+        <li><a href="/asks/tags/SAT" target="_blank">SAT</a></li>
+      </ul>
+    </div>
+	
+    <div class="M_R_r5_tit">
+      <div class="title_r1">编辑推荐</div>
+      <div class="more2"><a href="#" target="_blank">更多>></a></div>
+    </div>
+    <div class="M_R_r5_con">
+      <div class="M_R_r5_con_picBox">
+        <div class="M_R_r5_con_picBox_pic"><a href="#" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_31.gif" width="83" height="77" border="0" /></a></div>
+        <div class="M_R_r5_con_picBox_con">
+          <div class="M3picBox_con_tit"><a href="#" target="_blank">美国留学专家精家精家精家精彩</a></div>
+          <div class="M3picBox_con_con">曾经有一个美国家精家精友人给我...<a href="#" target="_blank">[更多]</a></div>
+        </div>
+      </div>
+      <div class="M_R_r5_con_content">
+        <ul>
+          <li>·<a href="#" target="_blank">ETS揭晓2011年度中国奖学金项目获奖</a></li>
+          <li>·<a href="#" target="_blank">2011年起中国大陆新托福考试打折促销</a></li>
+          <li>·<a href="#" target="_blank">ETS官方针对新托福关注问题进行解答</a></li>
+          <li>·<a href="#" target="_blank">新版《新托福考试官方指南》发布</a></li>
+          <li>·<a href="#" target="_blank">经验分享：取得新托福高分的十大关键</a></li>
+          <li>·<a href="#" target="_blank">北外网院成为新托福考试考点</a></li>
+          <li>·<a href="#" target="_blank">小马过河2011年托福机经预测中标记录</a></li>
+          <li>·<a href="#" target="_blank">2011年5~7月大陆托福考试新题日预测</a></li>
+          <li>·<a href="#" target="_blank">小马过河2011年托福机经预测中标记录</a></li>
+          <li>·<a href="#" target="_blank">2011年5~7月大陆托福考试新题日预测</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="M_R_r6_tit">
+      <div class="title_r1">编辑推荐</div>
+      <div class="more2"><a href="#" target="_blank">更多>></a></div>
+    </div>
+    <div class="M_R_r6_con">
+      <ul>
+        <li>
+          <div class="M_R_r6_con_picBox_pic"><a href="#" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_40.gif" width="66" height="64" border="0" /></a></div>
+          <div class="M_R_r6_con_picBox_con">
+            <div class="M3picBox_con_tit"><a href="#" target="_blank">美国留学专家精彩专栏</a></div>
+            <div class="M3picBox_con_con">浏览：<span>1280</span></div>
+            <div class="M3picBox_con_con2">日期：10-18</div>
+          </div>
+        </li>
+        <li>
+          <div class="M_R_r6_con_picBox_pic"><a href="#" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_40.gif" width="66" height="64" border="0" /></a></div>
+          <div class="M_R_r6_con_picBox_con">
+            <div class="M3picBox_con_tit"><a href="#" target="_blank">美国留学专家精彩专栏</a></div>
+            <div class="M3picBox_con_con">浏览：<span>1280</span></div>
+            <div class="M3picBox_con_con2">日期：10-18</div>
+          </div>
+        </li>
+        <li>
+          <div class="M_R_r6_con_picBox_pic"><a href="#" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_40.gif" width="66" height="64" border="0" /></a></div>
+          <div class="M_R_r6_con_picBox_con">
+            <div class="M3picBox_con_tit"><a href="#" target="_blank">美国留学专家精彩专栏</a></div>
+            <div class="M3picBox_con_con">浏览：<span>1280</span></div>
+            <div class="M3picBox_con_con2">日期：10-18</div>
+          </div>
+        </li>
+        <li>
+          <div class="M_R_r6_con_picBox_pic"><a href="#" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_40.gif" width="66" height="64" border="0" /></a></div>
+          <div class="M_R_r6_con_picBox_con">
+            <div class="M3picBox_con_tit"><a href="#" target="_blank">美国留学专家精彩专栏</a></div>
+            <div class="M3picBox_con_con">浏览：<span>1280</span></div>
+            <div class="M3picBox_con_con2">日期：10-18</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="M_R_r7_tit">
+      <div class="title_r1">编辑推荐</div>
+      <div class="more2"><a href="#" target="_blank">更多>></a></div>
+    </div>
+    <div class="M_R_r7_con">
+      <div class="M_R_r7_con_picBox">
+        <div class="M_R_r7_con_picBox_pic"><a href="#" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_31.gif" width="83" height="77" border="0" /></a></div>
+        <div class="M_R_r7_con_picBox_con">
+          <div class="M3picBox_con_tit"><a href="#" target="_blank">美国留学专家精家精家精家精彩</a></div>
+          <div class="M3picBox_con_con">曾经有一个美国家精家精友人给我...<a href="#" target="_blank">[更多]</a></div>
+        </div>
+      </div>
+      <div class="M_R_r7_con_content">
+        <ul>
+          <li>·<a href="#" target="_blank">ETS揭晓2011年度中国奖学金项目获奖</a></li>
+          <li>·<a href="#" target="_blank">2011年起中国大陆新托福考试打折促销</a></li>
+          <li>·<a href="#" target="_blank">ETS官方针对新托福关注问题进行解答</a></li>
+          <li>·<a href="#" target="_blank">新版《新托福考试官方指南》发布</a></li>
+          <li>·<a href="#" target="_blank">经验分享：取得新托福高分的十大关键</a></li>
+          <li>·<a href="#" target="_blank">北外网院成为新托福考试考点</a></li>
+          <li>·<a href="#" target="_blank">小马过河2011年托福机经预测中标记录</a></li>
+          <li>·<a href="#" target="_blank">2011年5~7月大陆托福考试新题日预测</a></li>
+          <li>·<a href="#" target="_blank">小马过河2011年托福机经预测中标记录</a></li>
+          <li>·<a href="#" target="_blank">2011年5~7月大陆托福考试新题日预测</a></li>
+          <li>·<a href="#" target="_blank">2011年5~7月大陆托福考试新题日预测</a></li>
+        </ul>
+      </div>
+    </div>
+-->
+  </div>
+	
+</div>
+
+
+
+
+
+
 
 		<div class="container">
 	    <div class="page_path">

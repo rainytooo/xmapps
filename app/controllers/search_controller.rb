@@ -1,4 +1,5 @@
 class SearchController < ApplicationController
+  layout "search_layout"
 	# 搜索
 	def search
 		# 预处理
