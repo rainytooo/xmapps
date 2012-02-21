@@ -654,6 +654,126 @@ a:active {
 }
 
 
+/*********search result******************/
+
+.Main_box .Main_Left .L_top_3s_title{
+	margin-top:10px;
+	width:689px;
+	height:29px;
+	background-image:url(../search_img/search1Q_09.gif);
+	padding-left:20px;
+	overflow:hidden;
+}
+.Main_box .Main_Left .L_top_3s_title .tit{
+	float:left;
+	width:640px;
+	height:29px;
+	line-height:29px;
+	font-family:"Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,MingLiu;
+	font-weight:bold;
+	color:#333;
+	font-size:15px;
+	overflow:hidden;
+}
+.Main_box .Main_Left .L_top_3s_title .more{
+	float:left;
+	width:40px;
+	height:29px;
+	line-height:29px;
+	color:#333;
+	font-size:12px;
+	overflow:hidden;
+}
+
+.Main_box .Main_Left .L_top_3s_Con{
+	width:707px;
+	/*height:335px;*/
+	min-height:505px;
+    max-height:none;
+	height:auto !important;
+	_height:expression((document.documentElement.clientHeight||document.body.clientHeight)>505?"505px":"");
+	border-bottom:#CCC 1px solid;
+	border-left:#CCC 1px solid;
+	border-right:#CCC 1px solid;
+	padding-bottom:10px;
+	overflow:hidden;
+}
+
+.Main_box .Main_Left .L_top_3s_Con .top_info{
+	margin-top:10px;
+	width:679px;
+	height:30px;
+	font-size:12px;
+	color:#666;
+	line-height:30px;
+	padding-left:20px;
+}
+.Main_box .Main_Left .L_top_3s_Con .top_info .left{
+	float:left;
+	width:400px;
+	height:30px;
+}
+.Main_box .Main_Left .L_top_3s_Con .top_info .right{
+	float:left;
+	width:279px;
+	height:30px;
+	text-align:right;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+.Main_box .Main_Left .L_top_3s_Con .T_conlist{
+	margin:auto;
+	width:691px;
+	/*height:295px;*/
+	min-height:65px;
+    max-height:none;
+	height:auto !important;
+	
+}
+.Main_box .Main_Left .L_top_3s_Con .T_conlist UL{
+	margin:0px;
+	padding:0px;
+}
+.Main_box .Main_Left .L_top_3s_Con .T_conlist UL LI{
+	margin:0px;
+	padding:0px;
+	margin-top:10px;
+	list-style:none;
+	width:678px;
+	font-size:12px;
+	padding-left:12px;
+	
+	line-height:28px;
+	*line-height:25px;
+	margin-bottom:5px;
+	overflow:hidden;
+	display:block;
+}
+.Main_box .Main_Left .L_top_3s_Con .T_conlist UL LI .title{
+	color:#0044CC;
+	font-size:14px;
+	line-height:24px;
+}
+.Main_box .Main_Left .L_top_3s_Con .T_conlist UL LI .title a{
+	color:#0044CC;
+	text-decoration: underline;
+}
+.Main_box .Main_Left .L_top_3s_Con .T_conlist UL LI .content{
+	color:#878787;
+	font-size:12px;
+	line-height:18px;
+}
+.Main_box .Main_Left .L_top_3s_Con .T_conlist UL LI .links{
+	color:#5E8222;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	line-height:18px;
+}
+.Main_box .Main_Left .L_top_3s_Con .T_conlist UL LI .links a{
+	color:#5E8222;
+}
+
+
 
 
 /********R5*******************************/
