@@ -687,7 +687,36 @@ a:active {
 	color:#333;
 }
 
-
+/*分页样式*/
+.pagination {
+  padding: 3px;
+  margin: 3px;
+}
+.will_pagination a {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #aaaadd;
+  text-decoration: none;
+  color: #000099;
+}
+.will_pagination a:hover, .pagination a:active {
+  border: 1px solid #000099;
+  color: #000;
+}
+.will_pagination span.current {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #000099;
+  font-weight: bold;
+  background-color: #000099;
+  color: #FFF;
+}
+.will_pagination span.disabled {
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  border: 1px solid #eee;
+  color: #ddd;
+}
 
 
 
