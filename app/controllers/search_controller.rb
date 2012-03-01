@@ -70,7 +70,7 @@ class SearchController < ApplicationController
 		  #@hot_dl_threads = DlThread.where("ispass = ?", 1).order("views DESC").limit(10).offset(0)
 		  # 记录用户搜索的记录
 		  save_user_keyword 'dl'
-		  render 'dl_search.html'
+		  render 'dl_search.html', :layout => 'application'
 		  return
 		end
 
