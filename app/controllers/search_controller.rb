@@ -61,7 +61,7 @@ class SearchController < ApplicationController
 		      {:search_string => @search_string}).order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>10)
 		  if @dl_threads.empty?
 			  flash.now[:message] = "对不起,没有搜索到相关内容,您可以在右侧点击我要上传来添加这个资源,可以获取大量积分和金币"
-			  render 'dl_search.html'
+			  render 'dl_search.html', :layout => 'application'
 			  return
 		  end
 		  # 拿出最多上传的用户
