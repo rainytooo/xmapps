@@ -59,7 +59,7 @@ class AuditionsController < ApplicationController
   
   def applies
     password = params[:password]
-    if password == '1234'
+    if password == '12349807'
       @auditions = Audition.order("created_at desc").paginate(:page=>params[:page]||1,:per_page=>30)
     else
       render :action => "check_applies"
