@@ -1,0 +1,28 @@
+<% content_for :head do %>
+<title>小马过河-xiaoma教育 预约试听</title>
+<meta name="description" content="任何的雅思,托福,留学,GRE,SAT,GMAT,SSAT,AP,等考试相关的问题,留学申请,签证,考试技巧,经验,考试报名,考试流程,等留学相关问题,可以在这里提问和寻找答案">
+<meta name="keywords" content="雅思,托福,留学,出国,GRE,SAT,GMAT,SSAT,AP,留学申请,签证,考试技巧,经验,考试报名,考试流程">
+<%= stylesheet_link_tag "xmwdcss" %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<% end %>
+<h1>Listing auditions</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @auditions.each do |audition| %>
+  <tr>
+    <td><%= link_to 'Show', audition %></td>
+    <td><%= link_to 'Edit', edit_audition_path(audition) %></td>
+    <td><%= link_to 'Destroy', audition, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Audition', new_audition_path %>

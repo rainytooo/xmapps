@@ -1,47 +1,56 @@
 Xmapps::Application.routes.draw do
+  # è¯•å¬çš„ç”³è¯·
+  resources :auditions do
+    collection do
+      get 'submit_result_s'
+      get 'check_applies'
+      post 'applies'
+    end
+  end
+
   resources :mailout
   resources :counters
 
-  # ÎÊ¾íµ÷²é
+  # ÃŽÃŠÂ¾Ã­ÂµÃ·Â²Ã©
   resources :questionnaires
 
-  # ÑéÖ¤ÂëµÄ
+  # Ã‘Ã©Ã–Â¤Ã‚Ã«ÂµÃ„
   resources :validate_images do
     collection do
       get 'genvi'
     end
   end
 
-  # ·­ÒëµÄÔ­ÎÄ
+  # Â·Â­Ã’Ã«ÂµÃ„Ã”Â­ÃŽÃ„
   match "sources/search", :to => "sources#search", :via => [:get], :as => "sources_search"
   resources :sources do
     collection do
-      #ËùÓÐ·¢²¼µÄ
+      #Ã‹Ã¹Ã“ÃÂ·Â¢Â²Â¼ÂµÃ„
       get 'release'
-      #ËùÓÐ·­ÒëµÄ
+      #Ã‹Ã¹Ã“ÃÂ·Â­Ã’Ã«ÂµÃ„
       get 'trans'
-      # ÎÒde
+      # ÃŽÃ’de
       get 'my'
-      # ÎÒ·¢²¼µÄ
+      # ÃŽÃ’Â·Â¢Â²Â¼ÂµÃ„
       get 'my_release'
-      # ÎÒ·­ÒëµÄ
+      # ÃŽÃ’Â·Â­Ã’Ã«ÂµÃ„
       get 'my_trans'
-      # ËùÓÐÎ´·­ÒëµÄ
+      # Ã‹Ã¹Ã“ÃÃŽÂ´Â·Â­Ã’Ã«ÂµÃ„
       get 'untrans'
-      # ·­Òë´óÈü
+      # Â·Â­Ã’Ã«Â´Ã³ÃˆÃ¼
       get 'match'
     end
     resources :translations do
-      # Ìá½»ÆÀÂÛ
+      # ÃŒÃ¡Â½Â»Ã†Ã€Ã‚Ã›
       post 'comments'
     end
   end
-  # ·­Òë´óÈü
+  # Â·Â­Ã’Ã«Â´Ã³ÃˆÃ¼
   match "translation_match", :to => "home#translation_match", :via => [:get]
 
-  # ÎÊ´ð
+  # ÃŽÃŠÂ´Ã°
   resources :asks do
-    # ÎÒµÄÎÊ´ð
+    # ÃŽÃ’ÂµÃ„ÃŽÃŠÂ´Ã°
     collection do
       get 'my'
       get 'closed'
@@ -50,7 +59,7 @@ Xmapps::Application.routes.draw do
     resource :ask_answers
   end
 
-  # Íâ²¿µ÷ÓÃapi
+  # ÃÃ¢Â²Â¿ÂµÃ·Ã“Ãƒapi
   resources :viewapi do
     collection do
       get 'asks_new'
@@ -61,28 +70,28 @@ Xmapps::Application.routes.draw do
   end
 
   match "asks/tags/:id", :to => "asks#tags", :via => [:get], :as => "asks_tags"
-  # ±¨ÃûµÄÌá½»
+  # Â±Â¨ÃƒÃ»ÂµÃ„ÃŒÃ¡Â½Â»
   match "baomings", :to => "baomings#create", :via => [:post]
   match "bm_success/:id", :to => "baomings#bm_result", :via => [:get], :as => "bm_success_a"
   match "bm_xm_success", :to => "baomings#bm_result2", :via => [:get]
   match "bm_xmjz_success", :to => "applies#bm_result", :via => [:get]
 
   # download application
-  # Ê×Ò³
+  # ÃŠÃ—Ã’Â³
   match "dl" => "downloads/dl_threads#index", :via => [:get], :as => "dl_index"
-  # ä¯ÀÀÃ¿¸ö×ÊÔ´
+  # Ã¤Â¯Ã€Ã€ÃƒÂ¿Â¸Ã¶Ã—ÃŠÃ”Â´
   match "dl/:id", :to => "downloads/dl_threads#show", :via => [:get], :as => "dl"
-  #¿ìËÙÉÏ´«Èë¿Ú
+  #Â¿Ã¬Ã‹Ã™Ã‰ÃÂ´Â«ÃˆÃ«Â¿Ãš
   match "dl/threads/new", :to => "downloads/dl_threads#simplenew", :via => [:get]
   match "dl/threads", :to => "downloads/dl_threads#simplecreate", :via => [:post]
-  # ä¯ÀÀ·ÖÀà×ÊÔ´
+  # Ã¤Â¯Ã€Ã€Â·Ã–Ã€Ã Ã—ÃŠÃ”Â´
   match "dl/category/:id", :to => "downloads/dl_threads#category", :via => [:get], :as => "dl_category"
   match "dl/attachment/:id", :to => "downloads/attachments#show", :via => [:get], :as => "dl_attachment"
   match "search", :to => "search#search", :via => [:get]
   match "searchtest", :to => "search#sockettest", :via => [:get]
-  # ±êÇ©
+  # Â±ÃªÃ‡Â©
   resources :tags
-  # Ç°Ì¨ÏÔÊ¾ºÍºóÌ¨µÄ¹ÜÀí
+  # Ã‡Â°ÃŒÂ¨ÃÃ”ÃŠÂ¾ÂºÃÂºÃ³ÃŒÂ¨ÂµÃ„Â¹ÃœÃ€Ã­
   namespace "downloads" do
 	  resources :dl_threads do
 		  # collection do
@@ -117,18 +126,18 @@ Xmapps::Application.routes.draw do
   match 'login' => 'logins#create', :via => [:post]
   match "logout" => "logins#logout", :via => [:get]
 
-  # ¹ÜÀíÔ±µÇÂ¼
+  # Â¹ÃœÃ€Ã­Ã”Â±ÂµÃ‡Ã‚Â¼
   match "adminlogin" => "admin_login#index", :via => [:get]
   match "adminlogin" => "admin_login#create", :via => [:post]
-  # ÓÃ»§µÄÓ¦ÓÃ¹ÜÀí
+  # Ã“ÃƒÂ»Â§ÂµÃ„Ã“Â¦Ã“ÃƒÂ¹ÃœÃ€Ã­
   namespace "manage" do
 	  resources :uploads
   end
-  # ºóÌ¨¹ÜÀíÍ³Ò»Èë¿Ú
+  # ÂºÃ³ÃŒÂ¨Â¹ÃœÃ€Ã­ÃÂ³Ã’Â»ÃˆÃ«Â¿Ãš
   namespace "xmadmin" do
     match "index" => "admin_index#index", :via => [:get]
     match "zjfw" => "admin_index#zjfw", :via => [:get]
-    # Ñ§Ô±±¨ÃûÐÅÏ¢
+    # Ã‘Â§Ã”Â±Â±Â¨ÃƒÃ»ÃÃ…ÃÂ¢
     match "zjfw/baoming" => "admin_index#zjfw_baoming", :via => [:get]
     match "searches" => "searches#index", :via => [:get]
     match "searches/new" => "searches#new", :via => [:get]
@@ -141,7 +150,7 @@ Xmapps::Application.routes.draw do
       match "translation" => "sources_admin#translation", :via => [:get]
       match "translation/:id" => "sources_admin#del_translation", :via => [:delete]
     end
-    # ÎÊ´ð¹ÜÀí
+    # ÃŽÃŠÂ´Ã°Â¹ÃœÃ€Ã­
     namespace "asks" do
       match "ask" => "asks_admin#ask", :via => [:get]
       match "ask/:id" => "asks_admin#del_ask", :via => [:delete]

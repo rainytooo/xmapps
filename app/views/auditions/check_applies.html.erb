@@ -1,0 +1,100 @@
+<% content_for :head do %>
+<title>小马过河-xiaoma教育 预约试听</title>
+<meta name="keywords" content="小马留学网 课程试听" />
+<meta name="description" content="课程预约" />
+<%= stylesheet_link_tag "Nei_wd_ask" %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/localization/messages_cn.js"></script>
+<style type="text/css">
+.error {
+	color: #FE2617;
+}
+</style>
+<% end %>
+<script type="text/javascript">
+  var isinit = 0;
+	$(document).ready(function() {
+	  $("#new_audition").validate(
+      	{
+	        rules: {
+	          "password": {
+	             required: true,
+	             minlength: 1,
+	             maxlength: 128
+	           }
+	         },
+	        messages: {
+	           "password": {
+	             required: "请填写您的密码",
+	             minlength: "您的密码填写不合法,字数超出限制"
+	            }
+	         }
+	      }
+      );
+	
+	});
+
+
+</script>
+
+<!--===top以上======================================-->
+<div class="Main_box">
+  <!--=======Left===================================================-->
+  <div class="Main_Left">
+  
+    <div class="L_top_1_title"><a href="<%= XMAPP_MAIN_DOMAIN_URL %>" target="_blank">小马过河</a> > <span>我要试听</span></div>
+    
+    <div class="L_top_3_title">查询预约试听的学员：</div>
+    <div class="L_top_3_Con">
+        
+          <table width="100%" border="0" cellspacing="2" cellpadding="2" style="margin-top:10px;">
+            <form accept-charset="UTF-8" action="<%= XMAPP_MAIN_DOMAIN_URL %>/auditions/applies" method="post">
+				<tr>
+				  <td width="16%" style="padding-left:30px;">输入密码：</td>
+				  <td width="84%">
+					<input class="Text_input" id="audition_name" name="password" size="30" type="password" /><span style="font-size:12px; color:#999;">（请填写您的密码）</span>
+				</tr>
+				<tr>
+				<tr>
+				  <td height="50" colspan="2" align="center">
+				    <input type="submit" style="border: 0;background: url(http://img.xiaoma.com/xmimg1/wdimg/nei/WDask_11.gif) no-repeat; background-position: 0px 0px;
+				width: 200px; height: 35px; cursor: pointer;"  name="button2" id="button" value="" />
+				 </td>
+				</tr>
+			</form>
+          </table>
+         
+		
+    </div>
+    
+   
+    
+    
+  </div>
+  <!--=======Right===================================================-->
+<!-- JiaThis Button BEGIN -->
+<div id="ckepop">
+	<a href="http://www.jiathis.com/share/?uid=1502974" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">分享到：</a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_kaixin001"></a>
+	<a class="jiathis_button_renren"></a>
+</div>
+<script type="text/javascript" src="http://v1.jiathis.com/code/jia.js?uid=1502974" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+  <div class="Main_Right">
+    
+    <div class="R_top_3_tit">
+	<!-- <a href="#" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_12.gif" width="240" height="91" border="0" /></a>-->
+	<script src='http://www.xiaoma.com/plus/ad_js.php?aid=117' language='javascript'></script>
+	</div>
+    
+
+
+  </div>
+</div>
+
+
+
+

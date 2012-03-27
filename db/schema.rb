@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110919033728) do
+ActiveRecord::Schema.define(:version => 20120327024714) do
 
   create_table "applies", :force => true do |t|
     t.string   "name"
@@ -71,6 +71,20 @@ ActiveRecord::Schema.define(:version => 20110919033728) do
 
   add_index "asks", ["ask_type_id"], :name => "fk_asks_type"
   add_index "asks", ["user_id"], :name => "fk_asks_user"
+
+  create_table "auditions", :force => true do |t|
+    t.string   "name",          :limit => 32
+    t.string   "telnum",        :limit => 32
+    t.string   "school",        :limit => 32
+    t.integer  "age",           :limit => 3
+    t.string   "city",          :limit => 32
+    t.string   "zhuanye",       :limit => 32
+    t.string   "tuofucj",       :limit => 32
+    t.string   "baokaoxuexiao", :limit => 64
+    t.string   "campaign",      :limit => 64
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "baomings", :force => true do |t|
     t.string   "name",          :limit => 32

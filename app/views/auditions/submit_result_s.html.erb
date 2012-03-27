@@ -1,0 +1,81 @@
+<% content_for :head do %>
+<title>小马过河-xiaoma教育 预约试听</title>
+<meta name="keywords" content="小马留学网 课程试听" />
+<meta name="description" content="课程预约" />
+<%= stylesheet_link_tag "Nei_wd_ask" %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<style type="text/css">
+	.submit_success {
+	border: 1px solid;
+	margin: 10px 0px;
+	padding:15px 10px 15px 50px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	color: #4F8A10;
+	background-color: #DFF2BF;
+	background-image:url('success.png');
+	}
+	.return_button {
+		-moz-box-shadow: 0px 1px 0px 0px #bbdaf7;
+		-webkit-box-shadow: 0px 1px 0px 0px #bbdaf7;
+		box-shadow: 0px 1px 0px 0px #bbdaf7;
+		background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #378de5) );
+		background:-moz-linear-gradient( center top, #79bbff 5%, #378de5 100% );
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#378de5');
+		background-color:#79bbff;
+		-moz-border-radius:6px;
+		-webkit-border-radius:6px;
+		border-radius:6px;
+		border:1px solid #84bbf3;
+		display:inline-block;
+		color:#ffffff;
+		font-family:arial;
+		font-size:15px;
+		font-weight:bold;
+		padding:6px 24px;
+		text-decoration:none;
+		text-shadow:1px 1px 0px #528ecc;
+	}.return_button:hover {
+		background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff) );
+		background:-moz-linear-gradient( center top, #378de5 5%, #79bbff 100% );
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff');
+		background-color:#378de5;
+	}.return_button:active {
+		position:relative;
+		top:1px;
+	}
+</style>
+<% end %>
+
+<!--===top以上======================================-->
+<div class="Main_box">
+  <!--=======Left===================================================-->
+  <div class="Main_Left">
+  
+    <div class="L_top_1_title"><a href="<%= XMAPP_MAIN_DOMAIN_URL %>" target="_blank">小马过河</a> > <span>我要试听</span></div>
+    
+    <div class="L_top_3_title">我要试听小马过河国际教育的课程：</div>
+    <div class="L_top_3_Con">
+        		<div class="submit_success" ><%= @message %></div>
+					<a href="/" style="display: block;"><div class="return_button" style="margin-left: 280px;margin-top: 40px;">
+					返回小马过河
+					</div></a>
+          
+    </div>
+    
+   
+    
+    
+  </div>
+  <!--=======Right===================================================-->
+  <div class="Main_Right">
+    
+    <div class="R_top_3_tit">
+	<!-- <a href="#" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_12.gif" width="240" height="91" border="0" /></a>-->
+	<script src='http://www.xiaoma.com/plus/ad_js.php?aid=117' language='javascript'></script>
+	</div>
+    
+
+
+  </div>
+</div>

@@ -1,0 +1,78 @@
+<% content_for :head do %>
+<title>小马过河-xiaoma教育 查看已经报名的学员</title>
+<meta name="description" content="已解决问题 任何的雅思,托福,留学,GRE,SAT,GMAT,SSAT,AP,等考试相关的问题,留学申请,签证,考试技巧,经验,考试报名,考试流程,等留学相关问题,可以在这里提问和寻找答案">
+<meta name="keywords" content="雅思,托福,留学,出国,GRE,SAT,GMAT,SSAT,AP,留学申请,签证,考试技巧,经验,考试报名,考试流程">
+<%= stylesheet_link_tag "Nei_wd_list" %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<% end %>
+
+
+<div class="Main_box">
+  <!--=======Left===================================================-->
+  <div class="Main_Left">
+  
+    <div class="L_top_1_title"><a href="<%= XMAPP_MAIN_DOMAIN_URL %>" target="_blank">首页</a> >  <span>所有已经报名的人员</span></div>
+    
+    <div class="L_top_3_title">已经申请参加试听的学员</div>
+    <div class="L_top_3_Con">
+        <div class="T_tit"><div class="title">姓名(手机号,学校)</div><div class="title_type">年龄</div><div class="title_time">日期</div><div class="title_huida">科目</div><div class="title_shang">分数</div></div>
+        <div class="T_conlist">
+           <UL>
+			<% @auditions.each do |audition| %>
+             <LI>
+				<div class="title"><%= audition.name%> (<%= audition.telnum %>,<%= audition.school%>)</div>
+				<div class="title_type"><%= audition.age.to_i%></div>
+				<div class="title_time"><%= audition.updated_at.strftime('%Y-%m-%d') %></div>
+				<div class="title_huida"><%= audition.zhuanye %></div>
+				<div class="title_shang"><%= audition.tuofucj %></div>
+			 </LI>
+            <% end %> 
+           </UL>
+           
+           <div class="will_pagination">
+             <%=h will_paginate @auditions, :previous_label => '上一页',  :next_label => '下一页'%>
+           </div>
+           
+        </div>
+    </div>
+
+	
+   
+    
+    
+  </div>
+  <!--=======Right===================================================-->
+
+  <div class="Main_Right">
+   
+    
+    <!--
+    <div class="M_R_r5_tit">
+      <div class="title_r1">编辑推荐</div>
+      <div class="more2"><a href="#" target="_blank">更多>></a></div>
+    </div>
+    <div class="M_R_r5_con">
+	  
+      <div class="M_R_r5_con_content">
+        <ul>
+          <li>·<a href="#" target="_blank">ETS揭晓2011年度中国奖学金项目获奖</a></li>
+          <li>·<a href="#" target="_blank">2011年起中国大陆新托福考试打折促销</a></li>
+          <li>·<a href="#" target="_blank">ETS官方针对新托福关注问题进行解答</a></li>
+          <li>·<a href="#" target="_blank">新版《新托福考试官方指南》发布</a></li>
+          <li>·<a href="#" target="_blank">经验分享：取得新托福高分的十大关键</a></li>
+          <li>·<a href="#" target="_blank">北外网院成为新托福考试考点</a></li>
+          <li>·<a href="#" target="_blank">小马过河2011年托福机经预测中标记录</a></li>
+          <li>·<a href="#" target="_blank">2011年5~7月大陆托福考试新题日预测</a></li>
+          <li>·<a href="#" target="_blank">小马过河2011年托福机经预测中标记录</a></li>
+          <li>·<a href="#" target="_blank">2011年5~7月大陆托福考试新题日预测</a></li>
+        </ul>
+      </div>
+	  
+    </div>
+	-->
+     
+  </div>
+</div>
+
+
+

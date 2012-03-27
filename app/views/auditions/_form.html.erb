@@ -1,0 +1,48 @@
+<%= form_for(@audition) do |f| %>
+<tr>
+  <td width="16%" style="padding-left:30px;">您的姓名：</td>
+  <td width="84%">
+	<%= f.text_field :name, :class => "Text_input" %><span style="font-size:12px; color:#999;">（请填写您的姓名）</span>
+</tr>
+<tr>
+  <td style="padding-left:30px;">年龄：</td>
+  <td>
+	<%
+		age_a = (10..30).to_a
+		hash_age = Hash[*age_a.collect {|v| [v, v]}.flatten]
+		age_sort =hash_age.sort_by { |k,v| v }
+	%>
+   <%= f.select (:age,  options_for_select(age_sort, 15) ) %>
+   <span style="font-size:12px; color:#999;">（请选择您的年龄）</span>
+  </td>
+</tr>
+<tr>
+  <td style="padding-left:30px;">科目：</td>
+  <td>
+   <%= f.select (:zhuanye, options_for_select({"听力" => "听力","口语" => "口语","写作" => "写作","阅读" => "阅读"}, "听力") ) %>
+   <span style="font-size:12px; color:#999;">（请选择您想听的科目）</span>
+  </td>
+</tr>
+<tr>
+  <td width="16%" style="padding-left:30px;">手机号码：</td>
+  <td width="84%">
+	<%= f.text_field :telnum, :class => "Text_input" %><span style="font-size:12px; color:#999;">（请填写您的手机,方便上课的通知时间地点）</span>
+</tr>
+<tr>
+  <td width="16%" style="padding-left:30px;">托福成绩：</td>
+  <td width="84%">
+	<%= f.text_field :tuofucj, :class => "Text_input" %><span style="font-size:12px; color:#999;">（请填写您的托福成绩）</span>
+</tr>
+<tr>
+  <td width="16%" style="padding-left:30px;">就读院校：</td>
+  <td width="84%">
+	<%= f.text_field :school, :class => "Text_input" %><span style="font-size:12px; color:#999;">（请填写您现在的院校）</span>
+	<%= f.hidden_field :campaign, :value => "liudi_hd_st_01_20120327" %>
+</tr>
+<tr>
+  <td height="50" colspan="2" align="center">
+    <input type="submit" style="border: 0;background: url(http://img.xiaoma.com/xmimg1/wdimg/nei/WDask_11.gif) no-repeat; background-position: 0px 0px;
+width: 200px; height: 35px; cursor: pointer;"  name="button2" id="button" value="" />
+ </td>
+</tr>
+<% end %>

@@ -1,0 +1,109 @@
+<% content_for :head do %>
+<title>小马过河-xiaoma教育 预约试听</title>
+<meta name="keywords" content="小马留学网 课程试听" />
+<meta name="description" content="课程预约" />
+<%= stylesheet_link_tag "Nei_wd_ask" %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/localization/messages_cn.js"></script>
+<style type="text/css">
+.error {
+	color: #FE2617;
+}
+</style>
+<% end %>
+<script type="text/javascript">
+  var isinit = 0;
+	$(document).ready(function() {
+		jQuery.validator.addMethod("isMobile", function(value, element) {
+		    var length = value.length;
+		    var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+		    return this.optional(element) || (length == 11 && mobile.test(value));
+		  }, "请正确填写您的手机号码");
+
+	  $("#new_audition").validate(
+      	{
+	        rules: {
+	          "audition[name]": {
+	             required: true,
+	             minlength: 1,
+	             maxlength: 128
+	           },
+			  "audition[telnum]": {
+	             isMobile: true
+	           },
+			  "audition[tuofucj]": {
+				 required: true,
+	             number: true,
+	             range: [1,120]
+	           }
+	         },
+	        messages: {
+	           "audition[name]": {
+	             required: "请填写您的姓名",
+	             minlength: "您的姓名填写不合法,字数超出限制"
+	            },
+			   "audition[telnum]": {
+	             isMobile: "请正确填写您的手机号码,这样我们可以通知您活动的详细信息,注意前后不要有空格"
+	            },
+			   "audition[tuofucj]": {
+		         required: "请正确填写您的托福成绩",
+	             number: "托福成绩必须为数字",
+	             range: "托福成绩范围为1到120"
+	            }
+	         }
+	      }
+      );
+	
+	});
+
+
+</script>
+
+<!--===top以上======================================-->
+<div class="Main_box">
+  <!--=======Left===================================================-->
+  <div class="Main_Left">
+  
+    <div class="L_top_1_title"><a href="<%= XMAPP_MAIN_DOMAIN_URL %>" target="_blank">小马过河</a> > <span>我要试听</span></div>
+    
+    <div class="L_top_3_title">我要试听小马过河国际教育的课程：</div>
+    <div class="L_top_3_Con">
+        
+          <table width="100%" border="0" cellspacing="2" cellpadding="2" style="margin-top:10px;">
+            <%= render 'form' %>
+          </table>
+         
+		
+    </div>
+    
+   
+    
+    
+  </div>
+  <!--=======Right===================================================-->
+<!-- JiaThis Button BEGIN -->
+<div id="ckepop">
+	<a href="http://www.jiathis.com/share/?uid=1502974" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">分享到：</a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_kaixin001"></a>
+	<a class="jiathis_button_renren"></a>
+</div>
+<script type="text/javascript" src="http://v1.jiathis.com/code/jia.js?uid=1502974" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+  <div class="Main_Right">
+    
+    <div class="R_top_3_tit">
+	<!-- <a href="#" target="_blank"><img src="http://img.xiaoma.com/xmimg1/wdimg/indwd_12.gif" width="240" height="91" border="0" /></a>-->
+	<script src='http://www.xiaoma.com/plus/ad_js.php?aid=117' language='javascript'></script>
+	</div>
+    
+
+
+  </div>
+</div>
+
+
+
+
