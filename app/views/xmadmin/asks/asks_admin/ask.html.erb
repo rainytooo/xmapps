@@ -29,6 +29,7 @@
 							  <td><%= unsolve_ask.replies%></td>
 							  <td>
 							  <a href="/xmadmin/asks/ask/<%= unsolve_ask.id%>" onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var at = document.createElement('input'); at.setAttribute('type', 'hidden'); at.setAttribute('name', 'authenticity_token'); at.setAttribute('value', '#{form_authenticity_token}'); f.appendChild(at);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'delete'); f.appendChild(m);f.submit(); };return false;">删除</a>&nbsp;
+							 |<a href="/xmadmin/asks/ask/<%= unsolve_ask.id%>/delwithuser" onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var at = document.createElement('input'); at.setAttribute('type', 'hidden'); at.setAttribute('name', 'authenticity_token'); at.setAttribute('value', '#{form_authenticity_token}'); f.appendChild(at);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'delete'); f.appendChild(m);f.submit(); };return false;">删除所有此人的</a>
 							  </td>
 						  </tr>
              <% end %>

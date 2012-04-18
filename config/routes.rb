@@ -154,6 +154,7 @@ Xmapps::Application.routes.draw do
     namespace "asks" do
       match "ask" => "asks_admin#ask", :via => [:get]
       match "ask/:id" => "asks_admin#del_ask", :via => [:delete]
+      match "ask/:id/delwithuser" => "asks_admin#del_ask_with_user", :via => [:delete]
       match "answer" => "asks_admin#answer", :via => [:get]
       match "answer/:id" => "asks_admin#del_answer", :via => [:delete]
     end
