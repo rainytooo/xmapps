@@ -87,8 +87,8 @@ Xmapps::Application.routes.draw do
   # ä¯ÀÀ·ÖÀà×ÊÔ´
   match "dl/category/:id", :to => "downloads/dl_threads#category", :via => [:get], :as => "dl_category"
   match "dl/attachment/:id", :to => "downloads/attachments#show", :via => [:get], :as => "dl_attachment"
-  match "search", :to => "search#search", :via => [:get]
-  match "searchtest", :to => "search#sockettest", :via => [:get]
+  #match "search", :to => "search#search", :via => [:get]
+  #match "searchtest", :to => "search#sockettest", :via => [:get]
   # ±êÇ©
   resources :tags
   # Ç°Ì¨ÏÔÊ¾ºÍºóÌ¨µÄ¹ÜÀí
