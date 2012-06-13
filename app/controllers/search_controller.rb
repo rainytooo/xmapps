@@ -82,23 +82,32 @@ class SearchController < ApplicationController
     end
 
 		def socket_client
-		  require 'socket'                # Get sockets from stdlib
+		  require 'socket'  
+		  require 'timeout'              # Get sockets from stdlib
 		  @pagenum = params[:page]
       streamSock = TCPSocket.new( SEARCH_HOST, 12260 )
       test_a = "{\'querytype\' : \'#{@search_type}\', \'keywords\' : \'#{@origin_words}\', \'page\' : \'#{@pagenum}\'}"
       streamSock.send( "#{test_a}\n" , 0)
       content = ""
       repeat_num = 0
-      while ( str = streamSock.recv( 1024 ) )
-        #logger.debug 'aaaaaaaaaaaaaaaaa' + str
-        content += str
-        repeat_num += 1
-        if repeat_num > 20
-          streamSock.close
-          break
+      begin
+        timeout(5) do
+          while ( str = streamSock.recv( 1024 ) )
+            #logger.debug 'aaaaaaaaaaaaaaaaa' + str
+            content += str
+            repeat_num += 1
+            if repeat_num > 20
+              streamSock.close
+              break
+            end
+          end
         end
+      rescue Exception => e
+        content = "查询超时"
       end
-      logger.debug 'repeat time' + repeat_num.to_s
+      
+      
+      #logger.debug 'repeat time' + repeat_num.to_s
       #logger.debug str.bytes.to_a.size
       #logger.debug content.length
 
