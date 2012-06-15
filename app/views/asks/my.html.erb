@@ -55,9 +55,9 @@
                 </dt>
                 <dd>
 					<% @my_asks.each do |unsolve_ask| %>
-                	<span style="width:400px; text-align:left; padding-left:10px;"><img src="/dzstyle/images/indwd_49.gif" />&nbsp;<a title="<%= unsolve_ask.title%>" href="/asks/<%= unsolve_ask.id%>" target="_blank" style="color:#333;" class="Cen_AskeStr"><%= unsolve_ask.title%></a></span>
+                	<span style="width:400px; text-align:left; padding-left:10px;word-wrap:break-word; overflow:hidden;"><img src="/dzstyle/images/indwd_49.gif" />&nbsp;<a title="<%= unsolve_ask.title%>" href="/asks/<%= unsolve_ask.id%>" target="_blank" style="color:#333;" class="Cen_AskeStr"><%= unsolve_ask.title%></a></span>
                     <span style="width:60px;"><a href="/asks/tags/<%= unsolve_ask.ask_type.name%>" target="_blank" style="color:#333;">[<%= unsolve_ask.ask_type.name%>]</a></span>
-                    <span style="width:70px;"><%= unsolve_ask.updated_at.strftime('%Y-%m-%d') %></span>
+                    <span style="width:70px;"><%= unsolve_ask.updated_at.strftime('%m/%d') %></span>
                     <span style="width:50px;"><%= unsolve_ask.replies%>回答</span>
                     <span style="width:60px;"><img src="/dzstyle/images/indwd_52.gif">&nbsp;20</span>
 					
@@ -79,9 +79,9 @@
                 </dt>
                 <dd>
 					<% @my_answer_asks.each do |unsolve_ask| %>
-                	<span style="width:400px; text-align:left; padding-left:10px;"><img src="/dzstyle/images/indwd_49.gif" />&nbsp;<a title="<%= unsolve_ask.title%>" href="/asks/<%= unsolve_ask.id%>" target="_blank" style="color:#333;" class="Cen_AskeStr"><%= unsolve_ask.title%></a></span>
+                	<span style="width:400px; text-align:left; padding-left:10px;word-wrap:break-word; overflow:hidden;"><img src="/dzstyle/images/indwd_49.gif" />&nbsp;<a title="<%= unsolve_ask.title%>" href="/asks/<%= unsolve_ask.id%>" target="_blank" style="color:#333;" class="Cen_AskeStr"><%= unsolve_ask.title%></a></span>
                     <span style="width:60px;"><a href="/asks/tags/<%= unsolve_ask.ask_type.name%>" target="_blank" style="color:#333;">[<%= unsolve_ask.ask_type.name%>]</a></span>
-                    <span style="width:70px;"><%= unsolve_ask.updated_at.strftime('%Y-%m-%d') %></span>
+                    <span style="width:70px;"><%= unsolve_ask.updated_at.strftime('%m/%d') %></span>
                     <span style="width:50px;"><%= unsolve_ask.replies%>回答</span>
                     <span style="width:60px;"><img src="/dzstyle/images/indwd_52.gif">&nbsp;20</span>
 					
@@ -104,9 +104,9 @@
                 </dt>
                 <dd>
 					<% @my_solved_asks.each do |unsolve_ask| %>
-                	<span style="width:400px; text-align:left; padding-left:10px;"><img src="/dzstyle/images/indwdDUI_61.gif" />&nbsp;<a title="<%= unsolve_ask.title%>" href="/asks/<%= unsolve_ask.id%>" target="_blank" style="color:#333;" class="Cen_AskeStr"><%= unsolve_ask.title%></a></span>
+                	<span style="width:400px; text-align:left; padding-left:10px;word-wrap:break-word; overflow:hidden;"><img src="/dzstyle/images/indwdDUI_61.gif" />&nbsp;<a title="<%= unsolve_ask.title%>" href="/asks/<%= unsolve_ask.id%>" target="_blank" style="color:#333;" class="Cen_AskeStr"><%= unsolve_ask.title%></a></span>
                     <span style="width:60px;"><a href="/asks/tags/<%= unsolve_ask.ask_type.name%>" target="_blank" style="color:#333;">[<%= unsolve_ask.ask_type.name%>]</a></span>
-                    <span style="width:70px;"><%= unsolve_ask.updated_at.strftime('%Y-%m-%d') %></span>
+                    <span style="width:70px;"><%= unsolve_ask.updated_at.strftime('%m/%d') %></span>
                     <span style="width:50px;"><%= unsolve_ask.replies%>回答</span>
                     <span style="width:60px;"><img src="/dzstyle/images/indwd_52.gif">&nbsp;20</span>
 					<% end %>

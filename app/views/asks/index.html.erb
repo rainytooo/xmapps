@@ -131,7 +131,7 @@
 		
                 	<span style="width:400px; text-align:left; padding-left:10px;word-wrap:break-word; overflow:hidden;"><img src="/dzstyle/images/indwd_49.gif" />&nbsp;<a title="<%= unsolve_ask.title%>" href="/asks/<%= unsolve_ask.id%>" target="_blank" style="color:#ad6a00;" class="Cen_AskeStr"><%= unsolve_ask.title%></a></span>
                     <span style="width:60px;"><a href="/asks/tags/<%= unsolve_ask.ask_type.name%>" target="_blank" style="color:#0062ad;">[<%= unsolve_ask.ask_type.name%>]</a></span>
-                    <span style="width:70px;word-wrap:break-word; overflow:hidden;"><%= unsolve_ask.created_at.strftime('%Y-%m-%d') %></span>
+                    <span style="width:70px;word-wrap:break-word; overflow:hidden;"><%= unsolve_ask.created_at.strftime('%m/%d') %></span>
                     <span style="width:50px;"><%= unsolve_ask.replies%>回答</span>
                     <span style="width:60px;"><img src="/dzstyle/images/indwd_52.gif">&nbsp;20</span>
 					<% end %>
@@ -143,17 +143,19 @@
         	<div class="Cen_DaiJJWTTop Cen_YiJJWTTop"><b>已解决问题</b><a href="/asks/closed" target="_blank">更多</a></div>
             <dl style="border-color:#26f202;">
             	<dt>
-                	<span style="width:480px;">问题</span>
+                	<span style="width:410px;">问题</span>
                     <span style="width:60px;">类型</span>
                     <span style="width:70px;">更新时间</span>
+                    <span style="width:50px;">问答数</span>
                     <span style="width:60px;">解决者</span>
                 </dt>
                 <dd>
 					<% @solved_asks.each do |solved_ask| %>
-                	<span style="width:470px; text-align:left; padding-left:10px;word-wrap:break-word; overflow:hidden;"><img src="/dzstyle/images/indwdDUI_61.gif" />&nbsp;<a title="<%= solved_ask.title%>" href="/asks/<%= solved_ask.id%>" target="_blank" style="color:#ad6a00;" class="Cen_DaiJJWTStr"><%= solved_ask.title%></a></span>
+                	<span style="width:400px; text-align:left; padding-left:10px;word-wrap:break-word; overflow:hidden;"><img src="/dzstyle/images/indwdDUI_61.gif" />&nbsp;<a title="<%= solved_ask.title%>" href="/asks/<%= solved_ask.id%>" target="_blank" style="color:#ad6a00;" class="Cen_DaiJJWTStr"><%= solved_ask.title%></a></span>
                     <span style="width:60px;"><a  href="/asks/tags/<%= solved_ask.ask_type.name%>" target="_blank" style="color:#0062ad;">[<%= solved_ask.ask_type.name%>]</a></span>
-                    <span style="width:70px;word-wrap:break-word; overflow:hidden;"><%= solved_ask.updated_at.strftime('%Y-%m-%d') %></span>
-                    <span style="width:70px;word-wrap:break-word; overflow:hidden;"><%= solved_ask.bestanswer_username %></span>
+                    <span style="width:70px;word-wrap:break-word; overflow:hidden;"><%= solved_ask.updated_at.strftime('%m/%d') %></span>
+					<span style="width:50px;"><%= solved_ask.replies%>回答</span>
+                    <span style="width:60px;word-wrap:break-word; overflow:hidden;"><%= solved_ask.bestanswer_username %></span>
 					<% end %>
                 </dd>               
             </dl>

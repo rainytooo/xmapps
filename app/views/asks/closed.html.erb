@@ -53,10 +53,10 @@
                 </dt>
                 <dd>
 					<% @solved_asks.each do |solved_ask| %>
-                	<span style="width:470px; text-align:left; padding-left:10px;"><img src="/dzstyle/images/indwdDUI_61.gif" />&nbsp;<a title="<%= solved_ask.title%>" href="/asks/<%= solved_ask.id%>" target="_blank" style="color:#ad6a00;" class="Cen_DaiJJWTStr"><%= solved_ask.title%></a></span>
+                	<span style="width:470px; text-align:left; padding-left:10px;word-wrap:break-word; overflow:hidden;"><img src="/dzstyle/images/indwdDUI_61.gif" />&nbsp;<a title="<%= solved_ask.title%>" href="/asks/<%= solved_ask.id%>" target="_blank" style="color:#ad6a00;" class="Cen_DaiJJWTStr"><%= solved_ask.title%></a></span>
                     <span style="width:60px;"><a  href="/asks/tags/<%= solved_ask.ask_type.name%>" target="_blank" style="color:#0062ad;">[<%= solved_ask.ask_type.name%>]</a></span>
-                    <span style="width:70px;"><%= solved_ask.updated_at.strftime('%Y-%m-%d') %></span>
-                    <span style="width:70px;"><%= solved_ask.bestanswer_username %></span>
+                    <span style="width:70px;"><%= solved_ask.updated_at.strftime('%m/%d') %></span>
+                    <span style="width:70px;word-wrap:break-word; overflow:hidden;"><%= solved_ask.bestanswer_username %></span>
 					
 					<% end %>
                 </dd>
