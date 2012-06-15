@@ -2,72 +2,88 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/dzstyle/css/common.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/dzstyle/css/top.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/dzstyle/css/asksPage.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/dzstyle/css/bottom.css" media="screen" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://img.xiaoma.com/js/jquery_1.7.1.min.js"></script> 
+<script type="text/javascript" src="/dzstyle/js/common.js"></script>
+<script type="text/javascript" src="/dzstyle/js/asakPage.js"></script>
 <%= yield :head %>
 <%= csrf_meta_tag %>
 
 </head>
-<body>
-<div class="top_t">
-  <div class="top_t_link">
-	<% if session[:login_user] %>
-	欢迎您&nbsp;|&nbsp;<%= session[:login_user].username %>&nbsp;|&nbsp;
-	<a href="<%= XMAPP_MAIN_DOMAIN_URL %>/logout">退出</a>&nbsp;|&nbsp;
-	<% else %>
-	<a href="<%= XMAPP_MAIN_DOMAIN_URL %>/login">登录</a>&nbsp;|&nbsp;
-	<a href="http://bbs.xiaoma.com/member.php?mod=asdfasdf">注册</a>&nbsp;|&nbsp;
-	<% end %>    
-	<a href="#" target="_blank">帮助中心</a>     
-	<a href="#" target="_blank">收藏本站</a>      
-	<a href="#" target="_blank">设为首页</a>
-  </div>
-</div>
-<DIV class="logoBox">
-  <div class="logo"><a href="http://www.xiaoma.com"><img src="http://img.xiaoma.com/album/201202/11/logo.com.png" width="183" height="48"></a></div>
-  <script src='http://www.xiaoma.com/plus/ad_js.php?aid=120' language='javascript'></script>
-</DIV>
-<DIV class="cai">
-  <DIV class="c_left">
-    <UL>
-      <LI><a href="http://www.xiaoma.com" target="_top">首页</a></LI>
-      <LI><a href="http://toefl.xiaoma.com" target="_top">托福</a></LI>
-      <LI><a href="http://ielts.xiaoma.com" target="_top">雅思</a></LI>
-	  <LI><a href="http://sat.xiaoma.com" target="_top">SAT</a></LI>
-      <LI><a href="http://www.xiaoma.com/sources/" target="_top">译文</a></a></LI>
-      <LI><a href="http://www.xiaoma.com/asks/" target="_top">问答</a></LI>
-      <LI><a href="http://www.xiaoma.com/dl/" target="_top">下载</a></LI>
-    </UL>
-  </DIV>
-  <DIV class="c_right">
-    <UL>
-      <LI><a href="http://bbs.xiaoma.com" target="_top">论坛</a></LI>
-      <LI><a href="http://space.xiaoma.com" target="_top">空间</a></LI>
-      <LI><a href="http://bbs.xiaoma.com/plugin.php?id=active:index" target="_top">活动</a></LI>
-    </UL>
-  </DIV>
-</DIV>
-<script src="http://www.xiaoma.com/plus/ad_js.php?aid=46" language="javascript"></script>
-<!--===top以上======================================-->
-<%= yield %>
 
-<DIV class=foot>
-<table width="700" border="0" cellpadding="0" cellspacing="0" style="margin:auto;">
-  <tr>
-    <td height="50" align="center" style="text-align:center;">
-<A href="http://www.xiaoma.com/help/about.html">关于我们</A>&nbsp;&nbsp;&nbsp;&nbsp;
-<A href="http://space.xiaoma.com/home-space-uid-1-do-blog-view-me-from-space.html">官方日志</A>&nbsp;&nbsp;&nbsp;&nbsp;
-<A href="http://www.xiaoma.com/help/lxwm.html">联系我们</A>&nbsp;&nbsp;&nbsp;&nbsp;
-<A href="http://www.xiaoma.com/help/cpyc.html">诚聘英才</A>&nbsp;&nbsp;&nbsp;&nbsp;
-<A href="http://www.xiaoma.com/help/wzsm.html">网站声明</A>&nbsp;&nbsp;&nbsp;&nbsp;
-<A href="http://www.xiaoma.com/help/qqqlm.html">QQ联盟</A>&nbsp;&nbsp;&nbsp;&nbsp;
-<A href="http://www.xiaoma.com/help/bzzx.html">帮助中心</A></td>
-  </tr>
-</table>
-<div class="copyright-content">
-xiaoma教育网 <br>
-经营许可证编号：京ICP备09050588号 <br>
-版权所有 &reg; 2005-2011 www.xiaoma.com 小马留学网 All Rights Reserved 本站保留所有权利，未经许可，不得转载 <BR>
+<body>
+<div class="MainDiv">
+	<!--   头部   -->
+	<div class="Top_top">
+    	<ul>
+        	<li class="Top_topA"><a href="javascript:;" onclick="setHomepage('http://bbs.xiaoma.com/');">设为首页</a></li>
+            <li class="Top_topA"><a href="http://bbs.xiaoma.com/" onclick="addFavorite(this.href, '小马过河');return false;">收藏本站</a></li>
+            <li><a href="http://toefl.xiaoma.com/">托福</a></li>
+            <li><a href="http://sat.xiaoma.com/">SAT</a></li>
+            <li><a href="http://gre.xiaoma.com/">GRE</a></li>
+            <li><a href="http://toefl.xiaoma.com/tuofutingli/">托福听力</a></li>
+            <li><a href="http://toefl.xiaoma.com/tuofukouyu/">托福口语</a></li>
+            <li><a href="http://toefl.xiaoma.com/tuofuyuedu/">托福阅读</a></li>
+            <li><a href="http://toefl.xiaoma.com/tuofuxiezuo/">托福写作</a></li>
+            <li><a href="http://www.xiaoma.com/products/dianti.html">点题班</a></li>
+            <li><a href="http://www.xiaoma.com/products/net/index.html">网络课程</a></li>
+            <li><a href="http://bbs.xiaoma.com/forum-239-1.html">听写训练营</a></li>
+            <li><a href="http://sat.xiaoma.com">SAT考试</a></li>
+            <li><a href="http://sat.xiaoma.com/SSAT/">SSAT</a></li>
+            <li><a href="http://www.xiaoma.com/products/toefl/index.html">托福培训</a></li>
+            <li><a href="http://sat.xiaoma.com/AP/">AP</a></li>
+            <li style="float:right;" class="Top_topA">
+				<% if session[:login_user] %>
+				<%= session[:login_user].username %>&nbsp;|&nbsp;
+				<a href="<%= XMAPP_MAIN_DOMAIN_URL %>/logout">退出</a>
+				<% else %>
+				<a href="<%= XMAPP_MAIN_DOMAIN_URL %>/login">登录</a>
+				<a href="http://bbs.xiaoma.com/member.php?mod=asdfasdf">注册</a>
+				<% end %>
+			</li>
+        </ul>
+    </div>
+
+	<script src="http://www.xiaoma.com/plus/ad_js.php?aid=93" language="javascript"></script>
+	<div style=" height:5px; width:100%; float:left;">	
+	</div>
+    <div class="Top_Nav">
+    	<ul>
+        	<li><a href="http://www.xiaoma.com">首页</a></li>
+            <li><a href="http://bbs.xiaoma.com">论坛</a></li>
+            <li><a href="http://group.xiaoma.com">小组</a></li>
+            <li><a href="http://products.xiaoma.com">培训课程</a></li>
+            <li><a href="http://space.xiaoma.com">空间</a></li>
+            <li><a href="http://bbs.xiaoma.com/plugin.php?id=active:index">活动</a></li>
+            <li class="Top_NavClick"><a href="http://www.xiaoma.com/asks">问答</a></li>
+            <li><a href="http://www.xiaoma.com/dl">资料下载</a></li>
+        </ul>
+        
+    </div>
+	
+    
+	
+    <!--   头部结束   -->
+        
+    <%= yield %>
+	
+    <div class="Bot_Mian">
+    	<ul class="Bot_Left">
+        	<li>Powered by<b>小马过河国际教育</b></li>
+            <li><font size="-6">© 2001-2012 xiaoma.com.</font></li>
+        </ul>
+        <ul class="Bot_Right">
+        	<li>小马过河 ( 京ICP备09050588号 )</li>
+            
+        </ul>
+    </div>
 </div>
-</DIV>
+
+<div class="MainBg"></div>
+<!-- ga统计代码开始 -->
 <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-18258123-1']);
@@ -78,11 +94,13 @@ xiaoma教育网 <br>
   _gaq.push(['_addOrganic', 'yodao', 'q']);
   _gaq.push(['_addOrganic', 'sogou', 'query']);
   _gaq.push(['_trackPageview']);
+  _gaq.push(['_trackPageLoadTime']);
   (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>
+<!-- ga统计代码结束 -->
 </body>
 </html>

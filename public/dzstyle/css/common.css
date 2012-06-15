@@ -1,0 +1,60 @@
+body{ font-size:12px;margin:0px; padding:0px;font-family: 'Microsoft YaHei',Verdana,Tahoma,Helvetica,Arial,sans-serif;}
+img{border:none;}
+.MainDiv{ width:960px; height:auto; margin:0px auto; position:relative; z-index:1;}
+.MainBg{ width:100%; height:20px; position:absolute; z-index:0; border-bottom:1px solid #e6edf1; background:url(../images/Top_bg.jpg) repeat-x; top:0px; left:0px;}
+html {
+    overflow-y: scroll;
+}
+
+.fl {
+	float:left;
+}
+.fr {
+	float:right;
+}
+
+a {
+    color: #1E5494;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: #BC2A4D;
+    text-decoration: underline;
+}
+
+
+h1, h2, h3 {
+    font-weight: bold;
+}
+
+
+h3 {
+    font-size: 14px;
+}
+h2 {
+    font-size: 18px;
+}
+
+li {
+	float:left;
+	list-style-type:none;
+}
+ol, ul, dl {
+    list-style: none outside none;
+}
+ol, ul, li ,dl, dt, dd{
+    border: 0 none;
+    margin: 0;
+    padding: 0;
+}
+.clear {
+	clear:both;
+}
+
+.red {
+	color:red;
+}
+.height5{ height:5px; width:100%; float:left;}
+
+p,b{ margin:0px; padding:0px;}

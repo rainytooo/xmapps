@@ -1,0 +1,5 @@
+.Bot_Mian{ width:100%; float:left; border-top:1px solid #ccc; height:50px; margin-top:20px; color:#999; padding-top:10px;}
+.Bot_Mian .Bot_Left{ width:500px; height:auto; line-height:20px; float:left;}
+.Bot_Mian .Bot_Left li{ width:100%; float:left;}
+.Bot_Mian .Bot_Right{ float:right; width:450px; }
+.Bot_Mian .Bot_Right li{ width:100%; float:left;}

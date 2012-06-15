@@ -1,0 +1,86 @@
+﻿.Cen_Main{ height:auto; float:left; width:100%;}
+.DLtop{ width:100%; height:auto; float:left; padding-bottom:10px; border-bottom:1px solid #ccc;}
+.DLtop p{ width:955px; float:left; height:auto; margin-top:10px; background-color:#eee; padding-top:5px; padding-bottom:5px; padding-left:5px;}
+.DLtop p a{ color:#333;}
+.DLtop b{ float:left; width:100%; font-size:16px; margin-top:10px;}
+
+.DLleft{ width:610px; float:left; border-right:1px solid #ccc; margin-top:10px;}
+.DLleft .DLleftList{ width:520px; float:left; height:auto; margin-top:20px; margin-bottom:10px;}
+.DLleftList .DLleftListTop{ float:left; width:100%; height:auto;}
+.DLleftList .DLleftListTop a{ float:left; font-weight:bold; margin-right:10px; display:inline; height:20px; line-height:20px;}
+.DLleftList .DLleftListCen{ float:left; width:100%; height:auto; margin-top:10px;}
+.DLleftList .DLleftListCen img{ float:left;}
+.DLleftList .DLleftListCen p{ float:left; width:360px; display:inline; margin-left:20px;}
+.DLleftList .DLleftListBot{ width:100%; height:30px; background-color:#eeeeee; line-height:30px; float:left; margin-top:10px;}
+.DLleftList .DLleftListBot a { float:left; width:auto; margin-left:10px; display:inline;}
+.DLleftList .DLleftListBot img { float:left; width:auto; margin-top:8px; margin-left:15px; display:inline; margin-right:5px;}
+.DLleftList .DLleftListBot span { float:left; width:auto; margin-right:10px; display:inline;}
+
+.DLpaging{ width:520px; height:auto; float:left; text-align:center; margin-top:10px;}
+.DLpaging a{ border:1px solid #aaaadd; padding-left:7px; padding-right:7px; color:#000099; height:30px; line-height:30px;}
+.DLpaging a:hover{ border-color:#000099; color:#000000;}
+.DLguanggaoPic{ float:left; margin-top:20px;}
+
+
+.DLright{ width:320px; float:right;}
+.DlrigntFenXiang{ width:100%; float:left; margin-top:10px;}
+
+.DlrightSousuo{ float:left; width:100%; margin-top:10px;}
+.DlrightSousuo .text{ width:180px; height:18px; padding-left:5px; padding-top:2px; float:left;}
+.DlrightSousuo .input{ background:none; border:1px solid #ccc; float:left; width:50px; height:25px; margin-left:10px; display:inline; background-color:#fff; color:#333; cursor:pointer;}
+
+.DLrightUplode{ float:left; margin-top:10px; clear:both;}
+.DLrightGLUplode{ float:left; margin-top:10px; font-weight:bold; clear:both; width:100%;}
+.DLrightMold{ float:left; width:100%; height:auto; margin-top:10px;}
+.DLrightMold dt{ background-color:#f0f0f0; height:30px; width:310px; line-height:30px; font-size:16px; font-weight:bold; color:#333; padding-left:10px;}
+.DLrightMold dd{ width:100%; float:left; margin-top:8px; padding-bottom:8px; border-bottom:1px dashed #ccc;}
+
+.DLrightBiaoQ{ width:100%; float:left; height:auto; margin-top:10px;}
+.DLrightBiaoQ b{ background-color:#f0f0f0; height:30px; width:310px; line-height:30px; font-size:16px; font-weight:bold; color:#333; padding-left:10px; display:block;}
+.DLrightBiaoQ ul{ width:100%; float:left; padding-top:10px;}
+.DLrightBiaoQ ul li{ width:120px; float:left; height:auto;}
+
+
+.UpLoadLeftUl{ float:left; width:100%; height:auto;}
+.UpLoadLeftUl li{ float:left; width:100%; height:auto; line-height:25px; margin-bottom:10px;}
+.UpLoadLeftUl li b{ float:left; width:100%; margin:0px; padding:0px; margin-bottom:5px;}
+.UpLoadLeftUl li div{ float:left; width:100%; margin:0px; padding:0px;}
+.UpLoadLeftUl li div input{ float:left; width:160px; margin:0px; padding:0px;}
+.UpLoadLeftUl li div select{ float:left; width:160px; margin:0px; padding:0px;}
+.UpLoadLeftUl li div textarea{ float:left; width:580px; height:80px; margin:0px; padding:0px;}
+.UpLoadLeftUl li div span{ color:#f00; float:left; margin:0px; padding:0px; margin-top:3px;}
+.UpLoadLeftUl li p{ color:#999; margin:0px; padding:0px; float:left; width:100%; margin-top:5px;}
+
+.UpLoadSubmit{ float:left; width:130px; height:32px; background:url(../images/form_btn2.gif); border:none; color:#fff; font-weight:bold; font-size:14px; cursor:pointer;}
+
+.UpLoadRightGuang{ float:left; margin-top:10px;}
+.UpLoadRightBP{ float:left; width:100%; height:auto; margin-top:20px;}
+		
+		
+		
+.DLleftLabel{ float:left; width:590px; height:auto; margin-top:10px;}
+.DLleftLabel dt{ font-weight:bold; color:#F00; float:left; width:auto;}
+.DLleftLabel dd{ float:left; width:auto; margin-left:10px; display:inline;}
+.DLleftLabel dd a{ color:#333;}
+
+.DLleftPicText{ float:left; margin-top:30px; padding-bottom:20px; border-bottom:1px dashed #ccc; width:590px;}
+.DLleftPicText img{ float:left;}
+.DLleftPicText b{ width:470px; font-size:16px; float:left;margin-top:10px; margin-left:10px; display:inline;}
+.DLleftPicText p{ width:470px; float:left;  margin-top:10px;margin-left:10px; display:inline;}
+
+.DLleftText{ float:left; width:590px;; height:auto; margin-top:30px;}
+.DLleftText b{ float:left; width:100%; color:#004276;}
+.DLleftText b span{ color:#000; font-size:20px;}
+.DLleftText p{ float:left; margin-top:30px; padding-bottom:20px; border-bottom:1px dashed #ccc;}
+
+.DLleftDownL{ float:left; width:590px; margin-top:30px;}
+.DLleftDownL b{ float:left; width:100%; height:auto;}
+.DLleftDownL p{ float:left; background-color:#eeeeee; height:30px; line-height:30px; display:block; width:100%; margin-top:10px;}
+.DLleftDownL p a{ float:left; margin-left:10px; display:inline;}
+.DLleftDownL p span{ float:left;}
+
+
+.DLdetail2P{ width:480px; padding-left:10px; height:30px; line-height:30px; background-color:#eee; border:1px solid #ccc; color:red; margin-bottom:30px; margin-top:20px; display:-none; }
+.DLdetail2Ul{ float:left; width:100%; line-height:30px; margin-top:20px;}
+.DLdetail2Ul li{ float:left; width:100%; color:#999;}
+.DLdetail2Ul li input{ width:230px; height:20px; line-height:20px; float:left;}

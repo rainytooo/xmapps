@@ -1,0 +1,55 @@
+.Top_top{ width:100%; height:20px; border-bottom:1px solid #e6edf1; background:url(../images/Top_bg.jpg) repeat-x; float:left;}
+.Top_top ul{ width:100%; height:auto; line-height:20px;}
+.Top_top ul li{ float:left; width:auto; margin-right:10px; display:inline;}
+
+.Top_top ul li a{color:#0000ff}
+.Top_top ul li a:hover{color:#0000ff}
+.Top_top ul .Top_topA a{ color:#333333;}
+.Top_top ul .Top_topA a:hover{ color:#f00;}
+
+.Top_Cen{ float:left; margin-top:10px; width:100%;}
+.Top_Cen img{ float:left; margin-right:1px; display:inline;}
+
+.Top_Bot{ float:left; width:100%; height:auto;}
+.Top_Bot .logo{ margin-right:168px; display:inline;}
+.Top_Bot img { float:left;}
+.Top_Bot .QQSianlogin{ width:147px; border-right:1px solid #cdcdcd; text-align:center; float:left;}
+.Top_Bot .QQSianlogin li{ width:100%; text-align:center; float:left; line-height:30px;}
+.Top_Bot .QQSianlogin li img{ float:left; margin-left:10px; display:inline;}
+.Top_Bot .QQSianlogin li span{width:100%; text-align:center; color:#999999;}
+
+.Top_Bot .XiaoMalogin{ border-right:1px solid #cdcdcd; text-align:center; float:left; width:240px; margin-left:10px; display:inline; color:#444444; padding-right:5px;}
+.Top_Bot .XiaoMalogin li{ width:100%;float:left; line-height:30px;}
+.Top_Bot .XiaoMalogin li span{ color:#444444; float:left;}
+.Top_Bot .XiaoMalogin li lable{ color:#444444; float:left;}
+.Top_Bot .XiaoMalogin li .wriate{ width:130px; height:20px; color:#999999; border-left:1px solid #848484; border-top:1px solid #848484; border-bottom:1px solid #e0e0e0; border-right:1px solid #e0e0e0; float:left; margin-left:5px; display:inline; margin-top:5px;}
+.Top_Bot .XiaoMalogin li .loginbut{ float:left; margin-left:5px; display:inline; width:70px; height:21px; background:url(../images/loginBut.jpg) repeat-x; border:1px solid #999; text-align:center; line-height:21px; cursor:pointer;}
+.Top_Bot .XiaoMalogin li .loginche{ float:left; margin-left:5px; display:inline; margin-top:5px;}
+
+.Top_Bot .Alogin{text-align:center; float:left; width:54px; margin-left:7px; display:inline; color:#444444; line-height:25px;}
+.Top_Bot .Alogin li{ float:left; width:100%;}
+.Top_Bot .Alogin li a{}
+
+
+.Top_Nav{ width:100%; height:32px; background:url(../images/nv.png) top; float:left;}
+.Top_Nav ul{ width:840px; float:left; height:32px;}
+.Top_Nav ul li{ float:left; padding-bottom:5px; width:auto;}
+.Top_Nav ul li a{ color:#FFF; display:block;line-height:22px; padding-left:20px; padding-right:20px; font-size:14px; font-weight:bold; height:22px; border-right:1px solid #4d88c9; margin-top:5px; float:left;}
+.Top_Nav ul li a:hover{ color:#fff;}
+.Top_NavClick{background:url(../images/nv_a.png) center;background-position:50% 32px}
+
+.Top_Nav .Kuaijie{ width:95px; height:26px; background:url(../images/qmenu.png) top; float:right; margin-right:5px; margin-top:2px; display:inline; color:#336699; font-weight:bold; line-height:26px; text-align:center; cursor:pointer;}
+
+.Top_List{ border:1px solid #cdcdcd; border-top:none; background-color:#f5f7f9; height:auto; width:958px; float:left; padding-bottom:10px;}
+.Top_List .Top_ListDiv{ width:100%; height:auto; margin-top:20px; }
+.Top_List .Top_ListDiv img{ float:left;}
+.Top_List .Top_ListDiv .Top_ListLeft{ background:url(../images/toeflbg.jpg) no-repeat top left; float:left; width:310px; line-height:20px; margin-left:15px; display:inline; border-right:1px solid #dddddd;}
+.Top_List .Top_ListDiv .Top_ListLeft li{ width:100%;}
+.Top_List .Top_ListDiv .Top_ListLeft li a{ float:left; margin-right:10px; display:inline;}
+
+
+.Top_List .Top_ListDiv .Top_ListRigth{ float:left; width:280px; line-height:20px; margin-left:15px; display:inline; border-left:1px solid #fff;}
+.Top_List .Top_ListDiv .Top_ListRigth li{ width:100%;}
+.Top_List .Top_ListDiv .Top_ListRigth li a{ float:left; margin-right:10px; display:inline;}
+
+
