@@ -65,8 +65,8 @@
 
 .DLleftPicText{ float:left; margin-top:30px; padding-bottom:20px; border-bottom:1px dashed #ccc; width:590px;}
 .DLleftPicText img{ float:left;}
-.DLleftPicText b{ width:470px; font-size:16px; float:left;margin-top:10px; margin-left:10px; display:inline;}
-.DLleftPicText p{ width:470px; float:left;  margin-top:10px;margin-left:10px; display:inline;}
+.DLleftPicText b{ width:auto; font-size:16px; float:left;margin-top:10px; margin-left:10px; display:inline;}
+.DLleftPicText p{ width:auto; float:left;  margin-top:10px;margin-left:10px; display:inline;}
 
 .DLleftText{ float:left; width:590px;; height:auto; margin-top:30px;}
 .DLleftText b{ float:left; width:100%; color:#004276;}
@@ -84,3 +84,13 @@
 .DLdetail2Ul{ float:left; width:100%; line-height:30px; margin-top:20px;}
 .DLdetail2Ul li{ float:left; width:100%; color:#999;}
 .DLdetail2Ul li input{ width:230px; height:20px; line-height:20px; float:left;}
+
+.DLattachP{ float:left; width:100%; height:auto; text-align:center; color:#666; margin-top:10px;}
+.DLattachP b{ color:#333;}
+
+.DLattachConnt{ float:left; width:100%; height:auto;}
+
+.DLattachRight{ width:300px; float:left; border:1px solid #cccccc; background-color:#eeeeee; padding-left:10px; padding-right:10px; margin-top:10px;}
+.DLattachRight li{ width:100%; height:auto; float:left; margin-top:5px; margin-bottom:5px; line-height:22px;}
+.DLattachRight li b{}
+.DLattachRight li a,font{ color:#ff0000;}

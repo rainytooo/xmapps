@@ -40,5 +40,7 @@
 		$(this).parent().css("color","#0F0");
 		$(this).parent().html("正确答案");
 	});
+	$('.DLleftPicText').find('p').css('width',(parseInt($('.DLleftPicText').css('width'))-parseInt($('.DLleftPicText').find('img').css('width'))-10)+"px");
+
 	
 })

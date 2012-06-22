@@ -4,130 +4,145 @@
 <meta name="keywords" content="小马留学网 资料 下载 <%= @dl_thread.name if @dl_thread %> <%= @dl_thread.dl_type.keywords if @dl_thread %>" />
 <% end %>
 
-		<div class="container <%= "empty_list" if not @dl_thread %>">
-		<script src='http://www.xiaoma.com/plus/ad_js.php?aid=46' language='javascript'></script>
-			<div class="page_path">
-				<a href="<%= XMAPP_MAIN_DOMAIN_URL %>">首页</a> &gt;&gt; <%= link_to "资源下载", dl_index_path %> &gt;&gt; <%= @dl_thread.name if @dl_thread %>
-			</div><!-- .page_path -->
-
-			<div class="page_title">
-			<% if @dl_thread %>
-				<h1>
-					<%= link_to "[#{@dl_thread.dl_type.typename}]", dl_category_url(@dl_thread.dl_type_id), :class => "dl_type" %>&nbsp;
-					<%= @dl_thread.name %>
-				</h1>
-			<% end %>
-			</div>
-
-			<div class="list_leftside">
-					<% if flash[:message] %>
-					<div class="submit_message"><%= flash[:message] %></div><!-- .message -->
-					<% end %>
-					<% if flash[:error] %>
-					<div class="submit_error"><%= flash[:error] %></div><!-- .error -->
-					<% end %>
-				<% if @dl_thread %>
-				<div class="page_sample_info">
-					<div class="page_user_info">
-						<a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', @dl_thread.user.dz_common_id.to_s) %>">
-							<img src="<%= USER_DISCUZ_SMALL_AVATAR_BASE.gsub('{dz_uid}', @dl_thread.user.dz_common_id.to_s) %>">
-						</a>
-					</div><!-- .page_user_info -->
-					<div class="upload_info">
-						<a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', @dl_thread.user.dz_common_id.to_s) %>"><%= @dl_thread.user.username%></a>
-						<!-- <span class="comment">评论(18)</span> -->
-						<span class="view">有<%= @dl_thread.views %>人浏览</span>
-						<span class="date"><%= @dl_thread.created_at.strftime('%Y-%m-%d') %></span>
-						<span class="score">售价<%= @dl_thread.gold %></span>
-           <% if @dl_thread.level == 0 %>
-						<span class="level0">普通</span>
-						<% elsif @dl_thread.level == 1 %>
-						<span class="level1">推荐</span>
-						<% elsif @dl_thread.level == 2%>
-						<span class="level2">精华</span>
-						<% end %>
-					</div><!-- .upload_info -->
-					<div class="clear"></div>
-					<h4>
-					<span class="tag_title">标签:</span>
-					<% @tags.each do |tag| %>
-						<%= link_to tag.name , tag_path(tag.slug) %>&nbsp;&nbsp;
-					<% end %>
-					</h4>
-				</div><!-- .page_sample_info -->
-				<div class="downloads_content_desc list_bottom_partition">
-					<p>
-						<img src="<%= @dl_thread.photo.url(:medium)%>"></img>
-
-					</p>
-					<h2>内容简介</h2>
-					<%= raw(@dl_thread.content_desc) %>
-					<div class="clear"></div>
-				</div>
-
-				<div class="downloads_content list_bottom_partition">
-					<h5><%= @dl_thread.name %><span>的详细介绍</span></h5>
-
-					<%= raw(@dl_thread.content) %>
-					<div class="clear"></div>
-				</div>
-				<script src='http://www.xiaoma.com/plus/ad_js.php?aid=47' language='javascript'></script>
-				<div class="downloads_list">
-					<h3>下载地址</h3>
-					<ul>
-					<% @dl_attachments.each do |dl_attachments| %>
-						<li class="">
-							<a href="<%= DOWNLOAD_SERVER_URL %>/dl/attachment/<%= dl_attachments.id %>"><%= dl_attachments.originname%></a>
-							<span class="file_size"><%= number_to_human_size dl_attachments.filesize, :locale => :en %></span>
-							<span class="downloads_count">下载次数:<%= dl_attachments.donwloads %></span>
-						</li>
-					<% end %>
-					</ul>
-				</div>
+<div class="Cen_Main">
+	<div class="DLtop">
+    	<p><a href="<%= XMAPP_MAIN_DOMAIN_URL %>">小马过河</a> &gt;&gt; <%= link_to '资源下载', dl_index_path %> &gt;&gt; <%= @dl_thread.name if @dl_thread %></p>
+        <b>
+		<% if @dl_thread %>
+			<%= link_to "[#{@dl_thread.dl_type.typename}]", dl_category_url(@dl_thread.dl_type_id), :style => "color:#f00; font-size:12px; float:left; margin-right:10px; margin-top:3px;" %>
+			<%= @dl_thread.name %>
+		<% end %>
+		</b>
+    </div>
+    
+    <div class="DLleft">
+		<% if flash[:message] %>
+		<p class="DLdetail2P"><%= flash[:message] %></p>
+		<% end %>
+		<% if flash[:error] %>
+		<p class="DLdetail2P"><%= flash[:error] %></p>
+		<% end %>
+		<% if @dl_thread %>
+    	<div class="DLleftList" style="width:580px;">
+			<a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', @dl_thread.user.dz_common_id.to_s) %>">
+        	<img src="<%= USER_DISCUZ_SMALL_AVATAR_BASE.gsub('{dz_uid}', @dl_thread.user.dz_common_id.to_s) %>">
+			</a>
+    		<div class="DLleftListBot" style=" width:500px; float:right;">
+            	<a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', @dl_thread.user.dz_common_id.to_s) %>"><%= @dl_thread.user.username%></a>
+                <img src="/dzstyle/images/icon_arrow.gif" />
+                <span>有<%= @dl_thread.views %>人浏览</span>
+                <span style="color:#a12a2a;"><%= @dl_thread.created_at.strftime('%Y-%m-%d') %></span>
+                <img src="/dzstyle/images/indwd_52.gif" />
+                <span>售价<%= @dl_thread.gold %></span>
+                <img src="/dzstyle/images/star.jpg" />
+                <% if @dl_thread.level == 0 %>
+				<span class="level0">普通</span>
+				<% elsif @dl_thread.level == 1 %>
+				<span class="level1">推荐</span>
+				<% elsif @dl_thread.level == 2%>
+				<span class="level2">精华</span>
 				<% end %>
-			</div><!-- .list_leftside -->
+            </div>
+        </div>
+        <dl class="DLleftLabel">
+        	<dt>标签:</dt>
+			<% @tags.each do |tag| %>
+			<dd><%= link_to tag.name , tag_path(tag.slug) %></dd>
+			<% end %>
+        </dl>
+        <div class="DLleftPicText">
+        	<img src="/dzstyle/images/missing.png" />
+            <b>内容简介</b>
+            <p><%= raw(@dl_thread.content_desc) %></p>
+        </div>
+        <div class="DLleftText">
+        	<b><span><%= @dl_thread.name %></span>的详细介绍</b>
+            <p><%= raw(@dl_thread.content) %></p>
+        </div>
+        <script src='http://www.xiaoma.com/plus/ad_js.php?aid=47' language='javascript'></script>
+        <div class="DLleftDownL">
+        	<b>下载地址</b>
+			<% @dl_attachments.each do |dl_attachments| %>
+            <p>
+            	<a href="<%= DOWNLOAD_SERVER_URL %>/dl/attachment/<%= dl_attachments.id %>"><%= dl_attachments.originname%></a>
+                <span><%= number_to_human_size dl_attachments.filesize, :locale => :en %></span>
+                <span style="float:right; margin-right:10px; display:inline;">下载次数:<%= dl_attachments.donwloads %></span>
+            </p>
+			<% end %>
+        </div>
+		<% end %>
+    </div>
+    <div class="DLright">
+    	<div class="DlrigntFenXiang">
+        	<!-- JiaThis Button BEGIN -->
+            <div id="ckepop">
+                <span class="jiathis_txt">分享到：</span>
+                <a class="jiathis_button_qzone"></a>
+                <a class="jiathis_button_tsina"></a>
+                <a class="jiathis_button_tqq"></a>
+                <a class="jiathis_button_renren"></a>
+                <a class="jiathis_button_kaixin001"></a>
+                <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+                <a class="jiathis_counter_style"></a>
+            </div>
+            <script type="text/javascript">var jiathis_config = {data_track_clickback:true};</script>
+			<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1502974" charset="utf-8"></script>
+			<!-- JiaThis Button END -->
+        </div>
+        <div class="DlrightSousuo">
+		<form method="get" action="/search" accept-charset="UTF-8">
+			<input type="hidden" value="dl" name="type"/>
+			<input id="query" type="text" name="query" class="text"/>
+            <input type="submit" value="搜索" class="input"/>
+		</form>
+        </div>
+        <a href="<%= XMAPP_MAIN_DOMAIN_URL %>/dl/threads/new" class="DLrightUplode"><img src="/dzstyle/images/upload.png" /></a>
+        <a href="<%= XMAPP_MAIN_DOMAIN_URL %>/manage/uploads" class="DLrightGLUplode">管理我的上传</a>
+        
+		<div class="DLrightBiaoQ">
+        	<b>下载热门分类标签</b>
+            <ul>
+            	<li>[类型]</li>
+				<li><a href="http://www.xiaoma.com/dl/category/13">小马过河备考听力包</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/3">托福</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/4">雅思</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/5">SAT</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/9">有声读物</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/10">托福口语</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/11">托福写作</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/6">托福听力</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/7">托福阅读</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/35">雅思词汇</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/36">雅思听力</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/37">雅思阅读</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/38">雅思口语</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/18">SAT2</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/19">GRE</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/27">GMAT</a></li>
 
-			<div class="list_rightside">
-<!-- JiaThis Button BEGIN -->
-<div id="ckepop">
-	<a href="http://www.jiathis.com/share/?uid=1502974" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">分享到：</a>
-	<a class="jiathis_button_qzone"></a>
-	<a class="jiathis_button_tsina"></a>
-	<a class="jiathis_button_kaixin001"></a>
-	<a class="jiathis_button_renren"></a>
+
+				<li>[标签]</li>
+				<li><a href="http://www.xiaoma.com/tags/%E9%A9%AC%E9%AA%8F">马骏</a></li>
+				<li><a href="http://www.xiaoma.com/tags/TPO">TPO</a></li>
+				<li><a href="http://www.xiaoma.com/tags/%E8%AE%B2%E4%B9%89%E8%AF%BE%E4%BB%B6">讲义课件</a></li>
+				<li><a href="http://www.xiaoma.com/tags/%E8%AF%8D%E6%B1%87">词汇</a></li>
+				<li><a href="http://www.xiaoma.com/tags/%E6%95%99%E8%BE%85%E4%B9%A6">教辅书</a></li>
+				<li><a href="http://www.xiaoma.com/tags/%E8%AF%AD%E6%B3%95">语法</a></li>
+				<li><a href="http://www.xiaoma.com/tags/%E6%89%98%E7%A6%8F%E8%AF%8D%E6%B1%87">托福词汇</a></li>
+				<li><a href="http://www.xiaoma.com/tags/%E6%9C%BA%E7%BB%8F%E9%A2%84%E6%B5%8B">机经预测</a></li>
+				<li><a href="http://www.xiaoma.com/tags/%E9%9B%85%E6%80%9D%E7%9C%9F%E9%A2%98">雅思真题</a></li>
+				<li><a href="http://www.xiaoma.com/tags/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D">剑桥雅思</a></li>
+				<li><a href="http://www.xiaoma.com/tags/SAT%E7%89%A9%E7%90%86">SAT物理</a></li>
+				<li><a href="http://www.xiaoma.com/tags/SAT%E7%9C%9F%E9%A2%98">SAT真题</a></li>
+            </ul>
+        </div>
+        
+		<dl class="DLrightMold">
+        	<dt>论坛精华</dt>
+            <script type="text/javascript" src="http://bbs.xiaoma.com/api.php?mod=js&bid=286"></script>
+        </dl>
+        
+    </div>  
 </div>
-<script type="text/javascript" src="http://v1.jiathis.com/code/jia.js?uid=1502974" charset="utf-8"></script>
-<!-- JiaThis Button END -->
-        <div class="right_search">
-					<form method="get" action="/search" accept-charset="UTF-8">
-						<input type="hidden" value="dl" name="type">
-						<input id="query" type="text" name="query">
-						<input id="search_submit" class="btn_srh" type="submit" value="搜索">
-					</form>
-				</div>
-				<div class="user_upload">
-					<p>
-						<input type="button" class="upload_img"  onclick="location.href='<%= XMAPP_MAIN_DOMAIN_URL %>/downloads/dl_threads/new'">
-					</p>
-				</div>
 
-				<div>
-					<p>
-						<h5><a href="<%= XMAPP_MAIN_DOMAIN_URL %>/manage/uploads">管理我的上传</a></h5>
-					</p>
-				</div>
-				<h2 class="subject">留学推荐</h2>
-				<script src='http://www.xiaoma.com/plus/ad_js.php?aid=84' language='javascript'></script>
-				<div class="clear"></div>
-				<h2 class="subject">热点文章</h2>
-				<script src='http://www.xiaoma.com/plus/ad_js.php?aid=85' language='javascript'></script>
-				<div class="clear"></div>
-				<h2 class="subject">论坛精华</h2>
-				<script type="text/javascript" src="http://bbs.xiaoma.com/api.php?mod=js&bid=286"></script>
-				<div class="clear"></div>
-       <script src='http://www.xiaoma.com/plus/ad_js.php?aid=15' language='javascript'></script>
-			</div>
-			<div class="clear"></div>
-		</div><!-- #content_container -->
-		<div class="clear"></div>
 

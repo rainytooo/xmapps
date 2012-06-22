@@ -1,9 +1,8 @@
 <% content_for :head do %>
-<title>小马留学网-上传资料</title>
+<title>上传附件 资料下载 - 小马过河</title>
 <meta name="description" content="上传资料" />
 <meta name="keywords" content="小马留学网 英语 学习资料 上传" />
-<%= stylesheet_link_tag('jquery.fileupload-ui') %>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<%= stylesheet_link_tag('jquery.fileupload-ui','apps','common') %>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
 <%= javascript_include_tag 'jquery.fileupload', 'jquery.fileupload-ui' %>
 
@@ -58,77 +57,68 @@
 });
 </script>
 <% end %>
-		<div class="container">
-			<div class="page_path">
-			<a href="<%= XMAPP_MAIN_DOMAIN_URL %>">首页</a> &gt;&gt; <%= link_to '资源下载', downloads_dl_threads_path %> &gt;&gt; 上传资料
-			</div><!-- .page_path -->
-			<div class="page_title"><h1>为<span><%= @dl_thread.name %></span>添加附件</h1></div>
-			<div class="form_container">
-				<div class="form_desc"><span class="form_desc_tip">操作流程:&nbsp;</span>1.填写基本信息 -> 2.编辑缩略图 -> <span class="current">3.添加附件</span></div><!-- .form_desc -->
-				<div class="form_left">
-					<% if flash[:message] %>
-					<div class="submit_message"><%= flash[:message] %></div><!-- .message -->
+
+<div class="Cen_Main">
+	<div class="DLtop">
+    	<p><a href="<%= XMAPP_MAIN_DOMAIN_URL %>">小马过河</a>&nbsp;>>&nbsp;<%= link_to '资源下载', dl_index_path %>&nbsp;>>&nbsp;<%= @dl_thread.name %> 附件管理</p>
+        <b>为<font color="#004276"><%= @dl_thread.name %></font>添加附件</b>
+    </div>
+    
+    <div class="DLleft">
+    	<p class="DLattachP">操作流程: 1.填写基本信息 -> 2.编辑缩略图 -> <b>3.添加附件</b></p>
+		<div class="height5"></div>
+        <div class="DLattachConnt">
+           	
+				<% if flash[:message] %>
+				<div class="submit_message"><%= flash[:message] %></div><!-- .message -->
+				<% end %>
+				<% if flash[:error] %>
+				<div class="submit_error"><%= flash[:error] %></div><!-- .error -->
+				<% end %>
+			<div class="files">
+				<%= form_for( [:downloads, @dl_thread, @dl_attachment], :html => { :class => "upload", :multipart => true } ) do |f| %>
+				  <%= f.file_field :attachment %>
+				  <div>点击添加附件</div>
+				<% end %>
+
+
+			</div>
+			<div class="clear"></div>
+			<div class="uploaded_files">
+				<h5>上传的文件列表</h5>
+				<ul>
+					<div class="upload_files"></div>
+					<div class="download_files">
+					<% @dl_attachments.each do |old_attchm|%>
+						<li>
+							<b>已存在的文件</b>:   <span class="upload_file_name"><%= old_attchm.originname %></span>&nbsp;<span><%= number_to_human_size(old_attchm.filesize, :locale => :en)%></span>
+							<span class="fr">
+							<a href="/downloads/dl_threads/<%= @dl_thread.id %>/dl_attachments/<%= old_attchm.id %>" onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var at = document.createElement('input'); at.setAttribute('type', 'hidden'); at.setAttribute('name', 'authenticity_token'); at.setAttribute('value', '#{form_authenticity_token}'); f.appendChild(at);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'delete'); f.appendChild(m);f.submit(); };return false;">删除</a>
+							</span>
+						</li>
 					<% end %>
-					<% if flash[:error] %>
-					<div class="submit_error"><%= flash[:error] %></div><!-- .error -->
-					<% end %>
-				<div class="files">
-					<%= form_for( [:downloads, @dl_thread, @dl_attachment], :html => { :class => "upload", :multipart => true } ) do |f| %>
-					  <%= f.file_field :attachment %>
-					  <div>点击添加附件</div>
-					<% end %>
-
-
-				</div>
-				<div class="clear"></div>
-				<div class="uploaded_files">
-					<h5>上传的文件列表</h5>
-					<ul>
-						<div class="upload_files"></div>
-						<div class="download_files">
-						<% @dl_attachments.each do |old_attchm|%>
-							<li>
-								<b>已存在的文件</b>:   <span class="upload_file_name"><%= old_attchm.originname %></span>&nbsp;<span><%= number_to_human_size(old_attchm.filesize, :locale => :en)%></span>
-								<span class="fr">
-								<a href="/downloads/dl_threads/<%= @dl_thread.id %>/dl_attachments/<%= old_attchm.id %>" onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var at = document.createElement('input'); at.setAttribute('type', 'hidden'); at.setAttribute('name', 'authenticity_token'); at.setAttribute('value', '#{form_authenticity_token}'); f.appendChild(at);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'delete'); f.appendChild(m);f.submit(); };return false;">删除</a>
-								</span>
-							</li>
-						<% end %>
-						</div>
-					</ul>
-					<div class="clear"></div>
-				</div>
-				<div class="clear"></div>
-				<div class="left_bottom_link">
-						<%= link_to "点击完成,并返回下载首页", dl_index_path %>		或		 <%= link_to "返回我的上传", manage_uploads_path %>
-				</div>
-				</div><!-- .form_left -->
-
-				<div class="form_right">
-					<div class="submit_message">
-					<h3>上传帮助</h3>
-					<p>点击左边绿色的"点击添加附件"按钮来选择上传的文件,一次只能选择一个文件,当一个文件上传完了之后不会刷新页面,在本页面就会有提示,之后您可以继续上传下一个附件.
-
-					</p>
-					<h3>注意</h3>
-					<p>
-					<span class="warning"><a href="http://bbs.xiaoma.com/thread-158620-1-1.html" class="warning">大于10M的文件如何上传看这里</a></span>
-					</p>
-					<p>
-					<span class="warning"><a href="http://bbs.xiaoma.com/thread-158629-1-1.html" class="warning">上传资料的教学</a></span>
-					</p>
-					<p>请不要上传大于<span class="warning">10M</span>的文件,
-					并且只允许上传 <span class="warning">zip,rar,tgz,tar</span>.gz格式的文件,这样可以节省大量的带宽,使你上传和下载要快许多,
-					所以请用相关的工具,如winrar或者winzip等工具来给你的文件或文件夹进行压缩,打包之后再上传.
-					</p>
-					<h3>我的文件大于10M我该怎么上传</h3>
-					<p>请不要上传大于<span class="warning">10M</span>的文件,
-					并且只允许上传 <span class="warning">zip,rar,tgz,tar</span>.gz格式的文件,这样可以节省大量的带宽,使你上传和下载要快许多,
-					所以请用相关的工具,如winrar或者winzip等工具来给你的文件或文件夹进行压缩,打包之后再上传.
-					</p>
 					</div>
-				</div><!-- .form_right -->
-			</div><!-- .form_container -->
-		</div><!-- #content_container -->
-		<div class="clear"></div>
+				</ul>
+				<div class="clear"></div>
+			</div>
+        
+        </div>
+        <p class="DLattachP"><%= link_to "点击完成,并返回下载首页", dl_index_path %>&nbsp;&nbsp;&nbsp;&nbsp;或&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "返回我的上传", manage_uploads_path %></p>
+    </div>
+    <div class="DLright">
+    	<ul class="DLattachRight">
+        	<li><b>上传帮助</b></li>
+            <li>点击左边绿色的"点击添加附件"按钮来选择上传的文件,一次只能选择一个文件,当一个文件上传完了之后不会刷新页面,在本页面就会有提示,之后您可以继续上传下一个附件.</li>
+            <li><b>注意</b></li>
+            <li><a href="http://bbs.xiaoma.com/thread-158620-1-1.html" class="warning">大于10M的文件如何上传看这里</a></li>
+            <li><a href="http://bbs.xiaoma.com/thread-158629-1-1.html" class="warning">上传资料的教学</a></li>
+            <li>请不要上传大于<font>10M</font>的文件, 并且只允许上传 <font>zip,rar,tgz,tar.gz</font>格式的文件,这样可以节省大量的带宽,使你上传和下载要快许多, 所以请用相关的工具,如winrar或者winzip等工具来给你的文件或文件夹进行压缩,打包之后再上传.</li>
+            <li><b>我的文件大于10M我该怎么上传</b></li>
+        </ul>
+    </div>
+    
+</div>
+
+
+
 

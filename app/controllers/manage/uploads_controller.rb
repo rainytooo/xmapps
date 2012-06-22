@@ -1,5 +1,6 @@
 # 个人上传管理控制器
 class Manage::UploadsController < ApplicationController
+  layout "downloads_layout"
   before_filter :require_login
   
   def index

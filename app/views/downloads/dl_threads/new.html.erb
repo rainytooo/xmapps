@@ -1,8 +1,8 @@
 <% content_for :head do %>
-<title>小马留学网-上传资料</title>
+<title>上传资料 小马过河</title>
 <meta name="description" content="上传资料" />
-<meta name="keywords" content="小马留学网 英语 学习资料 上传" />
-<%= javascript_include_tag 'jquery.min', 'rails.validations', 'editor/kindeditor-min' %>
+<meta name="keywords" content="小马过河 英语 学习资料 上传" />
+<%= javascript_include_tag  'rails.validations', 'editor/kindeditor-min' %>
 <script type="text/javascript" src="http://cbjs.baidu.com/js/m.js"></script>
 <script language="Javascript">
 	KE.show({
@@ -16,80 +16,136 @@
 </script>
 
 <% end %>
-		<div class="container">
-			<div class="page_path">
-			<a href="<%= XMAPP_MAIN_DOMAIN_URL %>">首页</a> &gt;&gt; <%= link_to '资源下载', dl_index_path %> &gt;&gt; 上传资料
-			</div><!-- .page_path -->
-			<div class="page_title"><h1>上传新的下载资料</h1></div>
-			<div class="form_container">
-				<div class="form_desc"><span class="form_desc_tip">操作流程:&nbsp;</span><span class="current">1.填写基本信息</span> -> 2.编辑缩略图 -> 3.添加附件</div><!-- .form_desc -->
-				<div class="form_left">
-				<% if @dl_thread.errors.any? %>
-					<div id="error_explanation">
-					  <h2><%= pluralize(@dl_thread.errors.count, "个错误") %> 阻止了此次资源上传:</h2>
-					  <ul>
-					  <% @dl_thread.errors.full_messages.each do |msg| %>
-						<li><%= msg %></li>
-					  <% end %>
-					  </ul>
-					  <div class="clear"></div>
-					</div>
-				  <% end %>
-				  <div class="clear"></div>
-				<%= form_for([:downloads, @dl_thread], :validate => true, :html => { :multipart => true } ) do |f| %>
-					<% if flash[:message] %>
-					<div class="submit_message"><%= flash[:message] %></div><!-- .message -->
-					<% end %>
-					<% if flash[:error] %>
-					<div class="submit_error"><%= flash[:error] %></div><!-- .error -->
-					<% end %>
-					<div class="global_form">
-						<%= f.label :name, "下载资源的标题:" %><div class="clear"></div>
-						<%= f.text_field :name %>
-					</div>
-					<div class="form_tips">清填写下载资源的标题</div>
-					<div class="global_form">
-						<%= f.label :dl_type_id, "下载资源的类型:" %><div class="clear"></div>
-						<%= select_tag(:dl_type_id,  options_for_select(DlType.where("id not in ( 1, 2, 3 ,4 ,5, 19, 27 )").collect{ |p| [p.typename, p.id] }) ) %>
-					</div>
-					<div class="form_tips">清选择下载资源的类型</div>
-					<div class="global_form">
-						<%= label_tag(:tag_names, "下载资源的标签:") %><div class="clear"></div>
-						<%= text_field_tag( :tag_names) %>
-					</div>
-					<div class="form_tips">清填写下载资源的标签,用半角的逗号隔开</div>
-					<div class="global_form">
-						<%= f.label :photo, "预览图:" %><div class="clear"></div>
-						<%= f.file_field  :photo %>
-					</div>
-					<div class="form_tips">选择您要上传的预览图或者封面,文件格式为jpeg,gif或者png,大小不要超过1M</div>
-					<div class="global_form">
-						<%= f.label :content_desc, "简介:" %><div class="clear"></div>
-						<%= f.text_area :content_desc , :size => "75x10"%>
-					</div>
-					<div class="form_tips">请填写这个资源的简单介绍,不得少于30个字</div>
-					<div class="global_form">
-						<%= f.label :content, "内容:" %><div class="clear"></div>
-						<%= f.text_area :content , :size => "75x20"%>
-					</div>
-					<div class="form_tips">请填写这个资源的完整内容介绍,不得少于100个字</div>
-					<div id="form_submit">
-						<input id="campaign_submit" name="commit" type="submit" value="提交">
-					</div>
-					<div class="clear"></div>
 
 
-				<% end %>
-				</div><!-- .form_left -->
-
-				<div class="form_right">
-				  
-					<h5>上传资料有什么好处</h5>
-					<p>出国留学的历程充满了酸甜苦乐,备考的同道中人彼此相互默默地支撑.分享,无形的共勉与快乐.大家行动起来吧,把资源分享给每一个需要的人.
-					为了保证上传的质量,让更多的精华的资料能保存在这里,希望您能按照步骤,详细的填写基本信息和图片等等,在您上传结束后,我们会尽快审核您上传的资料,一经通过,会给您发站内消息,并且给您增加50的积分奖励和100的金币奖励
-					</p>
-				</div><!-- .form_right -->
-			</div><!-- .form_container -->
-		</div><!-- #content_container -->
-		<div class="clear"></div>
-
+<div class="Cen_Main">
+	<div class="DLtop">
+    	<p><a href="javascript:;">首页</a>&nbsp;>>&nbsp;<a href="javascript:;">资源下载</a>&nbsp;&nbsp;>>&nbsp;&nbsp;快速上传资料</p>
+        <b>快速上传资料</b>
+    </div>
+    
+    <div class="DLleft">
+    	<ul class="UpLoadLeftUl">
+        	<li>
+            	<b>下载资源的标题:</b>
+                <div><input type="text" /><span style="margin-left:10px; display:inline;">必选字段</span></div>
+                <p>请填写下载资源的标题</p>
+            </li>
+            <li>
+            	<b>下载资源的类型:</b>
+                <div>
+                    <select>
+                        <option value="6">托福听力</option>
+                        <option value="7">托福阅读</option>
+                        <option value="8">工具软件</option>
+                        <option value="9">有声读物</option>
+                        <option value="10">托福口语</option>
+                        <option value="11">托福写作</option>
+                        <option value="12">托福综合</option>
+                        <option value="13">小马过河备考听力包</option>
+                        <option value="14">SAT词汇</option>
+                        <option value="15">SAT阅读</option>
+                        <option value="16">SAT写作</option>
+                        <option value="17">SAT数学</option>
+                        <option value="18">SAT2</option>
+                        <option value="20">GRE词汇</option>
+                        <option value="21">GRE填空</option>
+                        <option value="22">GRE阅读</option>
+                        <option value="23">GRE写作</option>
+                        <option value="24">GRE数学</option>
+                        <option value="25">GRE综合</option>
+                        <option value="26">GRE SUB</option>
+                        <option value="28">GMAT词汇</option>
+                        <option value="29">GMAT写作</option>
+                        <option value="30">GMAT数学</option>
+                        <option value="31">GMAT阅读</option>
+                        <option value="32">GMAT逻辑</option>
+                        <option value="33">GMAT语法</option>
+                        <option value="34">GMAT综合</option>
+                        <option value="35">雅思词汇</option>
+                        <option value="36">雅思听力</option>
+                        <option value="37">雅思阅读</option>
+                        <option value="38">雅思口语</option>
+                        <option value="39">雅思写作</option>
+                        <option value="40">雅思综合</option>
+                        <option value="41">SAT1综合</option>
+                        <option value="42">留学相关</option>
+                        <option value="43">行业英语</option>
+                        <option value="44">商务英语</option>
+                        <option value="45">英语泛听</option>
+                        <option value="46">其他英语考试</option>
+                        <option value="47">英语四级六级</option>
+                        <option value="48">专四专八</option>
+                        <option value="49">英语笔译</option>
+                        <option value="50">英语口译</option>
+                        <option value="51">托业考试</option>
+                        <option value="52">高考英语</option>
+                        <option value="53">考研英语</option>
+                        <option value="54">日语</option>
+                        <option value="55">日语口语</option>
+                        <option value="56">日语听力</option>
+                        <option value="57">日语词汇</option>
+                        <option value="58">日语语法</option>
+                        <option value="59">日语软件</option>
+                        <option value="60">考研</option>
+                        <option value="61">考研英语</option>
+                        <option value="62">考研政治</option>
+                        <option value="63">考研数学</option>
+                        <option value="64">考研专业课</option>
+                        <option value="65">高考</option>
+                        <option value="66">高考语文</option>
+                        <option value="67">高考数学</option>
+                        <option value="68">高考英语</option>
+                        <option value="69">理科综合</option>
+                        <option value="70">文科综合</option>
+                        <option value="71">高中会考</option>
+                        <option value="72">大学英语</option>
+                        <option value="73">大学英语四级考试资料</option>
+                        <option value="74">大学英语六级考试资料</option>
+                        <option value="75">英语专业四级考试资料</option>
+                        <option value="76">英语专业八级考试资料</option>
+                    </select>
+                </div>
+                <p>请选择下载资源的类型</p>
+            </li>
+            <li>
+            	<b>售价:</b>
+                <div>
+                    <select>
+                        <option>20</option>
+                        <option>0</option>
+                        <option>15</option>
+                        <option>10</option>
+                     </select>
+                </div>
+                <p>清选择该资源下载的售价</p>
+            </li>
+            <li>
+            	<b>预览图:</b>
+                <div><input type="file" /></div>
+                <p>选择您要上传的预览图或者封面,文件格式为jpeg,gif或者png,大小不要超过300k</p>
+            </li>
+            <li>
+            	<b>简介:</b>
+                <div><textarea cols="100" rows="10"></textarea><span style="clear:both; width:100px;">必选字段</span></div>
+                <p>请填写这个资源的简单介绍,请输入大于20,小于128个字</p>
+            </li>
+        </ul>
+        <input type="submit" class="UpLoadSubmit" value="提交"/>
+    </div>
+    <div class="DLright">
+    	<a href="javascript:;" class="DLrightGLUplode">管理我的上传</a>
+        <div class="DlrightSousuo">
+        	<input type="text" class="text"/>
+            <input type="button" value="搜索" class="input"/>
+        </div>
+        <a href="javascript:;" class="UpLoadRightGuang"><img src="images/id=nWTknWcLrj6&gp=401&time=nHnknjTdn1nzn6.gif" /></a>
+        <div class="UpLoadRightBP">
+        <b>上传资料有什么好处</b>
+        <p>出国留学的历程充满了酸甜苦乐,备考的同道中人彼此相互默默地支撑.分享,无形的共勉与快乐.大家行动起来吧,把资源分享给每一个需要的人 ,现在每上传一个资源,在审核通过后,您将得到50的积分和100的金币,</p>
+        <b>什么样的资源才能通过审核</b>
+        <p>首先保证您上传的资源在我们现有的下载里不会重复,所以建议上传之前先进行搜索,其次,您在填写信息时描述的比较具体(最好带有一张形象的封面图,图片格式为jpg或者png,gif), 最后您按照您的描述上传了相应的附件,这样您上传的资源基本上就可以通过审核了</p>
+        </div>
+    </div>
+    
+</div>

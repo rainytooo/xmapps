@@ -6,6 +6,7 @@ require 'uuidtools'
 require 'RMagick'
 include Magick
 class Downloads::DlThreadsController < ApplicationController
+  layout "downloads_layout"
   before_filter :require_login , :except => [:index, :show, :category, :search]
   # GET /dl_threads
   # GET /dl_threads.xml

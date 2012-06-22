@@ -48,11 +48,11 @@ class SearchController < ApplicationController
           {:search_string => @search_string}).order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>10)
       if @asks.empty?
         flash.now[:message] = "对不起,没有搜索到相关内容,您可以在右侧点击我要提问来提出这个问题"
-			   render 'ask_search.html'
+			   render 'ask_search.html', :layout => "asks_layout"
 			   return
       end
       save_user_keyword 'ask'
-		  render 'ask_search.html'
+		  render 'ask_search.html', :layout => "asks_layout"
 		  return
     end
     # 简单的搜索下载
@@ -61,7 +61,7 @@ class SearchController < ApplicationController
 		      {:search_string => @search_string}).order("created_at DESC").paginate(:page=>params[:page]||1,:per_page=>10)
 		  if @dl_threads.empty?
 			  flash.now[:message] = "对不起,没有搜索到相关内容,您可以在右侧点击我要上传来添加这个资源,可以获取大量积分和金币"
-			  render 'dl_search.html', :layout => 'application'
+			  render 'dl_search.html', :layout => 'downloads_layout'
 			  return
 		  end
 		  # 拿出最多上传的用户
@@ -70,7 +70,7 @@ class SearchController < ApplicationController
 		  #@hot_dl_threads = DlThread.where("ispass = ?", 1).order("views DESC").limit(10).offset(0)
 		  # 记录用户搜索的记录
 		  save_user_keyword 'dl'
-		  render 'dl_search.html', :layout => 'application'
+		  render 'dl_search.html', :layout => 'downloads_layout'
 		  return
 		end
 

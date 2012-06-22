@@ -40,8 +40,8 @@ Xmapps::Application.configure do
   # 下载服务器的url
   DOWNLOAD_SERVER_URL = "http://localhost:3001"
   # 以下部分是项目用到的常量
-  DOWNLOAD_THREAD_PHOTO_ROOT_PATH = "/var/www/html/xmappimages"
-  DOWNLOAD_THREAD_PHOTO_ROOT_URL = "http://localhost/xmappimages"
+  DOWNLOAD_THREAD_PHOTO_ROOT_PATH = "/Users/ohergal/Sites/xmappimages"
+  DOWNLOAD_THREAD_PHOTO_ROOT_URL = "http://localhost/~ohergal/xmappimages"
   # discuz 的auth key的配置
   DZ_AUTH_KEY = '726038W8CGDcpa5k'
   # discuz的cookie的名字
@@ -60,11 +60,11 @@ Xmapps::Application.configure do
   # 扣金币
   DZ_EXTCREDITS_REDUCE_COUNT = -20
   # 文件上传相关
-  FILE_UPLOAD_DIRECTORY = "/var/www/html/xmappimages"
+  FILE_UPLOAD_DIRECTORY = "/Users/ohergal/Sites/xmappimages"
   # 下载服务器上的文件根路径
-  FILE_DOWNLOAD_DIRECTORY = "/var/www/html/xmappimages"
+  FILE_DOWNLOAD_DIRECTORY = "/Users/ohergal/Sites/xmappimages"
   # 图片服务器根地址
-  IMG_SERVER_URL = "http://localhost/xmappimages/"
+  IMG_SERVER_URL = "http://localhost/~ohergal/xmappimages"
   # 一次最大上传附件总数
   MAX_ATTACHMENT_FILES = 10
   # uc space 基础路径

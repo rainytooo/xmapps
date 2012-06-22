@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-
+  layout "downloads_layout"
   # GET /tags/1
   # GET /tags/1.xml
   def show

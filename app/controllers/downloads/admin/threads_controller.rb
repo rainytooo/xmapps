@@ -29,7 +29,7 @@ class Downloads::Admin::ThreadsController < ApplicationController
           upload_user = User.find_by_id(@dl_thread.user_id)
 	      dz_user = Dzuser.find_by_username(upload_user.username)
 	      # 发送提醒
-	      send_dz_notify dz_user.uid, pass_user.uid, '', message, 'uploads'
+	      #send_dz_notify dz_user.uid, pass_user.uid, '', message, 'uploads'
 	      # 发送全站动态
 	      title_template = "#{dz_user.username}在<a href=\"#{dl_index_url}\" >资源下载<\/a>上传了新的资料<a href=\"#{thread_url}\" >#{@dl_thread.name}<\/a>"
 	      title_data = {}

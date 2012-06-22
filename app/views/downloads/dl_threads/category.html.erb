@@ -1,150 +1,125 @@
 <% content_for :head do %>
-<title>小马留学网-浏览所有<%= @dl_category.typename %>资源下载</title>
+<title><%= @dl_category.typename %>资源下载 托福资料 tpo 下载 机经下载,雅思资料,GRE的下载资料 - 小马过河 xiaoma.com</title>
+<meta name="keywords" content="<%= @dl_category.typename %>下载 出国留学考试资料下载,托福,雅思,tpo 下载 机经下载,GRE,GMAT,SAT,ACT,SSAT,AP" />
 <meta name="description" content="浏览所有<%= @dl_category.typename %>资源下载 <%= @dl_category.description %>" />
-<meta name="keywords" content="小马留学网 资料 下载 <%= @dl_category.typename %> <%= @dl_category.keywords %>" />
 <% end %>
 
-		<div class="container">
-		<script src='http://www.xiaoma.com/plus/ad_js.php?aid=46' language='javascript'></script>
-			<div class="page_path">
-				<a href="<%= XMAPP_MAIN_DOMAIN_URL %>">首页</a> &gt;&gt; <%= link_to "资源下载", dl_index_path %> &gt;&gt; <%= @dl_category.typename %>
-			</div><!-- .page_path -->
-			<div class="page_title"><h1>所有<%= @dl_category.typename %>下载列表 <span class="title_keywords">此分类包括:<%= @dl_category.keywords %>的相关资料</span></h1></div>
-			<div class="list_leftside">
-				<div class="index_rich_list">
-					<% if flash[:message] %>
-					<div class="submit_message"><%= flash[:message] %></div><!-- .message -->
-					<% end %>
-					<% if flash[:error] %>
-					<div class="submit_error"><%= flash[:error] %></div><!-- .error -->
-					<% end %>
-						<ul>
-						   <% @dl_threads.each do |dl_thread| %>
-							<li>
-								<div class="content">
-									<h5>
-										<%= link_to "[#{dl_thread.dl_type.typename}]", dl_category_url(dl_thread.dl_type.id), :class => "dl_type" %>
-										&nbsp;
-										<%= link_to dl_thread.name,  dl_path(dl_thread), :class => "title" %>
-									</h5>
+<div class="Cen_Main">
+	<div class="DLtop">
+    	<p><a href="<%= XMAPP_MAIN_DOMAIN_URL %>">小马过河</a> &gt;&gt; <%= link_to '资源下载', dl_index_path %>&gt;&gt; <%= @dl_category.typename %></p>
+        <b><%= @dl_category.typename %>下载</b>
+    </div>
+    
+    <div class="DLleft">
+		<% @dl_threads.each do |dl_thread| %>	
+    	<div class="DLleftList">
+        	<div class="DLleftListTop">
+				<%= link_to "[#{dl_thread.dl_type.typename}]", dl_category_url(dl_thread.dl_type_id), :style => "color:#ff6600;" %>
+				<%= link_to dl_thread.name,  dl_path(dl_thread), :style => "color:#004276; font-size:16px;" %>
+            </div>
+            <div class="DLleftListCen">
+            	<img src="<%= dl_thread.photo.url(:thumb)%>" />
+                <p>
+					<%= h(dl_thread.content_desc.truncate(160))%>
+				</p>
+            </div>
+            <div class="DLleftListBot">
+            	<a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', dl_thread.user.dz_common_id.to_s) %>"><%= dl_thread.user.username%></a>
+                <img src="/dzstyle/images/icon_arrow.gif" />
+                <span>有<%= dl_thread.views %>人浏览</span>
+                <span style="color:#a12a2a;"><%= dl_thread.created_at.strftime('%Y-%m-%d') %></span>
+                <img src="/dzstyle/images/indwd_52.gif" />
+                <span>售价<%= dl_thread.gold %></span>
+                <img src="/dzstyle/images/star.jpg" />
+                <% if dl_thread.level == 0 %>
+				<span class="level0">普通</span>
+				<% elsif dl_thread.level == 1 %>
+				<span class="level1">推荐</span>
+				<% elsif dl_thread.level == 2%>
+				<span class="level2">精华</span>
+				<% end %>
+				
+            </div>
+        </div>
+		<% end %>
+        
+        
+        <div class="DLpaging">
+			<%=h will_paginate @dl_threads, :previous_label => '上一页',  :next_label => '下一页'%>
+        </div>
+        
+        <a href="javascript:;" class="DLguanggaoPic"><img src="/dzstyle/images/mfzxs500x90.jpg" /></a>
+    </div>
+    <div class="DLright">
+    	<div class="DlrigntFenXiang">
+        	<!-- JiaThis Button BEGIN -->
+            <div id="ckepop">
+                <span class="jiathis_txt">分享到：</span>
+                <a class="jiathis_button_qzone"></a>
+                <a class="jiathis_button_tsina"></a>
+                <a class="jiathis_button_tqq"></a>
+                <a class="jiathis_button_renren"></a>
+                <a class="jiathis_button_kaixin001"></a>
+                <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+                <a class="jiathis_counter_style"></a>
+            </div>
+            <script type="text/javascript">var jiathis_config = {data_track_clickback:true};</script>
+			<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1502974" charset="utf-8"></script>
+			<!-- JiaThis Button END -->
+        </div>
+        <div class="DlrightSousuo">
+		<form method="get" action="/search" accept-charset="UTF-8">
+			<input type="hidden" value="dl" name="type"/>
+			<input id="query" type="text" name="query" class="text"/>
+            <input type="submit" value="搜索" class="input"/>
+		</form>
+        </div>
+        <a href="<%= XMAPP_MAIN_DOMAIN_URL %>/dl/threads/new" class="DLrightUplode"><img src="/dzstyle/images/upload.png" /></a>
+        <a href="<%= XMAPP_MAIN_DOMAIN_URL %>/manage/uploads" class="DLrightGLUplode">管理我的上传</a>
+        
+		<div class="DLrightBiaoQ">
+        	<b>下载热门分类标签</b>
+            <ul>
+            	<li>[类型]</li>
+				<li><a href="http://www.xiaoma.com/dl/category/13">小马过河备考听力包</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/3">托福</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/4">雅思</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/5">SAT</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/9">有声读物</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/10">托福口语</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/11">托福写作</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/6">托福听力</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/7">托福阅读</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/35">雅思词汇</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/36">雅思听力</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/37">雅思阅读</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/38">雅思口语</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/18">SAT2</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/19">GRE</a></li>
+				<li><a href="http://www.xiaoma.com/dl/category/27">GMAT</a></li>
 
-									<div class="description">
-									<p><img src="<%= dl_thread.photo.url(:thumb)%>"></img>
-									<%= h(dl_thread.content_desc.truncate(160))%>
-									</p>
-									</div>
-									<div class="clear"></div>
-									<div class="upload_info">
-										<a href="<%= USER_SPACE_URL_BASE.gsub('{dz_uid}', dl_thread.user.dz_common_id.to_s) %>"><%= dl_thread.user.username%></a>
-										<!-- <span class="comment">评论(18)</span> -->
-										<span class="view">有<%= dl_thread.views %>人浏览</span>
-										<span class="date"><%= dl_thread.created_at.strftime('%Y-%m-%d') %></span>
-                  <span class="score">售价<%= dl_thread.gold %></span>
-										<% if dl_thread.level == 0 %>
-										<span class="level0">普通</span>
-										<% elsif dl_thread.level == 1 %>
-										<span class="level1">推荐</span>
-										<% elsif dl_thread.level == 2%>
-										<span class="level2">精华</span>
-										<% end %>
-									</div>
-								</div>
-							</li>
-							<% end %>
-						</ul>
-					<div class="clear"></div>
-					<div class="will_pagination">
-						<%=h will_paginate @dl_threads, :previous_label => '上一页',  :next_label => '下一页'%>
-					</div>
-					<script src='http://www.xiaoma.com/plus/ad_js.php?aid=47' language='javascript'></script>
-				</div><!-- .index_rich_list -->
-			</div><!-- .list_leftside -->
-			<div class="list_rightside">
-<!-- JiaThis Button BEGIN -->
-<div id="ckepop">
-	<a href="http://www.jiathis.com/share/?uid=1502974" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">分享到：</a>
-	<a class="jiathis_button_qzone"></a>
-	<a class="jiathis_button_tsina"></a>
-	<a class="jiathis_button_kaixin001"></a>
-	<a class="jiathis_button_renren"></a>
+
+				<li>[标签]</li>
+				<li><a href="http://www.xiaoma.com/tags/%E9%A9%AC%E9%AA%8F">马骏</a></li>
+				<li><a href="http://www.xiaoma.com/tags/TPO">TPO</a></li>
+				<li><a href="http://www.xiaoma.com/tags/%E8%AE%B2%E4%B9%89%E8%AF%BE%E4%BB%B6">讲义课件</a></li>
+				<li><a href="http://www.xiaoma.com/tags/%E8%AF%8D%E6%B1%87">词汇</a></li>
+				<li><a href="http://www.xiaoma.com/tags/%E6%95%99%E8%BE%85%E4%B9%A6">教辅书</a></li>
+				<li><a href="http://www.xiaoma.com/tags/%E8%AF%AD%E6%B3%95">语法</a></li>
+				<li><a href="http://www.xiaoma.com/tags/%E6%89%98%E7%A6%8F%E8%AF%8D%E6%B1%87">托福词汇</a></li>
+				<li><a href="http://www.xiaoma.com/tags/%E6%9C%BA%E7%BB%8F%E9%A2%84%E6%B5%8B">机经预测</a></li>
+				<li><a href="http://www.xiaoma.com/tags/%E9%9B%85%E6%80%9D%E7%9C%9F%E9%A2%98">雅思真题</a></li>
+				<li><a href="http://www.xiaoma.com/tags/%E5%89%91%E6%A1%A5%E9%9B%85%E6%80%9D">剑桥雅思</a></li>
+				<li><a href="http://www.xiaoma.com/tags/SAT%E7%89%A9%E7%90%86">SAT物理</a></li>
+				<li><a href="http://www.xiaoma.com/tags/SAT%E7%9C%9F%E9%A2%98">SAT真题</a></li>
+            </ul>
+        </div>
+        
+		<dl class="DLrightMold">
+        	<dt>论坛精华</dt>
+            <script type="text/javascript" src="http://bbs.xiaoma.com/api.php?mod=js&bid=286"></script>
+        </dl>
+        
+    </div>
+    
 </div>
-<script type="text/javascript" src="http://v1.jiathis.com/code/jia.js?uid=1502974" charset="utf-8"></script>
-<!-- JiaThis Button END -->
-        <div class="right_search">
-					<form method="get" action="/search" accept-charset="UTF-8">
-						<input type="hidden" value="dl" name="type">
-						<input id="query" type="text" name="query">
-						<input id="search_submit" class="btn_srh" type="submit" value="搜索">
-					</form>
-				</div>
-				<div class="user_upload">
-					<p>
-						<input type="button" class="upload_img"  onclick="location.href='<%= XMAPP_MAIN_DOMAIN_URL %>/dl/threads/new'">
-					</p>
-				</div>
-				<div>
-					<p>
-						<h5><a href="/manage/uploads">管理我的上传</a></h5>
-					</p>
-				</div>
-				<h2 class="subject">留学推荐</h2>
-				<script src='http://www.xiaoma.com/plus/ad_js.php?aid=84' language='javascript'></script>
-				<div class="clear"></div>
-				<h2 class="subject">热点文章</h2>
-				<script src='http://www.xiaoma.com/plus/ad_js.php?aid=85' language='javascript'></script>
-				<div class="clear"></div>
-				<h2 class="subject">论坛精华</h2>
-				<script type="text/javascript" src="http://bbs.xiaoma.com/api.php?mod=js&bid=286"></script>
-				<div class="clear"></div>
-
-				<script src='http://www.xiaoma.com/plus/ad_js.php?aid=15' language='javascript'></script>
-				<h2 class="subject">英语学习资料下载热门分类标签</h2>
-				<ul class="content clearfix">
-					<li>[类型]</li>
-					<li><%= link_to "小马备考听力包", dl_category_url(13) %></li>
-					<li><%= link_to "托福", dl_category_url(3) %></li>
-					<li><%= link_to "雅思", dl_category_url(4) %></li>
-					<li><%= link_to "SAT", dl_category_url(5) %></li>
-					<li><%= link_to "有声读物", dl_category_url(9) %></li>
-					<li><%= link_to "托福口语", dl_category_url(10) %></li>
-					<li><%= link_to "托福写作", dl_category_url(11) %></li>
-					<li><%= link_to "托福听力", dl_category_url(6) %></li>
-					<li><%= link_to "托福阅读", dl_category_url(7) %></li>
-					<li><%= link_to "雅思词汇", dl_category_url(35) %></li>
-					<li><%= link_to "雅思听力", dl_category_url(36) %></li>
-					<li><%= link_to "雅思阅读", dl_category_url(37) %></li>
-					<li><%= link_to "雅思口语", dl_category_url(38) %></li>
-					<li><%= link_to "SAT2", dl_category_url(18) %></li>
-					<li><%= link_to "GRE", dl_category_url(19) %></li>
-					<li><%= link_to "GMAT", dl_category_url(27) %></li>
-
-
-					<li class="split">[标签]</li>
-					<li><%= link_to "马骏", tag_url("马骏") %></li>
-					<li><%= link_to "TPO", tag_url("TPO") %></li>
-					<li><%= link_to "讲义课件", tag_url("讲义课件") %></li>
-					<li><%= link_to "词汇", tag_url("词汇") %></li>
-					<li><%= link_to "教辅书", tag_url("教辅书") %></li>
-					<li><%= link_to "语法", tag_url("语法") %></li>
-					<li><%= link_to "托福词汇", tag_url("托福词汇") %></li>
-					<li><%= link_to "机经预测", tag_url("机经预测") %></li>
-					<li><%= link_to "雅思真题", tag_url("雅思真题") %></li>
-					<li><%= link_to "剑桥雅思", tag_url("剑桥雅思") %></li>
-					<li><%= link_to "SAT物理", tag_url("SAT物理") %></li>
-					<li><%= link_to "SAT真题", tag_url("SAT真题") %></li>
-				</ul>
-				<h2 class="subject"><%= @dl_category.typename %>最热下载</h2>
-				<ul class="rank_list clearfix">
-					<% @hot_dl_threads.each do |hot_dl_thread| %>
-					<li>
-						<%= link_to hot_dl_thread.name, dl_path(hot_dl_thread.id) %> (<%= hot_dl_thread.views %>)
-					</li>
-					<% end %>
-				</ul>
-
-
-			</div>
-			<div class="clear"></div>
-		</div><!-- #content_container -->
-		<div class="clear"></div>
-

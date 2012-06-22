@@ -2,6 +2,7 @@ require 'iconv'
 require 'uri'
 #require "prawn"
 class Downloads::AttachmentsController < ApplicationController
+  layout "downloads_layout"
   before_filter :require_login_to_main_server
   # 显示验证码
   def show
@@ -21,6 +22,7 @@ class Downloads::AttachmentsController < ApplicationController
     # 拿出验证码
 	# 获取文件
 	if session[:vicode] == params[:imagecode]
+	  Rails.logger.debug { "messaskdasdssssssssage" }
 		@dl_attachment = DlAttachment.find(params[:attachment_id])
 		# 获取文件路径
 		file_full_path = FILE_UPLOAD_DIRECTORY + "/"+ @dl_attachment.filepath + "/" + @dl_attachment.filename

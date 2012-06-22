@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.LoginLeft{ width:100%; height:auto; float:left; line-height:30px;}
+.LoginLeft li{ width:100%; height:auto; float:left;}
+.LoginLeft li b{ width:100%; height:auto; float:left}
+.LoginLeft li input{ width:180px; height:20px; line-height:20px; border:1px solid #ccc; float:left;}
+.LoginLeft li span{ width:auto; float:left; color:red; font-weight:bold; margin-left:10px; display:inline;}
+.LoginLeft li p{ width:100%; height:auto; left:auto; color:#999;}
+.LoginBut{ width:130px; height:32px;color:#fff;border:none;  background-image:url(../images/form_btn2.gif); float:left; margin-top:10px;   font-size:14px; font-weight:bold; cursor:pointer;}
+
+.LoginRight{ width:100%; height:auto; float:left; margin-top:10px; line-height:30px;}
+.LoginRight li{ width:100%;;}
+.LoginRight li a{}

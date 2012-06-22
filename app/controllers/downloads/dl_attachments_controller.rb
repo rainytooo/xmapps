@@ -4,6 +4,7 @@ require 'uuidtools'
 
 include ActionView::Helpers::NumberHelper
 class Downloads::DlAttachmentsController < ApplicationController
+  layout "downloads_layout"
   before_filter :require_login
   # GET /dl_attachments
   # GET /dl_attachments.xml
