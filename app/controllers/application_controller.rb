@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   # 下面是过滤器的定义部分
   private
   def record_not_found
-    render '/404.html'
+    render '/404.html', :layout => 'empty'
   end
   # 给discuz 用户发提醒
   def send_dz_notify(dz_user_id, authorid, author, message, from_idtype)
