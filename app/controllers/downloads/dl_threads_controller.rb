@@ -46,7 +46,27 @@ class Downloads::DlThreadsController < ApplicationController
 	  @dl_thread = DlThread.find_by_id(params[:id])
 	  
 	  
-	  
+	  user_question = Questionnaire.find_by_user_id(session[:login_user_id])
+	  if not user_question
+	    # 保存浏览的下载的id
+	    if "development" == Rails.env
+	      cookies[:last_dl_id] = {
+          :value => @dl_thread.id,
+          :expires => 1.hour.from_now	
+          #:domain => COOKIE_DOMAIN_NAME
+        }
+      elsif "production" == Rails.env
+        cookies[:last_dl_id] = {
+          :value => @dl_thread.id,
+          :expires => 1.hour.from_now,
+          :domain => COOKIE_DOMAIN_NAME
+        }
+      end
+      redirect_to new_questionnaire_path
+      return
+    end
+	    
+	    
 	  if not @dl_thread
 		  flash[:message] = "对不起,此资源不存在或者已被删除"
 	  else
